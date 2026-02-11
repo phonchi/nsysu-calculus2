@@ -9,5 +9,5 @@ Feel free to book [science table](https://sites.google.com/g-mail.nsysu.edu.tw/q
 
 Office hours: Mon. 16:00-18:00 and Wed. 16:00-18:00 at 理SC 2002-4
 
-TA hours: 
+TA hours: Fri. 14:00-16:00 at 理SC 1011-1
 
