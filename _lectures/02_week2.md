@@ -13,6 +13,6 @@ links:
       
 ---
 **Suggested Readings:**
-- [[Chapter 8 summary slides_chinese (courtesy of professor Fu-Chuen Chang)]](/nsysu-calculus2-2025/static_files/presentations/Chap08_Summary.pdf)
+- [[Chapter 8 summary slides_chinese (courtesy of professor Fu-Chuen Chang)]](/nsysu-calculus2/static_files/presentations/Chap08_Summary.pdf)
 - Chapter 8.1-8.3
 - [圖解證明三角恆等式](https://www.math.sinica.edu.tw/media/pdf/d253/25312.pdf)
