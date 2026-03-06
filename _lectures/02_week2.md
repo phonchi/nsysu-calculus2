@@ -16,3 +16,4 @@ links:
 - [[Chapter 8 summary slides_chinese (courtesy of professor Fu-Chuen Chang)]](/nsysu-calculus2/static_files/presentations/Chap08_Summary.pdf)
 - Chapter 8.1-8.3
 - [圖解證明三角恆等式](https://www.math.sinica.edu.tw/media/pdf/d253/25312.pdf)
+- [[Recorded video]](https://youtube.com/playlist?list=PLHNZtBNWQ-84iGzydwQqu0hx0slV9nh10&si=qLRIdrDgf96qBZSP)
