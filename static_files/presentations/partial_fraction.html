@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>部分分式分解的規則與直覺邏輯</title>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 40px auto; padding: 20px; background-color: #f9f9f9; }
+        h1 { color: #2c3e50; border-bottom: 2px solid #2c3e50; padding-bottom: 10px; }
+        h2 { color: #e67e22; margin-top: 30px; }
+        .box { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin: 20px 0; border-left: 5px solid #3498db; }
+        .counter_example { border-left-color: #e74c3c; background-color: #fff5f5; }
+        .rule_box { border-left-color: #2ecc71; background-color: #f0fdf4; }
+        code { background: #eee; padding: 2px 5px; border-radius: 4px; }
+        .footer { font-size: 0.8em; color: #7f8c8d; margin-top: 50px; text-align: center; }
+        ul { list-style-type: disc; }
+    </style>
+</head>
+<body>
+
+    <h1>部分分式分解的規則與直覺邏輯</h1>
+    <p>部分分式分解的目標是將一個複雜的有理函數拆解成最簡單的組成單元，以便進行積分運算。為了順利拆解，我們必須遵循一套嚴謹的代數規則。</p>
+
+    <h2>部分分式分解的基本規則</h2>
+    <div class="box rule_box">
+        <ul>
+            <li><strong>檢查是否為假分式：</strong>如果分子的最高次數大於或等於分母的最高次數，必須先使用多項式長除法將其化簡為多項式加上真分式。</li>
+            <li><strong>因式分解分母：</strong>將分母完全分解為一次因子與不可約二次因子。</li>
+            <li><strong>一次因子的展開：</strong>對於每一個形如 $(px+q)^m$ 的因子，必須展開為 $m$ 個分式和，每個分式的分子皆為常數。其完整的數學式為：
+            $$ \frac{A_1}{px+q} + \frac{A_2}{(px+q)^2} + \cdots + \frac{A_m}{(px+q)^m} $$
+            </li>
+            <li><strong>二次因子的展開：</strong>對於每一個形如 $(ax^2+bx+c)^n$ 的因子，必須展開為 $n$ 個分式和，每個分式的分子皆為一次式。其完整的數學式為：
+            $$ \frac{B_1x+C_1}{ax^2+bx+c} + \frac{B_2x+C_2}{(ax^2+bx+c)^2} + \cdots + \frac{B_nx+C_n}{(ax^2+bx+c)^n} $$
+            </li>
+        </ul>
+    </div>
+
+    <h2>核心原則：保持真分式與足夠的自由度</h2>
+    <p>為了解出未知數，我們設立的假設形式必須提供足夠的「自由度」，才能涵蓋所有可能的分子組合，同時確保拆解出的每個單元依然是真分式。</p>
+    
+    <div class="box">
+        <strong>一次因子的邏輯：</strong><br>
+        分母的基本單元 $(px+q)$ 是一次式，分子就只能是次數較低的常數（零次式）。所以我們使用常數 $A_1, A_2$ 等來假設。
+    </div>
+
+    <div class="box">
+        <strong>二次因子的邏輯：</strong><br>
+        對於無法再分解的二次因子 $ax^2+bx+c$，分母是二次式。為了解出所有可能的真分式組合，分子必須容許最高達到一次式的存在。這就是為什麼我們必須假設分子為 $B_1x+C_1$ 的原因。
+    </div>
+
+    <div class="box">
+        <strong>重根因子的共同邏輯：</strong><br>
+        當遇到重根如 $(px+q)^m$ 或 $(ax^2+bx+c)^n$，我們不能只寫最高次方的單一項。因為在通分合併的過程中，分子可能會產生低次方的各種多項式變化。為了確保我們有足夠的變數去「捕捉」這些變化，我們必須從一次方、二次方一路寫到最高次方，賦予每個階層對應的分子結構。
+    </div>
+
+    <h2>反例驗證</h2>
+    
+    <div class="box counter_example">
+        <strong>反例 A：為何不可約二次因子不能只配常數分子？</strong>
+        <p>假設我們遇到分母是不可約二次式，卻錯誤地只給定一個常數分子 $A$：</p>
+        <p>$$ \frac{x}{x^2+1} \stackrel{?}{=} \frac{A}{x^2+1} $$</p>
+        <p>如果這樣假設成立，等式兩邊的分母相同，分子也必須完全相等，得出 $x = A$。但 $A$ 是一個固定的常數，不可能等於會變動的變數 $x$。這個矛盾告訴我們，常數的自由度不夠，無法架構出一次式的分子。我們必須使用 $\frac{Ax+B}{x^2+1}$ 才能順利求解。</p>
+    </div>
+
+    <div class="box counter_example">
+        <strong>反例 B：為何「一次因式重根」必須從一次方開始列舉？</strong>
+        <p>假設我們遇到分母有完全平方，卻錯誤地只寫出最高次方的項：</p>
+        <p>$$ \frac{x}{(x-1)^2} \stackrel{?}{=} \frac{A}{(x-1)^2} $$</p>
+        <p>同樣的道理，這會推導出 $x = A$，依然無解。但如果我們遵照規則，提供完整的次方階層：</p>
+        <p>$$ \frac{x}{(x-1)^2} = \frac{A}{x-1} + \frac{B}{(x-1)^2} $$</p>
+        <p>通分後分子會變成 $x = A(x-1) + B$。當代入 $x=1$ 時可以得到 $B=1$，再比對 $x$ 的係數可得 $A=1$。由於我們提供了足夠的結構，就能順利還原出原本的分子。</p>
+    </div>
+
+    <div class="box counter_example">
+        <strong>反例 C：為何「二次因式重根」也必須寫出降階項？</strong>
+        <p>假設我們遇到二次式的重根，例如分母為 $(x^2+1)^2$，若我們貪圖方便只寫出最高次方的結構：</p>
+        <p>$$ \frac{x^3}{(x^2+1)^2} \stackrel{?}{=} \frac{Ax+B}{(x^2+1)^2} $$</p>
+        <p>這會導致分子出現 $x^3 = Ax+B$ 的荒謬結果，因為一個三次多項式絕對不可能等於一個一次多項式。正確的做法是補齊較低次方的分母項：</p>
+        <p>$$ \frac{x^3}{(x^2+1)^2} = \frac{Ax+B}{x^2+1} + \frac{Cx+D}{(x^2+1)^2} $$</p>
+        <p>通分後的分子結構為 $(Ax+B)(x^2+1) + Cx+D = Ax^3 + Bx^2 + (A+C)x + (B+D)$。藉由比對等式兩邊的係數，我們能輕鬆解出 $A=1, B=0, C=-1, D=0$，數學邏輯才得以完美契合。</p>
+    </div>
+
+    <div class="footer">
+        Prepared for the Department of Applied Mathematics, NSYSU. <br>
+        Reference: Calculus Chapter 8, Section 5.
+    </div>
+
+</body>
+</html>
