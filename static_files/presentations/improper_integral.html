@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>瑕積分與奇函數：為什麼 ∞ − ∞ ≠ 0？</title>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$']],
+      displayMath: [['$$', '$$']]
+    }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --paper: #f7f3eb;
+    --accent: #c0392b;
+    --accent2: #2c3e7a;
+    --accent3: #1a6b4a;
+    --muted: #8a8578;
+    --card: #fffdf7;
+    --card-border: #e8e2d6;
+    --highlight: #fff3cd;
+    --code-bg: #2d2d3f;
+    --code-fg: #e8e6df;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.9;
+    font-size: 17px;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; padding: 2rem; position: relative; overflow: hidden;
+    background: linear-gradient(170deg, #1a1a2e 0%, #2c3e7a 40%, #c0392b 100%);
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.03) 0%, transparent 40%);
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 800px; }
+  .hero h1 {
+    font-family: 'Noto Serif TC', serif; font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 900; color: #fff; letter-spacing: 0.04em; line-height: 1.3; margin-bottom: 1rem;
+  }
+  .hero h1 .red { color: #ff6b6b; }
+  .hero .subtitle { font-size: clamp(1rem, 2.5vw, 1.3rem); color: rgba(255,255,255,0.7); font-weight: 300; margin-bottom: 2.5rem; }
+  .hero .big-formula {
+    color: #ff6b6b; background: rgba(0,0,0,0.3); padding: 1rem 2.5rem; border-radius: 12px;
+    display: inline-block; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 2.5rem;
+    backdrop-filter: blur(4px); font-size: 1.3rem;
+  }
+  .scroll-hint { color: rgba(255,255,255,0.4); font-size: 0.9rem; animation: bounce 2s infinite; }
+  .scroll-hint span { display: block; font-size: 1.4rem; margin-top: 0.3rem; }
+  @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+
+  /* Layout */
+  .container { max-width: 780px; margin: 0 auto; padding: 4rem 1.5rem; }
+  .section-number { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--accent); font-weight: 600; letter-spacing: 0.15em; margin-bottom: 0.5rem; }
+  h2 { font-family: 'Noto Serif TC', serif; font-size: 1.8rem; font-weight: 700; color: var(--ink); margin-bottom: 1.5rem; line-height: 1.4; }
+  h3 { font-family: 'Noto Serif TC', serif; font-size: 1.25rem; font-weight: 700; color: var(--accent2); margin: 2rem 0 0.8rem; }
+  section { margin-bottom: 4rem; padding-bottom: 3rem; border-bottom: 1px solid var(--card-border); }
+  section:last-of-type { border-bottom: none; }
+  p { margin-bottom: 1rem; }
+  .red-text { color: var(--accent); font-weight: 700; }
+
+  /* Cards */
+  .formula-card {
+    background: var(--card); border: 1px solid var(--card-border); border-left: 4px solid var(--accent);
+    border-radius: 8px; padding: 1.2rem 1.8rem; margin: 1.5rem 0; text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04); overflow-x: auto;
+  }
+  .formula-card.blue { border-left-color: var(--accent2); }
+  .formula-card.green { border-left-color: var(--accent3); }
+  .formula-card.orange { border-left-color: #e67e22; }
+
+  .highlight-box {
+    background: var(--highlight); border-radius: 10px; padding: 1.5rem 2rem; margin: 1.5rem 0;
+    border: 1px solid #f0e0a0; position: relative;
+  }
+  .highlight-box::before { content: '⚠'; position: absolute; top: -12px; left: 16px; background: var(--highlight); padding: 0 8px; font-size: 1.2rem; }
+  .highlight-box strong { color: var(--accent); }
+
+  .def-box {
+    background: #eef2ff; border: 2px solid var(--accent2); border-radius: 10px;
+    padding: 1.5rem 2rem; margin: 1.5rem 0; position: relative;
+  }
+  .def-box .def-label {
+    position: absolute; top: -13px; left: 16px; background: var(--accent2); color: #fff;
+    font-size: 0.8rem; font-weight: 700; padding: 2px 12px; border-radius: 4px;
+  }
+
+  .motivation-box {
+    background: #fef9ee; border: 1px solid #e8d9b0; border-left: 4px solid #e67e22;
+    border-radius: 8px; padding: 1.5rem 2rem; margin: 1.5rem 0;
+  }
+  .motivation-box .motiv-label { font-size: 0.85rem; font-weight: 700; color: #e67e22; margin-bottom: 0.5rem; }
+
+  /* Contrast boxes */
+  .contrast-group { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+  .contrast-block { border-radius: 10px; padding: 1.2rem 1.5rem; }
+  .contrast-block.pass { background: #e4f5ec; border: 2px solid #a8d8b9; }
+  .contrast-block.fail { background: #fce4e4; border: 2px solid #e8b4b4; }
+  .contrast-block.single-var { background: #e4f5ec; border: 2px solid #a8d8b9; }
+  .contrast-block.two-var { background: #fce4e4; border: 2px solid #e8b4b4; }
+  .contrast-block .cb-label { font-size: 0.85rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .contrast-block.pass .cb-label, .contrast-block.single-var .cb-label { color: var(--accent3); }
+  .contrast-block.fail .cb-label, .contrast-block.two-var .cb-label { color: var(--accent); }
+  .contrast-block p { font-size: 0.95rem; margin-bottom: 0.5rem; }
+  @media (max-width: 600px) { .contrast-group { grid-template-columns: 1fr; } }
+
+  /* Step chain */
+  .step-chain { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.5rem; margin: 1.5rem 0; font-size: 1rem; }
+  .step-chain .step { background: var(--card); border: 1px solid var(--card-border); border-radius: 8px; padding: 0.6rem 1.2rem; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.04); }
+  .step-chain .step.red-step { background: #fce4e4; border-color: #e8b4b4; color: var(--accent); font-weight: 700; }
+  .step-chain .step.green-step { background: #e4f5ec; border-color: #a8d8b9; color: var(--accent3); font-weight: 700; }
+  .step-chain .arrow { font-size: 1.3rem; color: var(--muted); }
+
+  /* Table */
+  .example-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+  .example-table th { background: var(--accent2); color: #fff; padding: 0.8rem 1rem; text-align: center; font-weight: 500; font-size: 0.9rem; }
+  .example-table th:first-child { border-radius: 8px 0 0 0; }
+  .example-table th:last-child { border-radius: 0 8px 0 0; }
+  .example-table td { padding: 0.8rem 1rem; text-align: center; border-bottom: 1px solid var(--card-border); }
+  .example-table tr:last-child td:first-child { border-radius: 0 0 0 8px; }
+  .example-table tr:last-child td:last-child { border-radius: 0 0 8px 0; }
+  .example-table tr:nth-child(even) { background: rgba(0,0,0,0.02); }
+  .result-zero { color: var(--accent3); font-weight: 600; }
+  .result-inf { color: var(--accent); font-weight: 600; }
+  .result-num { color: var(--accent2); font-weight: 600; }
+
+  /* Interactive */
+  .demo-container { background: var(--code-bg); border-radius: 12px; padding: 2rem; margin: 2rem 0; color: var(--code-fg); }
+  .demo-container h4 { color: #ff6b6b; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.5rem; }
+  .slider-group { margin: 0.8rem 0; }
+  .slider-row { display: flex; align-items: center; gap: 0.8rem; font-size: 0.95rem; color: rgba(255,255,255,0.8); }
+  .slider-label { min-width: 60px; text-align: right; white-space: nowrap; font-family: 'JetBrains Mono', monospace; }
+  .slider-row input[type="range"] { flex: 1; accent-color: #ff6b6b; height: 6px; }
+  .slider-val { color: #ff6b6b; font-weight: 600; min-width: 30px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .slider-desc { font-size: 0.8rem; color: rgba(255,255,255,0.35); margin-left: 68px; margin-top: 2px; margin-bottom: 0.6rem; }
+  .demo-formula-box { background: rgba(255,255,255,0.06); border-radius: 8px; padding: 1.2rem 1.5rem; margin-top: 1.2rem; text-align: center; border: 1px solid rgba(255,255,255,0.08); line-height: 2; }
+  #demoFormula { margin-bottom: 0.3rem; color: rgba(255,255,255,0.85); }
+  #demoCalc { font-size: 0.9rem; color: rgba(255,255,255,0.5); }
+  #demoResult { font-size: 1.4rem; font-weight: 600; display: block; margin: 0.5rem 0; font-family: 'JetBrains Mono', monospace; }
+  #demoComment { font-size: 0.85rem; color: rgba(255,255,255,0.45); display: block; margin-top: 0.3rem; line-height: 1.6; }
+
+  /* Graph */
+  .graph-wrapper { background: var(--card); border: 1px solid var(--card-border); border-radius: 12px; padding: 1.5rem; margin: 2rem 0; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+  .graph-wrapper canvas { max-width: 100%; }
+  .graph-caption { font-size: 0.85rem; color: var(--muted); margin-top: 0.8rem; }
+
+  /* Takeaway */
+  .takeaway { background: linear-gradient(135deg, #1a1a2e, #2c3e7a); color: #fff; border-radius: 14px; padding: 2.5rem; margin: 2rem 0; position: relative; overflow: hidden; }
+  .takeaway::before { content: ''; position: absolute; top: -50%; right: -20%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,107,107,0.15), transparent 70%); border-radius: 50%; }
+  .takeaway h3 { color: #ff6b6b; margin-top: 0; font-size: 1.1rem; }
+  .takeaway p { position: relative; z-index: 1; line-height: 2; font-size: 1.05rem; }
+
+  footer { text-align: center; padding: 3rem 1.5rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--card-border); }
+
+  @media (max-width: 600px) {
+    .container { padding: 2.5rem 1.2rem; }
+    .formula-card { padding: 1rem; }
+    .demo-container { padding: 1.2rem; }
+    .example-table { font-size: 0.8rem; }
+    .example-table td, .example-table th { padding: 0.6rem 0.5rem; }
+    .step-chain { font-size: 0.85rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ====== HERO ====== -->
+<div class="hero">
+  <div class="hero-content">
+    <h1>瑕積分與奇函數<br><span class="red">∞ − ∞ ≠ 0</span></h1>
+    <p class="subtitle">一個微積分中最常見的「直覺陷阱」完整解析</p>
+    <div class="big-formula">$$\int_{-\infty}^{+\infty} x\, dx = \;???$$</div>
+    <div class="scroll-hint">往下滑，看看為什麼<span>↓</span></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ==================== Part 1 ==================== -->
+  <section>
+    <div class="section-number">Part 01</div>
+    <h2>直覺：奇函數在對稱區間積分為零？</h2>
+    <p>
+      我們都學過，如果 $f(x)$ 是<strong>奇函數</strong>（即 $f(-x) = -f(x)$），
+      那麼在<strong>有限的</strong>對稱區間上：
+    </p>
+    <div class="formula-card green">
+      $$\int_{-a}^{a} f(x)\, dx = 0 \quad (a \text{ 是有限值})$$
+    </div>
+    <p>
+      例如 $f(x) = x$ 是奇函數，$\displaystyle\int_{-3}^{3} x\, dx = 0$，完全正確。
+      但如果我們把範圍推到無窮大呢？
+    </p>
+    <div class="formula-card">
+      $$\int_{-\infty}^{+\infty} x\, dx \;\stackrel{?}{=}\; 0$$
+    </div>
+    <p>
+      答案是：<strong>不行！</strong>這個積分是<span class="red-text">發散的</span>。
+      要理解為什麼，我們先來看瑕積分的嚴格定義。
+    </p>
+  </section>
+
+  <!-- ==================== Part 2 ==================== -->
+  <section>
+    <div class="section-number">Part 02</div>
+    <h2>瑕積分的嚴格定義</h2>
+
+    <div class="def-box">
+      <div class="def-label">定義</div>
+      <p style="margin-top:0.5rem;">
+        $\displaystyle\int_{-\infty}^{+\infty} f(x)\, dx$ 的定義是：
+      </p>
+      $$\int_{-\infty}^{+\infty} f(x)\, dx
+      \;=\; \underbrace{\lim_{a \to \infty} \int_{-a}^{c} f(x)\, dx}_{\text{左半段}}
+      \;+\; \underbrace{\lim_{b \to \infty} \int_{c}^{b} f(x)\, dx}_{\text{右半段}}$$
+      <p>
+        其中 $a$ 和 $b$ 是<strong>兩個獨立的變數</strong>，各自趨近 $\infty$。<br>
+        整個積分收斂的條件是：<strong>兩個極限都必須各自存在且為有限值</strong>。<br>
+        只要有任何一段的極限是 $\pm\infty$（不是有限值），整個積分就<strong>發散</strong>。
+      </p>
+    </div>
+
+    <h3>套用到 $\displaystyle\int_{-\infty}^{+\infty} x\, dx$</h3>
+    <p>取 $c = 0$，分成左右兩段：</p>
+    <div class="formula-card">
+      $$\text{右半段：}\quad \lim_{b \to \infty}\int_{0}^{b} x\, dx
+      = \lim_{b \to \infty} \frac{b^2}{2}
+      = +\infty \quad \text{（不是有限值 → 發散！）}$$
+    </div>
+    <div class="formula-card">
+      $$\text{左半段：}\quad \lim_{a \to \infty}\int_{-a}^{0} x\, dx
+      = \lim_{a \to \infty} \left(-\frac{a^2}{2}\right)
+      = -\infty \quad \text{（不是有限值 → 發散！）}$$
+    </div>
+
+    <p>右半段的極限是 $+\infty$，不是有限值。根據定義，<strong>到這裡就結束了</strong>。</p>
+
+    <div class="step-chain">
+      <div class="step">某一段極限 $= \pm\infty$</div>
+      <div class="arrow">→</div>
+      <div class="step">不是有限值</div>
+      <div class="arrow">→</div>
+      <div class="step red-step">該段發散</div>
+      <div class="arrow">→</div>
+      <div class="step red-step">整體發散</div>
+    </div>
+
+    <div class="highlight-box">
+      <p>
+        <strong>注意：</strong>發散的判定到此完成。不需要討論 $\infty - \infty$ 能不能抵消——根本走不到那一步，因為每一段各自就已經不是有限值了。
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== Part 3 ==================== -->
+  <section>
+    <div class="section-number">Part 03</div>
+    <h2>為什麼 $a$ 和 $b$ 可以不同速度？</h2>
+
+    <p>
+      你可能會問：定義裡為什麼讓 $a$ 和 $b$ 各自獨立趨近 $\infty$？
+      不能直接規定 $a = b$ 嗎？
+    </p>
+
+    <div class="motivation-box">
+      <div class="motiv-label">💡 核心精神：「收斂」意味著結果不依賴取極限的方式</div>
+      <p>
+        數學上，一個量要被稱為「收斂」，最基本的要求是：
+        <strong>不管你怎麼逼近，結果都必須是同一個值</strong>。
+      </p>
+      <p>
+        就好像你要確認一間餐廳好不好吃，不能只問一個人的意見——
+        你要問很多不同的人，如果每個人都說好吃，那才是真的好吃。
+      </p>
+      <p style="margin-bottom:0;">
+        同理，瑕積分讓 $a$ 和 $b$ 自由變動，就是在<strong>測試所有可能的逼近方式</strong>。
+        如果不管 $a$ 和 $b$ 怎麼跑（同速、不同速、一快一慢……），
+        結果都收到<strong>同一個有限值</strong>，那才是真正的收斂。
+      </p>
+    </div>
+
+    <h3>通過測試 vs 未通過測試</h3>
+
+    <p>先看一個<strong>通過測試</strong>的例子：$\displaystyle\int_{-\infty}^{+\infty} \frac{x}{(1+x^2)^2}\, dx$</p>
+
+    <div class="formula-card green">
+      $$\lim_{a \to \infty}\int_{-a}^{0} \frac{x}{(1+x^2)^2}\, dx = -\frac{1}{2}, \quad
+      \lim_{b \to \infty}\int_{0}^{b} \frac{x}{(1+x^2)^2}\, dx = +\frac{1}{2}$$
+    </div>
+
+    <p>
+      每段各自收斂到有限值。所以不管 $a$ 和 $b$ 怎麼跑，左半段永遠趨近 $-\frac{1}{2}$，
+      右半段永遠趨近 $+\frac{1}{2}$，加起來永遠是 $0$。<strong>答案和 $a, b$ 的速度無關</strong>。
+    </p>
+
+    <div class="step-chain">
+      <div class="step">每段各自 → 有限值</div>
+      <div class="arrow">→</div>
+      <div class="step">$a, b$ 怎麼跑都一樣</div>
+      <div class="arrow">→</div>
+      <div class="step green-step">通過測試 → 收斂</div>
+    </div>
+
+    <p>再看<strong>未通過測試</strong>的例子：$\displaystyle\int_{-\infty}^{+\infty} x\, dx$</p>
+
+    <div class="formula-card blue">
+      $$\int_{-a}^{b} x\, dx = \frac{b^2 - a^2}{2}$$
+    </div>
+
+    <p>$a$ 和 $b$ 的不同取法直接改變結果：</p>
+
+    <table class="example-table">
+      <thead>
+        <tr><th>$a$ 和 $b$ 的關係</th><th>積分值</th><th>$a,b \to \infty$ 時</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>$a = b$（同速）</td>
+          <td>$\dfrac{b^2 - b^2}{2} = 0$</td>
+          <td class="result-zero">$\to 0$</td>
+        </tr>
+        <tr>
+          <td>$b = 2a$（右邊跑兩倍快）</td>
+          <td>$\dfrac{4a^2 - a^2}{2} = \dfrac{3a^2}{2}$</td>
+          <td class="result-inf">$\to +\infty$</td>
+        </tr>
+        <tr>
+          <td>$a = 2b$（左邊跑兩倍快）</td>
+          <td>$\dfrac{b^2 - 4b^2}{2} = -\dfrac{3b^2}{2}$</td>
+          <td class="result-inf">$\to -\infty$</td>
+        </tr>
+        <tr>
+          <td>$b = a + 3$（右邊多 $3$）</td>
+          <td>$3a + \dfrac{9}{2}$</td>
+          <td class="result-inf">$\to +\infty$</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>同速得 $0$，不同速得 $\pm\infty$。結果取決於 $a, b$ 的比例。</p>
+
+    <div class="step-chain">
+      <div class="step">不同速度 → 不同結果</div>
+      <div class="arrow">→</div>
+      <div class="step">答案不唯一</div>
+      <div class="arrow">→</div>
+      <div class="step red-step">未通過測試 → 發散</div>
+    </div>
+
+    <div class="highlight-box">
+      <p>
+        <strong>結論：</strong>讓 $a, b$ 可以不同速度，是為了<strong>全面測試</strong>積分值是否穩定。
+        真正收斂的積分，不管 $a, b$ 怎麼跑，結果都一樣。
+        如果只有特定速度（如 $a = b$）才能得到有限值，
+        那就代表這個積分的「答案」依賴於你的取法——這不是真正的收斂。
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== Part 4: L'Hôpital ==================== -->
+  <section>
+    <div class="section-number">Part 04</div>
+    <h2>對比：L'Hôpital 的 $\infty - \infty$ 為什麼不能直接說發散？</h2>
+    <p>
+      你在微積分裡也學過，$\infty - \infty$ 是 L'Hôpital 法則中的「不定式」之一。
+      遇到不定式時，我們不能直接下結論，而是要<strong>進一步化簡才能求值</strong>。
+      那為什麼瑕積分直接判發散，而 L'Hôpital 的不定式卻要繼續算呢？
+    </p>
+
+    <div class="motivation-box">
+      <div class="motiv-label">💡 關鍵差異：一個變數 vs 兩個獨立變數</div>
+      <p>
+        L'Hôpital 處理的是<strong>單一變數</strong>的極限。
+        $\infty - \infty$ 的兩部分被<strong>同一個變數</strong>綁定，
+        所以兩項之間的關係是<strong>固定的</strong>，有可能化簡後得到確定值。
+      </p>
+      <p style="margin-bottom:0;">
+        瑕積分的 $\infty - \infty$ 來自<strong>兩個獨立的變數</strong> $a$ 和 $b$。
+        兩段之間沒有任何關聯，所以結果不確定。
+      </p>
+    </div>
+
+    <h3>L'Hôpital 的例子：$\infty - \infty$ 但有確定答案</h3>
+    <div class="formula-card orange">
+      $$\lim_{x \to \infty} \left( x - \sqrt{x^2 - 1} \right)$$
+    </div>
+    <p>
+      $x \to \infty$ 時，$x \to \infty$ 且 $\sqrt{x^2-1} \to \infty$，形式上是 $\infty - \infty$。
+      但這裡<strong>只有一個變數 $x$</strong>——兩項的增長速度完全由 $x$ 決定，
+      沒有「不同速度」的選擇空間。有理化後：
+    </p>
+    <div class="formula-card green">
+      $$\lim_{x \to \infty} \frac{x^2 - (x^2 - 1)}{x + \sqrt{x^2 - 1}}
+      = \lim_{x \to \infty} \frac{1}{x + \sqrt{x^2 - 1}}
+      = 0$$
+    </div>
+    <p>不定式消失了，答案確定是 $0$。因為只有一個變數，兩項的關係是<strong>鎖死的</strong>。</p>
+
+    <h3>再看一個例子</h3>
+    <div class="formula-card orange">
+      $$\lim_{x \to 0^+} \left( \frac{1}{x} - \frac{1}{\sin x} \right)$$
+    </div>
+    <p>
+      $x \to 0^+$ 時兩項都趨近 $+\infty$，形式上是 $\infty - \infty$。
+      通分後用 L'Hôpital 法則：
+    </p>
+    <div class="formula-card green">
+      $$\lim_{x \to 0^+} \frac{\sin x - x}{x \sin x}
+      \;\overset{\text{L'H}}{=}\; \lim_{x \to 0^+} \frac{\cos x - 1}{\sin x + x\cos x}
+      \;\overset{\text{L'H}}{=}\; \lim_{x \to 0^+} \frac{-\sin x}{2\cos x - x\sin x}
+      = \frac{0}{2} = 0$$
+    </div>
+    <p>同樣只有一個變數 $x$，兩項被綁在一起，化簡後得到確定值。</p>
+
+    <h3>為什麼瑕積分不能這樣做？</h3>
+    <div class="formula-card">
+      $$\underbrace{\lim_{a \to \infty}\left(-\frac{a^2}{2}\right)}_{-\infty}
+      \;+\;
+      \underbrace{\lim_{b \to \infty} \frac{b^2}{2}}_{+\infty}$$
+    </div>
+    <p>
+      這裡有<strong>兩個獨立變數</strong>。不像 L'Hôpital 的例子中兩項都被同一個 $x$ 控制，
+      這裡 $a$ 和 $b$ 之間<strong>沒有任何關係</strong>。
+      你無法通分、無法有理化、無法用 L'Hôpital——因為根本沒有一個共同的變數可以操作。
+    </p>
+
+    <div class="contrast-group">
+      <div class="contrast-block single-var">
+        <div class="cb-label">✅ L'Hôpital 的 $\infty - \infty$</div>
+        <p><strong>單一變數</strong>控制兩項</p>
+        <p>兩項的速度被<strong>綁定</strong></p>
+        <p>可以化簡 → 可能有確定答案</p>
+        <p><strong>→ 不定式，要繼續算</strong></p>
+      </div>
+      <div class="contrast-block two-var">
+        <div class="cb-label">❌ 瑕積分的 $\infty - \infty$</div>
+        <p><strong>兩個獨立變數</strong>各自趨近 $\infty$</p>
+        <p>兩段的速度<strong>不綁定</strong></p>
+        <p>無法化簡 → 結果隨取法而變</p>
+        <p><strong>→ 未通過測試，直接判發散</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== Part 5: Interactive ==================== -->
+  <section>
+    <div class="section-number">Part 05</div>
+    <h2>互動實驗：自己試試看</h2>
+    <p>
+      下面你可以自由調整 $a$ 和 $b$，模擬「用不同速度趨近 $\infty$」的效果。
+      如果積分真的收斂，那不管你怎麼調，結果都應該一樣。
+    </p>
+
+    <div class="demo-container">
+      <h4>▶ 拖動滑桿調整端點</h4>
+      <div class="slider-group">
+        <div class="slider-row">
+          <span class="slider-label">a =</span>
+          <input type="range" id="sliderA" min="1" max="20" step="1" value="10">
+          <span class="slider-val" id="valA">10</span>
+        </div>
+        <div class="slider-desc">左端點 $-a$：$a$ 越大，左邊跑越遠</div>
+      </div>
+      <div class="slider-group">
+        <div class="slider-row">
+          <span class="slider-label">b =</span>
+          <input type="range" id="sliderB" min="1" max="20" step="1" value="10">
+          <span class="slider-val" id="valB">10</span>
+        </div>
+        <div class="slider-desc">右端點 $+b$：$b$ 越大，右邊跑越遠</div>
+      </div>
+      <div class="demo-formula-box">
+        <div id="demoFormula"></div>
+        <div id="demoCalc"></div>
+        <span id="demoResult"></span>
+        <span id="demoComment"></span>
+      </div>
+    </div>
+
+    <div class="graph-wrapper">
+      <canvas id="graph" width="700" height="360"></canvas>
+      <p class="graph-caption" id="graphCaption"></p>
+    </div>
+
+    <div class="highlight-box">
+      <p>
+        <strong>動手試試：</strong>先設 $a = b = 10$（結果 $= 0$）。然後只動 $b$，拉到 $20$——
+        結果瞬間從 $0$ 跳到 $150$。
+        如果積分真的收斂，不管怎麼調都應該一樣才對，但事實上不同的 $a, b$ 給出了完全不同的結果。
+        <strong>測試沒通過——發散。</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== Part 6 ==================== -->
+  <section>
+    <div class="section-number">Part 06</div>
+    <h2>什麼時候奇函數積分才真的是零？</h2>
+    <p>前提只有一個：<strong>瑕積分本身要收斂</strong>（每段極限都是有限值）。</p>
+    <p>例如 $\displaystyle f(x) = \frac{x}{(1 + x^2)^2}$ 是奇函數，而且：</p>
+    <div class="formula-card green">
+      $$\int_{0}^{+\infty} \frac{x}{(1+x^2)^2}\, dx = \frac{1}{2} \quad \text{（有限值 → 收斂！）}$$
+    </div>
+    <p>
+      每段各自收斂到有限值。不管 $a, b$ 怎麼跑，左半段永遠趨近 $-\frac{1}{2}$，
+      右半段永遠趨近 $+\frac{1}{2}$，加起來永遠是 $0$。
+      <strong>所有速度都給出同一個答案——通過測試，收斂。</strong>
+    </p>
+    <div class="formula-card green">
+      $$\int_{-\infty}^{+\infty} \frac{x}{(1+x^2)^2}\, dx
+      = -\frac{1}{2} + \frac{1}{2} = 0 \;\; \checkmark$$
+    </div>
+
+    <h3>對比整理</h3>
+    <table class="example-table">
+      <thead>
+        <tr><th>被積函數</th><th>奇函數？</th><th>各段收斂？</th><th>$a,b$ 不同速度？</th><th>結果</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>$x$</td>
+          <td>✅ 是</td>
+          <td>❌ 否（$\to \pm\infty$）</td>
+          <td>結果隨速度而變</td>
+          <td class="result-inf">發散</td>
+        </tr>
+        <tr>
+          <td>$x^3$</td>
+          <td>✅ 是</td>
+          <td>❌ 否（$\to \pm\infty$）</td>
+          <td>結果隨速度而變</td>
+          <td class="result-inf">發散</td>
+        </tr>
+        <tr>
+          <td>$\dfrac{x}{(1+x^2)^2}$</td>
+          <td>✅ 是</td>
+          <td>✅ 是（$= \pm\frac{1}{2}$）</td>
+          <td>不管怎麼跑都是 $0$</td>
+          <td class="result-zero">$0$</td>
+        </tr>
+        <tr>
+          <td>$\dfrac{\sin x}{1+x^2}$</td>
+          <td>✅ 是</td>
+          <td>✅ 是</td>
+          <td>不管怎麼跑都是 $0$</td>
+          <td class="result-zero">$0$</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ==================== Part 7 ==================== -->
+  <section>
+    <div class="section-number">Part 07</div>
+    <h2>整理：完整的邏輯鏈</h2>
+
+    <div class="def-box">
+      <div class="def-label">邏輯鏈</div>
+      <p style="margin-top:0.8rem;"><strong>第一層（定義）：直接判定發散</strong></p>
+      <p>
+        瑕積分拆成兩段，各自取極限。<br>
+        $\displaystyle\int_0^{+\infty} x\, dx = +\infty$，不是有限值 → 該段發散 → <strong>整體發散。結案。</strong>
+      </p>
+      <p style="margin-top:1rem;"><strong>第二層（動機）：為什麼定義讓 $a, b$ 獨立？</strong></p>
+      <p>
+        因為「收斂」的意思是<strong>不管怎麼逼近，結果都一樣</strong>。<br>
+        讓 $a, b$ 自由變動，是在全面測試結果是否穩定。<br>
+        $\displaystyle\int_{-a}^{b} x\, dx$ 隨 $a, b$ 比例而變 → 測試沒通過 → 發散。
+      </p>
+      <p style="margin-top:1rem;"><strong>對比 L'Hôpital</strong></p>
+      <p>
+        L'Hôpital 的 $\infty - \infty$ 只有單一變數，兩項速度被綁定，有機會化簡出確定值。<br>
+        瑕積分的兩段由獨立變數控制，速度不綁定 → 結果不確定 → 直接判發散。
+      </p>
+    </div>
+  </section>
+
+  <!-- TAKEAWAY -->
+  <div class="takeaway">
+    <h3>📌 總結</h3>
+    <p>
+      奇函數在對稱區間積分為零的前提是<strong>積分本身收斂</strong>。<br>
+      「收斂」的核心要求：<strong>不管 $a, b$ 以什麼速度趨近 $\infty$，結果都必須相同</strong>。<br>
+      $\displaystyle\int_{-a}^{b} x\, dx = \frac{b^2 - a^2}{2}$，結果隨 $a, b$ 比例而變 → 發散。<br>
+      對比 L'Hôpital：單一變數的 $\infty - \infty$ 兩項速度綁定，有機會化簡，不能直接說發散。
+    </p>
+  </div>
+
+</div>
+
+<footer>
+  <p>Prepared for the Department of Applied Mathematics, NSYSU.<br>
+  Reference: Calculus, Improper Integrals.</p>
+</footer>
+
+<script>
+const sliderA = document.getElementById('sliderA');
+const sliderB = document.getElementById('sliderB');
+const valA = document.getElementById('valA');
+const valB = document.getElementById('valB');
+
+function update() {
+  const a = parseInt(sliderA.value);
+  const b = parseInt(sliderB.value);
+  valA.textContent = a;
+  valB.textContent = b;
+
+  const result = (b * b - a * a) / 2;
+  const posArea = b * b / 2;
+  const negArea = a * a / 2;
+
+  const formulaEl = document.getElementById('demoFormula');
+  const calcEl = document.getElementById('demoCalc');
+  const resultEl = document.getElementById('demoResult');
+  const commentEl = document.getElementById('demoComment');
+
+  formulaEl.innerHTML = `\\(\\displaystyle\\int_{-${a}}^{${b}} x\\, dx\\)`;
+  calcEl.innerHTML = `\\(= \\dfrac{${b}^2 - ${a}^2}{2} = \\dfrac{${b*b} - ${a*a}}{2}\\)`;
+
+  if (result === 0) {
+    resultEl.textContent = '= 0';
+    resultEl.style.color = '#2ecc71';
+    commentEl.textContent = `✅ a = b = ${a}，同速 → 結果為 0。但這只是其中一種速度！`;
+  } else if (result > 0) {
+    resultEl.textContent = `= ${result}`;
+    resultEl.style.color = '#ff6b6b';
+    commentEl.textContent = `⚠ b > a：換一種速度，結果就變了！正面積（${posArea}）> 負面積（${negArea}）。`;
+  } else {
+    resultEl.textContent = `= ${result}`;
+    resultEl.style.color = '#ff6b6b';
+    commentEl.textContent = `⚠ a > b：換一種速度，結果就變了！負面積（${negArea}）> 正面積（${posArea}）。`;
+  }
+
+  if (window.MathJax && MathJax.typesetPromise) {
+    MathJax.typesetPromise([formulaEl, calcEl]).catch(function(err) { console.log('MathJax error:', err); });
+  }
+
+  const capEl = document.getElementById('graphCaption');
+  if (result === 0) {
+    capEl.textContent = `紅色正面積 = ${posArea}，藍色負面積 = ${negArea}。同速時剛好抵消，但換個速度就不行了。`;
+  } else if (result > 0) {
+    capEl.textContent = `紅色正面積（${posArea}）> 藍色負面積（${negArea}），差了 ${result}。`;
+  } else {
+    capEl.textContent = `藍色負面積（${negArea}）> 紅色正面積（${posArea}），差了 ${-result}。`;
+  }
+
+  drawGraph(a, b);
+}
+
+function drawGraph(a, b) {
+  const canvas = document.getElementById('graph');
+  const ctx = canvas.getContext('2d');
+  const W = 700, H = 360;
+  const dpr = window.devicePixelRatio || 1;
+  canvas.style.width = W + 'px';
+  canvas.style.height = H + 'px';
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, W, H);
+
+  const maxVal = Math.max(a, b, 5);
+  const scale = (W * 0.38) / maxVal;
+  const cx = W / 2, cy = H / 2;
+
+  ctx.strokeStyle = '#e0ddd5'; ctx.lineWidth = 0.5;
+  for (let i = -Math.ceil(maxVal); i <= Math.ceil(maxVal); i++) {
+    let x = cx + i * scale;
+    if (x > 0 && x < W) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
+    let y = cy - i * scale;
+    if (y > 0 && y < H) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+  }
+
+  ctx.strokeStyle = '#999'; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(W, cy); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, H); ctx.stroke();
+
+  if (b > 0) {
+    ctx.fillStyle = 'rgba(192, 57, 43, 0.25)';
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + b*scale, cy - b*scale); ctx.lineTo(cx + b*scale, cy); ctx.closePath(); ctx.fill();
+  }
+  if (a > 0) {
+    ctx.fillStyle = 'rgba(44, 62, 122, 0.25)';
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx - a*scale, cy + a*scale); ctx.lineTo(cx - a*scale, cy); ctx.closePath(); ctx.fill();
+  }
+
+  ctx.strokeStyle = '#2c3e7a'; ctx.lineWidth = 2.5;
+  ctx.beginPath(); ctx.moveTo(cx - a*scale, cy + a*scale); ctx.lineTo(cx + b*scale, cy - b*scale); ctx.stroke();
+
+  ctx.setLineDash([6, 4]); ctx.lineWidth = 1.5;
+  ctx.strokeStyle = 'rgba(192,57,43,0.6)';
+  ctx.beginPath(); ctx.moveTo(cx + b*scale, cy); ctx.lineTo(cx + b*scale, cy - b*scale); ctx.stroke();
+  ctx.strokeStyle = 'rgba(44,62,122,0.6)';
+  ctx.beginPath(); ctx.moveTo(cx - a*scale, cy); ctx.lineTo(cx - a*scale, cy + a*scale); ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.font = '13px "JetBrains Mono", monospace'; ctx.textAlign = 'center';
+  ctx.fillStyle = '#c0392b'; ctx.fillText(`b = ${b}`, cx + b*scale, cy + 20);
+  ctx.fillStyle = '#2c3e7a'; ctx.fillText(`-a = -${a}`, cx - a*scale, cy + 20);
+
+  ctx.font = 'bold 13px "Noto Sans TC", sans-serif';
+  if (b > 2) { ctx.fillStyle = 'rgba(192,57,43,0.8)'; ctx.fillText(`+${(b*b/2).toFixed(0)}`, cx + b*scale*0.42, cy - 16); }
+  if (a > 2) { ctx.fillStyle = 'rgba(44,62,122,0.8)'; ctx.fillText(`-${(a*a/2).toFixed(0)}`, cx - a*scale*0.42, cy - 16); }
+
+  ctx.font = '12px "Noto Sans TC", sans-serif'; ctx.fillStyle = '#999';
+  ctx.textAlign = 'left'; ctx.fillText('x', W - 16, cy - 8);
+  ctx.textAlign = 'center'; ctx.fillText('f(x) = x', cx + 20, 16);
+}
+
+sliderA.addEventListener('input', update);
+sliderB.addEventListener('input', update);
+window.addEventListener('load', function() { setTimeout(update, 500); });
+</script>
+
+</body>
+</html>
