@@ -16,5 +16,6 @@ links:
 - [[Flow cart for convergence]](/nsysu-calculus2/static_files/presentations/Flowchart_convergence.pdf)
 - [[Graph of Taylor polynomials]](https://www.geogebra.org/m/TDjHnQRS)
 - [[Taylor Series]](https://www.3blue1brown.com/lessons/taylor-series)
+- [瑕積分觀念釐清](/nsysu-calculus2/static_files/presentations/improper_integral.html)
 - Chapter 8.8, 9.7~9.8
 - [[Recorded video]](https://youtube.com/playlist?list=PLHNZtBNWQ-875sX4uyf14GtKZ7tCIauri&si=mcMbhgEeZUM9cw38)
