@@ -12,4 +12,5 @@ links:
 **Suggested Readings:**
 - Chapter 8.4, 8.5, 8.8
 - [Partial fraction decomposition](https://en.wikipedia.org/wiki/Partial_fraction_decomposition)
+- [部分分式觀念釐清](/nsysu-calculus2/static_files/presentations/partial_fraction.html)
 - [[Recorded video]](https://www.youtube.com/playlist?list=PLHNZtBNWQ-85XFM8FyG-54pZByUU_L8jc)
