@@ -1,12 +1,14 @@
 ---
 type: assignment
 date: 2026-03-27T21:00:00+3:30
-title: 'Assignment #4'
+title: 'Take home quiz #1'
 attachment: /static_files/assignments/Quiz1.pdf
 
 due_event: 
     type: due
     date: 2026-04-08T12:00:00+3:30
-    description: 'Quiz 1 due'
+    description: 'Quiz #1 due'
 ---
-This is Quiz 1.
+
+請同學們於04/08 (三) 12:00 前將此紙本作業交至理1011-1 助教研究室外面的牛皮紙袋。
+
