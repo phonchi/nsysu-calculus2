@@ -12,3 +12,4 @@ links:
 **Suggested Readings:**
 - Chapter 9.8~9.10, 10.2
 - [[Chapter 10 summary slides_chinese (courtesy of professor Fu-Chuen Chang)]](/nsysu-calculus2/static_files/presentations/Chap10_Summary.pdf)
+- [[Recorded video]](https://www.youtube.com/playlist?list=PLHNZtBNWQ-861niqTVLDcsEHAjBfRJOgA)
