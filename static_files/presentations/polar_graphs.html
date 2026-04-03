@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>極座標與參數曲線動畫 — Polar &amp; Parametric Curves</title>
+<script>
+  MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#1a1a2e;--paper:#f7f3eb;--accent:#c0392b;--accent2:#2c3e7a;--accent3:#1a6b4a;
+  --muted:#8a8578;--card:#fffdf7;--card-border:#e8e2d6;--highlight:#fff3cd;
+  --code-bg:#2d2d3f;--code-fg:#e8e6df;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans TC',sans-serif;background:var(--paper);color:var(--ink);line-height:1.9;font-size:17px;}
+
+/* Hero */
+.hero{min-height:62vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem;position:relative;overflow:hidden;background:linear-gradient(170deg,#1a1a2e 0%,#2c3e7a 40%,#1a6b4a 100%);}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 30%,rgba(255,255,255,.05) 0%,transparent 50%),radial-gradient(circle at 80% 70%,rgba(255,255,255,.03) 0%,transparent 40%);}
+.hero-content{position:relative;z-index:1;max-width:800px;}
+.hero h1{font-family:'Noto Serif TC',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:#fff;letter-spacing:.04em;line-height:1.3;margin-bottom:1rem;}
+.hero h1 .green{color:#2ecc71;}
+.hero .subtitle{font-size:clamp(.95rem,2.2vw,1.2rem);color:rgba(255,255,255,.65);font-weight:300;margin-bottom:2rem;}
+.hero .big-formula{color:#2ecc71;background:rgba(0,0,0,.3);padding:.8rem 2rem;border-radius:12px;display:inline-block;border:1px solid rgba(255,255,255,.1);margin-bottom:2rem;backdrop-filter:blur(4px);font-size:1.15rem;}
+.scroll-hint{color:rgba(255,255,255,.4);font-size:.9rem;animation:bounce 2s infinite;}
+.scroll-hint span{display:block;font-size:1.4rem;margin-top:.3rem;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(8px);}}
+
+/* Layout */
+.container{max-width:1100px;margin:0 auto;padding:3rem 1.5rem;}
+.section-number{font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--accent3);font-weight:600;letter-spacing:.15em;margin-bottom:.5rem;}
+h2{font-family:'Noto Serif TC',serif;font-size:1.6rem;font-weight:700;color:var(--ink);margin-bottom:1.2rem;line-height:1.4;}
+section{margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid var(--card-border);}
+section:last-of-type{border-bottom:none;}
+p{margin-bottom:1rem;}
+
+/* Polar Viz Layout */
+.polar-viz{display:grid;grid-template-columns:1fr 340px;gap:1.5rem;margin:1.5rem 0;align-items:start;}
+@media(max-width:860px){.polar-viz{grid-template-columns:1fr;}}
+
+/* Canvas */
+.canvas-panel{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:1.2rem;box-shadow:0 2px 12px rgba(0,0,0,.05);}
+.canvas-panel canvas{display:block;margin:0 auto;max-width:100%;}
+
+/* Controls */
+.controls-bar{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--card-border);}
+.btn{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600;padding:.4rem 1rem;border-radius:6px;border:none;cursor:pointer;transition:all .2s;}
+.btn-play{background:var(--accent3);color:#fff;}
+.btn-play:hover{background:#22845c;}
+.btn-play.active{background:var(--accent);}
+.btn-reset{background:var(--card-border);color:var(--ink);}
+.btn-reset:hover{background:#ccc;}
+.slider-container{display:flex;align-items:center;gap:.5rem;flex:1;min-width:180px;}
+.slider-container input[type="range"]{flex:1;accent-color:var(--accent3);height:5px;cursor:pointer;}
+.theta-display{font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--accent2);font-weight:600;min-width:70px;text-align:right;}
+.speed-ctrl{display:flex;align-items:center;gap:.4rem;}
+.speed-ctrl .speed-btn{font-family:'JetBrains Mono',monospace;font-size:.7rem;padding:.2rem .5rem;border-radius:4px;border:1px solid var(--card-border);background:var(--paper);cursor:pointer;transition:all .2s;}
+.speed-ctrl .speed-btn.active-speed{background:var(--accent2);color:#fff;border-color:var(--accent2);}
+
+/* Readout */
+.readout{background:var(--code-bg);border-radius:8px;padding:.7rem 1rem;margin-top:.8rem;display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:.88rem;}
+.readout .rd-item{color:rgba(255,255,255,.7);}
+.readout .rd-val{color:#2ecc71;font-weight:600;}
+.readout .rd-val.neg{color:#ff6b6b;}
+
+/* Side panel */
+.side-panel{display:flex;flex-direction:column;gap:1rem;}
+
+/* Eq card */
+.eq-card{background:var(--code-bg);border-radius:10px;padding:1rem 1.2rem;text-align:center;color:#fff;}
+.eq-card .eq-label{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:#2ecc71;text-transform:uppercase;letter-spacing:.12em;margin-bottom:.4rem;}
+.eq-card .eq-formula{font-size:1.1rem;color:#fff;}
+.eq-card .eq-range{font-size:.8rem;color:rgba(255,255,255,.5);margin-top:.4rem;font-family:'JetBrains Mono',monospace;}
+.eq-range-badge{display:inline-block;background:rgba(46,204,113,.2);color:#2ecc71;border:1px solid rgba(46,204,113,.4);border-radius:4px;padding:1px 8px;font-size:.75rem;font-weight:600;}
+
+/* Coord display */
+.coord-display{background:var(--card);border:1px solid var(--card-border);border-radius:10px;padding:.8rem 1rem;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.coord-display .cd-title{font-size:.75rem;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem;}
+.coord-display .cd-row{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:.85rem;padding:.15rem 0;}
+.coord-display .cd-label{color:var(--muted);}
+.coord-display .cd-value{color:var(--ink);font-weight:600;}
+
+/* Angle table */
+.angle-table-wrap{background:var(--card);border:1px solid var(--card-border);border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.04);max-height:380px;overflow-y:auto;}
+.angle-table-wrap::-webkit-scrollbar{width:5px;}
+.angle-table-wrap::-webkit-scrollbar-thumb{background:var(--card-border);border-radius:3px;}
+.angle-table{width:100%;border-collapse:collapse;font-size:.82rem;}
+.angle-table thead{position:sticky;top:0;z-index:2;}
+.angle-table th{background:var(--accent2);color:#fff;padding:.5rem .5rem;text-align:center;font-weight:500;font-size:.78rem;}
+.angle-table td{padding:.4rem .45rem;text-align:center;border-bottom:1px solid var(--card-border);font-family:'JetBrains Mono',monospace;font-size:.78rem;transition:background .3s,color .3s;}
+.angle-table tr.active-row{background:#fff3cd !important;}
+.angle-table tr.active-row td{font-weight:700;color:var(--accent);}
+.angle-table tr.passed-row{background:#f0faf4;}
+.angle-table tr.passed-row td{color:var(--accent3);}
+.angle-table tr:nth-child(even):not(.active-row):not(.passed-row){background:rgba(0,0,0,.015);}
+.flash-cell{animation:cellFlash .6s ease;}
+@keyframes cellFlash{0%{background:#ffe066;transform:scale(1.05);}100%{background:transparent;transform:scale(1);}}
+
+/* Curve cards */
+.curve-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.8rem;margin:1.5rem 0;}
+.curve-card{background:var(--card);border:2px solid var(--card-border);border-radius:10px;padding:.9rem 1.1rem;cursor:pointer;transition:all .25s;position:relative;}
+.curve-card:hover{border-color:var(--accent2);transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.08);}
+.curve-card.selected{border-color:var(--accent3);background:#f0faf4;}
+.curve-card .cc-name{font-weight:700;font-size:.92rem;color:var(--accent2);margin-bottom:.2rem;}
+.curve-card .cc-eq{font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--muted);}
+.curve-card .cc-meta{display:flex;gap:.5rem;align-items:center;margin-top:.35rem;flex-wrap:wrap;}
+.curve-card .cc-type{font-size:.72rem;color:#fff;font-weight:600;background:var(--accent2);padding:1px 7px;border-radius:3px;}
+.curve-card .cc-range{font-size:.72rem;color:var(--accent3);font-weight:600;background:rgba(26,107,74,.1);padding:1px 7px;border-radius:3px;border:1px solid rgba(26,107,74,.25);}
+.curve-card .cc-param{font-size:.72rem;color:#e67e22;font-weight:600;background:rgba(230,126,34,.1);padding:1px 7px;border-radius:3px;border:1px solid rgba(230,126,34,.25);}
+
+/* Section divider labels */
+.grid-section-label{grid-column:1/-1;font-family:'Noto Serif TC',serif;font-size:1rem;font-weight:700;color:var(--accent2);padding:.5rem 0 .2rem;border-bottom:2px solid var(--accent2);margin-top:.5rem;}
+.grid-section-label.param-label{color:#e67e22;border-bottom-color:#e67e22;}
+
+/* Info box */
+.info-box{background:#eef2ff;border:2px solid var(--accent2);border-radius:10px;padding:1.2rem 1.5rem;margin:1.5rem 0;position:relative;}
+.info-box .info-label{position:absolute;top:-11px;left:14px;background:var(--accent2);color:#fff;font-size:.75rem;font-weight:700;padding:2px 10px;border-radius:4px;}
+
+/* Reference section */
+.ref-group{margin:1.8rem 0 2.5rem;}
+.ref-group-title{font-family:'Noto Serif TC',serif;font-size:1.15rem;font-weight:700;color:var(--accent2);padding-bottom:.4rem;border-bottom:2px solid var(--accent2);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;}
+.ref-group-title.param-title{color:#e67e22;border-bottom-color:#e67e22;}
+.ref-group-title .rg-badge{font-size:.7rem;font-weight:600;color:#fff;background:var(--accent2);padding:2px 8px;border-radius:3px;font-family:'JetBrains Mono',monospace;}
+.ref-group-title.param-title .rg-badge{background:#e67e22;}
+
+.ref-card{background:var(--card);border:1px solid var(--card-border);border-radius:10px;padding:1.2rem 1.4rem;margin-bottom:1rem;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.ref-card-header{display:flex;align-items:baseline;gap:.8rem;margin-bottom:.6rem;flex-wrap:wrap;}
+.ref-card-name{font-family:'Noto Serif TC',serif;font-weight:700;font-size:1.05rem;color:var(--ink);}
+.ref-card-name-en{font-size:.82rem;color:var(--muted);font-weight:400;}
+.ref-card-eq{background:var(--code-bg);color:#fff;border-radius:8px;padding:.7rem 1.2rem;text-align:center;font-size:1rem;margin-bottom:.7rem;}
+.ref-card-range{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--accent3);background:rgba(26,107,74,.08);border:1px solid rgba(26,107,74,.2);border-radius:4px;padding:1px 8px;margin-bottom:.6rem;}
+
+/* Sub-variants grid */
+.ref-variants{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.6rem;margin-top:.5rem;}
+.ref-var{border:1px solid var(--card-border);border-radius:8px;padding:.6rem .8rem;text-align:center;background:rgba(0,0,0,.01);position:relative;}
+.ref-var canvas{display:block;margin:0 auto .3rem;}
+.ref-var-cond{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--accent2);font-weight:600;margin-bottom:.15rem;}
+.ref-var-label{font-size:.8rem;color:var(--ink);font-weight:500;}
+
+.ref-note{font-size:.88rem;color:var(--muted);margin-top:.5rem;padding-left:.8rem;border-left:3px solid var(--card-border);}
+
+footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border-top:1px solid var(--card-border);}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-content">
+    <h1>極座標與參數曲線<span class="green">繪製動畫</span></h1>
+    <div class="subtitle">Polar &amp; Parametric Curves — Interactive Visualization</div>
+    <div class="big-formula">$r = f(\theta)$ 極座標 ｜ $x = f(t),\; y = g(t)$ 參數式</div>
+    <div class="scroll-hint">向下捲動開始互動<span>↓</span></div>
+  </div>
+</div>
+
+<div class="container">
+
+<section>
+  <div class="section-number">STEP 01</div>
+  <h2>選擇曲線</h2>
+  <p>點選下方卡片。每張標注了<strong>一圈所需的參數範圍</strong>（如 $0 \sim \pi$ 或 $0 \sim 2\pi$），以及曲線類型。</p>
+  <div class="curve-grid" id="curveGrid"></div>
+</section>
+
+<section>
+  <div class="section-number">STEP 02</div>
+  <h2>觀察繪製過程</h2>
+
+  <div class="polar-viz">
+    <div>
+      <div class="canvas-panel">
+        <canvas id="polarCanvas" width="520" height="520"></canvas>
+        <div class="readout" id="readoutBar">
+          <div class="rd-item">θ = <span class="rd-val" id="rdTheta">0</span></div>
+          <div class="rd-item">r = <span class="rd-val" id="rdR">0</span></div>
+          <div class="rd-item">x = <span class="rd-val" id="rdX">0</span></div>
+          <div class="rd-item">y = <span class="rd-val" id="rdY">0</span></div>
+        </div>
+        <div class="controls-bar">
+          <button class="btn btn-play" id="btnPlay" onclick="togglePlay()">▶ 播放</button>
+          <button class="btn btn-reset" onclick="resetAnim()">↺ 重置</button>
+          <div class="slider-container">
+            <span style="font-size:.8rem;color:var(--muted);" id="sliderLabel">θ</span>
+            <input type="range" id="thetaSlider" min="0" max="1000" value="0" oninput="onSliderInput()">
+            <span class="theta-display" id="thetaDisp">0</span>
+          </div>
+          <div class="speed-ctrl">
+            <span style="font-size:.75rem;color:var(--muted);">速度:</span>
+            <button class="speed-btn" onclick="setSpeed(0.5)">0.5×</button>
+            <button class="speed-btn active-speed" onclick="setSpeed(1)">1×</button>
+            <button class="speed-btn" onclick="setSpeed(2)">2×</button>
+            <button class="speed-btn" onclick="setSpeed(4)">4×</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-panel">
+      <div class="eq-card">
+        <div class="eq-label">Current Equation</div>
+        <div class="eq-formula" id="eqDisplay">$r = 2\cos 3\theta$</div>
+        <div class="eq-range" id="eqRange">一圈範圍：<span class="eq-range-badge" id="eqRangeBadge">0 ≤ θ ≤ π</span></div>
+      </div>
+      <div class="coord-display" id="coordPanel">
+        <div class="cd-title" id="cdTitle">座標轉換</div>
+        <div class="cd-row"><span class="cd-label" id="cdLabelR">$r$</span><span class="cd-value" id="cdR">0</span></div>
+        <div class="cd-row"><span class="cd-label" id="cdLabelT">$\theta$</span><span class="cd-value" id="cdTheta">0</span></div>
+        <div class="cd-row"><span class="cd-label" id="cdLabelX">$x = r\cos\theta$</span><span class="cd-value" id="cdX">0</span></div>
+        <div class="cd-row"><span class="cd-label" id="cdLabelY">$y = r\sin\theta$</span><span class="cd-value" id="cdY">0</span></div>
+      </div>
+      <div class="angle-table-wrap" id="tableWrap">
+        <table class="angle-table" id="angleTable">
+          <thead><tr id="tableHead"><th>$\theta$</th><th>角度</th><th>$r$</th><th>$(x,y)$</th></tr></thead>
+          <tbody id="angleTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-number">REFERENCE</div>
+  <h2>極座標與參數曲線標準型式一覽</h2>
+
+  <!-- ====== 1. LIMAÇON ====== -->
+  <div class="ref-group">
+    <div class="ref-group-title"><span class="rg-badge">01</span> 蚶線 Limaçon</div>
+    <div class="ref-card">
+      <div class="ref-card-header">
+        <span class="ref-card-name">蚶線</span>
+        <span class="ref-card-name-en">Limaçon（含心臟線）</span>
+      </div>
+      <div class="ref-card-eq">$r = a \pm b\cos\theta \qquad r = a \pm b\sin\theta \qquad (a > 0,\; b > 0)$</div>
+      <span class="ref-card-range">一圈範圍：$0 \le \theta \le 2\pi$</span>
+      <div class="ref-variants" id="refLimacon">
+        <div class="ref-var">
+          <canvas width="120" height="120" data-ref="lim-inner"></canvas>
+          <div class="ref-var-cond">$\dfrac{a}{b} < 1$</div>
+          <div class="ref-var-label">有內圈蚶線</div>
+        </div>
+        <div class="ref-var">
+          <canvas width="120" height="120" data-ref="lim-card"></canvas>
+          <div class="ref-var-cond">$\dfrac{a}{b} = 1$</div>
+          <div class="ref-var-label">心臟線 (Cardioid)</div>
+        </div>
+        <div class="ref-var">
+          <canvas width="120" height="120" data-ref="lim-dimple"></canvas>
+          <div class="ref-var-cond">$1 < \dfrac{a}{b} < 2$</div>
+          <div class="ref-var-label">凹陷蚶線</div>
+        </div>
+        <div class="ref-var">
+          <canvas width="120" height="120" data-ref="lim-convex"></canvas>
+          <div class="ref-var-cond">$\dfrac{a}{b} \ge 2$</div>
+          <div class="ref-var-label">凸蚶線</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== 2. ROSE ====== -->
+  <div class="ref-group">
+    <div class="ref-group-title"><span class="rg-badge">02</span> 玫瑰線 Rose Curve</div>
+    <div class="ref-card">
+      <div class="ref-card-header">
+        <span class="ref-card-name">玫瑰線</span>
+        <span class="ref-card-name-en">Rose Curve</span>
+      </div>
+      <div class="ref-card-eq">$r = a\cos n\theta \qquad r = a\sin n\theta \qquad (n \ge 2)$</div>
+      <span class="ref-card-range">$n$ 為奇數：$0 \le \theta \le \pi$；$n$ 為偶數：$0 \le \theta \le 2\pi$</span>
+      <div class="ref-variants" id="refRose">
+        <div class="ref-var">
+          <canvas width="120" height="120" data-ref="rose-3cos"></canvas>
+          <div class="ref-var-cond">$r = a\cos 3\theta$</div>
+          <div class="ref-var-label">3 瓣（$n$ 奇數 → $n$ 瓣）</div>
+        </div>
+        <div class="ref-var">
+          <canvas width="120" height="120" data-ref="rose-4cos"></canvas>
+          <div class="ref-var-cond">$r = a\cos 4\theta$</div>
+          <div class="ref-var-label">8 瓣（$n$ 偶數 → $2n$ 瓣）</div>
+        </div>
+        <div class="ref-var">
+          <canvas width="120" height="120" data-ref="rose-5sin"></canvas>
+          <div class="ref-var-cond">$r = a\sin 5\theta$</div>
+          <div class="ref-var-label">5 瓣（$n$ 奇數 → $n$ 瓣）</div>
+        </div>
+        <div class="ref-var">
+          <canvas width="120" height="120" data-ref="rose-2sin"></canvas>
+          <div class="ref-var-cond">$r = a\sin 2\theta$</div>
+          <div class="ref-var-label">4 瓣（$n$ 偶數 → $2n$ 瓣）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== 3. CIRCLE ====== -->
+  <div class="ref-group">
+    <div class="ref-group-title"><span class="rg-badge">03</span> 圓 Circle</div>
+    <div class="ref-card">
+      <div class="ref-card-header">
+        <span class="ref-card-name">圓</span>
+        <span class="ref-card-name-en">Circle</span>
+      </div>
+      <div class="ref-card-eq">$r = a\cos\theta \qquad r = a\sin\theta$</div>
+      <span class="ref-card-range">一圈範圍：$0 \le \theta \le \pi$</span>
+      <div class="ref-variants" id="refCircle">
+        <div class="ref-var">
+          <canvas width="120" height="120" data-ref="circ-cos"></canvas>
+          <div class="ref-var-cond">$r = a\cos\theta$</div>
+          <div class="ref-var-label">圓心 $(a/2, 0)$，半徑 $a/2$</div>
+        </div>
+        <div class="ref-var">
+          <canvas width="120" height="120" data-ref="circ-sin"></canvas>
+          <div class="ref-var-cond">$r = a\sin\theta$</div>
+          <div class="ref-var-label">圓心 $(0, a/2)$，半徑 $a/2$</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== 4. LEMNISCATE ====== -->
+  <div class="ref-group">
+    <div class="ref-group-title"><span class="rg-badge">04</span> 雙紐線 Lemniscate</div>
+    <div class="ref-card">
+      <div class="ref-card-header">
+        <span class="ref-card-name">雙紐線</span>
+        <span class="ref-card-name-en">Lemniscate</span>
+      </div>
+      <div class="ref-card-eq">$r^2 = a^2\cos 2\theta \qquad r^2 = a^2\sin 2\theta$</div>
+      <span class="ref-card-range">一圈範圍：$0 \le \theta \le 2\pi$（僅 $\cos 2\theta \ge 0$ 或 $\sin 2\theta \ge 0$ 時有圖形）</span>
+      <div class="ref-variants" id="refLem">
+        <div class="ref-var">
+          <canvas width="120" height="120" data-ref="lem-cos"></canvas>
+          <div class="ref-var-cond">$r^2 = a^2\cos 2\theta$</div>
+          <div class="ref-var-label">沿極軸方向的 ∞ 形</div>
+        </div>
+        <div class="ref-var">
+          <canvas width="120" height="120" data-ref="lem-sin"></canvas>
+          <div class="ref-var-cond">$r^2 = a^2\sin 2\theta$</div>
+          <div class="ref-var-label">沿 $\theta = \pi/4$ 方向的 ∞ 形</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== 5. PARAMETRIC ====== -->
+  <div class="ref-group">
+    <div class="ref-group-title param-title"><span class="rg-badge">05</span> 參數曲線 Parametric Curves</div>
+
+    <div class="ref-card">
+      <div class="ref-card-header">
+        <span class="ref-card-name">擺線</span>
+        <span class="ref-card-name-en">Cycloid</span>
+      </div>
+      <div class="ref-card-eq">$x = a(\theta - \sin\theta), \quad y = a(1 - \cos\theta)$</div>
+      <span class="ref-card-range">一拱：$0 \le \theta \le 2\pi$</span>
+      <div class="ref-note">圓在直線上滾動，圓周上一點描出的軌跡。尖點 (cusps) 出現在 $\theta = 2n\pi$，此時 $x'(\theta) = y'(\theta) = 0$。</div>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-header">
+        <span class="ref-card-name">長幅擺線</span>
+        <span class="ref-card-name-en">Prolate Cycloid</span>
+      </div>
+      <div class="ref-card-eq">$x = 2t - \pi\sin t, \quad y = 2 - \pi\cos t$</div>
+      <span class="ref-card-range">$-\pi \le t \le 3\pi$</span>
+      <div class="ref-note">自交於 $(0, 2)$，在 $t = \pm\pi/2$ 處有兩條不同的切線。臂長超過滾動圓半徑時，軌跡會出現自交迴圈。</div>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-header">
+        <span class="ref-card-name">外擺線</span>
+        <span class="ref-card-name-en">Epicycloid</span>
+      </div>
+      <div class="ref-card-eq">$x = (R+r)\cos t - r\cos\!\Big(\!\dfrac{R+r}{r}t\Big), \quad y = (R+r)\sin t - r\sin\!\Big(\!\dfrac{R+r}{r}t\Big)$</div>
+      <span class="ref-card-range">一圈：$0 \le t \le 2\pi$</span>
+      <div class="ref-note">小圓（半徑 $r$）沿大圓（半徑 $R$）外側滾動。講義範例 $R = 4,\, r = 1$：<br>
+      $x = 5\cos t - \cos 5t,\quad y = 5\sin t - \sin 5t$，弧長 $= 40$。</div>
+    </div>
+  </div>
+
+</section>
+</div>
+
+<footer>
+  <p>Prepared for the Department of Applied Mathematics, NSYSU.<br>
+  Chapter 10: Conics, Parametric Equations, and Polar Coordinates.</p>
+</footer>
+
+<script>
+// ============================================================
+//  CURVE DEFINITIONS
+// ============================================================
+const PI = Math.PI;
+
+const CURVES = [
+  // ── POLAR ──
+  {
+    id:'rose3', name:'三瓣玫瑰線', type:'Rose Curve', mode:'polar',
+    eq:'r = 2\\cos 3\\theta', rangeLabel:'0 ≤ θ ≤ π',
+    fn:t=>2*Math.cos(3*t), tMax:PI, rMax:2.2,
+    specialAngles:[0,PI/12,PI/6,PI/4,PI/3,5*PI/12,PI/2,7*PI/12,2*PI/3,3*PI/4,5*PI/6,11*PI/12,PI]
+  },
+  {
+    id:'rose4', name:'八瓣玫瑰線', type:'Rose (even)', mode:'polar',
+    eq:'r = 2\\cos 4\\theta', rangeLabel:'0 ≤ θ ≤ 2π',
+    fn:t=>2*Math.cos(4*t), tMax:2*PI, rMax:2.2,
+    specialAngles:[0,PI/8,PI/4,3*PI/8,PI/2,5*PI/8,3*PI/4,7*PI/8,PI,9*PI/8,5*PI/4,11*PI/8,3*PI/2,13*PI/8,7*PI/4,15*PI/8,2*PI]
+  },
+  {
+    id:'cardioid', name:'心臟線', type:'Cardioid', mode:'polar',
+    eq:'r = 2(1 - \\cos\\theta)', rangeLabel:'0 ≤ θ ≤ 2π',
+    fn:t=>2*(1-Math.cos(t)), tMax:2*PI, rMax:4.2,
+    specialAngles:[0,PI/3,PI/2,2*PI/3,PI,4*PI/3,3*PI/2,5*PI/3,2*PI]
+  },
+  {
+    id:'limacon_inner', name:'有內圈蚶線', type:'Limaçon (inner)', mode:'polar',
+    eq:'r = 1 - 2\\sin\\theta', rangeLabel:'0 ≤ θ ≤ 2π',
+    fn:t=>1-2*Math.sin(t), tMax:2*PI, rMax:3.2,
+    specialAngles:[0,PI/6,PI/3,PI/2,2*PI/3,5*PI/6,PI,7*PI/6,3*PI/2,11*PI/6,2*PI]
+  },
+  {
+    id:'limacon_dimpled', name:'凹陷蚶線', type:'Limaçon (dimpled)', mode:'polar',
+    eq:'r = 3 + 2\\cos\\theta', rangeLabel:'0 ≤ θ ≤ 2π',
+    fn:t=>3+2*Math.cos(t), tMax:2*PI, rMax:5.5,
+    specialAngles:[0,PI/3,PI/2,2*PI/3,PI,4*PI/3,3*PI/2,5*PI/3,2*PI]
+  },
+  {
+    id:'lemniscate', name:'雙紐線', type:'Lemniscate', mode:'polar',
+    eq:'r^2 = 4\\cos 2\\theta', rangeLabel:'0 ≤ θ ≤ 2π',
+    fn:t=>{let v=4*Math.cos(2*t);return v>=0?Math.sqrt(v):NaN;}, tMax:2*PI, rMax:2.3,
+    specialAngles:[0,PI/12,PI/6,PI/4,3*PI/4,5*PI/6,11*PI/12,PI,13*PI/12,7*PI/6,5*PI/4,7*PI/4,11*PI/6,23*PI/12,2*PI]
+  },
+  {
+    id:'circle_cos', name:'圓（cosθ）', type:'Circle', mode:'polar',
+    eq:'r = 3\\cos\\theta', rangeLabel:'0 ≤ θ ≤ π',
+    fn:t=>3*Math.cos(t), tMax:PI, rMax:3.3,
+    specialAngles:[0,PI/6,PI/4,PI/3,PI/2,2*PI/3,3*PI/4,5*PI/6,PI]
+  },
+  {
+    id:'spiral', name:'阿基米德螺線', type:'Spiral', mode:'polar',
+    eq:'r = 0.5\\theta', rangeLabel:'0 ≤ θ ≤ 4π',
+    fn:t=>0.5*t, tMax:4*PI, rMax:6.5,
+    specialAngles:[0,PI/2,PI,3*PI/2,2*PI,5*PI/2,3*PI,7*PI/2,4*PI]
+  },
+
+  // ── PARAMETRIC ──
+  {
+    id:'cycloid', name:'擺線 (Cycloid)', type:'Cycloid', mode:'parametric',
+    eq:'x = \\theta - \\sin\\theta,\\; y = 1 - \\cos\\theta', rangeLabel:'0 ≤ θ ≤ 4π（兩拱）',
+    xFn:t=>t-Math.sin(t), yFn:t=>1-Math.cos(t), tMax:4*PI,
+    viewBox:{xMin:-0.5,xMax:4*PI+0.5,yMin:-0.5,yMax:2.8},
+    specialAngles:[0,PI/3,PI/2,2*PI/3,PI,4*PI/3,3*PI/2,5*PI/3,2*PI,
+                   2*PI+PI/3,2*PI+PI/2,2*PI+2*PI/3,3*PI,2*PI+4*PI/3,2*PI+3*PI/2,2*PI+5*PI/3,4*PI]
+  },
+  {
+    id:'prolate', name:'長幅擺線 (Prolate)', type:'Prolate Cycloid', mode:'parametric',
+    eq:'x = 2t - \\pi\\sin t,\\; y = 2 - \\pi\\cos t', rangeLabel:'-π ≤ t ≤ 3π',
+    xFn:t=>2*t-PI*Math.sin(t), yFn:t=>2-PI*Math.cos(t), tMin:-PI, tMax:3*PI,
+    viewBox:{xMin:-2*PI-1,xMax:6*PI+1,yMin:-1.5,yMax:5.5},
+    specialAngles:[-PI,-PI/2,0,PI/2,PI,3*PI/2,2*PI,5*PI/2,3*PI]
+  },
+  {
+    id:'epicycloid', name:'外擺線 (Epicycloid)', type:'Epicycloid (R=4,r=1)', mode:'parametric',
+    eq:'x = 5\\cos t - \\cos 5t,\\; y = 5\\sin t - \\sin 5t', rangeLabel:'0 ≤ t ≤ 2π',
+    xFn:t=>5*Math.cos(t)-Math.cos(5*t), yFn:t=>5*Math.sin(t)-Math.sin(5*t), tMax:2*PI,
+    viewBox:{xMin:-7,xMax:7,yMin:-7,yMax:7},
+    specialAngles:[0,PI/4,PI/2,3*PI/4,PI,5*PI/4,3*PI/2,7*PI/4,2*PI]
+  }
+];
+
+// ============================================================
+//  STATE
+// ============================================================
+let cur = CURVES[0];
+let progress = 0;        // 0–1
+let playing = false;
+let speed = 1;
+let raf = null;
+let lastT = null;
+let lastHL = -1;
+
+const canvas = document.getElementById('polarCanvas');
+const ctx = canvas.getContext('2d');
+const DPR = window.devicePixelRatio||1;
+const CW = 520, CH = 520;
+canvas.style.width=CW+'px'; canvas.style.height=CH+'px';
+canvas.width=CW*DPR; canvas.height=CH*DPR; ctx.scale(DPR,DPR);
+
+// ============================================================
+//  HELPERS
+// ============================================================
+const ANGLE_MAP = [
+  [-PI,'-π'],[-PI/2,'-π/2'],
+  [0,'0'],[PI/12,'π/12'],[PI/8,'π/8'],[PI/6,'π/6'],[PI/4,'π/4'],
+  [PI/3,'π/3'],[5*PI/12,'5π/12'],[PI/2,'π/2'],[7*PI/12,'7π/12'],
+  [2*PI/3,'2π/3'],[3*PI/4,'3π/4'],[5*PI/6,'5π/6'],[11*PI/12,'11π/12'],
+  [PI,'π'],[13*PI/12,'13π/12'],[7*PI/6,'7π/6'],[5*PI/4,'5π/4'],
+  [4*PI/3,'4π/3'],[3*PI/2,'3π/2'],[5*PI/3,'5π/3'],[7*PI/4,'7π/4'],
+  [11*PI/6,'11π/6'],[23*PI/12,'23π/12'],
+  [2*PI,'2π'],[5*PI/2,'5π/2'],[3*PI,'3π'],[7*PI/2,'7π/2'],[4*PI,'4π'],
+  [2*PI+PI/3,'7π/3'],[2*PI+PI/2,'5π/2'],[2*PI+2*PI/3,'8π/3'],
+  [2*PI+4*PI/3,'10π/3'],[2*PI+3*PI/2,'7π/2'],[2*PI+5*PI/3,'11π/3']
+];
+function fmtAngle(v){
+  for(let [a,s] of ANGLE_MAP) if(Math.abs(v-a)<0.005) return s;
+  return v.toFixed(2);
+}
+function fmtDeg(v){return (v*180/PI).toFixed(0)+'°';}
+function fmtN(v){if(isNaN(v))return'—';if(Math.abs(v)<0.005)return'0';return v.toFixed(3);}
+function fmtS(v){if(isNaN(v))return'—';if(Math.abs(v)<0.005)return'0';return v.toFixed(2);}
+
+function getTMin(c){return c.tMin!==undefined?c.tMin:0;}
+function getTVal(c,p){return getTMin(c)+p*(c.tMax-getTMin(c));}
+function getXY(c,t){
+  if(c.mode==='polar'){const r=c.fn(t);return isNaN(r)?[NaN,NaN]:[r*Math.cos(t),r*Math.sin(t)];}
+  return [c.xFn(t),c.yFn(t)];
+}
+
+// ============================================================
+//  BUILD CURVE GRID
+// ============================================================
+function buildGrid(){
+  const g=document.getElementById('curveGrid');
+  g.innerHTML='';
+  // Polar label
+  const lp=document.createElement('div');lp.className='grid-section-label';lp.textContent='極座標曲線  r = f(θ)';g.appendChild(lp);
+  CURVES.forEach((c,i)=>{
+    if(i===8){const lm=document.createElement('div');lm.className='grid-section-label param-label';lm.textContent='參數曲線  x = f(t), y = g(t)';g.appendChild(lm);}
+    const d=document.createElement('div');
+    d.className='curve-card'+(i===0?' selected':'');
+    d.dataset.idx=i;
+    const isParam=c.mode==='parametric';
+    d.innerHTML=`<div class="cc-name">${c.name}</div><div class="cc-eq">$${c.eq}$</div>
+      <div class="cc-meta"><span class="cc-type">${c.type}</span><span class="cc-range">${c.rangeLabel}</span>${isParam?'<span class="cc-param">參數式</span>':''}</div>`;
+    d.onclick=()=>selectCurve(i);
+    g.appendChild(d);
+  });
+}
+buildGrid();
+
+function selectCurve(idx){
+  cur=CURVES[idx];
+  document.querySelectorAll('.curve-card').forEach((c,i)=>c.classList.toggle('selected',i===idx));
+  document.getElementById('eqDisplay').innerHTML='$'+cur.eq+'$';
+  document.getElementById('eqRangeBadge').textContent=cur.rangeLabel;
+  // Adjust readout & coord panel labels for parametric
+  updateLabels();
+  if(window.MathJax&&MathJax.typesetPromise) MathJax.typesetPromise();
+  resetAnim(); buildTable(); draw();
+}
+
+function updateLabels(){
+  const isP = cur.mode==='parametric';
+  document.getElementById('sliderLabel').textContent = isP?'t':'θ';
+  // readout bar labels
+  const bar = document.getElementById('readoutBar');
+  const items = bar.querySelectorAll('.rd-item');
+  items[0].innerHTML = (isP?'t':'θ')+' = <span class="rd-val" id="rdTheta">0</span>';
+  if(isP){
+    items[1].innerHTML = 'x = <span class="rd-val" id="rdR">0</span>';
+    items[2].innerHTML = 'y = <span class="rd-val" id="rdX">0</span>';
+    items[3].style.display='none';
+  } else {
+    items[1].innerHTML = 'r = <span class="rd-val" id="rdR">0</span>';
+    items[2].innerHTML = 'x = <span class="rd-val" id="rdX">0</span>';
+    items[3].style.display='';
+    items[3].innerHTML = 'y = <span class="rd-val" id="rdY">0</span>';
+  }
+  // coord panel
+  const cdTitle = document.getElementById('cdTitle');
+  const cdLR = document.getElementById('cdLabelR');
+  const cdLT = document.getElementById('cdLabelT');
+  const cdLX = document.getElementById('cdLabelX');
+  const cdLY = document.getElementById('cdLabelY');
+  if(isP){
+    cdTitle.textContent='參數值 → 座標';
+    cdLR.innerHTML='$t$'; cdLT.innerHTML=''; document.getElementById('cdTheta').textContent='';
+    cdLX.innerHTML='$x(t)$'; cdLY.innerHTML='$y(t)$';
+    cdLT.parentElement.style.display='none';
+  } else {
+    cdTitle.textContent='座標轉換';
+    cdLR.innerHTML='$r$'; cdLT.innerHTML='$\\theta$';
+    cdLX.innerHTML='$x = r\\cos\\theta$'; cdLY.innerHTML='$y = r\\sin\\theta$';
+    cdLT.parentElement.style.display='';
+  }
+  if(window.MathJax&&MathJax.typesetPromise) MathJax.typesetPromise([document.getElementById('coordPanel'),bar]);
+}
+
+// ============================================================
+//  TABLE
+// ============================================================
+function buildTable(){
+  const head=document.getElementById('tableHead');
+  const body=document.getElementById('angleTableBody');
+  const isP=cur.mode==='parametric';
+  head.innerHTML=isP
+    ?'<th>$t$</th><th>角度</th><th>$x$</th><th>$y$</th>'
+    :'<th>$\\theta$</th><th>角度</th><th>$r$</th><th>$(x,y)$</th>';
+  body.innerHTML='';
+  cur.specialAngles.forEach((a,i)=>{
+    const tr=document.createElement('tr'); tr.dataset.idx=i;
+    if(isP){
+      const x=cur.xFn(a), y=cur.yFn(a);
+      tr.innerHTML=`<td>${fmtAngle(a)}</td><td>${fmtDeg(a)}</td><td>${fmtS(x)}</td><td>${fmtS(y)}</td>`;
+    } else {
+      const r=cur.fn(a), x=isNaN(r)?NaN:r*Math.cos(a), y=isNaN(r)?NaN:r*Math.sin(a);
+      tr.innerHTML=`<td>${fmtAngle(a)}</td><td>${fmtDeg(a)}</td><td>${fmtS(r)}</td><td>(${fmtS(x)}, ${fmtS(y)})</td>`;
+    }
+    body.appendChild(tr);
+  });
+  if(window.MathJax&&MathJax.typesetPromise) MathJax.typesetPromise([head]);
+}
+buildTable();
+
+// ============================================================
+//  DRAW — POLAR
+// ============================================================
+function drawPolar(){
+  const c=cur;
+  const tCur=getTVal(c,progress);
+  ctx.clearRect(0,0,CW,CH);
+  const cx=CW/2, cy=CH/2, sc=(CW*.38)/c.rMax;
+
+  // Grid circles
+  ctx.strokeStyle='#d5d0c4'; ctx.lineWidth=.5;
+  const nC=Math.ceil(c.rMax);
+  for(let i=1;i<=nC;i++){ctx.beginPath();ctx.arc(cx,cy,i*sc,0,2*PI);ctx.stroke();
+    ctx.fillStyle='#bbb';ctx.font='10px "JetBrains Mono"';ctx.textAlign='left';ctx.fillText(i,cx+i*sc+3,cy-3);}
+  // Radial lines
+  for(let i=0;i<12;i++){const a=i*PI/6;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+nC*sc*Math.cos(a),cy-nC*sc*Math.sin(a));ctx.stroke();}
+  // Axes
+  ctx.strokeStyle='#999';ctx.lineWidth=1.2;
+  ctx.beginPath();ctx.moveTo(0,cy);ctx.lineTo(CW,cy);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(cx,0);ctx.lineTo(cx,CH);ctx.stroke();
+  ctx.fillStyle='#999';ctx.font='11px "Noto Sans TC"';ctx.textAlign='center';
+  ctx.fillText('0',CW-12,cy-8);ctx.fillText('π',12,cy-8);ctx.fillText('π/2',cx+18,14);ctx.fillText('3π/2',cx+22,CH-6);
+
+  // Ghost
+  ctx.strokeStyle='rgba(200,190,180,.35)';ctx.lineWidth=1;ctx.setLineDash([4,4]);
+  tracePolar(c,0,c.tMax,cx,cy,sc); ctx.setLineDash([]);
+
+  // Animated
+  if(tCur>0.001){ctx.strokeStyle='#e74c3c';ctx.lineWidth=2.5;ctx.shadowColor='rgba(231,76,60,.3)';ctx.shadowBlur=6;
+    tracePolar(c,0,tCur,cx,cy,sc);ctx.shadowBlur=0;}
+
+  // Radius & point
+  const rNow=c.fn(tCur);
+  if(!isNaN(rNow)){
+    const px=cx+rNow*sc*Math.cos(tCur), py=cy-rNow*sc*Math.sin(tCur);
+    ctx.strokeStyle='rgba(44,62,122,.5)';ctx.lineWidth=1.5;ctx.setLineDash([5,3]);
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(px,py);ctx.stroke();ctx.setLineDash([]);
+    // arc
+    ctx.strokeStyle='rgba(46,204,113,.6)';ctx.lineWidth=1.5;
+    const aR=Math.min(30,Math.abs(rNow)*sc*.3+15);
+    ctx.beginPath();ctx.arc(cx,cy,aR,0,-tCur,true);ctx.stroke();
+    // dot
+    ctx.fillStyle='#2ecc71';ctx.beginPath();ctx.arc(px,py,5,0,2*PI);ctx.fill();
+    ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.beginPath();ctx.arc(px,py,5,0,2*PI);ctx.stroke();
+  }
+  // Passed special dots
+  c.specialAngles.forEach(a=>{if(a<=tCur+0.01){const r=c.fn(a);if(!isNaN(r)){
+    ctx.fillStyle='rgba(44,62,122,.7)';ctx.beginPath();ctx.arc(cx+r*sc*Math.cos(a),cy-r*sc*Math.sin(a),3,0,2*PI);ctx.fill();}}});
+
+  updateReadoutPolar(tCur,rNow);
+}
+
+function tracePolar(c,t0,t1,cx,cy,sc){
+  const N=Math.max(300,Math.ceil((t1-t0)/c.tMax*1000));
+  const dt=(t1-t0)/N; let started=false; ctx.beginPath();
+  for(let i=0;i<=N;i++){const t=t0+i*dt, r=c.fn(t);
+    if(isNaN(r)){started=false;continue;}
+    const x=cx+r*sc*Math.cos(t), y=cy-r*sc*Math.sin(t);
+    if(!started){ctx.moveTo(x,y);started=true;}else ctx.lineTo(x,y);}
+  ctx.stroke();
+}
+
+function updateReadoutPolar(theta,r){
+  document.getElementById('rdTheta').textContent=fmtAngle(theta)+' ('+fmtDeg(theta)+')';
+  const rdR=document.getElementById('rdR');
+  rdR.textContent=fmtN(r); rdR.className='rd-val'+(r<0?' neg':'');
+  const x=isNaN(r)?NaN:r*Math.cos(theta), y=isNaN(r)?NaN:r*Math.sin(theta);
+  document.getElementById('rdX').textContent=fmtN(x);
+  const rdY=document.getElementById('rdY'); if(rdY) rdY.textContent=fmtN(y);
+  document.getElementById('cdR').textContent=fmtN(r);
+  document.getElementById('cdTheta').textContent=fmtAngle(theta);
+  document.getElementById('cdX').textContent=fmtN(x);
+  document.getElementById('cdY').textContent=fmtN(y);
+}
+
+// ============================================================
+//  DRAW — PARAMETRIC
+// ============================================================
+function drawParametric(){
+  const c=cur;
+  const tCur=getTVal(c,progress);
+  ctx.clearRect(0,0,CW,CH);
+
+  const vb=c.viewBox;
+  const xSpan=vb.xMax-vb.xMin, ySpan=vb.yMax-vb.yMin;
+  const sc=Math.min((CW-60)/xSpan,(CH-60)/ySpan);
+  const ox=30+(CW-60-xSpan*sc)/2, oy=30+(CH-60-ySpan*sc)/2; // top-left of box
+  function toSX(x){return ox+(x-vb.xMin)*sc;}
+  function toSY(y){return oy+(vb.yMax-y)*sc;}
+
+  // Grid
+  ctx.strokeStyle='#e0ddd5'; ctx.lineWidth=.5;
+  const gStep = xSpan>20? 5 : xSpan>8? 2 : 1;
+  for(let v=Math.ceil(vb.xMin/gStep)*gStep;v<=vb.xMax;v+=gStep){
+    const sx=toSX(v);ctx.beginPath();ctx.moveTo(sx,0);ctx.lineTo(sx,CH);ctx.stroke();}
+  const gStepY = ySpan>20? 5 : ySpan>8? 2 : 1;
+  for(let v=Math.ceil(vb.yMin/gStepY)*gStepY;v<=vb.yMax;v+=gStepY){
+    const sy=toSY(v);ctx.beginPath();ctx.moveTo(0,sy);ctx.lineTo(CW,sy);ctx.stroke();}
+
+  // Axes
+  ctx.strokeStyle='#999';ctx.lineWidth=1.2;
+  const ax0=toSX(0),ay0=toSY(0);
+  if(ax0>0&&ax0<CW){ctx.beginPath();ctx.moveTo(ax0,0);ctx.lineTo(ax0,CH);ctx.stroke();}
+  if(ay0>0&&ay0<CH){ctx.beginPath();ctx.moveTo(0,ay0);ctx.lineTo(CW,ay0);ctx.stroke();}
+  // Axis tick labels
+  ctx.fillStyle='#999';ctx.font='10px "JetBrains Mono"';ctx.textAlign='center';
+  for(let v=Math.ceil(vb.xMin/gStep)*gStep;v<=vb.xMax;v+=gStep){
+    if(Math.abs(v)<0.01)continue;
+    const sx=toSX(v); if(ay0>10&&ay0<CH-10) ctx.fillText(v.toFixed(0),sx,ay0+12);}
+  ctx.textAlign='right';
+  for(let v=Math.ceil(vb.yMin/gStepY)*gStepY;v<=vb.yMax;v+=gStepY){
+    if(Math.abs(v)<0.01)continue;
+    const sy=toSY(v); if(ax0>10&&ax0<CW-10) ctx.fillText(v.toFixed(0),ax0-5,sy+4);}
+  ctx.fillStyle='#999';ctx.font='11px "Noto Sans TC"';ctx.textAlign='left';
+  ctx.fillText('x',CW-14, ay0>10&&ay0<CH-10? ay0-6 : CH-14);
+  ctx.fillText('y', ax0>10&&ax0<CW-10? ax0+6 : 6, 14);
+
+  // Ghost
+  ctx.strokeStyle='rgba(200,190,180,.35)';ctx.lineWidth=1;ctx.setLineDash([4,4]);
+  traceParam(c,getTMin(c),c.tMax,toSX,toSY);ctx.setLineDash([]);
+
+  // Animated
+  if(progress>0.001){
+    ctx.strokeStyle='#e74c3c';ctx.lineWidth=2.5;ctx.shadowColor='rgba(231,76,60,.3)';ctx.shadowBlur=6;
+    traceParam(c,getTMin(c),tCur,toSX,toSY);ctx.shadowBlur=0;}
+
+  // For cycloid/prolate: draw rolling circle indicator
+  if(c.id==='cycloid'){
+    const a=1, cx_c=tCur, cy_c=1; // center of rolling circle
+    const sx=toSX(cx_c), sy=toSY(cy_c), sr=a*sc;
+    ctx.strokeStyle='rgba(44,62,122,.35)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.arc(sx,sy,sr,0,2*PI);ctx.stroke();
+    // spoke
+    const px=toSX(c.xFn(tCur)), py=toSY(c.yFn(tCur));
+    ctx.strokeStyle='rgba(44,62,122,.4)';ctx.lineWidth=1;ctx.setLineDash([3,3]);
+    ctx.beginPath();ctx.moveTo(sx,sy);ctx.lineTo(px,py);ctx.stroke();ctx.setLineDash([]);
+  }
+
+  // Current point
+  const xNow=c.xFn(tCur), yNow=c.yFn(tCur);
+  const spx=toSX(xNow), spy=toSY(yNow);
+  ctx.fillStyle='#2ecc71';ctx.beginPath();ctx.arc(spx,spy,5,0,2*PI);ctx.fill();
+  ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.beginPath();ctx.arc(spx,spy,5,0,2*PI);ctx.stroke();
+
+  // Passed dots
+  c.specialAngles.forEach(a=>{if(a<=tCur+0.02*(c.tMax-getTMin(c))){
+    const sx2=toSX(c.xFn(a)),sy2=toSY(c.yFn(a));
+    ctx.fillStyle='rgba(44,62,122,.7)';ctx.beginPath();ctx.arc(sx2,sy2,3,0,2*PI);ctx.fill();}});
+
+  // Readout
+  document.getElementById('rdTheta').textContent=fmtAngle(tCur)+' ('+fmtDeg(tCur)+')';
+  const rdR=document.getElementById('rdR'); rdR.textContent=fmtS(xNow); rdR.className='rd-val';
+  document.getElementById('rdX').textContent=fmtS(yNow);
+  // coord panel
+  document.getElementById('cdR').textContent=fmtAngle(tCur);
+  document.getElementById('cdX').textContent=fmtN(xNow);
+  document.getElementById('cdY').textContent=fmtN(yNow);
+}
+
+function traceParam(c,t0,t1,toSX,toSY){
+  const N=Math.max(400,Math.ceil((t1-t0)/(c.tMax-getTMin(c))*1200));
+  const dt=(t1-t0)/N; ctx.beginPath(); let started=false;
+  for(let i=0;i<=N;i++){const t=t0+i*dt;
+    const x=c.xFn(t),y=c.yFn(t);
+    if(isNaN(x)||isNaN(y)){started=false;continue;}
+    const sx=toSX(x),sy=toSY(y);
+    if(!started){ctx.moveTo(sx,sy);started=true;}else ctx.lineTo(sx,sy);}
+  ctx.stroke();
+}
+
+// ============================================================
+//  DRAW DISPATCH
+// ============================================================
+function draw(){
+  if(cur.mode==='parametric') drawParametric(); else drawPolar();
+  highlightTable();
+}
+
+function highlightTable(){
+  const tCur=getTVal(cur,progress);
+  const rows=document.querySelectorAll('#angleTableBody tr');
+  let activeIdx=-1;
+  for(let i=cur.specialAngles.length-1;i>=0;i--){
+    if(tCur>=cur.specialAngles[i]-0.02*(cur.tMax-getTMin(cur))*0.01){activeIdx=i;break;}}
+  rows.forEach((row,i)=>{
+    const a=cur.specialAngles[i];
+    const range=0.03*(cur.tMax-getTMin(cur));
+    if(i===activeIdx&&tCur>=a-range&&tCur<=a+range){
+      row.className='active-row';
+      if(lastHL!==i){row.querySelectorAll('td').forEach(td=>{td.classList.remove('flash-cell');void td.offsetWidth;td.classList.add('flash-cell');});
+        const wrap=document.getElementById('tableWrap');const rr=row.getBoundingClientRect(),wr=wrap.getBoundingClientRect();wrap.scrollTo({top:rr.top-wr.top+wrap.scrollTop-wrap.clientHeight/2+row.offsetHeight/2,behavior:'smooth'});lastHL=i;}
+    } else if(tCur>a+range){row.className='passed-row';}
+    else {row.className='';}
+  });
+}
+
+// ============================================================
+//  ANIMATION CONTROLS
+// ============================================================
+function togglePlay(){
+  playing=!playing;
+  const btn=document.getElementById('btnPlay');
+  if(playing){btn.textContent='⏸ 暫停';btn.classList.add('active');lastT=performance.now();anim();}
+  else{btn.textContent='▶ 播放';btn.classList.remove('active');if(raf)cancelAnimationFrame(raf);}
+}
+function anim(){
+  if(!playing)return;
+  const now=performance.now(),dt=(now-lastT)/1000;lastT=now;
+  progress=Math.min(1,progress+dt*speed/7);
+  document.getElementById('thetaSlider').value=progress*1000;
+  updateSliderDisp(); draw();
+  if(progress>=1){playing=false;document.getElementById('btnPlay').textContent='▶ 播放';document.getElementById('btnPlay').classList.remove('active');return;}
+  raf=requestAnimationFrame(anim);
+}
+function onSliderInput(){
+  if(playing){playing=false;document.getElementById('btnPlay').textContent='▶ 播放';document.getElementById('btnPlay').classList.remove('active');}
+  progress=parseInt(document.getElementById('thetaSlider').value)/1000;
+  updateSliderDisp(); draw();
+}
+function updateSliderDisp(){
+  const t=getTVal(cur,progress);
+  document.getElementById('thetaDisp').textContent=fmtAngle(t);
+}
+function resetAnim(){
+  playing=false;document.getElementById('btnPlay').textContent='▶ 播放';document.getElementById('btnPlay').classList.remove('active');
+  if(raf)cancelAnimationFrame(raf);
+  progress=0;lastHL=-1;document.getElementById('thetaSlider').value=0;updateSliderDisp();draw();
+}
+function setSpeed(s){speed=s;document.querySelectorAll('.speed-btn').forEach(b=>b.classList.toggle('active-speed',parseFloat(b.textContent)===s));}
+
+// ============================================================
+//  INIT
+// ============================================================
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    updateLabels();
+    drawRefThumbnails();
+    if(window.MathJax&&MathJax.typesetPromise) MathJax.typesetPromise().then(()=>draw()); else draw();
+  },600);
+});
+
+// ============================================================
+//  REFERENCE THUMBNAILS
+// ============================================================
+function drawRefThumbnails(){
+  const defs = {
+    // Limaçon variants: r = a + b*cos(θ)
+    'lim-inner':  {fn:t=>0.5+1*Math.cos(t), max:1.6, color:'#e74c3c'},
+    'lim-card':   {fn:t=>1+1*Math.cos(t),   max:2.1, color:'#e74c3c'},
+    'lim-dimple': {fn:t=>1.5+1*Math.cos(t),  max:2.6, color:'#e74c3c'},
+    'lim-convex': {fn:t=>2+1*Math.cos(t),    max:3.1, color:'#e74c3c'},
+    // Rose
+    'rose-3cos':  {fn:t=>1*Math.cos(3*t), max:1.1, color:'#9b59b6', tMax:PI},
+    'rose-4cos':  {fn:t=>1*Math.cos(4*t), max:1.1, color:'#9b59b6'},
+    'rose-5sin':  {fn:t=>1*Math.sin(5*t), max:1.1, color:'#9b59b6', tMax:PI},
+    'rose-2sin':  {fn:t=>1*Math.sin(2*t), max:1.1, color:'#9b59b6'},
+    // Circle
+    'circ-cos':   {fn:t=>1*Math.cos(t), max:1.1, color:'#2c3e7a', tMax:PI},
+    'circ-sin':   {fn:t=>1*Math.sin(t), max:1.1, color:'#2c3e7a', tMax:PI},
+    // Lemniscate
+    'lem-cos':    {fn:t=>{let v=Math.cos(2*t);return v>=0?Math.sqrt(v):NaN;}, max:1.1, color:'#e67e22'},
+    'lem-sin':    {fn:t=>{let v=Math.sin(2*t);return v>=0?Math.sqrt(v):NaN;}, max:1.1, color:'#e67e22'},
+  };
+
+  document.querySelectorAll('canvas[data-ref]').forEach(cvs=>{
+    const key = cvs.dataset.ref;
+    const d = defs[key]; if(!d) return;
+    const W=120, H=120;
+    const dp = window.devicePixelRatio||1;
+    cvs.style.width=W+'px'; cvs.style.height=H+'px';
+    cvs.width=W*dp; cvs.height=H*dp;
+    const c = cvs.getContext('2d'); c.scale(dp,dp);
+
+    const cx=W/2, cy=H/2, sc=(W*.4)/d.max;
+
+    // Light grid
+    c.strokeStyle='#e8e2d6'; c.lineWidth=.4;
+    c.beginPath(); c.arc(cx,cy,d.max*sc*.5,0,2*PI); c.stroke();
+    c.beginPath(); c.arc(cx,cy,d.max*sc,0,2*PI); c.stroke();
+    c.beginPath(); c.moveTo(0,cy); c.lineTo(W,cy); c.stroke();
+    c.beginPath(); c.moveTo(cx,0); c.lineTo(cx,H); c.stroke();
+
+    // Curve
+    const tEnd = d.tMax || 2*PI;
+    const N=500; const dt=tEnd/N;
+    c.strokeStyle=d.color; c.lineWidth=1.8;
+    c.beginPath(); let started=false;
+    for(let i=0;i<=N;i++){
+      const t=i*dt, r=d.fn(t);
+      if(isNaN(r)){started=false;continue;}
+      const x=cx+r*sc*Math.cos(t), y=cy-r*sc*Math.sin(t);
+      if(!started){c.moveTo(x,y);started=true;}else c.lineTo(x,y);
+    }
+    c.stroke();
+
+    // For lemniscate, also draw negative r branch
+    if(key==='lem-cos'||key==='lem-sin'){
+      c.beginPath(); started=false;
+      for(let i=0;i<=N;i++){
+        const t=i*dt, r=d.fn(t);
+        if(isNaN(r)){started=false;continue;}
+        const rn=-r;
+        const x=cx+rn*sc*Math.cos(t), y=cy-rn*sc*Math.sin(t);
+        if(!started){c.moveTo(x,y);started=true;}else c.lineTo(x,y);
+      }
+      c.stroke();
+    }
+  });
+}
+</script>
+</body>
+</html>
