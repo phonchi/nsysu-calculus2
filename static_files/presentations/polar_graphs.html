@@ -432,7 +432,7 @@ const CURVES = [
   {
     id:'lemniscate', name:'雙紐線', type:'Lemniscate', mode:'polar',
     eq:'r^2 = 4\\cos 2\\theta', rangeLabel:'0 ≤ θ ≤ 2π',
-    fn:t=>{let v=4*Math.cos(2*t);return v>=0?Math.sqrt(v):NaN;}, tMax:2*PI, rMax:2.3,
+    fn:t=>{let v=4*Math.cos(2*t);return v>=-1e-9?Math.sqrt(Math.max(0,v)):NaN;}, tMax:2*PI, rMax:2.3,
     specialAngles:[0,PI/12,PI/6,PI/4,3*PI/4,5*PI/6,11*PI/12,PI,13*PI/12,7*PI/6,5*PI/4,7*PI/4,11*PI/6,23*PI/12,2*PI]
   },
   {
@@ -650,18 +650,25 @@ function drawPolar(){
 
   // Radius & point
   const rNow=c.fn(tCur);
-  if(!isNaN(rNow)){
-    const px=cx+rNow*sc*Math.cos(tCur), py=cy-rNow*sc*Math.sin(tCur);
+  // Effective r: if NaN (e.g. lemniscate gap), treat as 0 (dot stays at origin)
+  const rEff=isNaN(rNow)?0:rNow;
+  const px=cx+rEff*sc*Math.cos(tCur), py=cy-rEff*sc*Math.sin(tCur);
+
+  // Angle arc (always visible, fixed radius)
+  if(tCur>0.01){
+    ctx.strokeStyle='rgba(46,204,113,.6)';ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.arc(cx,cy,25,0,-tCur%(2*PI+0.001),true);ctx.stroke();
+  }
+
+  // Radius line (skip if r≈0 or NaN to avoid clutter at origin)
+  if(Math.abs(rEff)>0.05){
     ctx.strokeStyle='rgba(44,62,122,.5)';ctx.lineWidth=1.5;ctx.setLineDash([5,3]);
     ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(px,py);ctx.stroke();ctx.setLineDash([]);
-    // arc
-    ctx.strokeStyle='rgba(46,204,113,.6)';ctx.lineWidth=1.5;
-    const aR=Math.min(30,Math.abs(rNow)*sc*.3+15);
-    ctx.beginPath();ctx.arc(cx,cy,aR,0,-tCur,true);ctx.stroke();
-    // dot
-    ctx.fillStyle='#2ecc71';ctx.beginPath();ctx.arc(px,py,5,0,2*PI);ctx.fill();
-    ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.beginPath();ctx.arc(px,py,5,0,2*PI);ctx.stroke();
   }
+  // Dot — always visible; dim when at origin during NaN gap
+  const dotAlpha=isNaN(rNow)?0.3:1;
+  ctx.fillStyle=`rgba(46,204,113,${dotAlpha})`;ctx.beginPath();ctx.arc(px,py,5,0,2*PI);ctx.fill();
+  ctx.strokeStyle=`rgba(255,255,255,${dotAlpha})`;ctx.lineWidth=2;ctx.beginPath();ctx.arc(px,py,5,0,2*PI);ctx.stroke();
   // Passed special dots
   c.specialAngles.forEach(a=>{if(a<=tCur+0.01){const r=c.fn(a);if(!isNaN(r)){
     ctx.fillStyle='rgba(44,62,122,.7)';ctx.beginPath();ctx.arc(cx+r*sc*Math.cos(a),cy-r*sc*Math.sin(a),3,0,2*PI);ctx.fill();}}});
@@ -670,12 +677,27 @@ function drawPolar(){
 }
 
 function tracePolar(c,t0,t1,cx,cy,sc){
-  const N=Math.max(300,Math.ceil((t1-t0)/c.tMax*1000));
-  const dt=(t1-t0)/N; let started=false; ctx.beginPath();
-  for(let i=0;i<=N;i++){const t=t0+i*dt, r=c.fn(t);
-    if(isNaN(r)){started=false;continue;}
+  const N=Math.max(400,Math.ceil((t1-t0)/c.tMax*1200));
+  const dt=(t1-t0)/N;
+  let started=false, wasNaN=false;
+  ctx.beginPath();
+  for(let i=0;i<=N;i++){
+    const t=t0+i*dt, r=c.fn(t);
+    if(isNaN(r)){
+      if(started){ ctx.lineTo(cx,cy); started=false; } // close segment to origin
+      wasNaN=true;
+      continue;
+    }
     const x=cx+r*sc*Math.cos(t), y=cy-r*sc*Math.sin(t);
-    if(!started){ctx.moveTo(x,y);started=true;}else ctx.lineTo(x,y);}
+    if(!started){
+      if(wasNaN){ ctx.moveTo(cx,cy); ctx.lineTo(x,y); } // start from origin
+      else { ctx.moveTo(x,y); }
+      started=true;
+    } else {
+      ctx.lineTo(x,y);
+    }
+    wasNaN=false;
+  }
   ctx.stroke();
 }
 
@@ -877,8 +899,8 @@ function drawRefThumbnails(){
     'circ-cos':   {fn:t=>1*Math.cos(t), max:1.1, color:'#2c3e7a', tMax:PI},
     'circ-sin':   {fn:t=>1*Math.sin(t), max:1.1, color:'#2c3e7a', tMax:PI},
     // Lemniscate
-    'lem-cos':    {fn:t=>{let v=Math.cos(2*t);return v>=0?Math.sqrt(v):NaN;}, max:1.1, color:'#e67e22'},
-    'lem-sin':    {fn:t=>{let v=Math.sin(2*t);return v>=0?Math.sqrt(v):NaN;}, max:1.1, color:'#e67e22'},
+    'lem-cos':    {fn:t=>{let v=Math.cos(2*t);return v>=-1e-9?Math.sqrt(Math.max(0,v)):NaN;}, max:1.1, color:'#e67e22'},
+    'lem-sin':    {fn:t=>{let v=Math.sin(2*t);return v>=-1e-9?Math.sqrt(Math.max(0,v)):NaN;}, max:1.1, color:'#e67e22'},
   };
 
   document.querySelectorAll('canvas[data-ref]').forEach(cvs=>{
@@ -903,27 +925,31 @@ function drawRefThumbnails(){
     const tEnd = d.tMax || 2*PI;
     const N=500; const dt=tEnd/N;
     c.strokeStyle=d.color; c.lineWidth=1.8;
-    c.beginPath(); let started=false;
-    for(let i=0;i<=N;i++){
-      const t=i*dt, r=d.fn(t);
-      if(isNaN(r)){started=false;continue;}
-      const x=cx+r*sc*Math.cos(t), y=cy-r*sc*Math.sin(t);
-      if(!started){c.moveTo(x,y);started=true;}else c.lineTo(x,y);
-    }
-    c.stroke();
 
-    // For lemniscate, also draw negative r branch
-    if(key==='lem-cos'||key==='lem-sin'){
-      c.beginPath(); started=false;
+    // Helper: draw polar trace with origin bridging (no gap at pole)
+    function traceRef(signR){
+      c.beginPath(); let started=false, wasNaN=false;
       for(let i=0;i<=N;i++){
         const t=i*dt, r=d.fn(t);
-        if(isNaN(r)){started=false;continue;}
-        const rn=-r;
-        const x=cx+rn*sc*Math.cos(t), y=cy-rn*sc*Math.sin(t);
-        if(!started){c.moveTo(x,y);started=true;}else c.lineTo(x,y);
+        if(isNaN(r)){
+          if(started){ c.lineTo(cx,cy); started=false; }
+          wasNaN=true; continue;
+        }
+        const rr=signR*r;
+        const x=cx+rr*sc*Math.cos(t), y=cy-rr*sc*Math.sin(t);
+        if(!started){
+          if(wasNaN){ c.moveTo(cx,cy); c.lineTo(x,y); }
+          else { c.moveTo(x,y); }
+          started=true;
+        } else { c.lineTo(x,y); }
+        wasNaN=false;
       }
       c.stroke();
     }
+
+    traceRef(1);
+    // For lemniscate, also draw negative r branch
+    if(key==='lem-cos'||key==='lem-sin') traceRef(-1);
   });
 }
 </script>
