@@ -12,5 +12,6 @@ links:
 **Suggested Readings:**
 - Chapter 9.8~9.10, 10.2
 - [[Chapter 10 summary slides_chinese (courtesy of professor Fu-Chuen Chang)]](/nsysu-calculus2/static_files/presentations/Chap10_Summary.pdf)
+- [[泰勒展開式的推導]](/nsysu-calculus2/static_files/presentations/taylor_series_derive.html)
 - [[泰勒展開式的相關應用]](/nsysu-calculus2/static_files/presentations/taylor_applications.html)
 - [[Recorded video]](https://www.youtube.com/playlist?list=PLHNZtBNWQ-861niqTVLDcsEHAjBfRJOgA)
