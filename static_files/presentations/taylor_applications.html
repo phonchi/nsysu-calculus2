@@ -132,6 +132,42 @@
   .toc a:hover { text-decoration: underline; }
   .toc .toc-num { font-family: 'JetBrains Mono', monospace; color: var(--accent); margin-right: 0.5rem; font-size: 0.9rem; }
 
+  /* Sticky side index */
+  .side-index {
+    position: fixed; top: 50%; right: 1.2rem; transform: translateY(-50%);
+    z-index: 100; display: flex; flex-direction: column; gap: 0.2rem;
+  }
+  .side-index a {
+    display: flex; align-items: center; gap: 0.5rem;
+    text-decoration: none; padding: 0.35rem 0.7rem; border-radius: 6px;
+    font-size: 0.78rem; font-family: 'JetBrains Mono', monospace;
+    color: var(--muted); background: rgba(247,243,235,0.85);
+    backdrop-filter: blur(6px); border: 1px solid transparent;
+    transition: all 0.25s;
+  }
+  .side-index a .si-num {
+    min-width: 1.4rem; text-align: center; font-weight: 700;
+    color: var(--accent); font-size: 0.75rem;
+  }
+  .side-index a .si-label {
+    white-space: nowrap; font-family: 'Noto Sans TC', sans-serif; font-weight: 500;
+  }
+  .side-index a:hover { background: var(--card); border-color: var(--card-border); color: var(--ink); }
+  .side-index a.active {
+    background: var(--accent2); color: #fff; border-color: var(--accent2);
+    box-shadow: 0 2px 8px rgba(44,62,122,0.25);
+  }
+  .side-index a.active .si-num { color: #6bcb77; }
+  .side-index a.active .si-label { color: #fff; }
+
+  @media (max-width: 1100px) {
+    .side-index a .si-label { display: none; }
+    .side-index a { padding: 0.3rem 0.5rem; }
+  }
+  @media (max-width: 600px) {
+    .side-index { display: none; }
+  }
+
   footer { text-align: center; padding: 3rem 1.5rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--card-border); }
 
   @media (max-width: 600px) {
@@ -142,6 +178,17 @@
 </style>
 </head>
 <body>
+
+<!-- Sticky side index -->
+<nav class="side-index" id="sideIndex">
+  <a href="#toolbox"><span class="si-num">00</span><span class="si-label">速查表</span></a>
+  <a href="#type1"><span class="si-num">01</span><span class="si-label">求和</span></a>
+  <a href="#type2"><span class="si-num">02</span><span class="si-label">求極限</span></a>
+  <a href="#type3"><span class="si-num">03</span><span class="si-label">求導數</span></a>
+  <a href="#type4"><span class="si-num">04</span><span class="si-label">逼近積分</span></a>
+  <a href="#type5"><span class="si-num">05</span><span class="si-label">誤差估計</span></a>
+  <a href="#summary"><span class="si-num">06</span><span class="si-label">總結</span></a>
+</nav>
 
 <div class="hero">
   <div class="hero-content">
@@ -562,6 +609,47 @@
   <p>國立中山大學 應用數學系 — 微積分教學輔助網頁</p>
   <p>Chapter 9 Infinite Series 補充教材</p>
 </footer>
+
+<script>
+// Scroll-spy for side index
+(function() {
+  const ids = ['toolbox','type1','type2','type3','type4','type5','summary'];
+  const links = document.querySelectorAll('#sideIndex a');
+  function update() {
+    let current = '';
+    for (const id of ids) {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.35) current = id;
+    }
+    links.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+<script>
+(function(){
+  const nav = document.getElementById('sideIndex');
+  if (!nav) return;
+  const links = nav.querySelectorAll('a');
+  const ids = Array.from(links).map(a => a.getAttribute('href').slice(1));
+
+  function update(){
+    let current = ids[0];
+    for (const id of ids){
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.35) current = id;
+    }
+    links.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }
+  window.addEventListener('scroll', update, {passive:true});
+  update();
+})();
+</script>
 
 </body>
 </html>
