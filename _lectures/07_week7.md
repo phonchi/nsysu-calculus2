@@ -10,4 +10,4 @@ links:
 ---
 **Suggested Readings:**
 - Chapter 10.3~10.5
-- [[Polar Graphs]](/nsysu-calculus2/static_files/presentations/polar_graphs.html)
+- [[極座標圖形繪製]](/nsysu-calculus2/static_files/presentations/polar_graphs.html)
