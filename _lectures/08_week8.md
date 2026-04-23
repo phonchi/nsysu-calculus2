@@ -10,6 +10,8 @@ links:
       name: Chapter 11 slides
     - url: /static_files/presentations/Calculus_Chapter12.pdf
       name: Chapter 12 slides     
+    - url: /static_files/presentations/Midterm_combine_sol.pdf
+      name: Reference solution for Midterm
       
 ---
 **Suggested Readings:**
