@@ -21,3 +21,4 @@ links:
 - [[Surface in space](/nsysu-calculus2/static_files/presentations/Surface.pdf)]
 - [[Derivation of derivatives formulas of Vector Functions](https://drive.google.com/file/d/18d5w7ue8nhd-aR46qSqjkQa3gqVs-fRO/view)]
 - Chapter 11.7, 12.1, 12.2
+- [[Recorded video]](https://www.youtube.com/playlist?list=PLHNZtBNWQ-8791zeDY-nb0SUy414Zfvnv)
