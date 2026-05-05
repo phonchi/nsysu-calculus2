@@ -14,5 +14,5 @@ links:
 - [[chapter 13 summary slides (courtesy of professor Fu-Chuen Chang)]](/nsysu-calculus2/static_files/presentations/Chap13_Summary.pdf)
 - [[向量值函數概論]](/nsysu-calculus2/static_files/presentations/vector_valued_functions.html)
 - [[多變量函數概論]](/nsysu-calculus2/static_files/presentations/multivariable_calculus.html)
-- [[Summary between different concept (courtesy of professor Chien-Hong Cho)]](/nsysu-calculus2/static_files/presentations/derivatives.pdf)
+- [[各性質隱含關係 (courtesy of professor Chien-Hong Cho)]](/nsysu-calculus2/static_files/presentations/derivatives.html)
 - Chapter 12.2, 13.1, 13.2, 13.3
