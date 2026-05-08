@@ -16,3 +16,4 @@ links:
 - [[多變量函數概論]](/nsysu-calculus2/static_files/presentations/multivariable_calculus.html)
 - [[各性質隱含關係 (courtesy of professor Chien-Hong Cho)]](/nsysu-calculus2/static_files/presentations/derivatives.html)
 - Chapter 12.2, 13.1, 13.2, 13.3
+- [[Recorded video]](https://www.youtube.com/playlist?list=PLHNZtBNWQ-84kTA4gfNAm1l_BVIJj-tjl)
