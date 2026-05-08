@@ -606,8 +606,19 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       <p style="margin:.3rem 0;">直觀上，$(x,y)$ 不管從哪一條路徑靠近 $(x_0,y_0)$，函數值都必須靠近同一個數 $L$。本講義例題聚焦直接代入、夾擠定理、不同路徑與極座標，不另外加入 epsilon-delta 證明例題。</p>
     </div>
 
-    <h4>互動：同一節的多種極限解法</h4>
-    <p>本節練習講義中最常用的判斷工具：<span class="pill pill-green">直接代入</span>、<span class="pill pill-blue">夾擠定理</span>、<span class="pill pill-red">不同路徑</span>與<span class="pill pill-z">極座標</span>。切換函數與路徑，觀察何時可以證明極限存在，何時只要找到兩條路徑給不同結果就能判定不存在。</p>
+    <div class="info-box red" style="margin:1rem 0;padding:.9rem 1rem;">
+      <span class="info-label">路徑代換的邏輯方向</span>
+      <div style="font-size:.9rem;line-height:1.75;">
+        <strong>單一路徑代換不能證明二變數極限存在。</strong> 因為極限存在要求所有靠近 $(x_0,y_0)$ 的方式都得到同一個 $L$；檢查有限多條路徑都得到同一值，只能說「還沒找到反例」。
+        <br>
+        <strong>路徑代換最常用來證明不存在：</strong> 找到兩條路徑得到不同極限值，或找到某一路徑下函數值不收斂，就能否定原極限存在。
+        <br>
+        <strong>要證明存在</strong>通常要用連續性直接代入、夾擠定理、epsilon-delta，或用極座標/柱座標/球座標這類能描述整個鄰域逼近方式的座標變換；使用座標變換時仍要確認角度或其他方向參數被共同控制，而不是只看某一條路徑。
+      </div>
+    </div>
+
+    <h4>互動：用路徑找反例，不是用單一路徑證明存在</h4>
+    <p>本節練習講義中最常用的判斷工具：<span class="pill pill-green">直接代入</span>、<span class="pill pill-blue">夾擠定理</span>、<span class="pill pill-red">不同路徑</span>與<span class="pill pill-z">極座標</span>。切換函數與路徑時，請把一般路徑代換視為<strong>反例測試</strong>：如果不同路徑給不同值，可判定極限不存在；如果某幾條路徑剛好同值，仍不能直接推出極限存在。</p>
 
     <div class="method-grid">
       <div class="lecture-example">
@@ -626,9 +637,9 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         \lim_{(x,y)\to(0,0)}5|y|=0.$$
         因此由夾擠定理，
         $$\lim_{(x,y)\to(0,0)}\dfrac{5x^2y}{x^2+y^2}=0.$$</p>
-        <p><span class="ex-method">使用極座標</span> 同題也可令 $x=r\cos\theta,\ y=r\sin\theta$，其中 $r=\sqrt{x^2+y^2}$，所以 $(x,y)\to(0,0)$ 等價於 $r\to0^+$：
+        <p><span class="ex-method">使用極座標</span> 這不是選一條路徑，而是把原點附近所有方向寫成 $x=r\cos\theta,\ y=r\sin\theta$，其中 $r=\sqrt{x^2+y^2}$，所以 $(x,y)\to(0,0)$ 等價於 $r\to0^+$：
         $$\dfrac{5x^2y}{x^2+y^2}=5r\cos^2\theta\sin\theta.$$
-        角度因子 $\cos^2\theta\sin\theta$ 永遠介於 $-1$ 與 $1$ 之間，不會隨 $r\to0^+$ 發散；因此整個式子是「有界角度因子」乘上 $r$。所以
+        角度因子 $\cos^2\theta\sin\theta$ 永遠介於 $-1$ 與 $1$ 之間，不會隨 $r\to0^+$ 發散；因此整個式子是「有共同上界的角度因子」乘上 $r$。所以
         $$\lim_{(x,y)\to(0,0)}\dfrac{5x^2y}{x^2+y^2}
         =\lim_{r\to0^+}5r\cos^2\theta\sin\theta=0.$$</p>
       </div>
@@ -640,7 +651,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         沿 $y=x$：
         $$\lim_{x\to0}\left(\dfrac{x^2-x^2}{x^2+x^2}\right)^2=0.$$
         兩條路徑給出不同極限值，因此原極限不存在。</p>
-        <p><span class="ex-method">使用極座標判別</span> 代入 $x=r\cos\theta,\ y=r\sin\theta$：
+        <p><span class="ex-method">使用極座標判別</span> 極座標同時檢查所有靠近原點的方向。代入 $x=r\cos\theta,\ y=r\sin\theta$：
         $$\left(\dfrac{x^2-y^2}{x^2+y^2}\right)^2=(\cos^2\theta-\sin^2\theta)^2=\cos^2(2\theta),$$
         因而
         $$\lim_{r\to0^+}\left(\dfrac{x^2-y^2}{x^2+y^2}\right)^2
@@ -665,7 +676,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <div class="info-box green" style="margin:.2rem 0 1rem;padding:.8rem 1rem;">
       <span class="info-label">目標點與互動中的 P</span>
       <div style="font-size:.88rem;line-height:1.75;">
-        這一組互動<strong>固定在求原點 (0,0) 處的二變數極限</strong>，也就是讓 (x,y) 從路徑上靠近 (0,0) 時觀察 f(x,y)：
+        這一組互動<strong>固定在求原點 (0,0) 處的二變數極限</strong>，也就是讓 (x,y) 從路徑上靠近 (0,0) 時觀察 f(x,y)。它的用途是幫你找反例與理解路徑行為，不是用單一路徑證明極限存在：
         <div style="text-align:center;margin:.35rem 0;font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--accent2);">lim_{(x,y) -> (0,0)} f(x,y)</div>
         黃色曲線是一條靠近原點 (0,0) 的路徑。綠色點 P 不是極限點本身，而是路徑上的測試點
         P(t) = (x(t), y(t))；動畫播放時 t -> 0，所以 P(t) -> (0,0)。
@@ -724,32 +735,32 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
           <div class="ic-row"><span class="ic-label">$f(P(t))$</span><span class="ic-value" id="limitVal">0.500</span></div>
         </div>
         <div class="info-box green" style="margin:0;padding:.85rem 1rem;">
-          <span class="info-label">沿目前路徑代入</span>
+          <span class="info-label">沿目前路徑代入（反例測試）</span>
           <div style="font-size:.85rem;line-height:1.75;" id="limitPathCalc">
-            原極限是 lim_{(x,y)->(0,0)} f(x,y)。沿直線路徑 $P(t)=(t,mt)$ 時，改成計算 $\displaystyle\lim_{t\to0} f(t,mt)$。
+            原極限是 lim_{(x,y)->(0,0)} f(x,y)。沿直線路徑 $P(t)=(t,mt)$ 時，改成計算 $\displaystyle\lim_{t\to0} f(t,mt)$。這只能測試目前路徑；若要證明存在，需回到夾擠、連續性或完整座標變換。
           </div>
         </div>
         <div class="info-box red" style="margin:0;padding:.85rem 1rem;">
           <span class="info-label">CHECK</span>
-          <div style="font-size:.85rem;" id="limitVerdict">兩條路徑（$m=1$ 與 $m=-1$）給出不同極限值，所以 <strong>極限不存在</strong>。</div>
+          <div style="font-size:.85rem;" id="limitVerdict">目前路徑只是一個測試；講義 Example 3 的存在證明要靠夾擠定理或完整極座標估計。</div>
         </div>
       </div>
     </div>
 
-    <h4>5 種路徑代換速查</h4>
-    <p>當證明極限不存在時，下表的代換是經典工具。<strong>關鍵：若代換後的極限隨參數（$m$、$k$、$\theta$ 等）變動，原極限就不存在</strong>。</p>
+    <h4>路徑代換速查：主要用來證明不存在</h4>
+    <p>下表前兩列是「選特定路徑」的反例工具：<strong>若代換後的極限隨參數（$m$、$k$、$n$、$\ell$ 等）變動，或與另一條路徑不同，原極限就不存在</strong>。反過來說，檢查許多條路徑都相同仍不構成存在證明。極座標、柱座標、球座標則是完整座標變換；它們可用來證明存在，但必須把方向參數共同控制住。</p>
     <table class="conv-table">
       <thead>
         <tr>
-          <th>路徑類型</th><th>代換</th><th>條件</th>
+          <th>工具類型</th><th>代換</th><th>能推出什麼</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>冪次路徑</td><td>$y = m x^k$</td><td>$\lim_{(x,y)\to(0,0)} f \to \lim_{x \to 0} f(x, m x^k)$</td></tr>
-        <tr><td>對稱冪次路徑</td><td>$x = n y^\ell$</td><td>把 $\displaystyle\lim_{(x,y)\to(0,0)}f(x,y)$ 改寫為 $\displaystyle\lim_{y\to0} f(ny^\ell,y)$</td></tr>
-        <tr><td>極座標</td><td>$x = r\cos\theta,\ y = r\sin\theta$</td><td>把 $\displaystyle\lim_{(x,y)\to(0,0)} f(x,y)$ 改寫為 $\displaystyle\lim_{r\to0^+} f(r\cos\theta,r\sin\theta)$。若最後結果依賴 $\theta$，極限不存在；若可寫成 $A(\theta)B(r)$，其中角度因子 $A(\theta)$ 有界且 $B(r)\to0$，則極限為 0。</td></tr>
-        <tr><td>柱座標 (3-var)</td><td>$x = r\cos\theta,\ y = r\sin\theta,\ z = z$</td><td>需同時控制 $r, z \to 0$</td></tr>
-        <tr><td>球座標 (3-var)</td><td>$x = \rho\sin\varphi\cos\theta,\ \dots$</td><td>把 $\displaystyle\lim_{(x,y,z)\to(0,0,0)}f$ 改寫為 $\displaystyle\lim_{\rho\to0^+} f(\rho,\theta,\varphi)$；若角度項有共同上界且剩下的 $\rho$ 項趨近 0，極限為 0；若依賴角度，極限不存在。</td></tr>
+        <tr><td>冪次路徑（反例）</td><td>$y = m x^k$</td><td>把原問題限制到一族曲線：$\lim_{x \to 0} f(x, m x^k)$。若結果依 $m$ 或 $k$ 變，極限不存在；若結果不變，仍不能證明存在。</td></tr>
+        <tr><td>對稱冪次路徑（反例）</td><td>$x = n y^\ell$</td><td>把原問題限制到另一族曲線：$\displaystyle\lim_{y\to0} f(ny^\ell,y)$。用途同上，主要用來找不同路徑的反例。</td></tr>
+        <tr><td>極座標（完整座標變換）</td><td>$x = r\cos\theta,\ y = r\sin\theta$</td><td>把原點附近所有方向寫成 $\displaystyle\lim_{r\to0^+} f(r\cos\theta,r\sin\theta)$。若結果依 $\theta$，極限不存在；若可寫成 $A(\theta)B(r)$ 且 $A(\theta)$ 有共同上界、$B(r)\to0$，則可證明極限為 0。</td></tr>
+        <tr><td>柱座標 (3-var)</td><td>$x = r\cos\theta,\ y = r\sin\theta,\ z = z$</td><td>不是單一路徑；需同時控制 $r\to0$ 與 $z\to0$，並確認角度項有共同上界，才能證明存在。</td></tr>
+        <tr><td>球座標 (3-var)</td><td>$x = \rho\sin\varphi\cos\theta,\ \dots$</td><td>把 $\displaystyle\lim_{(x,y,z)\to(0,0,0)}f$ 改寫為 $\displaystyle\lim_{\rho\to0^+} f(\rho,\theta,\varphi)$；若角度項有共同上界且剩下的 $\rho$ 項趨近 0，可證明極限為 0；若依賴角度，極限不存在。</td></tr>
       </tbody>
     </table>
   </div>
@@ -1493,7 +1504,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <div class="ref-group">
       <div class="ref-group-title"><span class="rg-badge">FLOW</span>判別流程</div>
       <ol class="prop-list">
-        <li><strong>極限是否存在？</strong>用 5 種路徑代換找反例；若沿不同路徑得到不同值 → 不存在。</li>
+        <li><strong>極限是否存在？</strong>先分清證明責任：不同路徑得到不同值 → 不存在；要證明存在則用連續性、夾擠、epsilon-delta，或能控制所有方向的座標變換。</li>
         <li><strong>函數是否連續？</strong>檢查 $\lim_{(x,y)\to(x_0,y_0)} f = f(x_0,y_0)$。</li>
         <li><strong>偏導是否存在？</strong>分別固定一個變數對另一個求 $\lim$。</li>
         <li><strong>函數是否可微？</strong>用 THM 13.4 充分條件最快：檢查 $f_x, f_y$ 是否連續。否則回到 DEF 13.7。</li>
@@ -2930,25 +2941,25 @@ function marchingCubes(F, c, xMin, xMax, yMin, yMax, zMin, zMax, res=28) {
             label:'LECTURE EXAMPLE 3',
             zScale:1,
             tex:'$f = \\dfrac{5x^2y}{x^2+y^2}$',
-            note:'使用夾擠定理：$0\\le |f|\\le5|y|\\to0$，所以 $-5|y|\\le f\\le5|y|$ 且極限為 0；極座標同樣給 $\\lim_{r\\to0^+}5r\\cos^2\\theta\\sin\\theta=0$',
-            verdict:'講義 Example 3：先證 $0\\le\\left|\\dfrac{5x^2y}{x^2+y^2}\\right|\\le5|y|$，因此 $-5|y|\\le f\\le5|y|$；左右兩端皆趨近 0，由夾擠定理得 <strong>極限為 0</strong>。極座標寫法：$\\lim_{r\\to0^+}5r\\cos^2\\theta\\sin\\theta=0$，因為角度因子 $\\cos^2\\theta\\sin\\theta$ 有界，乘上 $r$ 後趨近 0。' },
+            note:'存在證明使用夾擠定理：$0\\le |f|\\le5|y|\\to0$，所以 $-5|y|\\le f\\le5|y|$ 且極限為 0；極座標也可證明，因為角度因子有共同上界',
+            verdict:'講義 Example 3：先證 $0\\le\\left|\\dfrac{5x^2y}{x^2+y^2}\\right|\\le5|y|$，因此 $-5|y|\\le f\\le5|y|$；左右兩端皆趨近 0，由夾擠定理得 <strong>極限為 0</strong>。注意：互動中的單一路徑代換只是測試，不是存在證明。極座標寫法可證明存在，是因為它涵蓋所有方向，且 $\\cos^2\\theta\\sin\\theta$ 有共同上界，乘上 $r$ 後趨近 0。' },
     lecture_path: { f:(x,y) => { const r2 = x*x + y*y; return r2 < 1e-12 ? 0 : Math.pow((x*x - y*y) / r2, 2); },
             label:'LECTURE EXAMPLE 4',
             zScale:1,
             tex:'$f = \\left(\\dfrac{x^2-y^2}{x^2+y^2}\\right)^2$',
-            note:'使用路徑判別法：沿 $y=0$ 的極限為 1，沿 $y=x$ 的極限為 0。極座標則得到 $\\lim_{r\\to0^+}\\cos^2(2\\theta)=\\cos^2(2\\theta)$，依角度而變',
+            note:'使用路徑判別法：沿 $y=0$ 的極限為 1，沿 $y=x$ 的極限為 0，因此可證明不存在。極座標則得到 $\\cos^2(2\\theta)$，依角度而變',
             verdict:'兩條路徑給不同極限值；或由極座標看，$\\theta=0$ 得 1、$\\theta=\\pi/4$ 得 0，因此 <strong>極限不存在</strong>。' },
     xy:   { f:(x,y) => { const r2 = x*x + y*y; return r2 < 1e-12 ? 0 : (x*y) / r2; },
             label:'SUPPLEMENT',
             zScale:1,
             tex:'$f = \\dfrac{xy}{x^2+y^2}$',
-            note:'沿 $y=mx$ 代入：$f = m/(1+m^2)$，依 $m$ 變化 → 極限不存在',
+            note:'沿 $y=mx$ 代入是反例測試：$f = m/(1+m^2)$，依 $m$ 變化 → 極限不存在',
             verdict:'不同 $m$ 給不同極限值（如 $m=1$ 時 $\\to 1/2$，$m=-1$ 時 $\\to -1/2$）→ <strong>極限不存在</strong>。' },
     xxy:  { f:(x,y) => { const d = x*x*x*x + y*y; return d < 1e-12 ? 0 : (x*x*y) / d; },
             label:'SUPPLEMENT',
             zScale:0.35,
             tex:'$f = \\dfrac{x^2 y}{x^4 + y^2}$',
-            note:'沿直線 $y=mx$ 趨於 0；但沿拋物線 $y = m x^2$ 卻趨於 $m/(1+m^2)$',
+            note:'沿直線 $y=mx$ 趨於 0 不能證明存在；再測拋物線 $y = m x^2$ 會趨於 $m/(1+m^2)$，因此找到反例',
             verdict:'沿直線與沿拋物線得到不同極限值，因此 <strong>極限不存在</strong>。' },
     xyy:  { f:(x,y) => { const d = x*x + y*y*y*y; return d < 1e-12 ? 0 : (x*y*y) / d; },
             label:'SUPPLEMENT',
@@ -2960,7 +2971,7 @@ function marchingCubes(F, c, xMin, xMax, yMin, yMax, zMin, zMax, res=28) {
             label:'SUPPLEMENT',
             zScale:1,
             tex:'$f = \\dfrac{x^2 y}{x^2 + y^2}$',
-            note:'極座標代入：$f = r\\cos^2\\theta\\sin\\theta$，且 $|f|\\le r$',
+            note:'極座標代入是完整座標變換：$f = r\\cos^2\\theta\\sin\\theta$，且 $|f|\\le r$',
             verdict:'使用極座標：$\\lim_{r\\to0^+}r\\cos^2\\theta\\sin\\theta=0$，因為角度因子 $\\cos^2\\theta\\sin\\theta$ 有界，乘上 $r$ 後趨近 0，所以 <strong>極限為 0（存在）</strong>。' }
   };
   const PATHS = {
@@ -3013,7 +3024,8 @@ function marchingCubes(F, c, xMin, xMax, yMin, yMax, zMin, zMax, res=28) {
         diag: `$$\\lim_{t\\to0}\\frac{t^2(t)}{t^4+t^2}=\\lim_{t\\to0}\\frac{t}{t^2+1}=0.$$`
       }
     };
-    return `${pathHead}<br>${mNote}${table[fnId][pathId]}`;
+    const caution = `<br><span style="color:#9b2c2c;font-weight:700;">提醒：</span>這是沿目前路徑的代換結果。若它與另一條路徑不同，可證明原極限不存在；若它剛好趨近某值，仍不能單靠這條路徑證明原極限存在。`;
+    return `${pathHead}<br>${mNote}${table[fnId][pathId]}${caution}`;
   }
 
   let curFn = 'lecture_squeeze', curPath = 'line';
