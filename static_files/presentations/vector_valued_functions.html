@@ -170,6 +170,12 @@ p{margin-bottom:1rem;}
 /* Step block (for derivations) */
 .step-block{background:#fffaf0;border-left:4px solid var(--accent3);border-radius:8px;padding:.9rem 1.2rem;margin:.7rem 0;}
 .step-block .step-num{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--accent3);font-weight:700;letter-spacing:.1em;margin-bottom:.3rem;}
+.exercise-question{background:#f5f7fb;border:1px solid #dfe5f0;border-left:4px solid var(--accent2);border-radius:8px;padding:.65rem .85rem;margin:.65rem 0 .9rem;}
+p.exercise-question::before{content:"題目";display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.68rem;color:#fff;background:var(--accent2);border-radius:4px;padding:1px 7px;margin-right:.55rem;letter-spacing:.06em;font-weight:700;}
+.step-block.exercise-question{border-left-color:var(--accent2);}
+.step-block.exercise-question .step-num{color:var(--accent2);}
+.step-block.solution-start{margin-top:1.8rem;position:relative;}
+.step-block.solution-start::before{content:"解題";position:absolute;top:-1.35rem;left:0;font-family:'JetBrains Mono',monospace;font-size:.68rem;color:#fff;background:var(--accent3);border-radius:4px;padding:1px 7px;letter-spacing:.06em;font-weight:700;}
 
 /* Property list (for Theorem 12.2) */
 .prop-list{counter-reset:prop;list-style:none;padding:0;margin:1rem 0;}
@@ -192,6 +198,24 @@ p{margin-bottom:1rem;}
 .text-2nd{color:#ad1457;font-weight:600;}
 
 footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border-top:1px solid var(--card-border);}
+.quiz-card{background:#eef5ff;border:1.5px solid var(--accent2);border-radius:10px;padding:1rem 1.2rem;margin:1.2rem 0;box-shadow:0 2px 10px rgba(44,62,122,.07);}
+.quiz-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#fff;background:var(--accent2);padding:2px 8px;border-radius:4px;letter-spacing:.08em;margin-bottom:.45rem;}
+.quiz-q{font-weight:600;margin-bottom:.6rem;}
+.quiz-options{display:flex;flex-direction:column;gap:.4rem;}
+.quiz-opt{padding:.45rem .85rem;border:1.5px solid var(--card-border);border-radius:6px;cursor:pointer;background:var(--card);text-align:left;font-size:.94rem;transition:all .15s;font-family:inherit;}
+.quiz-opt:hover{border-color:var(--accent2);background:#fafcff;}
+.quiz-opt.correct{border-color:var(--accent3);background:#eaf5ee;color:var(--accent3);font-weight:600;}
+.quiz-opt.wrong{border-color:var(--accent);background:#fde9e7;color:var(--accent);}
+.quiz-input-row{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin:.4rem 0;}
+.quiz-input{padding:.4rem .7rem;border:1.5px solid var(--card-border);border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:.92rem;width:160px;}
+.quiz-input.correct{border-color:var(--accent3);background:#eaf5ee;}
+.quiz-input.wrong{border-color:var(--accent);background:#fde9e7;}
+.quiz-check{padding:.4rem .9rem;border:none;border-radius:6px;background:var(--accent2);color:#fff;font-family:'Noto Sans TC',sans-serif;font-size:.86rem;cursor:pointer;font-weight:600;}
+.quiz-check:hover{background:#1f2e5c;}
+.quiz-feedback{font-size:.86rem;margin-top:.5rem;padding:.45rem .7rem;border-radius:5px;display:none;}
+.quiz-feedback.show{display:block;}
+.quiz-feedback.ok{background:#eaf5ee;color:var(--accent3);border-left:3px solid var(--accent3);}
+.quiz-feedback.no{background:#fde9e7;color:var(--accent);border-left:3px solid var(--accent);}
 </style>
 </head>
 <body>
@@ -304,6 +328,18 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   <p>除非另有說明，向量值函數 $\mathbf{r}$ 的<strong>定義域</strong>定義為三個分量函數定義域的<em>交集</em>。例如</p>
   <div style="text-align:center;margin:.4rem 0 1rem;">$$\mathbf{r}(t) = \ln t\,\mathbf{i} + \sqrt{1-t}\,\mathbf{j} + t\,\mathbf{k}$$</div>
   <p>$\ln t$ 要求 $t > 0$；$\sqrt{1-t}$ 要求 $t \leq 1$；$t$ 對所有實數都有定義。三者交集即 <strong>$(0, 1]$</strong>。</p>
+
+  <div class="quiz-card" id="quiz-ch12-1">
+    <span class="quiz-tag">概念檢查</span>
+    <div class="quiz-q">求 $\mathbf{r}(t)=\ln t\,\mathbf{i}+\sqrt{1-t}\,\mathbf{j}+|t|\,\mathbf{k}$ 的定義域。</div>
+    <div class="quiz-options">
+      <button class="quiz-opt">$(-\infty,\infty)$</button>
+      <button class="quiz-opt">$(0,\infty)$</button>
+      <button class="quiz-opt">$(-\infty,1]$</button>
+      <button class="quiz-opt">$(0,1]$</button>
+    </div>
+    <div class="quiz-feedback"></div>
+  </div>
 </section>
 
 <!-- ============================================================ -->
@@ -313,6 +349,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   <div class="section-number">PART 01 · 平面曲線</div>
   <h2>平面曲線：兩個分量、一個 $t$</h2>
   <p>下方畫布專門顯示 <span class="pill pill-z">xy 平面</span>。選擇預設、拖動 $t$ 滑桿，觀察點如何沿曲線移動，以及位置向量 $\mathbf{r}(t)$ 如何旋轉。<strong>注意箭頭方向</strong>：它指向 $t$ 增加的方向，這就是曲線的<em>方向 (orientation)</em>。</p>
+  <p class="exercise-question">講義例題 1：畫出向量值函數 $\mathbf r(t)=2\cos t\,\mathbf i-3\sin t\,\mathbf j,\ 0\le t\le 2\pi$ 所表示的平面曲線。講義例題 3：用向量值函數表示拋物線 $y=x^2+1$。</p>
 
   <div class="preset-row" id="planePresets">
     <button class="preset-btn active" data-id="ex1">Ex 1 · $2\cos t\,\mathbf{i} - 3\sin t\,\mathbf{j}$</button>
@@ -345,7 +382,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
     <div class="side-panel">
       <div class="eq-card">
-        <div class="eq-label" id="planeLabel">EXAMPLE 1 · 橢圓 (順時針)</div>
+        <div class="eq-label" id="planeLabel">例 1 · 橢圓 (順時針)</div>
         <div class="eq-formula" id="planeEq">$\mathbf{r}(t) = 2\cos t\,\mathbf{i} - 3\sin t\,\mathbf{j}$</div>
         <div class="eq-sub" id="planeRange">$0 \leq t \leq 2\pi$</div>
       </div>
@@ -403,6 +440,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   <div class="section-number">PART 02 · 空間曲線</div>
   <h2>空間曲線：再加一個 $z$ 分量</h2>
   <p>把第三個分量 $h(t)$ 補上，曲線就「離開平面」了。最經典的例子是<strong>螺旋線 (helix)</strong>：xy-平面上做圓周運動的同時 $z$ 等速上升。它的投影在 <span class="pill pill-z">z</span> 軸方向上的圓柱面 $x^2+y^2=16$ 上。</p>
+  <p class="exercise-question">講義例題 2：畫出 $\mathbf r(t)=4\cos t\,\mathbf i+4\sin t\,\mathbf j+t\,\mathbf k,\ 0\le t\le 4\pi$ 所表示的空間曲線。</p>
 
   <div class="preset-row" id="spacePresets">
     <button class="preset-btn active" data-id="helix">Ex 2 · $4\cos t\,\mathbf{i} + 4\sin t\,\mathbf{j} + t\,\mathbf{k}$</button>
@@ -436,7 +474,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
     <div class="side-panel">
       <div class="eq-card">
-        <div class="eq-label" id="spaceLabel">EXAMPLE 2 · 螺旋線</div>
+        <div class="eq-label" id="spaceLabel">例 2 · 螺旋線</div>
         <div class="eq-formula" id="spaceEq">$\mathbf{r}(t) = 4\cos t\,\mathbf{i} + 4\sin t\,\mathbf{j} + t\,\mathbf{k}$</div>
         <div class="eq-sub" id="spaceRange">$0 \leq t \leq 4\pi$ ｜ 兩圈</div>
       </div>
@@ -463,11 +501,11 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 <section id="sec-intersect">
   <div class="section-number">PART 03 · 例題 4 · 兩曲面交線</div>
   <h2>把曲線寫成「兩個面交出來的軌跡」</h2>
-  <p>講義例題 4：求半橢球面與拋物柱面的交線</p>
+  <p class="exercise-question">講義例題 4：畫出半橢球面 $\dfrac{x^2}{12}+\dfrac{y^2}{24}+\dfrac{z^2}{4}=1,\ z\ge0$ 與拋物柱面 $y=x^2$ 的交線 $C$，並求表示此交線的向量值函數。</p>
   <div style="text-align:center;margin:.5rem 0;">$$\frac{x^2}{12} + \frac{y^2}{24} + \frac{z^2}{4} = 1,\ \ z\geq 0 \quad \text{與} \quad y = x^2$$</div>
 
   <h3>解題思路（逐步）</h3>
-  <div class="step-block">
+  <div class="step-block solution-start">
     <div class="step-num">STEP 1 · 取自然參數</div>
     令 $x = t$。代入拋物柱面：$y = t^2$。
   </div>
@@ -555,20 +593,32 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <h3>例題 5（連續）</h3>
-  <p>$\mathbf{r}(t) = t\,\mathbf{i} + a\,\mathbf{j} + (a^2 - t^2)\,\mathbf{k}$（$a$ 為常數），在 $t = 0$ 是否連續？</p>
-  <div class="step-block">
-    <div class="step-num">SOLUTION</div>
+  <p class="exercise-question">$\mathbf{r}(t) = t\,\mathbf{i} + a\,\mathbf{j} + (a^2 - t^2)\,\mathbf{k}$（$a$ 為常數），在 $t = 0$ 是否連續？</p>
+  <div class="step-block solution-start">
+    <div class="step-num">解題</div>
     三個分量 $t$、$a$（常數）、$a^2 - t^2$ 全是<em>多項式</em>，在所有實數都連續。所以 $\mathbf{r}$ 在 $t=0$ 連續，且 $\displaystyle\lim_{t\to 0}\mathbf{r}(t) = a\mathbf{j} + a^2\mathbf{k} = \mathbf{r}(0)$。
   </div>
 
   <h3>例題 6（決定連續區間）</h3>
-  <p>$\mathbf{r}(t) = t\,\mathbf{i} + \sqrt{t+1}\,\mathbf{j} + (t^2+1)\,\mathbf{k}$ 在哪些區間連續？</p>
-  <div class="step-block">
-    <div class="step-num">SOLUTION</div>
+  <p class="exercise-question">$\mathbf{r}(t) = t\,\mathbf{i} + \sqrt{t+1}\,\mathbf{j} + (t^2+1)\,\mathbf{k}$ 在哪些區間連續？</p>
+  <div class="step-block solution-start">
+    <div class="step-num">解題</div>
     $f(t) = t$：對所有實數連續。<br>
     $g(t) = \sqrt{t+1}$：要求 $t + 1 \ge 0$，定義域 $[-1, \infty)$；在這上面連續。<br>
     $h(t) = t^2 + 1$：對所有實數連續。<br>
     交集：<strong>$\mathbf{r}$ 在 $[-1, \infty)$ 上連續</strong>。
+  </div>
+
+  <div class="quiz-card" id="quiz-ch12-2">
+    <span class="quiz-tag">概念檢查</span>
+    <div class="quiz-q">求 $\displaystyle\lim_{t\to 0}\Big(\dfrac{\sin t}{t}\,\mathbf{i}+(t^2+1)\,\mathbf{j}+\dfrac{t}{t+2}\,\mathbf{k}\Big)$。</div>
+    <div class="quiz-options">
+      <button class="quiz-opt">$(0,1,0)$</button>
+      <button class="quiz-opt">$(1,1,0)$</button>
+      <button class="quiz-opt">不存在</button>
+      <button class="quiz-opt">$(1,1,1)$</button>
+    </div>
+    <div class="quiz-feedback"></div>
   </div>
 </section>
 
@@ -596,7 +646,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <h3>幾何意義：$\mathbf{r}'(t)$ 是切向量</h3>
-  <p>下方畫布把例題 1 視覺化：$\mathbf{r}(t) = t\,\mathbf{i} + (t^2+2)\,\mathbf{j}$，導數 $\mathbf{r}'(t) = \mathbf{i} + 2t\,\mathbf{j}$。<span class="text-tan">綠色箭頭</span>從點 $\mathbf{r}(t)$ 出發，方向是<em>沿曲線、$t$ 增加的方向</em>，這就是切向量。</p>
+  <p class="exercise-question">講義例題 1：對 $\mathbf{r}(t)=t\,\mathbf{i}+(t^2+2)\,\mathbf{j}$，求 $\mathbf r'(t)$；再畫出 $\mathbf r(t)$ 所表示的平面曲線，以及 $\mathbf r(1)$ 與 $\mathbf r'(1)$。</p>
+  <p>下方畫布把這題視覺化。導數 $\mathbf{r}'(t) = \mathbf{i} + 2t\,\mathbf{j}$；<span class="text-tan">綠色箭頭</span>從點 $\mathbf{r}(t)$ 出發，方向是<em>沿曲線、$t$ 增加的方向</em>，這就是切向量。</p>
 
   <div class="info-box warm" style="margin:.6rem 0;">
     <span class="info-label">割線 → 切線</span>
@@ -636,7 +687,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
     <div class="side-panel">
       <div class="eq-card">
-        <div class="eq-label">EXAMPLE 1 · 微分</div>
+        <div class="eq-label">例 1 · 微分</div>
         <div class="eq-formula">$\mathbf{r}(t) = t\,\mathbf{i} + (t^2{+}2)\,\mathbf{j}$</div>
         <div class="eq-sub">$\mathbf{r}'(t) = \mathbf{i} + 2t\,\mathbf{j}$</div>
       </div>
@@ -660,7 +711,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
   <h3>從定義導出 component-wise 微分（兩維情形）</h3>
   <div class="step-block">
-    <div class="step-num">DERIVATION</div>
+    <div class="step-num">推導</div>
     $$\begin{aligned}
     \mathbf{r}'(t) &= \lim_{\Delta t\to 0}\frac{\mathbf{r}(t+\Delta t) - \mathbf{r}(t)}{\Delta t}\\
     &= \lim_{\Delta t\to 0}\frac{[f(t+\Delta t) - f(t)]\,\mathbf{i} + [g(t+\Delta t) - g(t)]\,\mathbf{j}}{\Delta t}\\
@@ -668,6 +719,18 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     &= f'(t)\,\mathbf{i} + g'(t)\,\mathbf{j}
     \end{aligned}$$
     最後一步用到「向量極限可拆給每個分量」（DEF 12.2）。
+  </div>
+
+  <div class="quiz-card" id="quiz-ch12-3">
+    <span class="quiz-tag">概念檢查</span>
+    <div class="quiz-q">對 $\mathbf{r}(t)=t\,\mathbf{i}+(t^2+2)\,\mathbf{j}$（拋物線），$\mathbf{r}'(1)$ 的<strong>幾何意義</strong>是？</div>
+    <div class="quiz-options">
+      <button class="quiz-opt">曲線在點 $(1,3)$ 處的加速度向量</button>
+      <button class="quiz-opt">曲線在點 $(1,3)$ 處的切向量，指向 $t$ 增加方向</button>
+      <button class="quiz-opt">曲線從 $(1,3)$ 指向無窮遠的方向向量</button>
+      <button class="quiz-opt">單變數的 $\dfrac{dy}{dx}$ 在 $x=1$ 的值</button>
+    </div>
+    <div class="quiz-feedback"></div>
   </div>
 </section>
 
@@ -725,7 +788,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
     <div class="side-panel">
       <div class="eq-card">
-        <div class="eq-label">EXAMPLE 2 · 高階導數</div>
+        <div class="eq-label">例 2 · 高階導數</div>
         <div class="eq-formula">$\mathbf{r}(t) = \cos t\,\mathbf{i} + \sin t\,\mathbf{j} + 2t\,\mathbf{k}$</div>
       </div>
       <div class="info-card">
@@ -775,8 +838,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <h3>例題 4（性質 4 的應用）</h3>
-  <p>$\mathbf{r}(t) = \dfrac{1}{t}\mathbf{i} - \mathbf{j} + \ln t\,\mathbf{k}$，$\mathbf{u}(t) = t^2\mathbf{i} - 2t\,\mathbf{j} + \mathbf{k}$，求 (a) $D_t[\mathbf{r}\cdot\mathbf{u}]$、(b) $D_t[\mathbf{u}\times\mathbf{u}']$。</p>
-  <div class="step-block">
+  <p class="exercise-question">$\mathbf{r}(t) = \dfrac{1}{t}\mathbf{i} - \mathbf{j} + \ln t\,\mathbf{k}$，$\mathbf{u}(t) = t^2\mathbf{i} - 2t\,\mathbf{j} + \mathbf{k}$，求 (a) $D_t[\mathbf{r}\cdot\mathbf{u}]$、(b) $D_t[\mathbf{u}\times\mathbf{u}']$。</p>
+  <div class="step-block solution-start">
     <div class="step-num">(a) 用性質 4</div>
     $\mathbf{r}'(t) = -\dfrac{1}{t^2}\mathbf{i} + 0\,\mathbf{j} + \dfrac{1}{t}\mathbf{k}$，$\mathbf{u}'(t) = 2t\,\mathbf{i} - 2\,\mathbf{j} + 0\,\mathbf{k}$。<br>
     $\mathbf{r}\cdot\mathbf{u}' = \dfrac{1}{t}(2t) + (-1)(-2) + 0 = 2 + 2 = 4$<br>
@@ -789,6 +852,18 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     任何向量與自己的叉積為零：$\mathbf{u}'\times\mathbf{u}' = \mathbf{0}$。剩 $\mathbf{u}\times\mathbf{u}''$。<br>
     $\mathbf{u}''(t) = 2\mathbf{i} - 0\mathbf{j} + 0\mathbf{k} = 2\mathbf{i}$。<br>
     $\mathbf{u}\times\mathbf{u}'' = \begin{vmatrix}\mathbf{i}&\mathbf{j}&\mathbf{k}\\t^2&-2t&1\\2&0&0\end{vmatrix} = (0-0)\mathbf{i} - (0-2)\mathbf{j} + (0+4t)\mathbf{k} = 2\mathbf{j} + 4t\,\mathbf{k}$。
+  </div>
+
+  <div class="quiz-card" id="quiz-ch12-4">
+    <span class="quiz-tag">概念檢查（性質 7）</span>
+    <div class="quiz-q">$\mathbf{r}(t)=3\cos t\,\mathbf{i}+3\sin t\,\mathbf{j}$（圓周運動，$\|\mathbf{r}\|=3$）。對任意 $t$，$\mathbf{r}(t)\cdot\mathbf{r}'(t)=$？</div>
+    <div class="quiz-options">
+      <button class="quiz-opt">$9$</button>
+      <button class="quiz-opt">$0$</button>
+      <button class="quiz-opt">$-9\sin 2t$</button>
+      <button class="quiz-opt">$9\cos 2t$</button>
+    </div>
+    <div class="quiz-feedback"></div>
   </div>
 </section>
 
@@ -815,12 +890,12 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <h3>例題 5（不定積分）</h3>
-  <div class="step-block">
-    <div class="step-num">PROBLEM</div>
+  <div class="step-block exercise-question">
+    <div class="step-num">題目</div>
     求 $\displaystyle\int (t\,\mathbf{i} + 3\,\mathbf{j})\,\mathrm{d}t$。
   </div>
-  <div class="step-block">
-    <div class="step-num">SOLUTION</div>
+  <div class="step-block solution-start">
+    <div class="step-num">解題</div>
     $\displaystyle\int t\,\mathrm{d}t = \tfrac{t^2}{2} + C_1, \quad \int 3\,\mathrm{d}t = 3t + C_2$。<br>
     $\displaystyle\int (t\,\mathbf{i}+3\mathbf{j})\,\mathrm{d}t = \big(\tfrac{t^2}{2} + C_1\big)\mathbf{i} + (3t + C_2)\mathbf{j} = \tfrac{t^2}{2}\mathbf{i} + 3t\,\mathbf{j} + \mathbf{C}$
   </div>
@@ -856,7 +931,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
     <div class="side-panel">
       <div class="eq-card">
-        <div class="eq-label">EXAMPLE 5 · 反導數族</div>
+        <div class="eq-label">例 5 · 反導數族</div>
         <div class="eq-formula">$\mathbf{R}(t) = \tfrac{t^2}{2}\mathbf{i} + 3t\,\mathbf{j} + \mathbf{C}$</div>
         <div class="eq-sub" id="intCDisp">$\mathbf{C} = 0\,\mathbf{i} + 0\,\mathbf{j}$</div>
       </div>
@@ -870,8 +945,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <h3>例題 6（定積分）</h3>
-  <p>計算 $\displaystyle\int_0^1 \mathbf{r}(t)\,\mathrm{d}t$，其中 $\mathbf{r}(t) = \sqrt[3]{t}\,\mathbf{i} + \dfrac{1}{t+1}\mathbf{j} + e^{-t}\mathbf{k}$。</p>
-  <div class="step-block">
+  <p class="exercise-question">計算 $\displaystyle\int_0^1 \mathbf{r}(t)\,\mathrm{d}t$，其中 $\mathbf{r}(t) = \sqrt[3]{t}\,\mathbf{i} + \dfrac{1}{t+1}\mathbf{j} + e^{-t}\mathbf{k}$。</p>
+  <div class="step-block solution-start">
     <div class="step-num">分量逐一積分</div>
     $\displaystyle\int_0^1 t^{1/3}\,\mathrm{d}t = \Big[\tfrac{3}{4}t^{4/3}\Big]_0^1 = \tfrac{3}{4}$<br>
     $\displaystyle\int_0^1 \tfrac{1}{t+1}\,\mathrm{d}t = \big[\ln(t+1)\big]_0^1 = \ln 2$<br>
@@ -1546,7 +1621,7 @@ function make2DScene(canvasId, opts={}) {
 (function(){
   const PLANE_PRESETS = {
     ex1: {
-      label: 'EXAMPLE 1 · 橢圓 (順時針)',
+      label: '例 1 · 橢圓 (順時針)',
       eq: '$\\mathbf{r}(t) = 2\\cos t\\,\\mathbf{i} - 3\\sin t\\,\\mathbf{j}$',
       range: '$0 \\leq t \\leq 2\\pi$',
       note: '<strong>為何「順時針」？</strong>$y$-分量是 $-3\\sin t$（前面有負號）。$t=0$ 時點在 $(2,0)$；$t$ 略增則 $y$ 略<em>負</em>，所以點往下走 → 順時針。',
@@ -1564,7 +1639,7 @@ function make2DScene(canvasId, opts={}) {
       view: {x:[-3.5, 3.5], y:[-3.8, 3.8], grid:1},
     },
     ex3: {
-      label: 'EXAMPLE 3 · 拋物線參數化',
+      label: '例 3 · 拋物線參數化',
       eq: '$\\mathbf{r}(t) = t\\,\\mathbf{i} + (t^2 + 1)\\,\\mathbf{j}$',
       range: '$-2 \\leq t \\leq 2$',
       note: '把 $y = x^2 + 1$ 改寫成向量值函數最自然的方式：令 $x = t$，自動 $y = t^2 + 1$。圖中 $t = -2, -1, 0, 1, 2$ 對應點 $(t, t^2+1)$。',
@@ -1718,7 +1793,7 @@ function make2DScene(canvasId, opts={}) {
 
   const SPACE_PRESETS = {
     helix: {
-      label: 'EXAMPLE 2 · 螺旋線',
+      label: '例 2 · 螺旋線',
       eq: '$\\mathbf{r}(t) = 4\\cos t\\,\\mathbf{i} + 4\\sin t\\,\\mathbf{j} + t\\,\\mathbf{k}$',
       range: '$0 \\leq t \\leq 4\\pi$ ｜ 兩圈',
       fn: t => new THREE.Vector3(4*Math.cos(t), 4*Math.sin(t), t),
@@ -2418,6 +2493,73 @@ function make2DScene(canvasId, opts={}) {
     raf = requestAnimationFrame(() => { raf = 0; pickActive(); });
   }, { passive: true });
   pickActive();
+})();
+
+// ─── 基本觀念 Quiz（Ch 12） ───
+(function(){
+  const $ = id => document.getElementById(id);
+  function makeChoiceQuiz(cardId, correctIndex, hints){
+    const card=$(cardId); if(!card) return;
+    const opts=card.querySelectorAll('.quiz-opt');
+    const fb=card.querySelector('.quiz-feedback');
+    opts.forEach((opt,i)=>{
+      opt.addEventListener('click',()=>{
+        opts.forEach(o=>o.classList.remove('correct','wrong'));
+        if(i===correctIndex){
+          opt.classList.add('correct');
+          fb.className='quiz-feedback show ok';
+          fb.innerHTML=hints && hints.ok ? hints.ok : '✓ 正確！';
+        } else {
+          opt.classList.add('wrong');
+          fb.className='quiz-feedback show no';
+          fb.innerHTML=(hints && hints.wrong && hints.wrong[i]) ? hints.wrong[i] : '再想想。';
+        }
+        if(window.MathJax&&MathJax.typesetPromise) MathJax.typesetPromise([fb]);
+      });
+    });
+  }
+  // Q12-1：定義域 = 各分量定義域交集 = (0, 1]
+  // ln t 要求 t>0；√(1-t) 要求 t≤1；|t| 對所有 t 有定義
+  makeChoiceQuiz('quiz-ch12-1', 3, {
+    ok:'✓ 正確！$\\ln t$ 要 $t>0$；$\\sqrt{1-t}$ 要 $t\\le 1$；$|t|$ 對所有實數有定義。三者交集為 $(0,1]$。',
+    wrong:[
+      '別漏了 $\\ln t$（要求 $t>0$）和 $\\sqrt{1-t}$（要求 $t\\le 1$）；不能無限制。',
+      '只看 $\\ln t$ 漏掉 $\\sqrt{1-t}$ 的限制 $t\\le 1$。',
+      '只看 $\\sqrt{1-t}$ 漏掉 $\\ln t$ 的限制 $t>0$。',
+      ''
+    ]
+  });
+  // Q12-2：lim_{t→0} (sin t/t, t²+1, t/(t+2)) = (1, 1, 0)
+  makeChoiceQuiz('quiz-ch12-2', 1, {
+    ok:'✓ 正確！$\\lim_{t\\to 0}\\dfrac{\\sin t}{t}=1$；$\\lim(t^2+1)=1$；$\\lim\\dfrac{t}{t+2}=\\dfrac{0}{2}=0$。',
+    wrong:[
+      '$\\dfrac{\\sin t}{t}\\to 1$（基本極限），不是 $0$。',
+      '',
+      '每個分量極限都存在且有限，整體極限存在。',
+      '$\\dfrac{t}{t+2}$ 在 $t=0$ 為 $\\dfrac{0}{2}=0$，不是 $1$。'
+    ]
+  });
+  // Q12-3：r'(1) 是切向量
+  makeChoiceQuiz('quiz-ch12-3', 1, {
+    ok:'✓ 正確！$\\mathbf{r}\'(t)$ 是曲線在 $\\mathbf{r}(t)$ 處的<strong>切向量</strong>，方向指向 $t$ 增加方向（DEF 12.4）。',
+    wrong:[
+      '加速度向量是 $\\mathbf{r}\'\'(t)$（二階導數），不是 $\\mathbf{r}\'(t)$。',
+      '',
+      '切向量是「局部」量，不是「指向無窮遠的方向」。',
+      '$\\dfrac{dy}{dx}$ 是純量斜率；$\\mathbf{r}\'(1)$ 是向量。兩者不同。'
+    ]
+  });
+  // Q12-4：r·r' = 0（圓周運動，‖r‖=常數 ⇒ r⊥r'）
+  // 驗算：3cos t·(-3sin t) + 3sin t·3cos t = -9 sin t cos t + 9 sin t cos t = 0
+  makeChoiceQuiz('quiz-ch12-4', 1, {
+    ok:'✓ 正確！性質 7：若 $\\|\\mathbf{r}\\|$ 為常數，則 $\\mathbf{r}\\perp\\mathbf{r}\'$，即 $\\mathbf{r}\\cdot\\mathbf{r}\'=0$。直接驗算：$3\\cos t\\cdot(-3\\sin t)+3\\sin t\\cdot 3\\cos t=0$。',
+    wrong:[
+      '$9$ 是 $\\|\\mathbf{r}\\|^2$，不是 $\\mathbf{r}\\cdot\\mathbf{r}\'$。',
+      '',
+      '計算錯誤：$3\\cos t\\cdot(-3\\sin t)+3\\sin t\\cdot 3\\cos t = -9\\sin t\\cos t + 9\\sin t\\cos t = 0$（兩項抵消）。',
+      '同上，正確結果是恆為 $0$，與 $t$ 無關。'
+    ]
+  });
 })();
 </script>
 

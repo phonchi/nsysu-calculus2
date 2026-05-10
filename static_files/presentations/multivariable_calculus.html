@@ -181,9 +181,13 @@ p{margin-bottom:1rem;}
 .step-block .step-num{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--accent3);font-weight:700;letter-spacing:.1em;margin-bottom:.3rem;}
 .lecture-example{background:var(--card);border:1px solid var(--card-border);border-left:5px solid var(--accent3);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;box-shadow:0 2px 10px rgba(0,0,0,.04);}
 .lecture-example .ex-tag{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--accent3);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.35rem;}
-.lecture-example .ex-title{font-family:'Noto Serif TC',serif;font-weight:700;color:var(--ink);margin-bottom:.45rem;}
+.lecture-example .ex-title{font-family:'Noto Serif TC',serif;font-weight:700;color:var(--ink);margin-bottom:.65rem;background:#f5f7fb;border:1px solid #dfe5f0;border-radius:8px;padding:.65rem .85rem;}
+.lecture-example .ex-title::before{content:"題目";display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.68rem;color:#fff;background:var(--accent2);border-radius:4px;padding:1px 7px;margin-right:.55rem;letter-spacing:.06em;}
 .lecture-example .ex-method{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.7rem;background:rgba(26,107,74,.12);color:var(--accent3);border:1px solid rgba(26,107,74,.35);border-radius:4px;padding:1px 7px;margin:.1rem .25rem .1rem 0;}
-.lecture-example .ex-answer{background:#f3fbf6;border-radius:8px;padding:.65rem .85rem;margin-top:.65rem;font-size:.92rem;}
+.lecture-example .step-block:first-of-type{margin-top:1.8rem;position:relative;}
+.lecture-example .step-block:first-of-type::before{content:"解題";position:absolute;top:-1.35rem;left:0;font-family:'JetBrains Mono',monospace;font-size:.68rem;color:#fff;background:var(--accent3);border-radius:4px;padding:1px 7px;letter-spacing:.06em;}
+.lecture-example .ex-answer{background:#f3fbf6;border:1px solid #cdebd9;border-radius:8px;padding:.65rem .85rem;margin-top:.65rem;font-size:.92rem;}
+.lecture-example .ex-answer::before{content:"答案";display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#fff;background:var(--accent3);border-radius:4px;padding:1px 7px;font-weight:700;margin-right:.5rem;letter-spacing:.06em;}
 .method-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem;margin:1rem 0;}
 @media(max-width:720px){.method-grid{grid-template-columns:1fr;}}
 
@@ -208,6 +212,18 @@ p{margin-bottom:1rem;}
 .path-output .po-val{font-size:1.1rem;color:var(--accent);font-weight:600;}
 
 footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border-top:1px solid var(--card-border);}
+.quiz-card{background:#eef5ff;border:1.5px solid var(--accent2);border-radius:10px;padding:1rem 1.2rem;margin:1.2rem 0;box-shadow:0 2px 10px rgba(44,62,122,.07);}
+.quiz-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#fff;background:var(--accent2);padding:2px 8px;border-radius:4px;letter-spacing:.08em;margin-bottom:.45rem;}
+.quiz-q{font-weight:600;margin-bottom:.6rem;}
+.quiz-options{display:flex;flex-direction:column;gap:.4rem;}
+.quiz-opt{padding:.45rem .85rem;border:1.5px solid var(--card-border);border-radius:6px;cursor:pointer;background:var(--card);text-align:left;font-size:.94rem;transition:all .15s;font-family:inherit;}
+.quiz-opt:hover{border-color:var(--accent2);background:#fafcff;}
+.quiz-opt.correct{border-color:var(--accent3);background:#eaf5ee;color:var(--accent3);font-weight:600;}
+.quiz-opt.wrong{border-color:var(--accent);background:#fde9e7;color:var(--accent);}
+.quiz-feedback{font-size:.86rem;margin-top:.5rem;padding:.45rem .7rem;border-radius:5px;display:none;}
+.quiz-feedback.show{display:block;}
+.quiz-feedback.ok{background:#eaf5ee;color:var(--accent3);border-left:3px solid var(--accent3);}
+.quiz-feedback.no{background:#fde9e7;color:var(--accent);border-left:3px solid var(--accent);}
 </style>
 </head>
 <body>
@@ -269,7 +285,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
     <div class="lecture-example">
       <div class="ex-tag">LECTURE EXAMPLE 1 · Domains of functions of several variables</div>
-      <div class="ex-title">從公式限制找定義域</div>
+      <div class="ex-title">求 $f(x,y)=\dfrac{\sqrt{x^2+y^2-9}}{x}$ 與 $g(x,y,z)=\dfrac{x}{\sqrt{9-x^2-y^2-z^2}}$ 的定義域。</div>
       <p>講義例題要求找下列函數的定義域：</p>
       <div style="text-align:center;margin:.4rem 0;">$$f(x,y)=\dfrac{\sqrt{x^2+y^2-9}}{x},\qquad g(x,y,z)=\dfrac{x}{\sqrt{9-x^2-y^2-z^2}}$$</div>
       <div class="dual-card">
@@ -369,7 +385,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
     <div class="lecture-example">
       <div class="ex-tag">LECTURE EXAMPLE 2 · Describing the graph</div>
-      <div class="ex-title">上半橢球面的 domain、range 與圖形</div>
+      <div class="ex-title">考慮函數 $f(x,y)=\sqrt{16-4x^2-y^2}$：(a) 求定義域與值域；(b) 描述 $f$ 的圖形。</div>
       <p>講義例題：$f(x,y)=\sqrt{16-4x^2-y^2}$。</p>
       <div class="ex-answer">
         <span class="ex-method">使用定義域條件</span> 實數根號要求被開方數非負：
@@ -446,7 +462,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
     <div class="lecture-example">
       <div class="ex-tag">LECTURE EXAMPLES 3-4 · Sketching contour maps</div>
-      <div class="ex-title">半球與雙曲拋物面的等高線</div>
+      <div class="ex-title">畫出下列等高線圖：(a) $f(x,y)=\sqrt{64-x^2-y^2}$，取 $c=0,1,2,\ldots,8$；(b) $z=y^2-x^2$。</div>
       <p><span class="ex-method">使用等高線定義</span> 等高線就是 $f(x,y)=c$。半球 $f(x,y)=\sqrt{64-x^2-y^2}$ 滿足
       $$\sqrt{64-x^2-y^2}=c.$$
       因為根號值非負，必須 $0\le c\le8$。平方後得到
@@ -536,6 +552,18 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       </ul>
     </div>
   </div>
+
+  <div class="quiz-card" id="quiz-ch13-1">
+    <span class="quiz-tag">概念檢查</span>
+    <div class="quiz-q">考慮 $F(x,y,z)=4x^2+y^2+z^2$（三變數）與 $g(x,y)=\sqrt{64-x^2-y^2}$（二變數）。下列敘述何者正確？</div>
+    <div class="quiz-options">
+      <button class="quiz-opt">兩者的等值集合都是三維空間中的曲面</button>
+      <button class="quiz-opt">$F(x,y,z)=c$ 給出 <strong>level surface</strong>（3D 中的曲面）；$g$ 對應 <strong>level curve</strong>（2D 平面中的曲線）</button>
+      <button class="quiz-opt">Level curve 無法用等高線圖視覺化</button>
+      <button class="quiz-opt">Level surface 是三維空間中的曲線</button>
+    </div>
+    <div class="quiz-feedback"></div>
+  </div>
 </section>
 
 <!-- ============================================================ -->
@@ -623,7 +651,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <div class="method-grid">
       <div class="lecture-example">
         <div class="ex-tag">LECTURE EXAMPLES 2-3 · Direct / Squeeze</div>
-        <div class="ex-title">$\displaystyle f(x,y)=\dfrac{5x^2y}{x^2+y^2}$</div>
+        <div class="ex-title">求 $\displaystyle\lim_{(x,y)\to(1,2)}\frac{5x^2y}{x^2+y^2}$，並判斷 $\displaystyle\lim_{(x,y)\to(0,0)}\frac{5x^2y}{x^2+y^2}$ 是否存在。</div>
         <p><span class="ex-method">使用連續函數商法則</span> 在 $(1,2)$ 時分母 $1^2+2^2\ne0$，所以有理函數在該點連續，可以直接代入：
         $$\lim_{(x,y)\to(1,2)}\dfrac{5x^2y}{x^2+y^2}
         =\dfrac{5(1)^2(2)}{1^2+2^2}=2.$$</p>
@@ -645,7 +673,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       </div>
       <div class="lecture-example">
         <div class="ex-tag">LECTURE EXAMPLE 4 · Paths / Polar</div>
-        <div class="ex-title">$\displaystyle \left(\dfrac{x^2-y^2}{x^2+y^2}\right)^2$</div>
+        <div class="ex-title">證明 $\displaystyle\lim_{(x,y)\to(0,0)}\left(\frac{x^2-y^2}{x^2+y^2}\right)^2$ 不存在。</div>
         <p><span class="ex-method">使用路徑判別法</span> 若二變數極限存在，沿任何路徑靠近原點都必須得到同一個極限。沿 $y=0$：
         $$\lim_{x\to0}\left(\dfrac{x^2-0}{x^2+0}\right)^2=1.$$
         沿 $y=x$：
@@ -760,7 +788,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         <tr><td>對稱冪次路徑（反例）</td><td>$x = n y^\ell$</td><td>把原問題限制到另一族曲線：$\displaystyle\lim_{y\to0} f(ny^\ell,y)$。用途同上，主要用來找不同路徑的反例。</td></tr>
         <tr><td>極座標（完整座標變換）</td><td>$x = r\cos\theta,\ y = r\sin\theta$</td><td>把原點附近所有方向寫成 $\displaystyle\lim_{r\to0^+} f(r\cos\theta,r\sin\theta)$。若結果依 $\theta$，極限不存在；若可寫成 $A(\theta)B(r)$ 且 $A(\theta)$ 有共同上界、$B(r)\to0$，則可證明極限為 0。</td></tr>
         <tr><td>柱座標 (3-var)</td><td>$x = r\cos\theta,\ y = r\sin\theta,\ z = z$</td><td>不是單一路徑；需同時控制 $r\to0$ 與 $z\to0$，並確認角度項有共同上界，才能證明存在。</td></tr>
-        <tr><td>球座標 (3-var)</td><td>$x = \rho\sin\varphi\cos\theta,\ \dots$</td><td>把 $\displaystyle\lim_{(x,y,z)\to(0,0,0)}f$ 改寫為 $\displaystyle\lim_{\rho\to0^+} f(\rho,\theta,\varphi)$；若角度項有共同上界且剩下的 $\rho$ 項趨近 0，可證明極限為 0；若依賴角度，極限不存在。</td></tr>
+        <tr><td>球座標 (3-var)</td><td>$x = \rho\sin\phi\cos\theta,\ \dots$</td><td>把 $\displaystyle\lim_{(x,y,z)\to(0,0,0)}f$ 改寫為 $\displaystyle\lim_{\rho\to0^+} f(\rho,\theta,\phi)$；若角度項有共同上界且剩下的 $\rho$ 項趨近 0，可證明極限為 0；若依賴角度，極限不存在。</td></tr>
       </tbody>
     </table>
   </div>
@@ -798,7 +826,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
     <div class="lecture-example">
       <div class="ex-tag">LECTURE EXAMPLE 5 · Testing for continuity</div>
-      <div class="ex-title">用 domain 與極限判斷連續性</div>
+      <div class="ex-title">討論下列函數的連續性：(a) $f(x,y)=\dfrac{x-2y}{x^2+y^2}$；(b) $g(x,y)=\sqrt{y-x^2}$。</div>
       <p><span class="ex-method">使用 THM 13.1（連續函數商法則）</span> $\displaystyle f(x,y)=\dfrac{x-2y}{x^2+y^2}$ 是多項式的商。只要分母 $x^2+y^2\ne0$，分子與分母皆連續，且商仍連續；但在 $(0,0)$ 分母為 0，函數無定義，因此不可能在 $(0,0)$ 連續。</p>
       <p><span class="ex-method">使用連續性定義</span> $g(x,y)=\sqrt{y-x^2}$ 的 domain 是 $y-x^2\ge0$。在邊界 $y=x^2$ 上，任意開圓盤都含有 domain 外的點，因此它不能在「包含該邊界點的開區域」上被視為連續函數；只能說它在自己的 domain 內以相對意義連續。</p>
     </div>
@@ -866,7 +894,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
     <div class="lecture-example">
       <div class="ex-tag">LECTURE EXAMPLE 6 · Three-variable continuity</div>
-      <div class="ex-title">$\displaystyle f(x,y,z)=\dfrac{1}{x^2+y^2-z}$</div>
+      <div class="ex-title">討論三變數函數 $\displaystyle f(x,y,z)=\dfrac{1}{x^2+y^2-z}$ 的連續性，並找出不連續的點集。</div>
       <div class="ex-answer">
         <span class="ex-method">使用 THM 13.1（連續函數商法則）</span> 分母 $x^2+y^2-z$ 是多項式，故連續；分子 $1$ 也連續。只要分母不為 0，商函數連續。因此不連續集合由
         $$x^2+y^2-z=0$$
@@ -880,9 +908,21 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         <li><strong>冪次曲線</strong>：$y = m_1 x^{k_1},\ z = m_2 x^{k_2}$</li>
         <li><strong>冪次曲面</strong>：$x = n_1 z^{\ell_1},\ y = n_2 z^{\ell_2}$</li>
         <li><strong>柱座標</strong>：$x = r\cos\theta,\ y = r\sin\theta,\ z = z$ — 同時控制 $r, z \to 0$</li>
-        <li><strong>球座標</strong>：$x = \rho\sin\varphi\cos\theta$ 等 — 若可寫成「有共同上界的角度因子」乘上「趨近 0 的 $\rho$ 因子」，極限為 0；若結果依賴角度，通常表示極限不存在。</li>
+        <li><strong>球座標</strong>：$x = \rho\sin\phi\cos\theta$ 等 — 若可寫成「有共同上界的角度因子」乘上「趨近 0 的 $\rho$ 因子」，極限為 0；若結果依賴角度，通常表示極限不存在。</li>
       </ul>
     </div>
+  </div>
+
+  <div class="quiz-card" id="quiz-ch13-2">
+    <span class="quiz-tag">概念檢查</span>
+    <div class="quiz-q">要證明 $\displaystyle\lim_{(x,y)\to(0,0)}\dfrac{x^2-y^2}{x^2+y^2}$ <strong>不存在</strong>，若想立刻得到最簡單的兩個不同常數，下面哪一對路徑最直接？</div>
+    <div class="quiz-options">
+      <button class="quiz-opt">沿 $y=0$ 與沿 $x=0$</button>
+      <button class="quiz-opt">沿 $y=x$ 與沿 $y=-x$</button>
+      <button class="quiz-opt">沿 $y=2x$ 與 $y=3x$</button>
+      <button class="quiz-opt">沿 $x=t,y=2t$ 與 $x=2t,y=t$</button>
+    </div>
+    <div class="quiz-feedback"></div>
   </div>
 </section>
 
@@ -910,7 +950,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
     <div class="lecture-example">
       <div class="ex-tag">LECTURE EXAMPLES 1-2 · Finding partial derivatives</div>
-      <div class="ex-title">代數偏導與定點求值</div>
+      <div class="ex-title">求偏導數：(a) $f(x,y)=3x-x^2y^2+2x^3y$；(b) $f(x,y)=(\ln x)(\sin x^2y)$。另外，對 $f(x,y)=xe^{x^2y}$，求 $f_x,f_y$ 並在 $(1,\ln2)$ 代值。</div>
       <p><span class="ex-method">使用偏導定義的計算規則</span> 對 $f(x,y)=3x-x^2y^2+2x^3y$，求 $f_x$ 時把 $y$ 當常數；求 $f_y$ 時把 $x$ 當常數：
       $$f_x=3-2xy^2+6x^2y,\qquad f_y=-2x^2y+2x^3.$$</p>
       <p><span class="ex-method">使用乘法法則與鏈鎖律</span> 對 $f(x,y)=xe^{x^2y}$：
@@ -994,7 +1034,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
     <div class="lecture-example">
       <div class="ex-tag">LECTURE EXAMPLE 3 · Slopes of a surface</div>
-      <div class="ex-title">在 $\left(\dfrac{1}{2},1,2\right)$ 的 x/y 方向斜率</div>
+      <div class="ex-title">對曲面 $z=f(x,y)=-\dfrac{x^2}{2}-y^2+\dfrac{25}{8}$，求點 $\left(\dfrac12,1,2\right)$ 的 $x$ 方向與 $y$ 方向斜率。</div>
       <p><span class="ex-method">使用偏導的幾何意義</span> $f_x(x_0,y_0)$ 是固定 $y=y_0$ 時的 $x$ 方向截痕斜率，$f_y(x_0,y_0)$ 是固定 $x=x_0$ 時的 $y$ 方向截痕斜率。講義例題函數為
       $$f(x,y)=-\dfrac{x^2}{2}-y^2+\dfrac{25}{8},$$
       因此 $f_x=-x,\ f_y=-2y$。</p>
@@ -1035,7 +1075,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
     <div class="lecture-example">
       <div class="ex-tag">LECTURE EXAMPLE 6 · Three or more variables</div>
-      <div class="ex-title">只對指定變數偏導，其餘視為常數</div>
+      <div class="ex-title">求指定偏導數：(a) 對 $f(x,y,z)=xy+yz^2+xz$ 求 $\partial f/\partial z$；(b) 對 $f(x,y,z)=z\sin(xy^2+2z)$ 求 $\partial f/\partial z$；(c) 對 $f(x,y,z,w)=\dfrac{x+y+z}{w}$ 求 $\partial f/\partial w$。</div>
       <p><span class="ex-method">使用偏導計算規則</span> 對哪一個變數偏導，就把其他變數全部視為常數。講義例題包含三種形式：</p>
       <div class="ex-answer">
         $\dfrac{\partial}{\partial z}(xy+yz^2+xz)=2yz+x$；<br>
@@ -1133,7 +1173,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
     <div class="lecture-example">
       <div class="ex-tag">LECTURE EXAMPLES 7-8 · Higher-order partials</div>
-      <div class="ex-title">二階偏導與混合偏導</div>
+      <div class="ex-title">求 $f(x,y)=3xy^2-2y+5x^2y^2$ 的二階偏導數並計算 $f_{xy}(-1,2)$；再對 $f(x,y,z)=ye^x+x\ln z$ 驗證 $f_{xz}=f_{zx}$ 與 $f_{xzz}=f_{zxz}=f_{zzx}$。</div>
       <p><span class="ex-method">使用二階偏導定義</span> $f_{xy}$ 表示先對 $x$ 偏導，再對 $y$ 偏導。對
       $f(x,y)=3xy^2-2y+5x^2y^2$，先得
       $$f_x=3y^2+10xy^2,$$
@@ -1143,6 +1183,18 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       <p><span class="ex-method">使用混合偏導相等定理</span> 對 $f(x,y,z)=ye^x+x\ln z$，在 $z>0$ 的區域內各相關偏導連續，因此可交換微分順序：
       $$f_{xz}=f_{zx}=1/z,\qquad f_{xzz}=f_{zxz}=f_{zzx}=-1/z^2.$$</p>
     </div>
+  </div>
+
+  <div class="quiz-card" id="quiz-ch13-3">
+    <span class="quiz-tag">概念檢查</span>
+    <div class="quiz-q">對曲面 $z=f(x,y)$，$f_x(x_0,y_0)$ 的<strong>幾何意義</strong>是？</div>
+    <div class="quiz-options">
+      <button class="quiz-opt">曲面沿 $x$ 軸方向的「平均斜率」</button>
+      <button class="quiz-opt">固定 $y=y_0$ 後，截面曲線 $z=f(x,y_0)$ 在 $x=x_0$ 處的切線斜率</button>
+      <button class="quiz-opt">曲面到 $xy$ 平面的垂直距離</button>
+      <button class="quiz-opt">整個曲面整體的傾斜程度（不能局部化到單一點）</button>
+    </div>
+    <div class="quiz-feedback"></div>
   </div>
 </section>
 
@@ -1169,7 +1221,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
     <div class="lecture-example">
       <div class="ex-tag">LECTURE EXAMPLE 1 · Total differential</div>
-      <div class="ex-title">先算偏導，再組成微分</div>
+      <div class="ex-title">求下列函數的全微分：(a) $z=2x\sin y-3x^2y^2$；(b) $w=x^2+y^2+z^2$。</div>
       <p><span class="ex-method">使用 DEF 13.6（全微分公式）</span> 先求偏導，再套
       $$dz=f_x\,dx+f_y\,dy.$$
       對 $z=2x\sin y-3x^2y^2$，
@@ -1276,6 +1328,30 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       <p style="margin:.55rem 0 .3rem;">如果函數 $z = f(x,y)$ 在點 $(x_0, y_0)$ 相應於 $\Delta x, \Delta y$ 兩個增量所得的增量可以表成
       $$\Delta z = f_x(x_0,y_0)\Delta x + f_y(x_0,y_0)\Delta y + \varepsilon_1 \Delta x + \varepsilon_2 \Delta y$$
       其中 $\varepsilon_1, \varepsilon_2$ 當 $(\Delta x, \Delta y) \to (0, 0)$ 時同時趨於 0，函數 $f(x,y)$ 就稱為在 $(x_0, y_0)$ <strong>可微 (differentiable)</strong>。如果 $f$ 在區域 $R$ 上每點都可微，則稱 $f$ 在 $R$ 上可微。</p>
+    </div>
+
+    <div class="concept-warning">
+      <div class="cw-title">為什麼要這樣定義可微？</div>
+      <p><strong>單變數類比：先把單變數可微重新解讀。</strong> 平常我們說 $f'(x_0)$ 存在，就是
+      $$f'(x_0)=\lim_{\Delta x\to0}\frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}.$$
+      若記 $L=f'(x_0)$，這個極限可以重新寫成
+      $$\frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}=L+\varepsilon(\Delta x),\qquad \varepsilon(\Delta x)\to0.$$
+      兩邊乘回 $\Delta x$，得到
+      $$\Delta y=f(x_0+\Delta x)-f(x_0)=f'(x_0)\Delta x+\varepsilon(\Delta x)\Delta x.$$
+      所以單變數可微的真正意思是：函數的變化量等於「切線給的線性變化」加上一個比 $\Delta x$ 更小階的誤差。</p>
+      <p><strong>到兩變數時，不能再用商的極限偷省步驟。</strong> 因為輸入增量變成向量 $(\Delta x,\Delta y)$，你不能除以一個向量。因此可微的定義必須回到原本的幾何意義：存在一個線性函數
+      $$L(\Delta x,\Delta y)=A\Delta x+B\Delta y$$
+      可以描述 $z$ 的主要變化，而且剩下的誤差相對於距離要更小。</p>
+      <p>對曲面 $z=f(x,y)$，這個線性函數自然就是切平面近似
+      $$dz=f_x(x_0,y_0)\Delta x+f_y(x_0,y_0)\Delta y.$$
+      更乾淨地說，可微等價於
+      $$\lim_{(\Delta x,\Delta y)\to(0,0)}
+      \frac{\Delta z-f_x(x_0,y_0)\Delta x-f_y(x_0,y_0)\Delta y}
+      {\sqrt{\Delta x^2+\Delta y^2}}=0.$$
+      分母是水平移動距離；極限為 $0$ 表示切平面的誤差比這個距離還小，切平面才是真的「貼住」曲面。</p>
+      <p><strong>教科書的寫法</strong>
+      $$\Delta z=f_x\Delta x+f_y\Delta y+\varepsilon_1\Delta x+\varepsilon_2\Delta y,\qquad \varepsilon_1,\varepsilon_2\to0$$
+      就是在用代數形式表達同一件事：誤差項是更高階小量。因此可微不是只要求偏導存在。偏導只檢查 $x$ 軸、$y$ 軸兩個方向；可微要求所有靠近 $(x_0,y_0)$ 的方向都能被同一個線性式共同控制。</p>
     </div>
 
     <div class="info-box">
@@ -1429,7 +1505,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
       <div class="lecture-example">
       <div class="ex-tag">LECTURE EXAMPLE 3 · Differential approximation</div>
-      <div class="ex-title">用 $dz$ 近似 $\Delta z$</div>
+      <div class="ex-title">使用微分 $dz$ 近似 $z=\sqrt{4-x^2-y^2}$ 當 $(x,y)$ 由 $(1,1)$ 移動到 $(1.01,0.97)$ 時的變化量，並與真實變化量比較。</div>
       <p><span class="ex-method">使用線性近似公式</span> 當變化很小時，
       $$\Delta z\approx dz=z_x\,dx+z_y\,dy.$$
       講義例題：$z=\sqrt{4-x^2-y^2}$，從 $(1,1)$ 移到 $(1.01,0.97)$。因此
@@ -1445,6 +1521,18 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         真實變化 $\Delta z=f(1.01,0.97)-f(1,1)\approx 0.0137$，所以微分近似非常接近。
       </div>
     </div>
+  </div>
+
+  <div class="quiz-card" id="quiz-ch13-4">
+    <span class="quiz-tag">概念檢查（重要反例）</span>
+    <div class="quiz-q">設 $f(x,y)=\dfrac{3xy}{x^2+y^2}$（$(x,y)\ne(0,0)$，$f(0,0)=0$）。在 $(0,0)$ 處：</div>
+    <div class="quiz-options">
+      <button class="quiz-opt">偏導存在且都為 $0$；函數可微</button>
+      <button class="quiz-opt">偏導存在且都為 $0$；但函數<strong>不可微</strong></button>
+      <button class="quiz-opt">偏導不存在</button>
+      <button class="quiz-opt">必須逐項驗算才知（無法直接斷言）</button>
+    </div>
+    <div class="quiz-feedback"></div>
   </div>
 
   <!-- 速查表 -->
@@ -3926,6 +4014,72 @@ function marchingCubes(F, c, xMin, xMax, yMin, yMax, zMin, zMax, res=28) {
     });
   }, { rootMargin: '-30% 0px -55% 0px', threshold: 0 });
   sectionIds.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
+})();
+
+// ─── 基本觀念 Quiz（Ch 13.1-13.4） ───
+(function(){
+  const $ = id => document.getElementById(id);
+  function makeChoiceQuiz(cardId, correctIndex, hints){
+    const card=$(cardId); if(!card) return;
+    const opts=card.querySelectorAll('.quiz-opt');
+    const fb=card.querySelector('.quiz-feedback');
+    opts.forEach((opt,i)=>{
+      opt.addEventListener('click',()=>{
+        opts.forEach(o=>o.classList.remove('correct','wrong'));
+        if(i===correctIndex){
+          opt.classList.add('correct');
+          fb.className='quiz-feedback show ok';
+          fb.innerHTML=hints && hints.ok ? hints.ok : '✓ 正確！';
+        } else {
+          opt.classList.add('wrong');
+          fb.className='quiz-feedback show no';
+          fb.innerHTML=(hints && hints.wrong && hints.wrong[i]) ? hints.wrong[i] : '再想想。';
+        }
+        if(window.MathJax&&MathJax.typesetPromise) MathJax.typesetPromise([fb]);
+      });
+    });
+  }
+  // Q13-1：F(x,y,z)=c → level surface（3D 中的曲面）；g(x,y) 對應 level curve（2D 中的曲線）
+  makeChoiceQuiz('quiz-ch13-1', 1, {
+    ok:'✓ 正確！等值集合的維度通常比輸入維度少一。三變數函數 $F(x,y,z)=c$ 給出 3D 中的等位曲面；二變數函數 $g(x,y)=c$ 給出平面中的等高線。',
+    wrong:[
+      '$g(x,y)$ 的等高線是 2D 平面內的曲線（不是 3D 曲面）。',
+      '',
+      '等高線圖（topographic map）正是 level curve 的標準視覺化（如地圖、氣象圖）。',
+      'Level surface 是 3D 中的曲面（2 維對象）；Level curve 才是 2D 中的曲線。'
+    ]
+  });
+  // Q13-2：(x²-y²)/(x²+y²) at (0,0) — 沿 y=0 給 1，沿 x=0 給 -1，極限不存在
+  makeChoiceQuiz('quiz-ch13-2', 0, {
+    ok:'✓ 正確！沿 $y=0$：$\\dfrac{x^2}{x^2}=1$；沿 $x=0$：$\\dfrac{-y^2}{y^2}=-1$。兩條路徑得到不同的極限，故極限不存在。',
+    wrong:[
+      '',
+      '陷阱題！沿 $y=x$：$\\dfrac{x^2-x^2}{x^2+x^2}=0$；沿 $y=-x$：$\\dfrac{x^2-x^2}{2x^2}=0$。兩者都是 $0$，看不出矛盾——這對路徑無法證明極限不存在。',
+      '這組其實也能證明不存在，因為 $y=mx$ 時結果會依賴 $m$；但本題問「最直接得到最簡單的兩個不同常數」，座標軸路徑馬上給 $1$ 與 $-1$。',
+      '這組也能得到不同值，但比座標軸多一步參數化計算；本題要找最直接的路徑。'
+    ]
+  });
+  // Q13-3：偏導 = 截面曲線在該點的切線斜率（固定 y=y0）
+  makeChoiceQuiz('quiz-ch13-3', 1, {
+    ok:'✓ 正確！$f_x(x_0,y_0)$ 是把曲面與平面 $y=y_0$ 截出的曲線 $z=f(x,y_0)$，在 $x=x_0$ 處的切線斜率。$y$ <strong>必須</strong>固定為 $y_0$。',
+    wrong:[
+      '不是「平均」斜率；偏導是「點的瞬時斜率」，且必須<strong>固定 $y=y_0$</strong>，否則沒有意義。',
+      '',
+      '偏導是斜率（變化率），不是距離；單位完全不同。',
+      '偏導是<strong>局部</strong>性質：$f_x(x_0,y_0)$ 對應 $(x_0,y_0)$ 那一點。其他點的偏導值通常不同。'
+    ]
+  });
+  // Q13-4：f=3xy/(x²+y²)，f_x(0,0)=f_y(0,0)=0 但 f 不連續於 (0,0) ⇒ 不可微
+  // 沿 y=x: f(t,t) = 3t²/2t² = 3/2 ≠ 0 ⇒ 不連續 ⇒ 不可微
+  makeChoiceQuiz('quiz-ch13-4', 1, {
+    ok:'✓ 正確！偏導皆為 $0$（沿軸方向 $f\\equiv 0$），但沿 $y=x$ 路徑 $f(t,t)=\\dfrac{3t^2}{2t^2}=\\dfrac{3}{2}\\ne 0=f(0,0)$，故 $f$ 在 $(0,0)$ 不連續，更不可微。<strong>偏導存在 ⇏ 可微</strong>。',
+    wrong:[
+      '經典陷阱：偏導存在<strong>不</strong>蘊含可微（定理 13.4 是「<em>連續</em>偏導 ⇒ 可微」，反向不成立）。實際上 $f$ 在 $(0,0)$ 不連續，故不可微。',
+      '',
+      '偏導確實存在：$f_x(0,0)=\\lim_{h\\to 0}\\dfrac{f(h,0)-0}{h}=\\lim_{h\\to 0}\\dfrac{0}{h}=0$（同理 $f_y(0,0)=0$）。',
+      '其實有捷徑：可微 ⇒ 連續，但沿 $y=x$ 路徑 $f\\to 3/2\\ne f(0,0)$，故不連續，立刻得到不可微。不必逐項驗算。'
+    ]
+  });
 })();
 
 </script>

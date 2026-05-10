@@ -115,11 +115,15 @@ p{margin-bottom:1rem;}
 /* Lecture example */
 .lecture-example{background:var(--card);border:1px solid var(--card-border);border-left:5px solid var(--accent3);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;box-shadow:0 2px 10px rgba(0,0,0,.04);}
 .lecture-example .ex-tag{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--accent3);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.35rem;}
-.lecture-example .ex-title{font-family:'Noto Serif TC',serif;font-weight:700;color:var(--ink);margin-bottom:.45rem;}
+.lecture-example .ex-title{font-family:'Noto Serif TC',serif;font-weight:700;color:var(--ink);margin-bottom:.65rem;background:#f5f7fb;border:1px solid #dfe5f0;border-radius:8px;padding:.65rem .85rem;}
+.lecture-example .ex-title::before{content:"題目";display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.68rem;color:#fff;background:var(--accent2);border-radius:4px;padding:1px 7px;margin-right:.55rem;letter-spacing:.06em;}
 .lecture-example .ex-method{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.7rem;background:rgba(26,107,74,.12);color:var(--accent3);border:1px solid rgba(26,107,74,.35);border-radius:4px;padding:1px 7px;margin:.1rem .25rem .1rem 0;}
 .lecture-example .ex-method.warn{background:rgba(192,57,43,.10);color:var(--accent);border-color:rgba(192,57,43,.35);}
 .lecture-example .ex-method.thm{background:rgba(44,62,122,.10);color:var(--accent2);border-color:rgba(44,62,122,.35);}
-.lecture-example .ex-answer{background:#f3fbf6;border-radius:8px;padding:.65rem .85rem;margin-top:.65rem;font-size:.92rem;}
+.lecture-example .step-block:first-of-type{margin-top:1.8rem;position:relative;}
+.lecture-example .step-block:first-of-type::before{content:"解題";position:absolute;top:-1.35rem;left:0;font-family:'JetBrains Mono',monospace;font-size:.68rem;color:#fff;background:var(--accent3);border-radius:4px;padding:1px 7px;letter-spacing:.06em;}
+.lecture-example .ex-answer{background:#f3fbf6;border:1px solid #cdebd9;border-radius:8px;padding:.65rem .85rem;margin-top:.65rem;font-size:.92rem;}
+.lecture-example .ex-answer::before{content:"答案";display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#fff;background:var(--accent3);border-radius:4px;padding:1px 7px;font-weight:700;margin-right:.5rem;letter-spacing:.06em;}
 .lecture-example.cf{border-left-color:var(--accent);}
 .lecture-example.cf .ex-tag{color:var(--accent);}
 
@@ -399,7 +403,7 @@ footer a:hover{text-decoration:underline;}
   <div id="sec-3-1" class="subsection">
     <div class="lecture-example cf">
       <div class="ex-tag">EXAMPLE 1 · Continuous ⇏ $f_x, f_y$ exist</div>
-      <div class="ex-title">連續但偏導不存在</div>
+      <div class="ex-title">令 $f(x,y)=|x|$。說明 $f$ 在 $(0,0)$ 連續，但 $f_x(0,0)$ 不存在。</div>
       <span class="ex-method warn">反例</span>
       <p>令 $f(x,y) = |x|$。</p>
 
@@ -425,7 +429,7 @@ footer a:hover{text-decoration:underline;}
   <div id="sec-3-2" class="subsection">
     <div class="lecture-example cf">
       <div class="ex-tag">EXAMPLE 2 · $f_x, f_y$ exist ⇏ Continuous</div>
-      <div class="ex-title">偏導存在但不連續</div>
+      <div class="ex-title">令 $f(x,y)=\begin{cases}\dfrac{xy}{x^2+y^2},&(x,y)\ne(0,0)\\0,&(x,y)=(0,0)\end{cases}$。說明 $f_x(0,0),f_y(0,0)$ 存在，但 $f$ 在 $(0,0)$ 不連續。</div>
       <span class="ex-method warn">反例</span>
       <p>令</p>
       <div style="text-align:center;">$$f(x,y) = \begin{cases} \dfrac{xy}{x^2 + y^2}, & (x,y) \ne (0,0) \\[4pt] 0, & (x,y) = (0,0) \end{cases}.$$</div>
@@ -456,7 +460,7 @@ footer a:hover{text-decoration:underline;}
   <div id="sec-3-3" class="subsection">
     <div class="lecture-example cf">
       <div class="ex-tag">EXAMPLE 3 · $f_x, f_y$ exist ⇏ $D_{\vec u} f$ exists for all $\vec u$</div>
-      <div class="ex-title">偏導存在但方向導對某些方向不存在</div>
+      <div class="ex-title">沿用 $f(x,y)=\begin{cases}\dfrac{xy}{x^2+y^2},&(x,y)\ne(0,0)\\0,&(x,y)=(0,0)\end{cases}$。說明 $f_x(0,0),f_y(0,0)$ 存在，但某些方向導數 $D_{\vec u}f(0,0)$ 不存在。</div>
       <span class="ex-method warn">反例</span>
       <p>仍然令</p>
       <div style="text-align:center;">$$f(x,y) = \begin{cases} \dfrac{xy}{x^2 + y^2}, & (x,y) \ne (0,0) \\[4pt] 0, & (x,y) = (0,0) \end{cases}.$$</div>
@@ -481,7 +485,7 @@ footer a:hover{text-decoration:underline;}
   <div id="sec-3-4" class="subsection">
     <div class="lecture-example cf">
       <div class="ex-tag">EXAMPLE 4 · $f_x, f_y$ exist ⇏ Differentiable</div>
-      <div class="ex-title">偏導存在但不可微</div>
+      <div class="ex-title">沿用 $f(x,y)=\begin{cases}\dfrac{xy}{x^2+y^2},&(x,y)\ne(0,0)\\0,&(x,y)=(0,0)\end{cases}$。說明 $f_x(0,0),f_y(0,0)$ 存在，但 $f$ 在 $(0,0)$ 不可微。</div>
       <span class="ex-method warn">反例</span>
       <span class="ex-method thm">利用 Thm A 反推</span>
       <p>仍然令</p>
@@ -505,7 +509,7 @@ footer a:hover{text-decoration:underline;}
   <div id="sec-3-5" class="subsection">
     <div class="lecture-example cf">
       <div class="ex-tag">EXAMPLE 5 · $D_{\vec u} f$ exists for all $\vec u$ ⇏ Differentiable</div>
-      <div class="ex-title">方向導對所有方向存在但不可微</div>
+      <div class="ex-title">令 $f(x,y)=\begin{cases}\dfrac{x^3}{x^2+y^2},&(x,y)\ne(0,0)\\0,&(x,y)=(0,0)\end{cases}$。說明所有方向導數 $D_{\vec u}f(0,0)$ 都存在，但 $f$ 在 $(0,0)$ 不可微。</div>
       <span class="ex-method warn">反例</span>
       <p>令</p>
       <div style="text-align:center;">$$f(x,y) = \begin{cases} \dfrac{x^3}{x^2 + y^2}, & (x,y) \ne (0,0) \\[4pt] 0, & (x,y) = (0,0) \end{cases}.$$</div>
@@ -541,7 +545,7 @@ footer a:hover{text-decoration:underline;}
   <div id="sec-3-6" class="subsection">
     <div class="lecture-example cf">
       <div class="ex-tag">EXAMPLE 6 · $D_{\vec u} f$ exists for all $\vec u$ ⇏ Continuous</div>
-      <div class="ex-title">方向導對所有方向存在但不連續</div>
+      <div class="ex-title">令 $f(x,y)=\begin{cases}\dfrac{x^2y}{x^4+y^2},&(x,y)\ne(0,0)\\0,&(x,y)=(0,0)\end{cases}$。說明所有方向導數 $D_{\vec u}f(0,0)$ 都存在，但 $f$ 在 $(0,0)$ 不連續。</div>
       <span class="ex-method warn">反例</span>
       <p>令</p>
       <div style="text-align:center;">$$f(x,y) = \begin{cases} \dfrac{x^2 y}{x^4 + y^2}, & (x,y) \ne (0,0) \\[4pt] 0, & (x,y) = (0,0) \end{cases}.$$</div>
@@ -603,10 +607,10 @@ footer a:hover{text-decoration:underline;}
     </div>
 
     <div class="lecture-example">
-      <div class="ex-tag">EXAMPLE 7 · 對應原 PDF 第 7 點</div>
-      <div class="ex-title">原講義以陳述形式給出 Thm A，未附證明</div>
+      <div class="ex-tag">EXAMPLE 7 · 定理應用</div>
+      <div class="ex-title">若 $f$ 在 $(x,y)$ 可微，說明 $f$ 在該點連續，且 $f_x,f_y,D_{\vec u}f$ 對所有單位向量 $\vec u$ 都存在。</div>
       <span class="ex-method thm">教科書定理</span>
-      <p>原 PDF 在 Example 7 直接陳述「Differentiable $\Rightarrow$ Continuity and $f_x, f_y, D_{\vec u} f$ exist」。標準微積分教材皆收錄此定理；它的逆命題不成立 — 反例見 §3 的 Ex 1, Ex 2, Ex 4。</p>
+      <p>此處使用「Differentiable $\Rightarrow$ Continuity and $f_x, f_y, D_{\vec u} f$ exist」這個標準定理；它的逆命題不成立 — 反例見 §3 的 Ex 1, Ex 2, Ex 4。</p>
       <div class="ex-answer" style="background:#eef2ff;">
         <strong>常用方式：</strong> Thm A 在反推時格外好用 — 想證明某 $f$ 在某點<strong>不可微</strong>，常常透過驗證它在該點<strong>不連續</strong>（如 Ex 4）或某個<strong>方向導不存在</strong>來達成。
       </div>
@@ -624,10 +628,10 @@ footer a:hover{text-decoration:underline;}
     </div>
 
     <div class="lecture-example">
-      <div class="ex-tag">EXAMPLE 8 · 對應原 PDF 第 8 點</div>
-      <div class="ex-title">原講義以陳述形式給出 Thm B，未附證明</div>
+      <div class="ex-tag">EXAMPLE 8 · 定理應用</div>
+      <div class="ex-title">若 $f_x,f_y$ 在 $(x,y)$ 的某鄰域存在且在 $(x,y)$ 連續，說明 $f$ 在 $(x,y)$ 可微。</div>
       <span class="ex-method thm">教科書定理</span>
-      <p>原 PDF 在 Example 8 直接陳述「$f_x, f_y$ exist and continuous $\Rightarrow$ Differentiable」。它的逆命題不成立 — 反例就是下節的 Ex 9。</p>
+      <p>此處使用「$f_x, f_y$ exist and continuous $\Rightarrow$ Differentiable」這個標準定理。它的逆命題不成立 — 反例就是下節的 Ex 9。</p>
       <div class="ex-answer" style="background:#eef2ff;">
         <strong>實務意義：</strong> 大部分初等函數（多項式、$\sin, \cos, e^x$、$\ln$ 等的<strong>合成、四則</strong>，且分母不為零之處）的偏導本身就是初等函數因此連續，所以它們在開區域上自動可微。Thm B 是日常計算「不必驗 $\varepsilon$」就能知道可微的依據。
       </div>
@@ -657,7 +661,7 @@ footer a:hover{text-decoration:underline;}
 
   <div class="lecture-example cf">
     <div class="ex-tag">EXAMPLE 9 · Differentiable ⇏ $f_x, f_y$ continuous</div>
-    <div class="ex-title">可微但偏導不連續</div>
+    <div class="ex-title">令 $f(x,y)=\begin{cases}(x^2+y^2)\sin\dfrac{1}{\sqrt{x^2+y^2}},&(x,y)\ne(0,0)\\0,&(x,y)=(0,0)\end{cases}$。證明 $f$ 在 $(0,0)$ 可微，但 $f_x,f_y$ 在 $(0,0)$ 不連續。</div>
     <span class="ex-method warn">反例</span>
     <span class="ex-method thm">$\varepsilon$ 構造法</span>
     <p>令</p>
@@ -788,7 +792,7 @@ footer a:hover{text-decoration:underline;}
 </div>
 
 <footer>
-  本文改寫自 <em>Continuity, Derivatives and Differentiability</em>（derivatives.pdf, 2022）— 內容包含原 PDF 的 4 個正式定義與 9 個範例，依教學順序重新編排為繁體中文。所有數學推導 100% 忠於原文。<br>
+  本文改寫自 <em>Continuity, Derivatives and Differentiability</em>（2022）— 內容包含 4 個正式定義與 9 個範例，依教學順序重新編排為繁體中文。所有數學推導皆依原講義整理。<br>
   風格沿用同資料夾下 <a href="multivariable_calculus.html">multivariable_calculus.html</a> 的版型。
 </footer>
 

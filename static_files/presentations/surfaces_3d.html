@@ -148,6 +148,24 @@ p{margin-bottom:1rem;}
 .preset-btn.active{background:var(--accent2);color:#fff;border-color:var(--accent2);}
 
 footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border-top:1px solid var(--card-border);}
+.quiz-card{background:#eef5ff;border:1.5px solid var(--accent2);border-radius:10px;padding:1rem 1.2rem;margin:1.2rem 0;box-shadow:0 2px 10px rgba(44,62,122,.07);}
+.quiz-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#fff;background:var(--accent2);padding:2px 8px;border-radius:4px;letter-spacing:.08em;margin-bottom:.45rem;}
+.quiz-q{font-weight:600;margin-bottom:.6rem;}
+.quiz-options{display:flex;flex-direction:column;gap:.4rem;}
+.quiz-opt{padding:.45rem .85rem;border:1.5px solid var(--card-border);border-radius:6px;cursor:pointer;background:var(--card);text-align:left;font-size:.94rem;transition:all .15s;font-family:inherit;}
+.quiz-opt:hover{border-color:var(--accent2);background:#fafcff;}
+.quiz-opt.correct{border-color:var(--accent3);background:#eaf5ee;color:var(--accent3);font-weight:600;}
+.quiz-opt.wrong{border-color:var(--accent);background:#fde9e7;color:var(--accent);}
+.quiz-input-row{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin:.4rem 0;}
+.quiz-input{padding:.4rem .7rem;border:1.5px solid var(--card-border);border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:.92rem;width:160px;}
+.quiz-input.correct{border-color:var(--accent3);background:#eaf5ee;}
+.quiz-input.wrong{border-color:var(--accent);background:#fde9e7;}
+.quiz-check{padding:.4rem .9rem;border:none;border-radius:6px;background:var(--accent2);color:#fff;font-family:'Noto Sans TC',sans-serif;font-size:.86rem;cursor:pointer;font-weight:600;}
+.quiz-check:hover{background:#1f2e5c;}
+.quiz-feedback{font-size:.86rem;margin-top:.5rem;padding:.45rem .7rem;border-radius:5px;display:none;}
+.quiz-feedback.show{display:block;}
+.quiz-feedback.ok{background:#eaf5ee;color:var(--accent3);border-left:3px solid var(--accent3);}
+.quiz-feedback.no{background:#fde9e7;color:var(--accent);border-left:3px solid var(--accent);}
 </style>
 </head>
 <body>
@@ -212,7 +230,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 <section>
   <div class="section-number">PART 01 · 柱面</div>
   <h2>柱面：把一條曲線沿著一個軸平移</h2>
-  <p><strong>柱面 (cylinder)</strong> = 一條 <em>母線 (generating curve, directrix)</em> 在某一個座標平面上，連同所有平行於某座標軸、通過該曲線的直線 <em>(rulings)</em> 組成的曲面。關鍵觀察：<strong>方程式裡「缺少」的變數就是平移方向</strong>。</p>
+  <p><strong>柱面 (cylinder)</strong> = 一條 <em>母曲線 / 準線 (generating curve, directrix)</em> 在某一個座標平面上，連同所有平行於某座標軸、通過該曲線的直線 <em>直紋線 (rulings)</em> 組成的曲面。關鍵觀察：<strong>方程式裡「缺少」的變數就是直紋線方向</strong>。</p>
+  <p class="exercise-question">講義例題：畫出下列柱面：(a) $z=y^2$；(b) $z=\sin x,\ 0\le x\le 2\pi$。下方互動也保留其他柱面作為對照，重點仍是判斷缺少哪個變數、直紋線平行哪個座標軸。</p>
 
   <div class="preset-row" id="cylPresets">
     <button class="preset-btn active" data-id="circle">$x^2+y^2=4$</button>
@@ -229,24 +248,36 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         <div class="axis-legend"><span class="ax-x">x</span><span class="ax-y">y</span><span class="ax-z">z</span></div>
         <div class="controls-bar">
           <button class="btn btn-play" id="btnCylGrow">▶ 重新生成</button>
-          <button class="btn btn-toggle" id="btnCylCurveOnly">只看母線</button>
+          <button class="btn btn-toggle" id="btnCylCurveOnly">只看準線</button>
           <button class="btn btn-reset" onclick="scenes.cylinder.resetCam()">↺ 視角重置</button>
         </div>
       </div>
     </div>
     <div class="side-panel">
       <div class="eq-card">
-        <div class="eq-label">方程式 &amp; 母線</div>
+        <div class="eq-label">方程式 &amp; 準線 / 直紋線</div>
         <div class="eq-formula" id="cylEqDisplay">$x^2 + y^2 = 4$</div>
-        <div class="eq-sub" id="cylSubDisplay">母線位在 xy-平面 · 平行軸：z</div>
+        <div class="eq-sub" id="cylSubDisplay">準線位在 xy-平面 · 直紋線平行 z 軸</div>
       </div>
       <div class="info-box" style="margin:0;">
         <span class="info-label">關鍵原則</span>
-        <div style="font-size:.92rem;margin-top:.3rem;">方程式缺 <span class="pill pill-z">z</span> → rulings 平行 <span class="pill pill-z">z 軸</span><br>
-        方程式缺 <span class="pill pill-x">x</span> → rulings 平行 <span class="pill pill-x">x 軸</span><br>
-        方程式缺 <span class="pill pill-y">y</span> → rulings 平行 <span class="pill pill-y">y 軸</span></div>
+        <div style="font-size:.92rem;margin-top:.3rem;">方程式缺 <span class="pill pill-z">z</span> → 直紋線平行 <span class="pill pill-z">z 軸</span><br>
+        方程式缺 <span class="pill pill-x">x</span> → 直紋線平行 <span class="pill pill-x">x 軸</span><br>
+        方程式缺 <span class="pill pill-y">y</span> → 直紋線平行 <span class="pill pill-y">y 軸</span></div>
       </div>
     </div>
+  </div>
+
+  <div class="quiz-card" id="quiz-ch11-1">
+    <span class="quiz-tag">概念檢查</span>
+    <div class="quiz-q">方程式 $z = y^2$ 表示的曲面，其直紋線 (rulings) 平行於哪個座標軸？</div>
+    <div class="quiz-options">
+      <button class="quiz-opt">$x$ 軸</button>
+      <button class="quiz-opt">$y$ 軸</button>
+      <button class="quiz-opt">$z$ 軸</button>
+      <button class="quiz-opt">無法判定</button>
+    </div>
+    <div class="quiz-feedback"></div>
   </div>
 </section>
 
@@ -298,6 +329,18 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       </div>
     </div>
   </div>
+
+  <div class="quiz-card" id="quiz-ch11-2">
+    <span class="quiz-tag">概念檢查</span>
+    <div class="quiz-q">某二次曲面：平行 $xy$ 平面的截痕是橢圓，平行 $xz$ 平面的典型截痕是雙曲線。最有可能是哪一種？</div>
+    <div class="quiz-options">
+      <button class="quiz-opt">橢球面 $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}+\dfrac{z^2}{c^2}=1$</button>
+      <button class="quiz-opt">單葉雙曲面 $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}-\dfrac{z^2}{c^2}=1$</button>
+      <button class="quiz-opt">橢圓錐面 $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=\dfrac{z^2}{c^2}$</button>
+      <button class="quiz-opt">雙葉雙曲面 $\dfrac{z^2}{c^2}-\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=1$</button>
+    </div>
+    <div class="quiz-feedback"></div>
+  </div>
 </section>
 
 <!-- ============================================================ -->
@@ -338,7 +381,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
     <div class="side-panel">
       <div class="eq-card">
-        <div class="eq-label">母線 &amp; 旋轉面</div>
+        <div class="eq-label">母曲線 &amp; 旋轉面</div>
         <div class="eq-formula" id="revEqDisplay">$r(z) = 3$</div>
         <div class="eq-sub" id="revSurfEq">$x^2+y^2 = 9$</div>
       </div>
@@ -456,6 +499,28 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <span class="info-label">TIP</span>
     <strong>何時用球座標？</strong>對稱中心在原點的物體——<em>球面、有錐體的積分、任何以原點為中心的對稱</em>。出現 $x^2+y^2+z^2$ 時換成 $\rho^2$ 幾乎一定會變乾淨。
   </div>
+
+  <div class="quiz-card" id="quiz-ch11-3">
+    <span class="quiz-tag">概念檢查</span>
+    <div class="quiz-q">球座標 $(\rho,\theta,\phi)$ 中，$\phi$ 的<strong>幾何意義</strong>與<strong>取值範圍</strong>分別是？</div>
+    <div class="quiz-options">
+      <button class="quiz-opt">方位角，$0 < \phi < 2\pi$</button>
+      <button class="quiz-opt">與 $+z$ 軸的夾角，$0 \le \phi \le \pi$</button>
+      <button class="quiz-opt">與 $xy$ 平面的夾角，$-\pi/2 \le \phi \le \pi/2$</button>
+      <button class="quiz-opt">與 $xy$ 平面的夾角，$0 \le \phi \le \pi$</button>
+    </div>
+    <div class="quiz-feedback"></div>
+  </div>
+
+  <div class="quiz-card" id="quiz-ch11-4">
+    <span class="quiz-tag">數字題</span>
+    <div class="quiz-q">球座標 $(\rho,\theta,\phi)=(5,0,\pi/3)$ 轉換為柱座標 $(r,\theta,z)$。求 $r$（保留 3 位小數）。提示：$r=\rho\sin\phi$。</div>
+    <div class="quiz-input-row">
+      <input type="number" class="quiz-input" placeholder="輸入 r" step="0.001">
+      <button class="quiz-check">檢查</button>
+    </div>
+    <div class="quiz-feedback"></div>
+  </div>
 </section>
 
 <!-- ============================================================ -->
@@ -487,7 +552,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       </tbody>
     </table>
 
-    <h3>柱座標 ⇄ 球座標　<span style="font-size:.75rem;color:var(--muted);font-weight:400;">（互換時規定 $r \geq 0$，以配合 $\rho \geq 0$ 使表示唯一；見講義 p.33）</span></h3>
+    <h3>柱座標 ⇄ 球座標　<span style="font-size:.75rem;color:var(--muted);font-weight:400;">（互換時規定 $r \geq 0$，以配合 $\rho \geq 0$ 使表示唯一）</span></h3>
     <table class="conv-table">
       <thead><tr><th>方向</th><th>公式</th></tr></thead>
       <tbody>
@@ -859,7 +924,7 @@ function makeSphereMarker(radius=0.14, color=0xf1c40f) {
   const CYL_PRESETS = {
     circle: {
       eq: '$x^2 + y^2 = 4$',
-      sub: '母線位在 xy-平面 · 平行軸：z',
+      sub: '準線位在 xy-平面 · 直紋線平行 z 軸',
       // curve in xy-plane
       curve: t => new THREE.Vector3(2*Math.cos(t), 2*Math.sin(t), 0),
       tMin: 0, tMax: 2*PI, tSegs: 96,
@@ -868,7 +933,7 @@ function makeSphereMarker(radius=0.14, color=0xf1c40f) {
     },
     ellipse: {
       eq: '$\\dfrac{x^2}{9}+\\dfrac{y^2}{4}=1$',
-      sub: '母線位在 xy-平面 · 平行軸：z',
+      sub: '準線位在 xy-平面 · 直紋線平行 z 軸',
       curve: t => new THREE.Vector3(3*Math.cos(t), 2*Math.sin(t), 0),
       tMin: 0, tMax: 2*PI, tSegs: 96,
       extrudeAxis: 'z', zMin: -2.5, zMax: 2.5,
@@ -876,7 +941,7 @@ function makeSphereMarker(radius=0.14, color=0xf1c40f) {
     },
     para_yx2: {
       eq: '$z = y^2$',
-      sub: '母線位在 yz-平面 · 平行軸：x',
+      sub: '準線位在 yz-平面 · 直紋線平行 x 軸',
       // curve in yz-plane (x = 0)
       curve: t => new THREE.Vector3(0, t, t*t),
       tMin: -1.8, tMax: 1.8, tSegs: 80,
@@ -885,7 +950,7 @@ function makeSphereMarker(radius=0.14, color=0xf1c40f) {
     },
     sinx: {
       eq: '$z = \\sin x$',
-      sub: '母線位在 xz-平面 · 平行軸：y',
+      sub: '準線位在 xz-平面 · 直紋線平行 y 軸',
       curve: t => new THREE.Vector3(t, 0, Math.sin(t)),
       tMin: 0, tMax: 2*PI, tSegs: 96,
       extrudeAxis: 'y', zMin: -3, zMax: 3,
@@ -893,7 +958,7 @@ function makeSphereMarker(radius=0.14, color=0xf1c40f) {
     },
     hyp_xy: {
       eq: '$x^2 - y^2 = 1$',
-      sub: '母線位在 xy-平面 · 平行軸：z',
+      sub: '準線位在 xy-平面 · 直紋線平行 z 軸',
       curve: null, // special: two-branch, handled below
       tMin: 0, tMax: 1, tSegs: 2,
       extrudeAxis: 'z', zMin: -2.5, zMax: 2.5,
@@ -1058,7 +1123,7 @@ function makeSphereMarker(radius=0.14, color=0xf1c40f) {
   });
   document.getElementById('btnCylCurveOnly').addEventListener('click', function(){
     curveOnly = !curveOnly;
-    this.textContent = curveOnly ? '顯示整個曲面' : '只看母線';
+    this.textContent = curveOnly ? '顯示整個曲面' : '只看準線';
     render(animT);
   });
 
@@ -1285,7 +1350,7 @@ function makeSphereMarker(radius=0.14, color=0xf1c40f) {
       name: '橢圓錐面 Elliptic Cone',
       eq: '$\\dfrac{x^2}{a^2}+\\dfrac{y^2}{b^2}=\\dfrac{z^2}{c^2}$',
       card_eq: '$\\dfrac{x^2}{a^2}+\\dfrac{y^2}{b^2}=\\dfrac{z^2}{c^2}$',
-      traceInfo: '<div><span class="pill pill-z">平行 xy</span> 橢圓 <span class="deg-note">（$z=0$ 退化為原點）</span></div><div><span class="pill pill-y">平行 xz</span> 雙曲線 <span class="deg-note">（$y=0$ 退化為兩相交直線＝錐面母線）</span></div><div><span class="pill pill-x">平行 yz</span> 雙曲線 <span class="deg-note">（$x=0$ 亦同）</span></div><div style="margin-top:.3rem;color:var(--muted);font-size:.78rem;">對稱軸：係數為負的 z 軸</div>',
+      traceInfo: '<div><span class="pill pill-z">平行 xy</span> 橢圓 <span class="deg-note">（$z=0$ 退化為原點）</span></div><div><span class="pill pill-y">平行 xz</span> 雙曲線 <span class="deg-note">（$y=0$ 退化為兩相交直線＝錐面的生成線）</span></div><div><span class="pill pill-x">平行 yz</span> 雙曲線 <span class="deg-note">（$x=0$ 亦同）</span></div><div style="margin-top:.3rem;color:var(--muted);font-size:.78rem;">對稱軸：係數為負的 z 軸</div>',
       color: 0x1abc9c,
       // x = a u cos v, y = b u sin v, z = c u  (u in [-zmax, zmax])
       build: (a,b,c) => paramSurface(
@@ -1799,8 +1864,90 @@ function makeSphereMarker(radius=0.14, color=0xf1c40f) {
   update();
 })();
 
+// ─── 基本觀念 Quiz（Ch 11） ───
+(function(){
+  const $ = id => document.getElementById(id);
+  function makeChoiceQuiz(cardId, correctIndex, hints){
+    const card=$(cardId); if(!card) return;
+    const opts=card.querySelectorAll('.quiz-opt');
+    const fb=card.querySelector('.quiz-feedback');
+    opts.forEach((opt,i)=>{
+      opt.addEventListener('click',()=>{
+        opts.forEach(o=>o.classList.remove('correct','wrong'));
+        if(i===correctIndex){
+          opt.classList.add('correct');
+          fb.className='quiz-feedback show ok';
+          fb.innerHTML=hints && hints.ok ? hints.ok : '✓ 正確！';
+        } else {
+          opt.classList.add('wrong');
+          fb.className='quiz-feedback show no';
+          fb.innerHTML=(hints && hints.wrong && hints.wrong[i]) ? hints.wrong[i] : '再想想。';
+        }
+        if(window.MathJax&&MathJax.typesetPromise) MathJax.typesetPromise([fb]);
+      });
+    });
+  }
+  function makeNumberQuiz(cardId, correct, opts={}){
+    const tol=opts.tolerance||0.02;
+    const card=$(cardId); if(!card) return;
+    const inputs=card.querySelectorAll('.quiz-input');
+    const checkBtn=card.querySelector('.quiz-check');
+    const fb=card.querySelector('.quiz-feedback');
+    function check(){
+      const correctArr = Array.isArray(correct) ? correct : [correct];
+      let allOk=true;
+      inputs.forEach((inp,i)=>{
+        inp.classList.remove('correct','wrong');
+        const v=parseFloat(inp.value);
+        if(isNaN(v) || Math.abs(v-correctArr[i])>tol){ inp.classList.add('wrong'); allOk=false; }
+        else inp.classList.add('correct');
+      });
+      fb.className='quiz-feedback show '+(allOk?'ok':'no');
+      fb.innerHTML=allOk?(opts.ok || '✓ 正確！'):(opts.wrong || '再算一次。');
+      if(window.MathJax&&MathJax.typesetPromise) MathJax.typesetPromise([fb]);
+    }
+    if(checkBtn) checkBtn.addEventListener('click',check);
+    inputs.forEach(inp=>inp.addEventListener('keydown',e=>{if(e.key==='Enter')check();}));
+  }
+  // Q11-1：z = y² 的直紋線平行 x 軸（缺哪個變數，直紋線就平行哪個軸）
+  makeChoiceQuiz('quiz-ch11-1', 0, {
+    ok:'✓ 正確！方程式 $z=y^2$ <strong>缺 $x$</strong>，故沿 $x$ 軸的所有「切片」都長一樣，直紋線平行 $x$ 軸。',
+    wrong:[
+      '',
+      '陷阱：方程式中「出現的變數」不是平移方向；要看「<strong>缺失的變數</strong>」。$z=y^2$ 缺 $x$。',
+      '$z$ 在方程式中是「因變數」（被 $y^2$ 決定），不是平移方向；缺 $x$ 才是。',
+      '由定義 11.2，方程式中缺哪個變數，直紋線就平行哪個軸；此題明確缺 $x$。'
+    ]
+  });
+  // Q11-2：xy 截痕橢圓 + xz 典型截痕雙曲線 → 單葉雙曲面
+  makeChoiceQuiz('quiz-ch11-2', 1, {
+    ok:'✓ 正確！單葉雙曲面 $\\dfrac{x^2}{a^2}+\\dfrac{y^2}{b^2}-\\dfrac{z^2}{c^2}=1$：固定 $z$ 得橢圓；固定 $y$ 得 $\\dfrac{x^2}{a^2}-\\dfrac{z^2}{c^2}=1-\\dfrac{y^2}{b^2}$，典型為雙曲線（特殊值會退化為兩直線）。',
+    wrong:[
+      '橢球面任何方向截痕都是橢圓，不會出現雙曲線。',
+      '',
+      '橢圓錐面在 $z=0$ 退化為一個點、其它 $z$ 值才是橢圓；$xz$ 截痕是兩條直線（不是雙曲線）。',
+      '雙葉雙曲面在 $|z|<c$ 時平行 $xy$ 平面<strong>沒有</strong>截痕，與題目「全是橢圓」矛盾。'
+    ]
+  });
+  // Q11-3：φ 與 +z 軸夾角，[0, π]
+  makeChoiceQuiz('quiz-ch11-3', 1, {
+    ok:'✓ 正確！$\\phi$ 是線段 $\\overrightarrow{OP}$ 與 $+z$ 軸的夾角，$0\\le\\phi\\le\\pi$（從正 $z$ 軸往下測量）。',
+    wrong:[
+      '$\\phi$ 不是方位角；方位角是 $\\theta$（$0\\le\\theta<2\\pi$）。',
+      '',
+      '$\\phi$ 從 $+z$ 軸往下測量，不是從 $xy$ 平面起算。',
+      '同上；測量起點是 $+z$ 軸（不是 $xy$ 平面）。'
+    ]
+  });
+  // Q11-4：r = 5 sin(π/3) = 5√3/2 ≈ 4.330
+  makeNumberQuiz('quiz-ch11-4', 5*Math.sqrt(3)/2, {
+    tolerance:0.001,
+    ok:'✓ 正確！$r=\\rho\\sin\\phi=5\\sin(\\pi/3)=5\\cdot\\dfrac{\\sqrt 3}{2}\\approx 4.330$。',
+    wrong:'用公式 $r=\\rho\\sin\\phi$：$\\sin(\\pi/3)=\\dfrac{\\sqrt 3}{2}$，所以 $r=5\\cdot\\dfrac{\\sqrt 3}{2}$。'
+  });
+})();
+
 </script>
 
 </body>
 </html>
-
