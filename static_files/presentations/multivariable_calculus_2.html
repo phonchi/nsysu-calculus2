@@ -146,10 +146,9 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   <a class="sn-item sn-sub" href="#sec-13-8-1">  · 二階檢定</a>
   <a class="sn-item sn-sub" href="#sec-13-8-2">  · 完整例題</a>
   <a class="sn-item sn-sub" href="#sec-13-8-3">  · 絕對極值</a>
-  <a class="sn-item" href="#sec-13-9">13.9 應用</a>
+  <a class="sn-item" href="#sec-13-9">13.9 應用（補充）</a>
   <a class="sn-item sn-sub" href="#sec-13-9-1">  · 最大盒子</a>
   <a class="sn-item sn-sub" href="#sec-13-9-2">  · 最大利潤</a>
-  <a class="sn-item sn-sub" href="#sec-13-9-3">  · 最小平方法</a>
   <a class="sn-item" href="#sec-ref">速查</a>
 </nav>
 
@@ -174,36 +173,6 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     $$\frac{dw}{dt}=w_x\frac{dx}{dt}+w_y\frac{dy}{dt}.$$
     <p>若 $x=g(s,t),\ y=h(s,t)$，則</p>
     $$\frac{\partial w}{\partial s}=w_xx_s+w_yy_s,\qquad \frac{\partial w}{\partial t}=w_xx_t+w_yy_t.$$
-  </div>
-
-  <div class="viz-layout">
-    <div class="canvas-panel">
-      <h3>曲面上的鏈鎖律路徑</h3>
-      <div class="slider-row">
-        <span class="slider-label">t</span>
-        <input type="range" id="chainT" min="-0.85" max="0.55" step="0.01" value="0">
-        <span class="slider-val" id="chainTVal">0.00</span>
-      </div>
-      <div class="canvas-wrap">
-        <canvas id="canvas-chain3d"></canvas>
-        <div class="hint-overlay">可旋轉 3D 曲面</div>
-      </div>
-    </div>
-    <div class="side-panel">
-      <div class="eq-card">
-        <div class="eq-label">例題 1 的幾何讀法</div>
-        <div class="eq-formula">$w=x^2y-y^2,\ x=\sin t,\ y=e^t$</div>
-        <div class="eq-sub">黃色曲線是 $(x(t),y(t),w(t))$，紅色點是目前的 $t$。</div>
-      </div>
-      <div class="info-card">
-        <div class="ic-title">目前數值</div>
-        <div class="ic-row"><span class="ic-label">x(t)</span><span class="ic-value" id="chainX">0.000</span></div>
-        <div class="ic-row"><span class="ic-label">y(t)</span><span class="ic-value" id="chainY">1.000</span></div>
-        <div class="ic-row"><span class="ic-label">$w_xx'$</span><span class="ic-value" id="chainPartX">0.000</span></div>
-        <div class="ic-row"><span class="ic-label">$w_yy'$</span><span class="ic-value" id="chainPartY">-2.000</span></div>
-        <div class="ic-row"><span class="ic-label">$dw/dt$</span><span class="ic-value highlight" id="chainDw">-2.000</span></div>
-      </div>
-    </div>
   </div>
 
   <div class="dep-tree-wrap">
@@ -617,7 +586,14 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
   </div>
 
-  <h3 id="sec-13-7-2">兩曲面交線的切線（叉積）</h3>
+  <h3 id="sec-13-7-2">兩曲面交線的切線（外積）</h3>
+  <div class="info-box">
+    <span class="info-label">向量工具</span>
+    <strong>外積：同時垂直於兩個向量的方向</strong>
+    <p style="margin:.55rem 0 .3rem;">外積（cross product）只在三維向量中使用。若 $\mathbf a=(a_1,a_2,a_3)$、$\mathbf b=(b_1,b_2,b_3)$，則</p>
+    $$\mathbf a\times\mathbf b=(a_2b_3-a_3b_2,\ a_3b_1-a_1b_3,\ a_1b_2-a_2b_1).$$
+    <p style="margin:.3rem 0;">它的方向同時垂直於 $\mathbf a$ 與 $\mathbf b$；長度等於以 $\mathbf a,\mathbf b$ 為邊的平行四邊形面積。兩曲面交線的切向量必須同時躺在兩個曲面的切平面內，因此要同時垂直於兩個法向量 $\nabla F$ 與 $\nabla G$，所以可用 $\nabla F\times\nabla G$ 找方向。</p>
+  </div>
   <div class="viz-layout">
     <div class="canvas-panel">
       <div class="canvas-wrap">
@@ -629,7 +605,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       <div class="eq-card">
         <div class="eq-label">例題 5</div>
         <div class="eq-formula">$x^2+2y^2+2z^2=20,\ x^2+y^2+z=4$</div>
-        <div class="eq-sub">描述兩曲面交線在 $P=(0,1,3)$ 的切線；交線切向 = 兩法向量的叉積。</div>
+        <div class="eq-sub">描述兩曲面交線在 $P=(0,1,3)$ 的切線；交線切向 = 兩法向量的外積。</div>
       </div>
       <div class="info-card">
         <div class="ic-title">三向量</div>
@@ -673,7 +649,12 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       <div class="ex-title">求曲面 $xyz=12$ 在 $(2,-2,-3)$ 的法線。</div>
       <div class="step-block"><div class="step-num">步驟 1</div>$F=xyz-12$，$\nabla F=(yz,xz,xy)$。</div>
       <div class="step-block"><div class="step-num">步驟 2</div>在 $P$：$\nabla F=((-2)(-3),(2)(-3),(2)(-2))=(6,-6,-4)$。</div>
-      <div class="step-block"><div class="step-num">步驟 3（法線參數式）</div>方向 $(6,-6,-4)$，化為對稱式：</div>
+      <div class="step-block"><div class="step-num">步驟 3（法線參數式）</div>法線通過 $P=(2,-2,-3)$，方向向量為 $(6,-6,-4)$，所以先寫成參數式
+      $$x=2+6t,\qquad y=-2-6t,\qquad z=-3-4t.$$
+      這裡的同一個參數 $t$ 表示沿著同一條直線走的距離比例。</div>
+      <div class="step-block"><div class="step-num">步驟 4（參數式轉對稱式）</div>從三個參數式各自解出 $t$：
+      $$t=\frac{x-2}{6},\qquad t=\frac{y+2}{-6},\qquad t=\frac{z+3}{-4}.$$
+      因為三式描述的是同一條直線上的同一個參數，所以把三個 $t$ 相等，即得到對稱式。</div>
       <div class="ex-answer">$\dfrac{x-2}{6}=\dfrac{y+2}{-6}=\dfrac{z+3}{-4}$</div>
     </div>
   </div>
@@ -706,7 +687,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       <li>對曲面 $F(x,y,z)=0$，$\nabla F(P)$ 即切平面的法向量、也是法線方向。</li>
       <li>切平面：$F_x(P)(x-x_0)+F_y(P)(y-y_0)+F_z(P)(z-z_0)=0$。</li>
       <li>$z=f(x,y)$ 形式：令 $F=f(x,y)-z$，則切平面為 $f_x(x-x_0)+f_y(y-y_0)-(z-z_0)=0$。</li>
-      <li>兩曲面交線的切向 = $\nabla F\times\nabla G$。</li>
+      <li>兩曲面交線的切向 = $\nabla F\times\nabla G$；外積給出同時垂直於兩個法向量的方向。</li>
       <li>定理 13.13 的使用條件包含 $\nabla F(P)\ne0$；若條件不滿足，不能直接套切平面公式。</li>
     </ul>
   </div>
@@ -722,6 +703,32 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <p>若 $f_x(a,b)=0,\ f_y(a,b)=0$ 且二階偏導連續，令</p>
     $$d=f_{xx}(a,b)f_{yy}(a,b)-[f_{xy}(a,b)]^2.$$
     <p>$d>0,f_{xx}>0$ 為相對極小；$d>0,f_{xx}<0$ 為相對極大；$d<0$ 為鞍點；$d=0$ 則本檢定無結論。</p>
+  </div>
+
+  <div class="concept-warning">
+    <div class="cw-title">二階偏導檢定的直覺</div>
+    <p>這裡只用講義前面已經建立的「增量」與「微分近似」來看。從點 $(a,b)$ 移到附近點 $(a+u,b+v)$，也就是令
+    $$u=\Delta x,\qquad v=\Delta y,$$
+    函數高度的改變量是
+    $$\Delta f=f(a+u,b+v)-f(a,b).$$</p>
+    <p>講義 13.4 說過，若函數可微，第一個線性近似來自全微分：
+    $$\Delta f\approx df=f_x(a,b)u+f_y(a,b)v.$$
+    這一整塊稱為<strong>一階項</strong>，因為它只含有 $u$、$v$ 的一次方。幾何上，一階項描述切平面的傾斜：往 $x$ 方向走 $u$，高度約改變 $f_x(a,b)u$；往 $y$ 方向走 $v$，高度約改變 $f_y(a,b)v$。</p>
+    <p>可是二階偏導檢定只在講義定理 13.17 的條件下使用，也就是
+    $$f_x(a,b)=0,\qquad f_y(a,b)=0.$$
+    因此在臨界點，一階項變成
+    $$f_x(a,b)u+f_y(a,b)v=0\cdot u+0\cdot v=0.$$
+    這表示切平面是水平的；只看一階近似時，附近所有方向的高度改變都被估成 $0$，所以它無法分辨此點是極大、極小，還是鞍點。</p>
+    <p>下一步要問：既然一階項消失，那高度的下一層變化從哪裡來？答案是：看斜率本身怎麼變。$f_x$ 和 $f_y$ 也是 $x,y$ 的函數，所以從 $(a,b)$ 移到 $(a+u,b+v)$ 時，可以再用一次線性近似：</p>
+    $$f_x(a+u,b+v)\approx f_x(a,b)+f_{xx}(a,b)u+f_{xy}(a,b)v,$$
+    $$f_y(a+u,b+v)\approx f_y(a,b)+f_{yx}(a,b)u+f_{yy}(a,b)v.$$
+    <p>在臨界點 $f_x(a,b)=f_y(a,b)=0$，所以上式變成：沿路走動時，$x$ 方向斜率大約由 $f_{xx}u+f_{xy}v$ 控制，$y$ 方向斜率大約由 $f_{yx}u+f_{yy}v$ 控制。也就是說，二階偏導數描述的是「斜率的變化」。</p>
+    <p>把這些斜率變化累積成高度變化，就得到<strong>二階項</strong>：
+    $$\frac12\left(f_{xx}(a,b)u^2+2f_{xy}(a,b)uv+f_{yy}(a,b)v^2\right).$$
+    它含有 $u^2$、$uv$、$v^2$，所以叫二階項。前面的 $\frac12$ 可理解為：斜率不是一開始就跳到終點的大小，而是從 $0$ 逐漸變化，累積高度時取到平均效果。這裡不需要額外定理，只要抓住講義的想法：一階項看「斜率」，二階項看「斜率如何改變」。</p>
+    <p>因此在臨界點附近，扣掉原本高度後主要看</p>
+    $$f(a+u,b+v)-f(a,b)\approx \frac12\left(f_{xx}u^2+2f_{xy}uv+f_{yy}v^2\right).$$
+    <p>$d=f_{xx}f_{yy}-f_{xy}^2$ 的作用，就是判斷這個二階式在所有方向 $(u,v)$ 上是否同號。若 $d>0$，所有方向的二階變化同號；再看 $f_{xx}$：正表示附近都較高，是相對極小；負表示附近都較低，是相對極大。若 $d<0$，不同方向的二階變化有正有負，所以是鞍點。若 $d=0$，二階資訊不足，正如講義所說，要改用圖形或其他方法判斷。</p>
   </div>
 
   <div class="concept-warning">
@@ -868,9 +875,9 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </section>
 
 <section id="sec-13-9">
-  <div class="section-number">13.9 兩變數函數極值的應用</div>
-  <h2>應用題：把限制與誤差也畫成幾何物件</h2>
-  <p>13.9 的三個例題都回到同一件事：先把問題寫成二變數函數，再找臨界點或比較可行區域。最大體積是限制平面下的盒子；最大利潤是曲面頂點；最小平方法則是誤差曲面 $S(a,b)$ 的最低點。</p>
+  <div class="section-number">13.9 兩變數函數極值的應用（補充）</div>
+  <h2>應用題（補充）：把限制畫成幾何物件</h2>
+  <p>13.9 不列入考試範圍，這裡只保留最大體積與最大利潤兩個建模例題作為補充。兩題都回到同一件事：先把問題寫成二變數函數，再找臨界點或比較可行區域。</p>
 
   <div class="viz-layout">
     <div class="canvas-panel">
@@ -940,45 +947,6 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
   </div>
 
-  <div class="viz-layout">
-    <div class="canvas-panel">
-      <h3 id="sec-13-9-3">例題 3：資料線與誤差曲面 S(a,b)</h3>
-      <div class="slider-row">
-        <span class="slider-label">a</span>
-        <input type="range" id="lsA" min="-0.2" max="1.5" step="0.01" value="0.62">
-        <span class="slider-val" id="lsAVal">0.62</span>
-      </div>
-      <div class="slider-row">
-        <span class="slider-label">b</span>
-        <input type="range" id="lsB" min="0.5" max="2.5" step="0.01" value="1.81">
-        <span class="slider-val" id="lsBVal">1.81</span>
-      </div>
-      <div class="method-grid">
-        <div class="canvas-wrap light">
-          <canvas id="canvas-lsq2d"></canvas>
-          <div class="hint-overlay" style="color:rgba(0,0,0,.62);background:rgba(255,255,255,.8)">資料點 + 殘差</div>
-        </div>
-        <div class="canvas-wrap">
-          <canvas id="canvas-error3d"></canvas>
-          <div class="hint-overlay">誤差曲面</div>
-        </div>
-      </div>
-    </div>
-    <div class="side-panel">
-      <div class="eq-card">
-        <div class="eq-label">THM 13.18 / 例題 3</div>
-        <div class="eq-formula">點：$(-3,0),(-1,1),(0,2),(2,3)$</div>
-        <div class="eq-sub">最佳線：$f(x)=\frac{8}{13}x+\frac{47}{26}$。</div>
-      </div>
-      <div class="info-card">
-        <div class="ic-title">平方誤差和</div>
-        <div class="ic-row"><span class="ic-label">S(a,b)</span><span class="ic-value highlight" id="lsS">0.346</span></div>
-        <div class="ic-row"><span class="ic-label">最佳 a</span><span class="ic-value ok">8/13</span></div>
-        <div class="ic-row"><span class="ic-label">最佳 b</span><span class="ic-value ok">47/26</span></div>
-      </div>
-    </div>
-  </div>
-
   <div class="concept-warning">
     <div class="cw-title">應用題的共同模式</div>
     <p>(1) <strong>建模</strong>：把問題寫成 $F(x,y)$ 或 $F(x,y,z)$ 加限制；<br>
@@ -1011,47 +979,12 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <div class="ex-answer">$x=2000,\ y=4000$；最大利潤 $\$18,\!000$。</div>
   </div>
 
-  <h3>講義例題 3：最小二乘迴歸線（THM 13.18）</h3>
-  <div class="info-box green">
-    <span class="info-label">THM 13.18 最小二乘迴歸線</span>
-    <p>對 $\{(x_i,y_i)\}_{i=1}^n$，最小化 $S(a,b)=\sum_i\bigl(y_i-(ax_i+b)\bigr)^2$ 的最佳線 $f(x)=ax+b$ 之係數為</p>
-    $$a=\frac{nS_{xy}-S_xS_y}{nS_{xx}-S_x^2},\qquad b=\frac{S_y-aS_x}{n}.$$
-    <p>其中 $S_x=\sum x_i,\ S_y=\sum y_i,\ S_{xx}=\sum x_i^2,\ S_{xy}=\sum x_iy_i$。</p>
-  </div>
-  <div class="lecture-example">
-    <div class="ex-tag">講義例題 3</div>
-    <div class="ex-title">求資料點 $(-3,0),(-1,1),(0,2),(2,3)$ 的最小二乘迴歸線。</div>
-    <div class="step-block"><div class="step-num">步驟 1（累加）</div>$n=4$；$S_x=-3-1+0+2=-2$；$S_y=0+1+2+3=6$；$S_{xx}=9+1+0+4=14$；$S_{xy}=0-1+0+6=5$。</div>
-    <div class="step-block"><div class="step-num">步驟 2（套公式）</div>$a=\dfrac{4\cdot 5-(-2)\cdot 6}{4\cdot 14-(-2)^2}=\dfrac{20+12}{56-4}=\dfrac{32}{52}=\dfrac{8}{13}$。</div>
-    <div class="step-block"><div class="step-num">步驟 3</div>$b=\dfrac{S_y-aS_x}{n}=\dfrac{6-(8/13)(-2)}{4}=\dfrac{6+16/13}{4}=\dfrac{(78+16)/13}{4}=\dfrac{94}{52}=\dfrac{47}{26}$。</div>
-    <div class="ex-answer">$f(x)=\dfrac{8}{13}x+\dfrac{47}{26}$。</div>
-  </div>
-
-  <div class="concept-warning">
-    <div class="cw-title">最小平方法的幾何意義</div>
-    <p>$S(a,b)$ 是 $(a,b)$ 兩變數函數，圖形為一個朝上開的<strong>碗形曲面</strong>。「最佳擬合線」對應「碗底」即 $S$ 的相對極小（同時是絕對極小，因為 $S\ge 0$ 且二次形式）。$\nabla S=0$ 兩條方程式正是上述線性聯立。</p>
-  </div>
-
-  <div class="quiz-card" id="quiz-13-9-1">
-    <span class="quiz-tag">快速檢查</span>
-    <div class="quiz-q">點 $(0,1),(1,3),(2,5)$ 的最小二乘迴歸線 $y=ax+b$。求 $a$、$b$：</div>
-    <div class="quiz-input-row">
-      <span style="font-family:'JetBrains Mono',monospace;font-size:.92rem;">$a=$</span>
-      <input type="number" class="quiz-input" placeholder="a" step="0.01" style="width:90px">
-      <span style="font-family:'JetBrains Mono',monospace;font-size:.92rem;">$b=$</span>
-      <input type="number" class="quiz-input" placeholder="b" step="0.01" style="width:90px">
-      <button class="quiz-check">檢查</button>
-    </div>
-    <div class="quiz-feedback"></div>
-  </div>
-
   <div class="section-summary">
     <div class="section-summary-title">13.9 重點整理</div>
     <ul>
       <li>應用題模式：建模 → 消變數 → 找臨界點 → 判型 → 代回。</li>
       <li>盒子例題：限制 $6x+4y+3z=24$，最大體積 $V_{\max}=64/9$ at $(4/3,2,8/3)$。</li>
       <li>利潤例題：$x=2000,\ y=4000$，$P_{\max}=\$18{,}000$；二階檢定 $d>0,\ P_{xx}<0$ 確認為極大。</li>
-      <li>最小平方法：$a=\dfrac{nS_{xy}-S_xS_y}{nS_{xx}-S_x^2}$、$b=\dfrac{S_y-aS_x}{n}$；幾何上 = 誤差曲面 $S(a,b)$ 的碗底。</li>
     </ul>
   </div>
 </section>
@@ -1089,7 +1022,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       <div class="ref-card-eq">令 $F=f-z$；切平面 $f_x(x-x_0)+f_y(y-y_0)-(z-z_0)=0$</div>
     </div>
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">兩曲面交線切向</span><span class="ref-card-name-en">— —</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">兩曲面交線切向</span><span class="ref-card-name-en">外積</span></div>
       <div class="ref-card-eq">交線方向 = $\nabla F\times\nabla G$</div>
     </div>
     <div class="ref-card">
@@ -1103,10 +1036,6 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <div class="ref-card">
       <div class="ref-card-header"><span class="ref-card-name">極值定理</span><span class="ref-card-name-en">THM 13.15</span></div>
       <div class="ref-card-eq">閉、有界 $R$ 上連續函數必有絕對最大與最小值</div>
-    </div>
-    <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">最小平方迴歸線</span><span class="ref-card-name-en">THM 13.18</span></div>
-      <div class="ref-card-eq">$a=\dfrac{nS_{xy}-S_xS_y}{nS_{xx}-S_x^2}$；$b=\dfrac{S_y-aS_x}{n}$</div>
     </div>
   </div>
 </section>
@@ -1161,22 +1090,11 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   "boxMaxVolume": 7.111111111111111,
   "profitMaxPoint": [2000, 4000],
   "profitMaxValue": 18000,
-  "lsrExample3_n": 4,
-  "lsrExample3_Sx": -2,
-  "lsrExample3_Sy": 6,
-  "lsrExample3_Sxx": 14,
-  "lsrExample3_Sxy": 5,
-  "lsrExample3_a": "8/13",
-  "lsrExample3_b": "47/26",
-  "leastSquaresA": 0.6153846153846154,
-  "leastSquaresB": 1.8076923076923077,
   "quiz_13_5_1_answer": 5,
   "quiz_13_6_1_answer_decimal": -2.121,
   "quiz_13_6_2_answer": 5,
   "quiz_13_7_1_answer": 9,
-  "quiz_13_8_1_d": 7,
-  "quiz_13_9_1_a": 2,
-  "quiz_13_9_1_b": 1
+  "quiz_13_8_1_d": 7
 }</script>
 
 <script>
@@ -1346,35 +1264,6 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     }
     if(checkBtn) checkBtn.addEventListener('click',check);
     inputs.forEach(inp=>inp.addEventListener('keydown',e=>{if(e.key==='Enter')check();}));
-  }
-
-  function initChain(){
-    const S=makeScene('canvas-chain3d',{radius:7,axisLen:2.5,gridSize:2.5,gridStep:.5}); if(!S)return;
-    const f=(x,y)=>x*x*y-y*y;
-    S.scene.add(mesh(scalarSurface(f,-1.2,1.2,.35,1.9,44,44),0x2c3e7a,.66));
-    // 路徑曲線（曲面上）
-    const pts=[]; for(let t=-.85;t<=.55;t+=.025){const x=Math.sin(t),y=Math.exp(t);pts.push(new THREE.Vector3(x,y,f(x,y)));}
-    S.scene.add(curve(pts,0xf1c40f));
-    // 路徑在 xy 平面的投影（虛線色）
-    const proj=[]; for(let t=-.85;t<=.55;t+=.025){const x=Math.sin(t),y=Math.exp(t);proj.push(new THREE.Vector3(x,y,0));}
-    const projMat=new THREE.LineDashedMaterial({color:0xf1c40f,dashSize:.07,gapSize:.05,opacity:.6,transparent:true});
-    const projLine=new THREE.Line(new THREE.BufferGeometry().setFromPoints(proj),projMat); projLine.computeLineDistances(); S.scene.add(projLine);
-    const p=marker(.11,0xe74c3c); S.scene.add(p);
-    const pProj=marker(.07,0xe74c3c); pProj.material.opacity=.55; pProj.material.transparent=true; S.scene.add(pProj);
-    const dropLine=lineObj(new THREE.Vector3(),new THREE.Vector3(),0xc0392b); dropLine.material.transparent=true; dropLine.material.opacity=.55; S.scene.add(dropLine);
-    const tan=lineObj(new THREE.Vector3(),new THREE.Vector3(),0xffffff); S.scene.add(tan);
-    const input=$('chainT');
-    function update(){
-      const t=parseFloat(input.value),x=Math.sin(t),y=Math.exp(t),z=f(x,y);
-      const wx=2*x*y,wy=x*x-2*y,xp=Math.cos(t),yp=y,dw=wx*xp+wy*yp;
-      p.position.set(x,y,z);
-      pProj.position.set(x,y,0);
-      dropLine.geometry.setFromPoints([new THREE.Vector3(x,y,0),new THREE.Vector3(x,y,z)]);
-      tan.geometry.setFromPoints([new THREE.Vector3(x-.18*xp,y-.18*yp,z-.18*dw),new THREE.Vector3(x+.18*xp,y+.18*yp,z+.18*dw)]);
-      setText('chainTVal',fmt(t,2)); setText('chainX',fmt(x)); setText('chainY',fmt(y)); setText('chainPartX',fmt(wx*xp)); setText('chainPartY',fmt(wy*yp)); setText('chainDw',fmt(dw));
-      S.requestRender();
-    }
-    input.addEventListener('input',update); update();
   }
 
   function initDirection(){
@@ -1844,30 +1733,6 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     $('profitX').addEventListener('input',draw); $('profitY').addEventListener('input',draw); draw();
   }
 
-  const lsPts=[[-3,0],[-1,1],[0,2],[2,3]];
-  function errS(a,b){return lsPts.reduce((s,p)=>s+Math.pow(p[1]-(a*p[0]+b),2),0);}
-  function initLeastSquares(){
-    const S=makeScene('canvas-error3d',{radius:4.8,axisLen:2.6,gridSize:2.5,gridStep:.5}); if(!S)return;
-    S.scene.add(mesh(scalarSurface((a,b)=>errS(a,b)/3,-.2,1.5,.5,2.5,54,54),0x2c3e7a,.76));
-    const p=marker(.09,0xe74c3c); S.scene.add(p);
-    const opt=marker(.07,0xf1c40f); opt.position.set(8/13,47/26,errS(8/13,47/26)/3); S.scene.add(opt);
-    const canvas=$('canvas-lsq2d'),ctx=canvas.getContext('2d');
-    function fit(){const r=canvas.getBoundingClientRect(),dpr=Math.min(2,window.devicePixelRatio||1);canvas.width=Math.max(260,Math.round(r.width*dpr));canvas.height=Math.max(190,Math.round(r.height*dpr));return {w:canvas.width,h:canvas.height};}
-    function draw2d(a,b){
-      const {w,h}=fit(); ctx.clearRect(0,0,w,h); ctx.fillStyle='#fbf7ed'; ctx.fillRect(0,0,w,h);
-      const sx=x=>w*(.12+(x+3.5)/6*.76), sy=y=>h*(.86-y/4*.72);
-      ctx.strokeStyle='#d9d0c0'; ctx.lineWidth=1; for(let i=0;i<5;i++){ctx.beginPath();ctx.moveTo(w*.08,sy(i));ctx.lineTo(w*.92,sy(i));ctx.stroke();}
-      const x1=-3.5,x2=2.5; ctx.strokeStyle='#2c3e7a'; ctx.lineWidth=3; ctx.beginPath();ctx.moveTo(sx(x1),sy(a*x1+b));ctx.lineTo(sx(x2),sy(a*x2+b));ctx.stroke();
-      lsPts.forEach(([x,y])=>{const yy=a*x+b;ctx.strokeStyle='#c0392b';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(sx(x),sy(y));ctx.lineTo(sx(x),sy(yy));ctx.stroke();ctx.fillStyle='#1a6b4a';ctx.beginPath();ctx.arc(sx(x),sy(y),5,0,TAU);ctx.fill();});
-    }
-    function draw(){
-      const a=parseFloat($('lsA').value),b=parseFloat($('lsB').value),s=errS(a,b);
-      p.position.set(a,b,s/3); setText('lsAVal',fmt(a,2)); setText('lsBVal',fmt(b,2)); setText('lsS',fmt(s,3)); draw2d(a,b); S.requestRender();
-    }
-    $('lsA').addEventListener('input',draw); $('lsB').addEventListener('input',draw); new ResizeObserver(draw).observe(canvas); draw();
-  }
-
-  initChain();
   initDirection();
   initDir2DContour();
   initTemperature2D();
@@ -1879,7 +1744,6 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   initBoundary();
   initBox();
   initProfit();
-  initLeastSquares();
 
   // ─── Quizzes ───
   // 13.5
@@ -1950,15 +1814,6 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   makeMultiQuiz('quiz-13-8-2', [0,1,2], {
     ok:'✓ 三個都要查！(1) 內部 $\\nabla f=0$；(2) 偏導不存在的點；(3) 邊界（含角點）。',
     wrong:'區域外的點不算候選；其餘三項皆需檢查。'
-  });
-  // 13.9
-  // 點 (0,1),(1,3),(2,5)：n=3, Sx=3, Sy=9, Sxx=5, Sxy=13
-  // a = (3·13 - 3·9)/(3·5 - 9) = (39-27)/(15-9) = 12/6 = 2
-  // b = (9 - 2·3)/3 = 3/3 = 1
-  makeNumberQuiz('quiz-13-9-1', [2, 1], {
-    tolerance:0.02,
-    ok:'✓ 正確！$n=3,\\ S_x=3,\\ S_y=9,\\ S_{xx}=5,\\ S_{xy}=13$；$a=(39-27)/(15-9)=2$，$b=(9-2\\cdot 3)/3=1$。即直線 $y=2x+1$，剛好穿過所有資料點（殘差為 $0$）。',
-    wrong:'計算 $S_x=0+1+2=3,\\ S_y=1+3+5=9,\\ S_{xx}=0+1+4=5,\\ S_{xy}=0+3+10=13$；再代入 THM 13.18 公式。'
   });
 })();
 </script>
