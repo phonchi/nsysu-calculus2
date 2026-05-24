@@ -131,8 +131,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </head>
 <body>
 <nav class="side-nav" id="sideNav">
-  <div class="sn-title">CHAPTER 14 · I</div>
-  <a class="sn-item" href="#sec-14-1">14.1 重複積分</a>
+  <div class="sn-title">第 14 章 · I</div>
+  <a class="sn-item" href="#sec-14-1">14.1 逐次積分</a>
   <a class="sn-item sn-sub" href="#sec-14-1-1">  · Type I / II</a>
   <a class="sn-item sn-sub" href="#sec-14-1-2">  · 基本例題</a>
   <a class="sn-item sn-sub" href="#sec-14-1-3">  · 換序積分</a>
@@ -151,8 +151,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
 <div class="hero">
   <div class="hero-content">
-    <h1><span class="green">多重積分 I</span>：從<span class="yellow">重複積分</span>到極座標換元</h1>
-    <div class="subtitle">第 14.1-14.3 節｜互動教學式講義｜面積、體積、Fubini 與 Jacobian</div>
+    <h1><span class="green">多重積分 I</span>：從<span class="yellow">逐次積分</span>到極座標換元</h1>
+    <div class="subtitle">第 14.1-14.3 節｜互動教學式講義｜面積、體積、Fubini 與雅可比</div>
     <div class="big-formula">$\displaystyle\iint_R f\,dA=\int_a^b\!\!\int_{g_1(x)}^{g_2(x)}\!\!f\,dy\,dx=\int_\alpha^\beta\!\!\int_{g_1(\theta)}^{g_2(\theta)}\!\!f(r\cos\theta,r\sin\theta)\,r\,dr\,d\theta$</div>
   </div>
 </div>
@@ -163,12 +163,30 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 <!-- SECTION 14.1 -->
 <!-- ============================================================ -->
 <section id="sec-14-1">
-  <div class="section-number">14.1 重複積分與平面區域面積</div>
-  <h2>重複積分：先一變數、再一變數</h2>
-  <p>把單變數積分套兩層就得到「<strong>重複積分（iterated integral）</strong>」：固定外層變數，先把內層算成只含外層變數的單變數函數，再對外層積分。<span class="pill pill-blue">關鍵</span>：外層上下限必須是常數，內層上下限可以是外層變數的函數。積分變數是 <em>dummy variable</em> — $\int_0^1 x\,dx$ 與 $\int_0^1 t\,dt$ 完全相同。</p>
+  <div class="section-number">14.1 逐次積分與平面區域面積</div>
+  <h2>逐次積分：先一變數、再一變數</h2>
+  <p>把多變數函數一次只對一個變數積分，就得到「<strong>逐次積分</strong>」。它的核心不是同時處理所有變數，而是先固定其他變數，把內層當成一個單變數積分；算完後得到只含外層變數的函數，再做下一層積分。<span class="pill pill-blue">關鍵</span>：外層上下限必須是常數，內層上下限可以是外層變數的函數。積分變數是 <em>虛變數</em> — $\int_0^1 x\,dx$ 與 $\int_0^1 t\,dt$ 完全相同。</p>
+
+  <div class="info-box warm">
+    <span class="info-label">從「反偏導函數」理解逐次積分</span>
+    <p>講義一開始先提醒：多變數函數也可以對某一個變數做不定積分。例如若 $f_x(x,y)=2xy$，則</p>
+    $$\int f_x(x,y)\,dx=\int 2xy\,dx=y\int 2x\,dx=x^2y+C(y).$$
+    <p>為什麼是 $C(y)$ 而不是單純的常數 $C$？因為這一步只對 $x$ 積分，$y$ 被暫時當成常數；任何只依賴 $y$ 的函數對 $x$ 微分都會變成 $0$。所以從 $f_x$ 反推 $f$ 時，只能回復出「相差一個 $x$ 看不見的函數」的結果。</p>
+    <p>逐次積分把這個想法改成定積分：先固定外層變數，對內層變數做一個有上下限的單變數積分。定積分會把不定積分中的 $C(y)$ 抵消掉，留下明確的差值。</p>
+    $$\int_{h_1(y)}^{h_2(y)} f_x(x,y)\,dx=f(h_2(y),y)-f(h_1(y),y).$$
+  </div>
 
   <div class="info-box green">
-    <span class="info-label">DEF 14.1 平面區域面積</span>
+    <span class="info-label">逐次積分的操作方式</span>
+    <p>以 $\displaystyle\int_a^b\int_{g_1(x)}^{g_2(x)} f(x,y)\,dy\,dx$ 為例：</p>
+    <p>(1) 先看最右邊的 $dy$，所以內層先對 $y$ 積分，並把 $x$ 當常數。<br>
+    (2) 內層上下限 $g_1(x),g_2(x)$ 可以依賴 $x$，因為此時 $x$ 只是固定參數。<br>
+    (3) 代入內層上下限後，內層積分變成一個只含 $x$ 的函數 $A(x)$。<br>
+    (4) 最後再對 $x$ 從常數 $a$ 到常數 $b$ 積分，得到一個數值。</p>
+  </div>
+
+  <div class="info-box green">
+    <span class="info-label">定義 14.1 平面區域面積</span>
     <p><span class="pill pill-blue">Type I（垂直簡單）</span>：$R:\ a\le x\le b,\ g_1(x)\le y\le g_2(x)$，</p>
     $$A=\int_a^b\!\!\int_{g_1(x)}^{g_2(x)}\,dy\,dx.$$
     <p><span class="pill pill-red">Type II（水平簡單）</span>：$R:\ c\le y\le d,\ h_1(y)\le x\le h_2(y)$，</p>
@@ -200,10 +218,20 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <div class="concept-warning">
-    <div class="cw-title">概念辨析 · dummy variable & 上下限規則</div>
+    <div class="cw-title">概念辨析 · 虛變數 & 上下限規則</div>
     <p>(1) <strong>積分變數是 dummy</strong>：$\int_0^1 x\,dx=\int_0^1 t\,dt$；變數名稱不影響值。<br>
-    (2) <strong>外層上下限必須是常數</strong>：$\int_0^x y\,dx$ 是錯誤寫法（外層出現 $x$ 同時又是上限）。<br>
-    (3) <strong>內層可以是外層的函數</strong>：$\int_a^b\int_{g_1(x)}^{g_2(x)} f\,dy\,dx$ 中，內層 $y$ 的範圍由 $x$ 決定。</p>
+    (2) <strong>積分變數不能出現在自己的上下限</strong>：例如 $\int_0^x y\,dx$ 沒有清楚意義，因為 $x$ 同時是「要被積掉的變數」又是「上限」。若上限本來是固定數，應寫 $\int_0^a y\,dx$；若上限本來是外部參數 $x$，積分變數應改名，例如 $\int_0^x y\,dt$。<br>
+    (3) <strong>外層上下限必須是常數</strong>：外層積完後要得到一個數值；若外層上下限還含積分變數，就不是一個定好的定積分。<br>
+    (4) <strong>內層可以是外層的函數</strong>：$\int_a^b\int_{g_1(x)}^{g_2(x)} f\,dy\,dx$ 中，內層 $y$ 的範圍由當下固定的 $x$ 決定。</p>
+  </div>
+
+  <div class="info-box warm">
+    <span class="info-label">為什麼逐次積分可以表示面積？</span>
+    <p>若 $R$ 是 Type I 區域：$a\le x\le b,\ g_1(x)\le y\le g_2(x)$，固定一個 $x$ 後，垂直 strip 的高度就是 $g_2(x)-g_1(x)$。這個高度也可以寫成</p>
+    $$\int_{g_1(x)}^{g_2(x)}1\,dy=\int_{g_1(x)}^{g_2(x)}dy=g_2(x)-g_1(x).$$
+    <p>接著讓 $x$ 從 $a$ 掃到 $b$，把每一條極薄 strip 的「高度 $\times$ 寬度 $dx$」累加，就得到面積：</p>
+    $$A=\int_a^b\left[\int_{g_1(x)}^{g_2(x)}dy\right]dx=\int_a^b\int_{g_1(x)}^{g_2(x)}dy\,dx.$$
+    <p>Type II 區域完全類似，只是改用水平 strip：先固定 $y$，內層 $\int_{h_1(y)}^{h_2(y)}dx$ 給出水平長度，再對 $y$ 累加。</p>
   </div>
 
   <h3 id="sec-14-1-2">例題</h3>
@@ -260,7 +288,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
   </div>
 
-  <h3 id="sec-14-1-3">例題 5：交換積分順序（reverse the order）</h3>
+  <h3 id="sec-14-1-3">例題 5：交換積分順序</h3>
   <p>同一個區域寫成 Type I 與 Type II 都對，但<strong>計算難度可能差很多</strong>。例題 5 比較兩種順序的設定。</p>
   <div class="lecture-example">
     <div class="ex-tag">講義例題 5</div>
@@ -332,7 +360,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   <div class="section-summary">
     <div class="section-summary-title">14.1 重點整理</div>
     <ul>
-      <li>重複積分先做內層（把外層變數當常數），再做外層。</li>
+      <li>逐次積分先做內層（把外層變數當常數），再做外層。</li>
       <li>外層上下限必須是常數；內層上下限可以是外層變數的函數。</li>
       <li>面積：Type I 用 $\int\int dy\,dx$，Type II 用 $\int\int dx\,dy$。</li>
       <li>同一區域兩種寫法都對；計算難度可能差很多（例題 5），實作時先畫圖再選。</li>
@@ -349,7 +377,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   <p>14.1 求的是「平面區域面積」（被積函數 = 1）。把被積函數推廣為任意連續 $f(x,y)$，用<strong>黎曼和的極限</strong>定義雙重積分；幾何上，當 $f\ge 0$ 時，雙重積分 = 區域 $R$ 上方、曲面 $z=f(x,y)$ 下方的<strong>體積</strong>。</p>
 
   <div class="info-box green">
-    <span class="info-label">DEF 14.2 雙重積分</span>
+    <span class="info-label">定義 14.2 雙重積分</span>
     <p>把區域 $R$ 分割成 $n$ 個小區塊，第 $i$ 塊面積 $\Delta A_i$，任取 $(x_i,y_i)$ 在塊內，</p>
     $$\iint_R f(x,y)\,dA=\lim_{\|\Delta\|\to 0}\sum_{i=1}^{n}f(x_i,y_i)\,\Delta A_i.$$
     <p>$\|\Delta\|=$ 最大塊的對角線長度。極限存在時稱 $f$ 在 $R$ <strong>可積</strong>；$f$ 在閉有界區域 $R$ 上連續即可積。</p>
@@ -396,30 +424,30 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <div class="info-box green">
-    <span class="info-label">THM 14.1 雙重積分性質</span>
+    <span class="info-label">定理 14.1 雙重積分性質</span>
     <p>連續 $f,g$，常數 $c$：</p>
     $$\iint_R cf\,dA=c\iint_R f\,dA;\quad \iint_R(f\pm g)\,dA=\iint_R f\,dA\pm\iint_R g\,dA;$$
     $$f\ge 0\Rightarrow\iint_R f\,dA\ge 0;\quad R=R_1\cup R_2\text{（不重疊）}\Rightarrow\iint_R f\,dA=\iint_{R_1}+\iint_{R_2}.$$
   </div>
 
   <div class="info-box">
-    <span class="info-label">THM 14.2 Fubini 定理</span>
+    <span class="info-label">定理 14.2 Fubini 定理</span>
     <p>$f$ 在區域 $R$ 上連續：</p>
     <p><strong>Type I</strong> $a\le x\le b,\ g_1(x)\le y\le g_2(x)$：</p>
     $$\iint_R f\,dA=\int_a^b\!\!\int_{g_1(x)}^{g_2(x)} f(x,y)\,dy\,dx.$$
     <p><strong>Type II</strong> $c\le y\le d,\ h_1(y)\le x\le h_2(y)$：</p>
     $$\iint_R f\,dA=\int_c^d\!\!\int_{h_1(y)}^{h_2(y)} f(x,y)\,dx\,dy.$$
-    <p>Fubini 把雙重積分化為 iterated integral，使具體計算變可能。</p>
+    <p>Fubini 把雙重積分化為逐次積分，使具體計算變可能。</p>
   </div>
 
-  <h3 id="sec-14-2-2">互動 2：Fubini 切片視覺</h3>
-  <p>固定 $x=x_0$，截面 $z=f(x_0,y)$ 是一條曲線；它在 $y$ 範圍內的面積為 $A(x_0)=\int_{g_1(x_0)}^{g_2(x_0)} f(x_0,y)\,dy$。把所有 $x$ 的截面面積對 $x$ 累加（沿 $x$「掃過」），就得到 Fubini 的 $\int_a^b A(x)\,dx=$ 體積。</p>
+  <h3 id="sec-14-2-2">互動 2：Fubini 切片視覺（講義四面體）</h3>
+  <p>講義先看由平面 $z=2-x-2y$ 與三個座標平面圍成的四面體。固定 $x=x_0$ 時，$y$ 的範圍是 $0\le y\le(2-x_0)/2$，截面是平行於 $yz$ 平面的直角三角形；它的面積為 $A(x_0)=\int_0^{(2-x_0)/2}(2-x_0-2y)\,dy$。再讓 $x_0$ 從 $0$ 掃到 $2$，所有三角截面累加成四面體體積。</p>
   <div class="viz-layout">
     <div class="canvas-panel">
       <div class="slider-row">
         <span class="slider-label">$x_0$</span>
-        <input type="range" id="fubiniX" min="0" max="1" step="0.01" value="0.5">
-        <span class="slider-val" id="fubiniXVal">0.50</span>
+        <input type="range" id="fubiniX" min="0" max="2" step="0.01" value="0.75">
+        <span class="slider-val" id="fubiniXVal">0.75</span>
       </div>
       <div class="toggle-row" id="fubiniToggles">
         <span class="toggle-label">顯示</span>
@@ -430,20 +458,22 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       </div>
       <div class="canvas-wrap">
         <canvas id="canvas-14-2-fubini"></canvas>
-        <div class="hint-overlay">藍色平面 = 切片 $x=x_0$</div>
+        <div class="hint-overlay">藍色平面 = 四面體切片 $x=x_0$</div>
       </div>
     </div>
     <div class="side-panel">
       <div class="eq-card">
-        <div class="eq-label">截面函數</div>
-        <div class="eq-formula">$A(x_0)=\displaystyle\int_0^1\Bigl(1-\tfrac{x_0^2}{2}-\tfrac{y^2}{2}\Bigr)dy$</div>
-        <div class="eq-sub">$= 1-\dfrac{x_0^2}{2}-\dfrac{1}{6}=\dfrac{5}{6}-\dfrac{x_0^2}{2}$</div>
+        <div class="eq-label">講義四面體截面</div>
+        <div class="eq-formula">$z=2-x-2y,\quad 0\le x\le 2,\quad 0\le y\le\dfrac{2-x}{2}$</div>
+        <div class="eq-sub">$A(x_0)=\displaystyle\int_0^{(2-x_0)/2}(2-x_0-2y)\,dy=\dfrac{(2-x_0)^2}{4}$</div>
       </div>
       <div class="info-card">
         <div class="ic-title">截面值</div>
-        <div class="ic-row"><span class="ic-label">$x_0$</span><span class="ic-value" id="fubiniX0">0.50</span></div>
-        <div class="ic-row"><span class="ic-label">$A(x_0)$</span><span class="ic-value highlight" id="fubiniA">0.7083</span></div>
-        <div class="ic-row"><span class="ic-label">$V=\int_0^1\!A\,dx$</span><span class="ic-value ok">$2/3$</span></div>
+        <div class="ic-row"><span class="ic-label">$x_0$</span><span class="ic-value" id="fubiniX0">0.75</span></div>
+        <div class="ic-row"><span class="ic-label">截面底 $\frac{2-x_0}{2}$</span><span class="ic-value" id="fubiniBase">0.6250</span></div>
+        <div class="ic-row"><span class="ic-label">截面高 $2-x_0$</span><span class="ic-value" id="fubiniHeight">1.2500</span></div>
+        <div class="ic-row"><span class="ic-label">$A(x_0)$</span><span class="ic-value highlight" id="fubiniA">0.3906</span></div>
+        <div class="ic-row"><span class="ic-label">$V=\int_0^2\!A(x)\,dx$</span><span class="ic-value ok">$2/3$</span></div>
       </div>
     </div>
   </div>
@@ -468,11 +498,13 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   <div class="lecture-example">
     <div class="ex-tag">講義例題 3</div>
     <div class="ex-title">求拋物面 $z=4-x^2-2y^2$ 與 $xy$ 平面之間的體積</div>
-    <div class="step-block"><div class="step-num">步驟 1（區域）</div>$z\ge 0$ 即 $x^2+2y^2\le 4$（橢圓區）。</div>
-    <div class="step-block"><div class="step-num">步驟 2（Type I 設定）</div>$-2\le x\le 2$，$|y|\le\sqrt{(4-x^2)/2}$。$V=\displaystyle\int_{-2}^{2}\!\!\int_{-\sqrt{(4-x^2)/2}}^{\sqrt{(4-x^2)/2}}(4-x^2-2y^2)\,dy\,dx$。</div>
-	    <div class="step-block"><div class="step-num">步驟 3（內層）</div>令 $a=\sqrt{(4-x^2)/2}$。內層為 $\bigl[(4-x^2)y-\tfrac{2}{3}y^3\bigr]_{-a}^{a}=2(4-x^2)a-\tfrac{4}{3}a^3=\dfrac{4}{3\sqrt 2}(4-x^2)^{3/2}$。</div>
-    <div class="step-block"><div class="step-num">步驟 4（三角代換）</div>$x=2\sin\theta$，化為 $\dfrac{64}{3\sqrt 2}\int_{-\pi/2}^{\pi/2}\cos^4\theta\,d\theta=\dfrac{64}{3\sqrt 2}\cdot\dfrac{3\pi}{8}$。</div>
-    <div class="ex-answer">$V=4\sqrt 2\,\pi\approx 17.77$</div>
+    <div class="step-block"><div class="step-num">步驟 1（投影區域）</div>體積在 $xy$ 平面上的投影由 $z\ge 0$ 決定：$4-x^2-2y^2\ge 0$，也就是 $x^2+2y^2\le 4$。這是橢圓區域，對固定 $x$ 而言，$y$ 的上下界是 $-\sqrt{(4-x^2)/2}\le y\le\sqrt{(4-x^2)/2}$，而 $x$ 從 $-2$ 到 $2$。</div>
+    <div class="step-block"><div class="step-num">步驟 2（依講義選 $dy\,dx$）</div>因為這個投影區域同時是垂直簡單區域與水平簡單區域，講義選 $dy\,dx$：$$V=\int_{-2}^{2}\int_{-\sqrt{(4-x^2)/2}}^{\sqrt{(4-x^2)/2}}(4-x^2-2y^2)\,dy\,dx.$$ 這裡被積函數就是曲面高度 $z=4-x^2-2y^2$。</div>
+    <div class="step-block"><div class="step-num">步驟 3（先算內層）</div>令 $a=\sqrt{(4-x^2)/2}$。固定 $x$ 時，$$\int_{-a}^{a}(4-x^2-2y^2)\,dy=\left[(4-x^2)y-\frac{2y^3}{3}\right]_{-a}^{a}.$$ 因為上下界對稱，第一項給 $2(4-x^2)a$，第二項給 $\frac{4}{3}a^3$，所以內層等於 $$2(4-x^2)a-\frac{4}{3}a^3=\frac{4}{3\sqrt2}(4-x^2)^{3/2}.$$</div>
+    <div class="step-block"><div class="step-num">步驟 4（外層化成一維積分）</div>因此 $$V=\frac{4}{3\sqrt2}\int_{-2}^{2}(4-x^2)^{3/2}\,dx.$$ 講義接著用三角代換處理這個積分。</div>
+    <div class="step-block"><div class="step-num">步驟 5（三角代換）</div>設 $x=2\sin\theta$。因為 $-2\le x\le 2$，所以 $-\pi/2\le\theta\le\pi/2$；且 $dx=2\cos\theta\,d\theta$、$4-x^2=4\cos^2\theta$。因此 $$(4-x^2)^{3/2}dx=(4\cos^2\theta)^{3/2}(2\cos\theta\,d\theta)=16\cos^4\theta\,d\theta.$$</div>
+    <div class="step-block"><div class="step-num">步驟 6（計算 $\int\cos^4\theta$）</div>由偶函數對稱，$$\int_{-\pi/2}^{\pi/2}\cos^4\theta\,d\theta=2\int_0^{\pi/2}\cos^4\theta\,d\theta.$$ 又 $\cos^4\theta=\left(\frac{1+\cos2\theta}{2}\right)^2=\frac{3+4\cos2\theta+\cos4\theta}{8}$，所以 $$\int_0^{\pi/2}\cos^4\theta\,d\theta=\left[\frac{1}{8}\left(3\theta+2\sin2\theta+\frac14\sin4\theta\right)\right]_0^{\pi/2}=\frac{3\pi}{16}.$$ 因此整個對稱區間積分為 $3\pi/8$。</div>
+    <div class="ex-answer">$V=\dfrac{4}{3\sqrt2}\cdot 16\cdot\dfrac{3\pi}{8}=\dfrac{8\pi}{\sqrt2}=4\sqrt2\,\pi\approx 17.77$</div>
   </div>
 
   <div class="lecture-example">
@@ -512,25 +544,34 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         <div class="ic-row"><span class="ic-label">半徑</span><span class="ic-value">$1/2$</span></div>
         <div class="ic-row"><span class="ic-label">$V$</span><span class="ic-value highlight">$\pi/32$</span></div>
       </div>
-      <div class="lecture-example" style="margin:0;">
-        <div class="ex-tag">關鍵步驟</div>
-        <p style="font-size:.86rem;line-height:1.7;">被積函數 $=(1-x^2-y^2)-(1-y)=y-y^2-x^2$。在圓盤上換 $y'=y-\tfrac12,\ x=\rho\cos\varphi,\ y'=\rho\sin\varphi$ 得 $V=\displaystyle\int_0^{2\pi}\!\!\int_0^{1/2}(\tfrac14-\rho^2)\rho\,d\rho\,d\varphi=\dfrac{\pi}{32}$。</p>
-      </div>
     </div>
+  </div>
+
+  <div class="lecture-example">
+    <div class="ex-tag">講義例題 5 詳細解法</div>
+    <div class="ex-title">求上界 $z=1-x^2-y^2$、下界 $z=1-y$ 所夾立體的體積</div>
+    <div class="step-block"><div class="step-num">步驟 1（上減下）</div>上方曲面是 $z=1-x^2-y^2$，下方曲面是 $z=1-y$，所以每一點的垂直高度為 $$(1-x^2-y^2)-(1-y)=y-y^2-x^2.$$</div>
+    <div class="step-block"><div class="step-num">步驟 2（找投影區域）</div>兩曲面交線滿足 $1-x^2-y^2=1-y$，因此 $$x^2+y^2=y\quad\Longleftrightarrow\quad x^2+(y-\tfrac12)^2=\tfrac14.$$ 投影區域可寫成 $0\le y\le 1$，$-\sqrt{y-y^2}\le x\le\sqrt{y-y^2}$。</div>
+    <div class="step-block"><div class="step-num">步驟 3（寫成二重積分）</div>講義先寫成「拋物面下方體積」減「平面下方體積」，合併後就是直接積高度差：$$V=\int_0^1\int_{-\sqrt{y-y^2}}^{\sqrt{y-y^2}}(y-y^2-x^2)\,dx\,dy.$$</div>
+    <div class="step-block"><div class="step-num">步驟 4（先對 $x$ 積分）</div>令 $a=\sqrt{y-y^2}$。則 $$\int_{-a}^{a}(y-y^2-x^2)\,dx=\left[(y-y^2)x-\frac{x^3}{3}\right]_{-a}^{a}.$$ 因為 $a^2=y-y^2$，所以結果為 $$2(y-y^2)a-\frac{2}{3}a^3=\frac{4}{3}(y-y^2)^{3/2}.$$</div>
+    <div class="step-block"><div class="step-num">步驟 5（整理成講義形式）</div>因此 $$V=\frac{4}{3}\int_0^1(y-y^2)^{3/2}\,dy.$$ 又 $y-y^2=\dfrac{1-(2y-1)^2}{4}$，所以 $$(y-y^2)^{3/2}=\frac{1}{8}\left[1-(2y-1)^2\right]^{3/2}.$$</div>
+    <div class="step-block"><div class="step-num">步驟 6（三角代換）</div>設 $2y-1=\sin\theta$，則 $y=0\to\theta=-\pi/2$，$y=1\to\theta=\pi/2$，且 $dy=\frac12\cos\theta\,d\theta$。因此 $$V=\frac{4}{3}\cdot\frac18\int_0^1\left[1-(2y-1)^2\right]^{3/2}dy=\frac{1}{12}\int_{-\pi/2}^{\pi/2}\cos^4\theta\,d\theta=\frac{1}{6}\int_0^{\pi/2}\cos^4\theta\,d\theta.$$</div>
+    <div class="step-block"><div class="step-num">步驟 7（代入 $\cos^4$ 積分）</div>由例題 3 的計算，$\int_0^{\pi/2}\cos^4\theta\,d\theta=3\pi/16$，所以 $$V=\frac{1}{6}\cdot\frac{3\pi}{16}=\frac{\pi}{32}.$$</div>
+    <div class="ex-answer">體積 $V=\dfrac{\pi}{32}$。</div>
   </div>
 
 	  <div class="concept-warning">
 	    <div class="cw-title">概念辨析 · 順序選擇 & Fubini 條件</div>
-	    <p>(1) <strong>Fubini 需要 $f$ 連續 + $R$ 為 Type I 或 Type II</strong>（或可拆為有限個）；任意區域不行。<br>
+	    <p>(1) <strong>Fubini 需要 $f$ 連續 + $R$ 為 第 I 型或第 II 型</strong>（或可拆為有限個）；任意區域不行。<br>
 	    (2) <strong>同一區域兩種順序計算難度可能差很多</strong> — 例題 4 的 $e^{-x^2}$ 換成 $dx\,dy$ 仍是合法表示，但內層沒有初等原函數，不利於直接計算。<br>
 	    (3) 區域是<strong>圓 / 環 / 含 $x^2+y^2$ 函數</strong>時，預先想想 14.3 的<strong>極座標</strong>是否更簡單。</p>
 	  </div>
 
 	  <div class="quiz-card" id="quiz-14-2-1">
     <span class="quiz-tag">概念題</span>
-    <div class="quiz-q">Fubini 定理（THM 14.2）保證雙重積分可化為 iterated integral 的條件為何？</div>
+    <div class="quiz-q">Fubini 定理（定理 14.2）保證雙重積分可化為逐次積分的條件為何？</div>
     <div class="quiz-options">
-      <button class="quiz-opt">$f$ 連續 + $R$ 為 Type I 或 Type II 區域</button>
+      <button class="quiz-opt">$f$ 連續 + $R$ 為 第 I 型或第 II 型 區域</button>
       <button class="quiz-opt">$f$ 可微（$f$ 不需連續）</button>
       <button class="quiz-opt">任意區域 $R$，無條件成立</button>
       <button class="quiz-opt">$f$ 必須是多項式</button>
@@ -553,9 +594,9 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <ul>
       <li>雙重積分定義：黎曼和的極限 $\iint_R f\,dA=\lim\sum f(x_i,y_i)\,\Delta A_i$。</li>
       <li>$f\ge 0$ 時 = 體積；$f$ 連續 + $R$ 閉有界 ⇒ 可積。</li>
-      <li>Fubini（THM 14.2）：化為 iterated integral；Type I 或 Type II 形式。</li>
+      <li>Fubini（定理 14.2）：化為逐次積分；第 I 型或第 II 型 形式。</li>
       <li>順序選擇：先畫圖判斷哪一個內層好算（例 4 是經典）。</li>
-      <li>性質可以拿出常數、拆和、分區域加總（THM 14.1）。</li>
+      <li>性質可以拿出常數、拆和、分區域加總（定理 14.1）。</li>
     </ul>
   </div>
 </section>
@@ -566,7 +607,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 <section id="sec-14-3">
   <div class="section-number">14.3 變數替換：極座標</div>
   <h2>$dA=r\,dr\,d\theta$：扇形片才是面積元素</h2>
-  <p>圓形 / 環形 / 含 $x^2+y^2$ 的區域與被積函數，在直角座標下邊界與被積函數都很麻煩；換成<strong>極座標</strong>後常常一行就化簡。但別忘了 $dA$ 不再是 $dx\,dy$，而是 <span class="pill pill-grad">$r\,dr\,d\theta$</span>—— 多出來的 $r$ 是<strong>Jacobian</strong>。</p>
+  <p>圓形 / 環形 / 含 $x^2+y^2$ 的區域與被積函數，在直角座標下邊界與被積函數都很麻煩；換成<strong>極座標</strong>後常常一行就化簡。但別忘了 $dA$ 不再是 $dx\,dy$，而是 <span class="pill pill-grad">$r\,dr\,d\theta$</span>—— 多出來的 $r$ 是<strong>雅可比</strong>。</p>
 
   <h3 id="sec-14-3-1">互動 1：為什麼 $dA=r\,dr\,d\theta$？</h3>
   <p>把區域用射線（$\theta=$ 常數）與圓弧（$r=$ 常數）切成「扇形片」。一片的面積 ≈ 徑向寬 $\Delta r$ × 弧長 $r\,\Delta\theta$，因此 $\Delta A\approx r\,\Delta r\,\Delta\theta$。$r$ 越大，同樣的 $\Delta\theta$ 對應越長的弧，面積也越大。</p>
@@ -588,7 +629,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <div class="info-box green">
-    <span class="info-label">THM 14.3 極座標換變數</span>
+    <span class="info-label">定理 14.3 極座標換變數</span>
     <p>$R$ 由 $0\le g_1(\theta)\le r\le g_2(\theta)$、$\alpha\le\theta\le\beta$（$\beta-\alpha\le 2\pi$）定義，$f$ 在 $R$ 連續：</p>
     $$\iint_R f(x,y)\,dA=\int_\alpha^\beta\!\!\int_{g_1(\theta)}^{g_2(\theta)} f(r\cos\theta,r\sin\theta)\,r\,dr\,d\theta.$$
     <p>三件事同步改變：上下限、被積函數、$dA$。</p>
@@ -608,9 +649,9 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <div class="ex-tag">講義例題 2（環形區域積分）</div>
     <div class="ex-title">求 $\displaystyle\iint_R(x^2+y^2)\,dA$，$R$ 為環形 $1\le x^2+y^2\le 5$</div>
     <div class="step-block"><div class="step-num">步驟 1（描述區域）</div>$x^2+y^2=r^2$，環形即 $1\le r\le\sqrt 5$，$0\le\theta\le 2\pi$。</div>
-    <div class="step-block"><div class="step-num">步驟 2（換被積函數 + dA）</div>$x^2+y^2=r^2$；$dA=r\,dr\,d\theta$，所以被積項 $=r^2\cdot r=r^3$。</div>
-    <div class="step-block"><div class="step-num">步驟 3（內層）</div>$\displaystyle\int_1^{\sqrt 5} r^3\,dr=\bigl[\tfrac{r^4}{4}\bigr]_1^{\sqrt 5}=\tfrac{25-1}{4}=6$。</div>
-    <div class="step-block"><div class="step-num">步驟 4（外層）</div>$\displaystyle\int_0^{2\pi}6\,d\theta=12\pi$。</div>
+    <div class="step-block"><div class="step-num">步驟 2（換被積函數 + dA）</div>$x=r\cos\theta,\ y=r\sin\theta$，所以 $$x^2+y^2=r^2.$$ 再乘上 $dA=r\,dr\,d\theta$ 的雅可比因子，得到被積項 $$r^2\cdot r=r^3.$$</div>
+    <div class="step-block"><div class="step-num">步驟 3（寫成極座標積分）</div>$$\iint_R(x^2+y^2)\,dA=\int_0^{2\pi}\int_1^{\sqrt5}r^3\,dr\,d\theta.$$</div>
+    <div class="step-block"><div class="step-num">步驟 4（計算）</div>$$\int_1^{\sqrt5}r^3\,dr=\left[\frac{r^4}{4}\right]_1^{\sqrt5}=\frac{25-1}{4}=6,$$ 所以 $$\int_0^{2\pi}6\,d\theta=12\pi.$$</div>
     <div class="ex-answer">$\displaystyle\iint_R(x^2+y^2)\,dA=12\pi$</div>
   </div>
 
@@ -630,7 +671,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         </div>
         <div class="toggle-row" id="annToggles">
           <span class="toggle-label">顯示</span>
-          <button class="toggle-btn" data-toggle="grad">漸層著色 (∝ r²)</button>
+          <button class="toggle-btn" data-toggle="grad">被積函數熱圖 ($x^2+y^2$)</button>
           <button class="toggle-btn on" data-toggle="polarGrid">極座標網格</button>
           <button class="toggle-btn" data-toggle="cartGrid">直角網格</button>
         </div>
@@ -647,7 +688,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
           <div class="ic-row"><span class="ic-label">環面積 π(r₂²−r₁²)</span><span class="ic-value highlight" id="annArea">12.566</span></div>
         </div>
         <div class="eq-card">
-          <div class="eq-label">∬_R r² dA</div>
+          <div class="eq-label">∬_R (x² + y²) dA</div>
           <div class="eq-formula">$=\dfrac{\pi(r_2^4 - r_1^4)}{2}$</div>
           <div class="eq-sub" id="annInt">當前 = 37.699 (≈ 12π)</div>
         </div>
@@ -697,7 +738,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
   <div class="concept-warning">
     <div class="cw-title">概念辨析 · 不要忘記 $r$ 因子！</div>
-    <p>(1) <strong>$dA=r\,dr\,d\theta$，不是 $dr\,d\theta$</strong> — 多出來的 $r$ 是 Jacobian：<br>
+    <p>(1) <strong>$dA=r\,dr\,d\theta$，不是 $dr\,d\theta$</strong> — 多出來的 $r$ 是 雅可比：<br>
     $\quad J=\det\begin{pmatrix}\partial x/\partial r & \partial x/\partial\theta\\ \partial y/\partial r & \partial y/\partial\theta\end{pmatrix}=\det\begin{pmatrix}\cos\theta & -r\sin\theta\\ \sin\theta & r\cos\theta\end{pmatrix}=r$。<br>
     (2) <strong>何時用極座標？</strong>區域是<span class="pill pill-blue">圓 / 環 / 扇形 / 花瓣</span>；被積函數含 <span class="pill pill-blue">$x^2+y^2$ 或 $e^{-(x^2+y^2)}$</span>。<br>
     (3) 三件事同步改變：<strong>上下限</strong>、<strong>被積函數</strong>（$x\to r\cos\theta,\ y\to r\sin\theta$）、<strong>$dA$</strong>。</p>
@@ -729,8 +770,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <div class="section-summary-title">14.3 重點整理</div>
     <ul>
       <li>$x=r\cos\theta,\ y=r\sin\theta$；$x^2+y^2=r^2$。</li>
-      <li><strong>$dA=r\,dr\,d\theta$</strong>（多的 $r$ 是 Jacobian；幾何上來自扇形片）。</li>
-      <li>r-simple 區域：外層 $\theta$ 為常數、內層 $r=g_1(\theta)$ 到 $g_2(\theta)$。</li>
+      <li><strong>$dA=r\,dr\,d\theta$</strong>（多的 $r$ 是 雅可比；幾何上來自扇形片）。</li>
+      <li>r-簡單區域：外層 $\theta$ 為常數、內層 $r=g_1(\theta)$ 到 $g_2(\theta)$。</li>
       <li>適用情境：圓 / 環 / 扇形 / 花瓣，或被積函數含 $x^2+y^2$。</li>
       <li>面積：$A=\iint_R 1\,dA=\iint_R r\,dr\,d\theta$（不要寫成 $\iint dr\,d\theta$）。</li>
     </ul>
@@ -741,27 +782,27 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 <!-- REFERENCE -->
 <!-- ============================================================ -->
 <section id="sec-ref">
-  <div class="section-number">REFERENCE · 14.1-14.3</div>
+  <div class="section-number">速查 · 14.1-14.3</div>
   <h2>本頁速查</h2>
   <div class="method-grid">
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">面積（Type I）</span><span class="ref-card-name-en">DEF 14.1</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">面積（Type I）</span><span class="ref-card-name-en">定義 14.1</span></div>
       <div class="ref-card-eq">$A=\displaystyle\int_a^b\!\!\int_{g_1(x)}^{g_2(x)}\,dy\,dx$</div>
     </div>
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">面積（Type II）</span><span class="ref-card-name-en">DEF 14.1</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">面積（Type II）</span><span class="ref-card-name-en">定義 14.1</span></div>
       <div class="ref-card-eq">$A=\displaystyle\int_c^d\!\!\int_{h_1(y)}^{h_2(y)}\,dx\,dy$</div>
     </div>
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">雙重積分定義</span><span class="ref-card-name-en">DEF 14.2</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">雙重積分定義</span><span class="ref-card-name-en">定義 14.2</span></div>
       <div class="ref-card-eq">$\displaystyle\iint_R f\,dA=\lim_{\|\Delta\|\to 0}\sum_i f(x_i,y_i)\,\Delta A_i$</div>
     </div>
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">雙重積分性質</span><span class="ref-card-name-en">THM 14.1</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">雙重積分性質</span><span class="ref-card-name-en">定理 14.1</span></div>
       <div class="ref-card-eq">線性 + 比較 + 區域可加（$R=R_1\cup R_2$ 不重疊）</div>
     </div>
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">Fubini 定理</span><span class="ref-card-name-en">THM 14.2</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">Fubini 定理</span><span class="ref-card-name-en">定理 14.2</span></div>
       <div class="ref-card-eq">$\displaystyle\iint_R f\,dA=\int_a^b\!\!\int_{g_1(x)}^{g_2(x)} f\,dy\,dx$</div>
     </div>
     <div class="ref-card">
@@ -773,11 +814,11 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       <div class="ref-card-eq">$V=\displaystyle\iint_R\bigl[f_{\text{上}}-f_{\text{下}}\bigr]\,dA$</div>
     </div>
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">極座標換變數</span><span class="ref-card-name-en">THM 14.3</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">極座標換變數</span><span class="ref-card-name-en">定理 14.3</span></div>
       <div class="ref-card-eq">$\displaystyle\iint_R f\,dA=\int_\alpha^\beta\!\!\int_{g_1(\theta)}^{g_2(\theta)} f(r\cos\theta,r\sin\theta)\,r\,dr\,d\theta$</div>
     </div>
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">極座標 $dA$</span><span class="ref-card-name-en">Jacobian = $r$</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">極座標 $dA$</span><span class="ref-card-name-en">雅可比 = $r$</span></div>
       <div class="ref-card-eq">$dA=r\,dr\,d\theta$（不要忘記 $r$！）</div>
     </div>
     <div class="ref-card">
@@ -810,15 +851,15 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   "ex_14_2_1_riemann_n4": 0.671875,
   "ex_14_2_2_exact": "2/3",
   "ex_14_2_3_volume": "4*sqrt(2)*pi",
-  "ex_14_2_3_decimal": 17.77153175863913,
+  "ex_14_2_3_decimal": 17.771531752633464,
   "ex_14_2_4_value_exact": "(1 - 1/e)/2",
   "ex_14_2_4_decimal": 0.31606027941427883,
   "ex_14_2_5_volume_exact": "pi/32",
   "ex_14_2_5_decimal": 0.09817477042468103,
-  "ex_14_3_2_annulus": "12*pi",
-  "ex_14_3_2_decimal": 37.69911184307752,
+  "ex_14_3_2_annulus": "6*pi",
+  "ex_14_3_2_decimal": 18.84955592153876,
   "ex_14_3_3_volume_exact": "16*pi*(8 - 3*sqrt(3))/3",
-  "ex_14_3_3_decimal": 46.97891674927881,
+  "ex_14_3_3_decimal": 46.978917069922055,
   "ex_14_3_4_rose_area": "9*pi/4",
   "ex_14_3_4_decimal": 7.0685834705770345,
   "quiz_14_1_2_answer": 0.75,
@@ -1048,8 +1089,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
   // ─── 2D 極座標場景工廠（以原點為中心 + scale） ───
   // opts.maxR：欲容納的最大半徑（給定後 scale 自動算成不超界）
-  // opts.scaleFill：當 maxR 給定時的填充比例（0~1，預設 0.92）
-  // opts.scaleRatio：當 maxR 未給定時的回退比例（min(W,H)·scaleRatio）
+  // opts.scaleFill：當 maxR 給定時的填充scale（0~1，預設 0.92）
+  // opts.scaleRatio：當 maxR 未給定時的回退scale（min(W,H)·scaleRatio）
   function makePolarScene(canvasId, opts={}){
     const canvas = $(canvasId);
     const ctx = canvas.getContext('2d');
@@ -1372,7 +1413,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     S.setRender(render);
   }
 
-  function init14_1_Example4(){
+  function init14_1_例題4(){
     if (!$('canvas-14-1-example4')) return;
     const S = make2DScene('canvas-14-1-example4', {
       xRange: [-0.3, 2*Math.PI + 0.3],
@@ -1627,11 +1668,23 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   }
 
   function init14_2_Fubini(){
-    const S=makeScene('canvas-14-2-fubini',{radius:2.8,axisLen:1.4,gridSize:1.4,gridStep:.2,phi:1.05,theta:0.85}); if(!S) return;
-    const f=(x,y)=>1-x*x/2-y*y/2;
-    const surfMesh=mesh(scalarSurface(f,0,1,0,1,60,60), 0x2c3e7a,.55); S.scene.add(surfMesh);
-    // 底面（淡藍 base）— 對應 toggle "section"（與截面相關，與 base toggle 合併到 section）
-    // 為了 toggle 簡化：把 base 跟 section 一起切換（或單獨給 section 一個物件）
+    const S=makeScene('canvas-14-2-fubini',{radius:3.8,axisLen:2.25,gridSize:2.2,gridStep:.25,phi:1.08,theta:0.78}); if(!S) return;
+    const f=(x,y)=>2-x-2*y;
+    function triMesh(points, color, opacity){
+      const g=new THREE.BufferGeometry();
+      g.setAttribute('position', new THREE.Float32BufferAttribute(points.flatMap(p=>[p.x,p.y,p.z]),3));
+      g.setIndex([0,1,2]);
+      g.computeVertexNormals();
+      return new THREE.Mesh(g, new THREE.MeshStandardMaterial({color, transparent:opacity<1, opacity, side:THREE.DoubleSide, roughness:.55, metalness:.05}));
+    }
+    const O=new THREE.Vector3(0,0,0), X=new THREE.Vector3(2,0,0), Y=new THREE.Vector3(0,1,0), Z=new THREE.Vector3(0,0,2);
+    const surfGroup=new THREE.Group(); S.scene.add(surfGroup);
+    surfGroup.add(triMesh([X,Y,Z], 0x2c3e7a, .58));
+    surfGroup.add(triMesh([O,X,Y], 0x1a6b4a, .18));
+    surfGroup.add(triMesh([O,X,Z], 0x5dade2, .16));
+    surfGroup.add(triMesh([O,Y,Z], 0x5dade2, .16));
+    const edgePts=[O,X,X,Z,Z,O,O,Y,Y,Z,X,Y];
+    surfGroup.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(edgePts), new THREE.LineBasicMaterial({color:0xffffff, transparent:true, opacity:.72})));
     // 三個動態 group（依 x0 重建）
     let planeGroup=new THREE.Group(); S.scene.add(planeGroup);
     let sectionGroup=new THREE.Group(); S.scene.add(sectionGroup);
@@ -1644,39 +1697,40 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       xLineGroup=new THREE.Group();
       S.scene.add(planeGroup); S.scene.add(sectionGroup); S.scene.add(xLineGroup);
       const x0=parseFloat($('fubiniX').value);
-      const fmax=f(x0,0);
-      const ph=fmax+0.1;
+      const base=Math.max(0,(2-x0)/2);
+      const height=Math.max(0,2-x0);
+      const A=height*height/4;
       // 切片平面（含邊框）
-      const pVerts=[ x0,0,0,  x0,1,0,  x0,1,ph,  x0,0,0,  x0,1,ph,  x0,0,ph ];
+      const pVerts=[ x0,0,0,  x0,1,0,  x0,1,2.05,  x0,0,0,  x0,1,2.05,  x0,0,2.05 ];
       const pGeo=new THREE.BufferGeometry();
       pGeo.setAttribute('position', new THREE.Float32BufferAttribute(pVerts,3));
       pGeo.computeVertexNormals();
       planeGroup.add(new THREE.Mesh(pGeo, new THREE.MeshBasicMaterial({color:0x5dade2, transparent:true, opacity:.45, side:THREE.DoubleSide})));
-      const fr=[ new THREE.Vector3(x0,0,0), new THREE.Vector3(x0,1,0), new THREE.Vector3(x0,1,ph), new THREE.Vector3(x0,0,ph), new THREE.Vector3(x0,0,0) ];
+      const fr=[ new THREE.Vector3(x0,0,0), new THREE.Vector3(x0,1,0), new THREE.Vector3(x0,1,2.05), new THREE.Vector3(x0,0,2.05), new THREE.Vector3(x0,0,0) ];
       planeGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(fr), new THREE.LineBasicMaterial({color:0x2980b9, linewidth:2})));
-      // 截面（曲線管 + 填色）
-      const curvePts=[]; for(let y=0;y<=1;y+=0.02) curvePts.push(new THREE.Vector3(x0, y, f(x0,y)));
-      const tubePath=new THREE.CatmullRomCurve3(curvePts);
-      sectionGroup.add(new THREE.Mesh(new THREE.TubeGeometry(tubePath, 60, 0.012, 10, false), new THREE.MeshStandardMaterial({color:0xf1c40f, roughness:0.4, emissive:0x6e5208, emissiveIntensity:0.4})));
-      const N=50, fillPts=[];
-      for(let i=0;i<=N;i++){const y=i/N; fillPts.push(x0,y,0,x0,y,f(x0,y));}
-      const idx=[]; for(let i=0;i<N;i++){const a=i*2; idx.push(a,a+1,a+2,a+1,a+3,a+2);}
-      const filGeo=new THREE.BufferGeometry();
-      filGeo.setAttribute('position', new THREE.Float32BufferAttribute(fillPts,3));
-      filGeo.setIndex(idx); filGeo.computeVertexNormals();
-      sectionGroup.add(new THREE.Mesh(filGeo, new THREE.MeshBasicMaterial({color:0xf1c40f, transparent:true, opacity:.65, side:THREE.DoubleSide})));
+      // 截面三角形：0 <= y <= (2-x0)/2, 0 <= z <= 2-x0-2y
+      const A0=new THREE.Vector3(x0,0,0), B0=new THREE.Vector3(x0,base,0), C0=new THREE.Vector3(x0,0,height);
+      sectionGroup.add(triMesh([A0,B0,C0], 0xf1c40f, .68));
+      sectionGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([A0,B0,C0,A0]), new THREE.LineBasicMaterial({color:0xf9e79f, linewidth:3})));
+      const curvePts=[]; for(let y=0;y<=base+1e-9;y+=Math.max(base/50,0.002)) curvePts.push(new THREE.Vector3(x0, y, f(x0,y)));
+      if(curvePts.length>=2){
+        const tubePath=new THREE.CatmullRomCurve3(curvePts);
+        sectionGroup.add(new THREE.Mesh(new THREE.TubeGeometry(tubePath, Math.max(8,curvePts.length), 0.012, 10, false), new THREE.MeshStandardMaterial({color:0xf1c40f, roughness:0.4, emissive:0x6e5208, emissiveIntensity:0.4})));
+      }
       // x=x0 底面紅線
-      xLineGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([ new THREE.Vector3(x0, 0, 0.001), new THREE.Vector3(x0, 1, 0.001) ]), new THREE.LineBasicMaterial({color:0xc0392b, linewidth:3})));
+      xLineGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([ new THREE.Vector3(x0, 0, 0.002), new THREE.Vector3(x0, base, 0.002) ]), new THREE.LineBasicMaterial({color:0xc0392b, linewidth:3})));
       // 維持 toggle visibility
       const tg=$('fubiniToggles');
       if(tg){
+        surfGroup.visible = tg.querySelector('[data-toggle="surface"]').classList.contains('on');
         planeGroup.visible = tg.querySelector('[data-toggle="plane"]').classList.contains('on');
         sectionGroup.visible = tg.querySelector('[data-toggle="section"]').classList.contains('on');
         xLineGroup.visible = tg.querySelector('[data-toggle="xLine"]').classList.contains('on');
       }
-      const A = 5/6 - x0*x0/2;
       setText('fubiniXVal', x0.toFixed(2));
       setText('fubiniX0', x0.toFixed(2));
+      setText('fubiniBase', base.toFixed(4));
+      setText('fubiniHeight', height.toFixed(4));
       setText('fubiniA', A.toFixed(4));
       S.requestRender();
     }
@@ -1687,7 +1741,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         btn.classList.toggle('on');
         const on=btn.classList.contains('on');
         const t=btn.dataset.toggle;
-        if(t==='surface') surfMesh.visible=on;
+        if(t==='surface') surfGroup.visible=on;
         else if(t==='plane') planeGroup.visible=on;
         else if(t==='section') sectionGroup.visible=on;
         else if(t==='xLine') xLineGroup.visible=on;
@@ -1730,7 +1784,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
   // ─── 啟動 ───
   init14_1_Region();
-  init14_1_Example4();
+  init14_1_例題4();
   init14_1_Reverse();
   init14_2_Riemann();
   init14_2_Fubini();
@@ -1855,7 +1909,9 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         const img = ctx.createImageData(phyW, phyH);
         const data = img.data;
         const r1s = r1*r1, r2s = r2*r2;
-        const denom = Math.max(1e-9, r2s - r1s);
+        const minVal = r1*r1;
+        const maxVal = r2*r2;
+        const denom = Math.max(1e-9, maxVal - minVal);
         // 背景色 #fbf7ed
         const bgR = 251, bgG = 247, bgB = 237;
         for (let py=0; py<phyH; py++){
@@ -1865,7 +1921,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
             const rr = dx*dx + dy*dy;
             const off = (py*phyW + px) * 4;
             if (rr >= r1s && rr <= r2s){
-              const t = (rr - r1s) / denom;
+              const val = dx*dx + dy*dy;
+              const t = Math.max(0, Math.min(1, (val - minVal) / denom));
               const [R,G,B] = colorRamp(t);
               data[off] = R; data[off+1] = G; data[off+2] = B; data[off+3] = 255;
             } else {
@@ -1919,7 +1976,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         ctx.fillStyle = 'rgba(0,0,0,.45)'; ctx.fillRect(8, 8, 152, 22);
         ctx.fillStyle = '#fff'; ctx.font = '500 11px "JetBrains Mono", monospace';
         ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
-        ctx.fillText('冷 ← r² → 熱', 16, 19);
+        ctx.fillText('低 ← x²+y² → 高', 16, 19);
       }
       // side panel
       const area = Math.PI * (r2*r2 - r1*r1);
@@ -2025,7 +2082,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     ok:'✓ 正確！外層上下限<strong>必須是常數</strong>。否則積分出來還會留下變數，無法得到具體數值。',
     wrong:[
       '是允許的：內層上下限可以是外層變數的函數（這是 Type I 區域的定義）。',
-      '當然允許 — 這是重複積分的標準形式。',
+      '當然允許 — 這是逐次積分的標準形式。',
       '',
       '完全允許：被積函數通常同時含 x 與 y。'
     ]
@@ -2038,7 +2095,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   });
   // 14.2
   makeChoiceQuiz('quiz-14-2-1', 0, {
-    ok:'✓ 正確！Fubini 需要 $f$ 在 $R$ 上連續，且 $R$ 為 Type I 或 Type II（或可拆為有限個）。',
+    ok:'✓ 正確！Fubini 需要 $f$ 在 $R$ 上連續，且 $R$ 為 第 I 型或第 II 型（或可拆為有限個）。',
     wrong:[
       '',
       '$f$ 連續即可（不必可微）；可微比連續更強。',
@@ -2056,7 +2113,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   makeChoiceQuiz('quiz-14-3-1', 1, {
     ok:'✓ 正確！上下限要改、被積函數要把 $x,y$ 換成 $r\\cos\\theta,r\\sin\\theta$、$dA=r\\,dr\\,d\\theta$（不再是 $dx\\,dy$）。',
     wrong:[
-      '$dA$ 必須改為 $r\\,dr\\,d\\theta$；忘了 Jacobian $r$ 是最常見錯誤。',
+      '$dA$ 必須改為 $r\\,dr\\,d\\theta$；忘了 雅可比 $r$ 是最常見錯誤。',
       '',
       '被積函數和 $dA$ 都要改。',
       '極座標換變數三件事都改：上下限、$f$、$dA$。'

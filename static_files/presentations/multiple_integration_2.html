@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>多重積分 — Multiple Integrals (Chapter 14.4–14.7)</title>
+<title>多重積分 II — 第 14.5–14.8 節互動講義</title>
 <script>
   MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }, svg: { fontCache: 'global' } };
 </script>
@@ -178,22 +178,22 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 <body>
 
 <nav class="side-nav">
-  <div class="sn-title">CHAPTER 14.4 – 14.7</div>
-  <a class="sn-item" href="#sec-14-4">14.4 曲面面積</a>
-  <a class="sn-item sn-sub" href="#sec-14-4-1">  · 公式與切片</a>
-  <a class="sn-item sn-sub" href="#sec-14-4-2">  · dS / dA 視覺</a>
-  <a class="sn-item sn-sub" href="#sec-14-4-3">  · 延伸例題</a>
-  <a class="sn-item" href="#sec-14-5">14.5 三重積分</a>
-  <a class="sn-item sn-sub" href="#sec-14-5-1">  · 定義與性質</a>
-  <a class="sn-item sn-sub" href="#sec-14-5-2">  · Fubini 例題</a>
-  <a class="sn-item sn-sub" href="#sec-14-5-3">  · xy 投影</a>
-  <a class="sn-item" href="#sec-14-6">14.6 柱與球座標</a>
-  <a class="sn-item sn-sub" href="#sec-14-6-1">  · 圓柱座標</a>
-  <a class="sn-item sn-sub" href="#sec-14-6-2">  · 球面座標</a>
-  <a class="sn-item sn-sub" href="#sec-14-6-3">  · dV 對比</a>
-  <a class="sn-item" href="#sec-14-7">14.7 雅可比變數變換</a>
-  <a class="sn-item sn-sub" href="#sec-14-7-1">  · 雅可比</a>
-  <a class="sn-item sn-sub" href="#sec-14-7-2">  · 變數變換例題</a>
+  <div class="sn-title">第 14.5–14.8 節</div>
+  <a class="sn-item" href="#sec-14-5">14.5 曲面面積</a>
+  <a class="sn-item sn-sub" href="#sec-14-5-1">  · 公式與切片</a>
+  <a class="sn-item sn-sub" href="#sec-14-5-2">  · dS / dA 視覺</a>
+  <a class="sn-item sn-sub" href="#sec-14-5-3">  · 延伸例題</a>
+  <a class="sn-item" href="#sec-14-6">14.6 三重積分</a>
+  <a class="sn-item sn-sub" href="#sec-14-6-1">  · 定義與性質</a>
+  <a class="sn-item sn-sub" href="#sec-14-6-2">  · Fubini 例題</a>
+  <a class="sn-item sn-sub" href="#sec-14-6-3">  · xy 投影</a>
+  <a class="sn-item" href="#sec-14-7">14.7 柱與球座標</a>
+  <a class="sn-item sn-sub" href="#sec-14-7-1">  · 圓柱座標</a>
+  <a class="sn-item sn-sub" href="#sec-14-7-2">  · 球面座標</a>
+  <a class="sn-item sn-sub" href="#sec-14-7-3">  · dV 對比</a>
+  <a class="sn-item" href="#sec-14-8">14.8 雅可比變數變換（補充）</a>
+  <a class="sn-item sn-sub" href="#sec-14-8-1">  · 雅可比</a>
+  <a class="sn-item sn-sub" href="#sec-14-8-2">  · 變數變換例題</a>
   <a class="sn-item" href="#sec-ref">速查</a>
 </nav>
 
@@ -201,8 +201,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   <div class="hero-grid"></div>
   <div class="hero-content">
 	    <h1><span class="yellow">多重積分</span>：從<span class="green">面積</span>到<span class="blue">體積</span>，從直角到柱與球</h1>
-	    <div class="subtitle">Chapter 14.4 – 14.7 · Surface Area · Triple Integrals · Cylindrical / Spherical · Jacobian</div>
-	    <div class="subtitle" style="font-size:.82rem;margin-top:-1.2rem;margin-bottom:1.1rem;">Definition / Theorem 與章節編號皆依 Calculus_Chapter14.pdf。</div>
+	    <div class="subtitle">第 14.5–14.8 節 · 曲面面積 · 三重積分 · 圓柱 / 球面座標 · 雅可比（補充）</div>
+	    <div class="subtitle" style="font-size:.82rem;margin-top:-1.2rem;margin-bottom:1.1rem;">主章節依 Calculus_Chapter14.pdf；雅可比變數變換列為補充章節。</div>
 	    <div class="big-formula">$\displaystyle S=\!\!\iint_R\!\!\sqrt{1+f_x^2+f_y^2}\,dA,\quad \iiint_Q f\,dV,\quad dV = r\,dr\,d\theta\,dz = \rho^2\sin\phi\,d\rho\,d\phi\,d\theta$</div>
     <div class="scroll-hint">向下捲動開始互動<span>↓</span></div>
   </div>
@@ -211,23 +211,23 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 <div class="container">
 
 <!-- ============================================================ -->
-<!-- §14.4 曲面面積                                                -->
+<!-- §14.5 曲面面積                                                -->
 <!-- ============================================================ -->
-<section id="sec-14-4">
-  <div class="section-number">SECTION 14.4 · 曲面面積</div>
+<section id="sec-14-5">
+  <div class="section-number">第 14.5 節 · 曲面面積</div>
   <h2>從投影面積 $dA$ 到傾斜面積 $dS$</h2>
   <p>給定一個定義在閉區域 $R$ 上的可微函數 $z=f(x,y)$，由其圖形 $S$ 在 $R$ 之上覆出的部分稱為一個<strong>曲面 (surface)</strong>。把 $S$ 分割成許多<span class="pill pill-yellow">小傾斜片</span>並把每片貼到該點切平面上的<em>平行四邊形</em>，便能用兩條切向量 $(1,0,f_x)$ 與 $(0,1,f_y)$ 算出面積：</p>
   <div style="text-align:center;">$$\|(1,0,f_x)\times(0,1,f_y)\|=\sqrt{1+f_x^2+f_y^2}$$</div>
 
   <div class="info-box warm">
-    <span class="info-label">DEF 14.3</span>
+    <span class="info-label">定義 14.3</span>
     <strong>曲面面積 (Surface area)</strong>
     <p style="margin:.55rem 0 .3rem;">假設 $f$ 與其偏導數都在 $xy$ 平面中的閉區域 $R$ 上連續。由 $z=f(x,y)$ 的圖形在 $R$ 之上所定出的曲面 $S$ 之面積為</p>
     <div style="text-align:center;margin:.4rem 0;">$$S=\iint_R dS=\iint_R\sqrt{1+\left[f_x(x,y)\right]^2+\left[f_y(x,y)\right]^2}\,dA$$</div>
     <p style="margin:.3rem 0;">特別地：若 $f_x=f_y=0$ (水平片)，則 $dS=dA$；若 $f$ 越「陡」($f_x,f_y$ 越大)，$dS$ 越大於投影面積 $dA$。</p>
   </div>
 
-  <h4 id="sec-14-4-1">互動：切平面平行四邊形貼合曲面</h4>
+  <h4 id="sec-14-5-1">互動：切平面平行四邊形貼合曲面</h4>
   <p>每個黃色平行四邊形是「在某點切平面上、投影回 $R$ 對應 $du\,dv$」的小片，面積 $\sqrt{1+f_x^2+f_y^2}\,du\,dv$。把切片數量拉高，總和就會收斂到 $\iint_R \sqrt{1+f_x^2+f_y^2}\,dA$。</p>
 
   <div class="preset-row" id="saPresets">
@@ -263,7 +263,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
     <div class="side-panel">
       <div class="eq-card">
-        <div class="eq-label">CURRENT SURFACE</div>
+        <div class="eq-label">目前曲面</div>
         <div class="eq-formula" id="sa-eq">$z=x^2+y^2$</div>
         <div class="eq-sub">$dS=\sqrt{1+f_x^2+f_y^2}\,dA$</div>
       </div>
@@ -282,7 +282,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
   </div>
 
-  <h4 id="sec-14-4-2">診斷視覺：傾斜角 $\gamma$ 如何決定 $dS/dA$</h4>
+  <h4 id="sec-14-5-2">診斷視覺：傾斜角 $\gamma$ 如何決定 $dS/dA$</h4>
   <p>把曲面在某點的局部切平面想像成「對 $xy$ 平面斜傾斜角度 $\gamma$ 的薄片」。當 $\gamma=0$ 時切平面水平，$dS=dA$；$\gamma$ 越大切平面越陡，相同投影 $dA$ 對應的真實面積 $dS$ 就越大，倍率為 <strong>$\sec\gamma$</strong>。事實上若 $f_x,f_y$ 已給定，$\sqrt{1+f_x^2+f_y^2}=\sec\gamma$（其中 $\tan\gamma=\sqrt{f_x^2+f_y^2}$）。</p>
   <div class="viz-layout">
     <div>
@@ -315,7 +315,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
   </div>
 
-  <h4 id="sec-14-4-3">曲面面積延伸例題</h4>
+  <h4 id="sec-14-5-3">曲面面積延伸例題</h4>
   <p>以下例題用來練習講義的曲面面積公式；每題完整條件已列在題目標題中。</p>
 
   <div class="lecture-example">
@@ -378,7 +378,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <div class="section-summary">
-    <div class="section-summary-title">14.4 重點整理</div>
+    <div class="section-summary-title">14.5 重點整理</div>
     <ul>
       <li>曲面面積公式：$S=\iint_R\sqrt{1+f_x^2+f_y^2}\,dA$，因子來自切向量 $(1,0,f_x)\times(0,1,f_y)$ 的模。</li>
       <li>幾何意義：$\sqrt{1+f_x^2+f_y^2}=\sec\gamma$ 是切平面對 $xy$ 平面的傾斜倍率，所以 $dS\ge dA$。</li>
@@ -390,16 +390,16 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </section>
 
 <!-- ============================================================ -->
-<!-- §14.5 三重積分                                                -->
+<!-- §14.6 三重積分                                                -->
 <!-- ============================================================ -->
-<section id="sec-14-5">
-  <div class="section-number">SECTION 14.5 · 三重積分</div>
+<section id="sec-14-6">
+  <div class="section-number">第 14.6 節 · 三重積分</div>
   <h2>把區域切成 Riemann 切片，總和 $\to$ 三重積分</h2>
 
-  <div id="sec-14-5-1" class="subsection">
-    <h3>14.5.1 定義與性質</h3>
+  <div id="sec-14-6-1" class="subsection">
+    <h3>14.6.1 定義與性質</h3>
     <div class="info-box warm">
-      <span class="info-label">DEF 14.4</span>
+      <span class="info-label">定義 14.4</span>
       <strong>三重積分 (Triple integral)</strong>
       <p style="margin:.55rem 0 .3rem;">設 $f$ 在區域 $Q\subset\mathbb{R}^3$ 連續，把 $Q$ 切成 $n$ 個內部互不相交的小立體 $\Delta V_i$，$\|\Delta\|$ 為最大直徑。若極限</p>
       <div style="text-align:center;margin:.4rem 0;">$$\iiint_Q f(x,y,z)\,dV=\lim_{\|\Delta\|\to 0}\sum_{i=1}^n f(x_i,y_i,z_i)\,\Delta V_i$$</div>
@@ -407,7 +407,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
 
     <div class="info-box green">
-      <span class="info-label">THEOREM 14.4 · Fubini (3D)</span>
+      <span class="info-label">定理 14.4 · Fubini (三維)</span>
       <p style="margin:.55rem 0 .3rem;">若 $f$ 在 $Q$ 連續，且 $Q$ 由 $a\le x\le b,\ h_1(x)\le y\le h_2(x),\ g_1(x,y)\le z\le g_2(x,y)$ 描述，其中 $h_1,h_2,g_1,g_2$ 連續，則</p>
       <div style="text-align:center;margin:.3rem 0;">$$\iiint_Q f\,dV=\int_a^b\!\int_{h_1(x)}^{h_2(x)}\!\int_{g_1(x,y)}^{g_2(x,y)} f(x,y,z)\,dz\,dy\,dx.$$</div>
       <p style="margin:.3rem 0;">同樣可以交換順序，但須先把對應變數的範圍重新寫好。一般策略：<strong>先看內層、再看中間、最後看外層</strong>是否「依賴更外面的變數」。</p>
@@ -446,7 +446,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       </div>
       <div class="side-panel">
         <div class="eq-card">
-          <div class="eq-label">CURRENT SOLID</div>
+          <div class="eq-label">目前立體</div>
           <div class="eq-formula" id="tr-name">$0\le z\le 4-x^2-y^2$</div>
           <div class="eq-sub" id="tr-flabel">f=1 (體積)</div>
         </div>
@@ -466,8 +466,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
   </div>
 
-  <div id="sec-14-5-2" class="subsection">
-    <h3>14.5.2 經典例題與技法</h3>
+  <div id="sec-14-6-2" class="subsection">
+    <h3>14.6.2 經典例題與技法</h3>
 
     <div class="lecture-example">
       <div class="ex-tag">延伸例題 · 拋物面下方體積</div>
@@ -491,8 +491,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
   </div>
 
-  <h4 id="sec-14-5-3">診斷視覺：Type I 區域 $\to$ 投影到 xy 平面</h4>
-  <p>三維區域 $E$ 寫成 Type I 形式 $\{(x,y,z): (x,y)\in D,\ z_1(x,y)\le z\le z_2(x,y)\}$ 時，投影到 $xy$ 平面是 $D$。下圖示意「$xy$ 平面上方、拋物面 $z=4-x^2-y^2$ 下方」這個三維區域與其 $xy$ 投影 $D:x^2+y^2\le 4$ 的關係。</p>
+  <h4 id="sec-14-6-3">診斷視覺：第一型區域 $\to$ 投影到 xy 平面</h4>
+  <p>三維區域 $E$ 寫成 第一型 形式 $\{(x,y,z): (x,y)\in D,\ z_1(x,y)\le z\le z_2(x,y)\}$ 時，投影到 $xy$ 平面是 $D$。下圖示意「$xy$ 平面上方、拋物面 $z=4-x^2-y^2$ 下方」這個三維區域與其 $xy$ 投影 $D:x^2+y^2\le 4$ 的關係。</p>
   <div class="canvas3d-panel canvas-2d" style="max-width:560px;">
     <div class="canvas-wrap" style="aspect-ratio:1.4/1;">
       <canvas id="canvas-14-6-projection"></canvas>
@@ -506,10 +506,10 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <div class="concept-warning">
-    <div class="cw-title">概念辨析 · Type I/II/III 與「先積誰」</div>
-    <p>(1) <strong>Type I（投影到 xy）</strong>：$z$ 介於 $z_1(x,y)$ 與 $z_2(x,y)$，$(x,y)\in D\subset xy$。最常用。<br>
-    (2) <strong>Type II（投影到 yz）</strong>：$x$ 介於 $x_1(y,z)$ 與 $x_2(y,z)$，$(y,z)\in D\subset yz$。<br>
-    (3) <strong>Type III（投影到 xz）</strong>：$y$ 介於 $y_1(x,z)$ 與 $y_2(x,z)$，$(x,z)\in D\subset xz$。<br>
+    <div class="cw-title">概念辨析 · 第一型/II/III 與「先積誰」</div>
+    <p>(1) <strong>第一型（投影到 xy）</strong>：$z$ 介於 $z_1(x,y)$ 與 $z_2(x,y)$，$(x,y)\in D\subset xy$。最常用。<br>
+    (2) <strong>第一型I（投影到 yz）</strong>：$x$ 介於 $x_1(y,z)$ 與 $x_2(y,z)$，$(y,z)\in D\subset yz$。<br>
+    (3) <strong>第一型II（投影到 xz）</strong>：$y$ 介於 $y_1(x,z)$ 與 $y_2(x,z)$，$(x,z)\in D\subset xz$。<br>
     (4) <strong>策略</strong>：選那個讓「最內層上下限是<em>常數</em>或最簡單」的 type。上方拋物面例題的 $z\in[0,4-x^2-y^2]$ 就比反過來「$x\in[\dots]$ 上下含 $z$」簡單。<br>
     (5) <strong>$dV\ne dA$</strong>：$dV=dz\,dA=dx\,dy\,dz$；別把 $dA$ 當成 $dV$。</p>
   </div>
@@ -537,34 +537,34 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <div class="section-summary">
-    <div class="section-summary-title">14.5 重點整理</div>
+    <div class="section-summary-title">14.6 重點整理</div>
     <ul>
       <li>三重積分 $\iiint_Q f\,dV$ = Riemann 和 $\sum f(x_i,y_i,z_i)\,\Delta V_i$ 的極限；$f=1$ 給出體積。</li>
-      <li>Fubini（3D）：$f$ 連續且 $Q$ 為 Type I 時可寫成三層重複積分 $\int\!\int\!\int f\,dz\,dy\,dx$。</li>
-      <li>選 Type I/II/III 的關鍵：讓「最內層」的上下限最簡（最好是常數或<em>單一</em>外層變數的函數）。</li>
+      <li>Fubini（三維）：$f$ 連續且 $Q$ 為 第一型 時可寫成三層重複積分 $\int\!\int\!\int f\,dz\,dy\,dx$。</li>
+      <li>選 第一型/II/III 的關鍵：讓「最內層」的上下限最簡（最好是常數或<em>單一</em>外層變數的函數）。</li>
       <li>換序不只是換 $d$ — 必須重新描述 $Q$ 的不等式，把每個變數的上下限用「新外層變數」表示。</li>
       <li>圓盤投影 $D$ 用極座標：$\iiint_E f\,dV=\int\!\int_D\bigl(\int_{z_1}^{z_2}f\,dz\bigr)r\,dr\,d\theta$。</li>
-      <li>本頁聚焦 14.5 的三重積分設定與體積計算。</li>
+      <li>本頁聚焦 14.6 的三重積分設定與體積計算。</li>
     </ul>
   </div>
 </section>
 
 <!-- ============================================================ -->
-<!-- §14.6 柱與球座標                                              -->
+<!-- §14.7 柱與球座標                                              -->
 <!-- ============================================================ -->
-<section id="sec-14-6">
-  <div class="section-number">SECTION 14.6 · 圓柱與球面座標的三重積分</div>
+<section id="sec-14-7">
+  <div class="section-number">第 14.7 節 · 圓柱與球面座標的三重積分</div>
   <h2>用對稱挑座標：$dV$ 的真實樣貌</h2>
 
-  <div id="sec-14-6-1" class="subsection">
-    <h3>14.6.1 圓柱座標：$dV=r\,dr\,d\theta\,dz$</h3>
+  <div id="sec-14-7-1" class="subsection">
+    <h3>14.7.1 圓柱座標：$dV=r\,dr\,d\theta\,dz$</h3>
     <p>圓柱座標 $(r,\theta,z)$ 與直角座標的轉換：</p>
     <div style="text-align:center;">$$x=r\cos\theta,\quad y=r\sin\theta,\quad z=z.$$</div>
     <p>把厚度為 $dr,\,d\theta,\,dz$ 的小元素圍出一塊<span class="pill pill-yellow">楔形殼</span>。它的兩個 $z$ 面是「<strong>環形扇形</strong>」，在 $r$ 方向長度 $dr$、在 $\theta$ 方向圓弧長 $r\,d\theta$，所以底面積 $\approx r\,dr\,d\theta$，乘上高 $dz$ 得</p>
     <div style="text-align:center;">$$dV\approx r\,dr\,d\theta\,dz.$$</div>
 
     <div class="info-box green">
-      <span class="info-label">14.6.1 FORMULA · 圓柱座標三重積分</span>
+      <span class="info-label">14.7.1 公式 · 圓柱座標三重積分</span>
       <div style="text-align:center;margin:.3rem 0;">$$\iiint_Q f\,dV=\int_{\theta_1}^{\theta_2}\!\!\int_{g_1(\theta)}^{g_2(\theta)}\!\!\int_{h_1(r\cos\theta,r\sin\theta)}^{h_2(r\cos\theta,r\sin\theta)} f(r\cos\theta,r\sin\theta,z)\,r\,dz\,dr\,d\theta.$$</div>
       <p style="margin:.3rem 0;">注意末端那個額外的 <strong>$r$</strong>：來自雅可比 $\partial(x,y,z)/\partial(r,\theta,z)=r$。</p>
     </div>
@@ -648,8 +648,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
   </div>
 
-  <div id="sec-14-6-2" class="subsection">
-    <h3>14.6.2 球面座標：$dV=\rho^2\sin\phi\,d\rho\,d\phi\,d\theta$</h3>
+  <div id="sec-14-7-2" class="subsection">
+    <h3>14.7.2 球面座標：$dV=\rho^2\sin\phi\,d\rho\,d\phi\,d\theta$</h3>
     <p>球面座標 $(\rho,\phi,\theta)$ 中，$\rho\ge0$ 為徑距、$\phi\in[0,\pi]$ 為從正 $z$ 軸量下的極角、$\theta\in[0,2\pi)$ 為 $xy$ 平面方位角：</p>
     <div style="text-align:center;">$$x=\rho\sin\phi\cos\theta,\ y=\rho\sin\phi\sin\theta,\ z=\rho\cos\phi.$$</div>
     <p>把 $d\rho,d\phi,d\theta$ 各取一小段，產生的「<strong>球殼楔形</strong>」近似一個盒子，邊長分別為 $d\rho$、$\rho\,d\phi$、$\rho\sin\phi\,d\theta$，故</p>
@@ -657,7 +657,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <p>因子 $\sin\phi$ 是因為「同 $\rho$ 的緯線圈」周長為 $2\pi\rho\sin\phi$，赤道 ($\phi=\pi/2$) 最大、兩極 ($\phi=0,\pi$) 為零。</p>
 
     <div class="info-box green">
-      <span class="info-label">14.6.2 FORMULA · 球面座標三重積分</span>
+      <span class="info-label">14.7.2 公式 · 球面座標三重積分</span>
       <div style="text-align:center;margin:.3rem 0;">$$\iiint_Q f\,dV=\int_{\theta_1}^{\theta_2}\!\!\int_{\phi_1}^{\phi_2}\!\!\int_{\rho_1}^{\rho_2} f(\rho\sin\phi\cos\theta,\rho\sin\phi\sin\theta,\rho\cos\phi)\,\rho^2\sin\phi\,d\rho\,d\phi\,d\theta.$$</div>
     </div>
 
@@ -739,14 +739,14 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
     <div class="concept-warning">
       <div class="cw-title">概念辨析 · 三套座標的常見陷阱</div>
-      <p>(1) <strong>圓柱座標 $r$ 是平面投影距離</strong>，不是 3D 距離。3D 距離是球座標的 $\rho$。<br>
+      <p>(1) <strong>圓柱座標 $r$ 是平面投影距離</strong>，不是 三維 距離。三維 距離是球座標的 $\rho$。<br>
       (2) <strong>球面座標 $\phi$ 是極角（從 +z 軸量起）</strong>，不是仰角（從 xy 平面量起）。範圍 $[0,\pi]$。「赤道」$\phi=\pi/2$ 而非 $0$。<br>
       (3) <strong>$\theta$ 在圓柱與球面座標都是 xy 平面方位角</strong>，範圍 $[0,2\pi)$。<br>
       (4) <strong>三種 $dV$ 不能混用</strong>：直角 $dx\,dy\,dz$、圓柱 $r\,dr\,d\theta\,dz$、球面 $\rho^2\sin\phi\,d\rho\,d\phi\,d\theta$。漏掉 $r$ 或 $\rho^2\sin\phi$ 是最常見錯誤。<br>
       (5) <strong>$\sin\phi$ 永遠正</strong>（因 $\phi\in[0,\pi]$），所以 $|J|=\rho^2\sin\phi$ 不需取絕對值。</p>
     </div>
 
-    <h4 id="sec-14-6-3">診斷視覺：dV 的圓柱 vs 球面對比</h4>
+    <h4 id="sec-14-7-3">診斷視覺：dV 的圓柱 vs 球面對比</h4>
     <p>同樣是「徑向 × 角向 × 厚度」的小體積，圓柱座標乘上 $r$，球面座標乘上 $\rho^2\sin\phi$。下面雙圖固定小角度與小厚度，展示 $r$ 或 $\rho,\phi$ 變化時體積元素的相對大小。</p>
     <div class="dual-canvas">
       <div class="canvas3d-panel canvas-2d">
@@ -830,7 +830,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <div class="section-summary">
-    <div class="section-summary-title">14.6 重點整理</div>
+    <div class="section-summary-title">14.7 重點整理</div>
     <ul>
       <li><strong>圓柱座標</strong>：$x=r\cos\theta,\ y=r\sin\theta,\ z=z$；$dV=r\,dr\,d\theta\,dz$（雅可比 $|J|=r$）。</li>
       <li><strong>球面座標</strong>：$x=\rho\sin\phi\cos\theta,\ y=\rho\sin\phi\sin\theta,\ z=\rho\cos\phi$；$dV=\rho^2\sin\phi\,d\rho\,d\phi\,d\theta$。</li>
@@ -844,17 +844,18 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </section>
 
 <!-- ============================================================ -->
-<!-- §14.7 雅可比                                                  -->
+<!-- §14.8 雅可比（補充）                                          -->
 <!-- ============================================================ -->
-<section id="sec-14-7">
-  <div class="section-number">SECTION 14.7 · 變數變換：雅可比矩陣</div>
-  <h2>幾何視角：$|J|$ 是面積放大率</h2>
-  <h3 id="sec-14-7-1">14.7.1 雅可比</h3>
+<section id="sec-14-8">
+  <div class="section-number">14.8 變數變換：雅可比矩陣（補充）</div>
+  <h2>14.8 $|J|$ 是面積放大率（補充）</h2>
+  <p>本節對應講義的雅可比變數變換內容，但在本頁列為補充章節；主線仍以 14.5 曲面面積、14.6 三重積分、14.7 圓柱與球面座標為準。</p>
+  <h3 id="sec-14-8-1">14.8.1 雅可比</h3>
   <p>給定 $T:(u,v)\mapsto(x,y)=(g(u,v),h(u,v))$，雅可比為</p>
   <div style="text-align:center;">$$\dfrac{\partial(x,y)}{\partial(u,v)}=\det\!\begin{pmatrix}\partial x/\partial u & \partial x/\partial v\\ \partial y/\partial u & \partial y/\partial v\end{pmatrix}=\dfrac{\partial x}{\partial u}\dfrac{\partial y}{\partial v}-\dfrac{\partial y}{\partial u}\dfrac{\partial x}{\partial v}.$$</div>
 
   <div class="info-box warm">
-    <span class="info-label">THEOREM 14.5 · 二重積分變數變換</span>
+    <span class="info-label">定理 14.5 · 二重積分變數變換</span>
     <p style="margin:.55rem 0 .3rem;">若 $T$ 在 $S$ 內為一對一且具連續一階偏導，$f$ 在 $R=T(S)$ 連續且 $\partial(x,y)/\partial(u,v)\ne 0$，則</p>
     <div style="text-align:center;">$$\iint_R f(x,y)\,dx\,dy=\iint_S f(g(u,v),h(u,v))\left|\dfrac{\partial(x,y)}{\partial(u,v)}\right|du\,dv.$$</div>
   </div>
@@ -897,7 +898,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
     <div class="side-panel">
       <div class="eq-card">
-        <div class="eq-label">CURRENT MAP</div>
+        <div class="eq-label">目前變換</div>
         <div class="eq-formula" id="jac-name">極座標 x=r cosθ, y=r sinθ</div>
         <div class="eq-sub" id="jac-Jstr">$|J|=r$</div>
       </div>
@@ -923,36 +924,45 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
   </div>
 
-  <h3 id="sec-14-7-2">14.7.2 經典例題與技法</h3>
+  <h3 id="sec-14-8-2">14.8.2 經典例題與技法</h3>
 
   <div class="lecture-example">
-    <div class="ex-tag">講義例題 1 對應 · 極座標雅可比</div>
-    <div class="ex-title">圓盤 $R:x^2+y^2\le 4$ 的面積</div>
-    <div class="step-block"><div class="step-num">步驟 1（選變換）</div>$x=r\cos\theta,\ y=r\sin\theta$；$S=\{(r,\theta):0\le r\le 2,\ 0\le\theta\le 2\pi\}$。</div>
-    <div class="step-block"><div class="step-num">步驟 2（雅可比）</div>$|J|=\det\!\begin{pmatrix}\cos\theta & -r\sin\theta\\ \sin\theta & r\cos\theta\end{pmatrix}=r$。</div>
-    <div class="step-block"><div class="step-num">步驟 3（套公式）</div>$\displaystyle\iint_R dx\,dy=\iint_S 1\cdot r\,dr\,d\theta=\int_0^{2\pi}\!\int_0^2 r\,dr\,d\theta=2\pi\cdot 2=4\pi.$</div>
-    <div class="ex-answer">面積 $=4\pi\approx 12.566$（與 $\pi r^2=\pi\cdot 4$ 吻合）。</div>
+    <div class="ex-tag">講義例題 1 · 直角座標到極座標</div>
+    <div class="ex-title">求變數變換 $x=r\cos\theta,\ y=r\sin\theta$ 的雅可比。</div>
+    <div class="step-block"><div class="step-num">步驟 1（列偏導數）</div>$$\frac{\partial x}{\partial r}=\cos\theta,\quad \frac{\partial x}{\partial\theta}=-r\sin\theta,\quad \frac{\partial y}{\partial r}=\sin\theta,\quad \frac{\partial y}{\partial\theta}=r\cos\theta.$$</div>
+    <div class="step-block"><div class="step-num">步驟 2（排成行列式）</div>$$\frac{\partial(x,y)}{\partial(r,\theta)}=\det\begin{pmatrix}\cos\theta&-r\sin\theta\\[2pt]\sin\theta&r\cos\theta\end{pmatrix}.$$</div>
+    <div class="step-block"><div class="step-num">步驟 3（化簡）</div>$$\frac{\partial(x,y)}{\partial(r,\theta)}=r\cos^2\theta+r\sin^2\theta=r.$$</div>
+    <div class="ex-answer">因此極座標換元時 $dx\,dy=r\,dr\,d\theta$。</div>
   </div>
 
   <div class="lecture-example">
-    <div class="ex-tag">延伸例題 · 線性變換簡化菱形區域</div>
-    <div class="ex-title">求 $\displaystyle\iint_R xy\,dA$，$R:|x+y|\le 1,\ |x-y|\le 1$（傾斜的方形）</div>
-    <div class="step-block"><div class="step-num">步驟 1（選變換）</div>取 $u=x+y,\ v=x-y$，則 $S$ 為直角方形 $|u|\le 1,\ |v|\le 1$。反解：$x=\tfrac{u+v}{2},\ y=\tfrac{u-v}{2}$。</div>
-    <div class="step-block"><div class="step-num">步驟 2（雅可比）</div>$|J|=\det\!\begin{pmatrix}1/2 & 1/2\\ 1/2 & -1/2\end{pmatrix}=\bigl|-\tfrac{1}{4}-\tfrac{1}{4}\bigr|=\tfrac{1}{2}$（取絕對值）。</div>
-    <div class="step-block"><div class="step-num">步驟 3（換被積函數）</div>$xy=\tfrac{(u+v)(u-v)}{4}=\tfrac{u^2-v^2}{4}$。</div>
-    <div class="step-block"><div class="step-num">步驟 4（套公式）</div>$\displaystyle\iint_R xy\,dA=\!\int_{-1}^1\!\int_{-1}^1\tfrac{u^2-v^2}{4}\cdot\tfrac{1}{2}\,du\,dv=\tfrac{1}{8}\!\int_{-1}^1\!\int_{-1}^1(u^2-v^2)\,du\,dv.$</div>
-    <div class="step-block"><div class="step-num">步驟 5（對稱）</div>由對稱 $\int u^2 du dv=\int v^2 du dv$，差為零：積分 $=0$。</div>
-    <div class="ex-answer">$\displaystyle\iint_R xy\,dA=0$。<strong>洞察</strong>：$R$ 對 $x\to -x$ 對稱、$xy$ 為奇函數，憑對稱性即可知道答案；變數變換把難看的「菱形界」變成標準方形，使「對稱性論證」一目了然。</div>
+    <div class="ex-tag">講義例題 2 · 找出使區域變矩形的變換</div>
+    <div class="ex-title">$R$ 由 $x-2y=0,\ x-2y=-4,\ x+y=4,\ x+y=1$ 圍成。找一個把矩形區域 $S$ 送到 $R$ 的變換 $T$。</div>
+    <div class="step-block"><div class="step-num">步驟 1（把邊界當新變數）</div>令 $$u=x-2y,\qquad v=x+y.$$ 這樣四條邊界變成 $u=0,\ u=-4,\ v=4,\ v=1$。</div>
+    <div class="step-block"><div class="step-num">步驟 2（寫出 $S$）</div>因此 $S$ 是 $uv$ 平面中的矩形：$$-4\le u\le 0,\qquad 1\le v\le 4.$$</div>
+    <div class="step-block"><div class="step-num">步驟 3（反解成 $x,y$）</div>由 $u=x-2y,\ v=x+y$ 得 $$y=\frac{v-u}{3},\qquad x=\frac{u+2v}{3}.$$</div>
+    <div class="ex-answer">所需變換為 $$T(u,v)=\left(\frac{u+2v}{3},\,\frac{v-u}{3}\right),\quad -4\le u\le0,\ 1\le v\le4.$$</div>
   </div>
 
   <div class="lecture-example">
-    <div class="ex-tag">延伸例題 · 把曲邊界變直</div>
-    <div class="ex-title">求 $\displaystyle\iint_R 1\,dA$，$R$ 在第一象限由 $y=x,\ y=4x,\ xy=1,\ xy=2$ 圍成</div>
-    <div class="step-block"><div class="step-num">步驟 1（選變換）</div>取 $u=y/x,\ v=xy$。則 $R\to S:1\le u\le 4,\ 1\le v\le 2$（直角方形！）。</div>
-    <div class="step-block"><div class="step-num">步驟 2（求雅可比）</div>$x,y$ 對 $u,v$：由 $y=ux,\ xy=v$ 得 $x^2 u=v\Rightarrow x=\sqrt{v/u},\ y=\sqrt{uv}$。直接算 $\partial(u,v)/\partial(x,y)$ 較簡：$\det\begin{pmatrix}-y/x^2 & 1/x\\ y & x\end{pmatrix}=-\tfrac{y}{x}-\tfrac{y}{x}=-2u$，所以 $\bigl|\partial(x,y)/\partial(u,v)\bigr|=\tfrac{1}{|2u|}=\tfrac{1}{2u}$（在第一象限 $u>0$）。</div>
-    <div class="step-block"><div class="step-num">步驟 3（套公式）</div>$\displaystyle\iint_R 1\,dA=\!\int_1^4\!\int_1^2 \tfrac{1}{2u}\,dv\,du=\tfrac{1}{2}\!\int_1^4\tfrac{1}{u}du\!\int_1^2 dv.$</div>
-    <div class="step-block"><div class="step-num">步驟 4（內外層）</div>$\int_1^4 \tfrac{1}{u}du=\ln 4=2\ln 2$；$\int_1^2 dv=1$。乘起來 $\tfrac{1}{2}\cdot 2\ln 2\cdot 1=\ln 2$。</div>
-    <div class="ex-answer">$\displaystyle\iint_R 1\,dA=\ln 2\approx 0.693$。<strong>關鍵技法</strong>：把<em>曲線邊界（雙曲線、射線）</em>轉成<em>直線邊界（垂直水平線）</em>的變換 — 雅可比的代價換來積分區域的單純性。</div>
+    <div class="ex-tag">講義例題 3 · 用變數變換簡化區域</div>
+    <div class="ex-title">同例題 2 的區域 $R$，計算 $\displaystyle\iint_R 3xy\,dA$。</div>
+    <div class="step-block"><div class="step-num">步驟 1（沿用例題 2 的變換）</div>$$x=\frac{u+2v}{3},\qquad y=\frac{v-u}{3},\qquad S:\ -4\le u\le0,\ 1\le v\le4.$$</div>
+    <div class="step-block"><div class="step-num">步驟 2（算雅可比）</div>$$\frac{\partial(x,y)}{\partial(u,v)}=\det\begin{pmatrix}1/3&2/3\\[2pt]-1/3&1/3\end{pmatrix}=\frac{1}{9}+\frac{2}{9}=\frac13.$$</div>
+    <div class="step-block"><div class="step-num">步驟 3（換被積函數）</div>$$3xy\left|\frac{\partial(x,y)}{\partial(u,v)}\right|=3\left(\frac{u+2v}{3}\right)\left(\frac{v-u}{3}\right)\frac13=\frac{(u+2v)(v-u)}{9}.$$</div>
+    <div class="step-block"><div class="step-num">步驟 4（積分）</div>$$\iint_R3xy\,dA=\int_{-4}^{0}\int_{1}^{4}\frac{(u+2v)(v-u)}{9}\,dv\,du=\frac{122}{9}.$$</div>
+    <div class="ex-answer">$\displaystyle\iint_R3xy\,dA=\frac{122}{9}$。</div>
+  </div>
+
+  <div class="lecture-example">
+    <div class="ex-tag">講義例題 4 · 用變數變換簡化被積函數</div>
+    <div class="ex-title">$R$ 是頂點 $(0,1),(1,2),(2,1),(1,0)$ 的正方形。計算 $\displaystyle\iint_R (x+y)^2\sin^2(x-y)\,dA$。</div>
+    <div class="step-block"><div class="step-num">步驟 1（選變數）</div>令 $$u=x+y,\qquad v=x-y.$$ 四個頂點分別對應到 $(u,v)=(1,-1),(3,-1),(3,1),(1,1)$，所以 $$S:\ 1\le u\le3,\ -1\le v\le1.$$</div>
+    <div class="step-block"><div class="step-num">步驟 2（反解與雅可比）</div>$$x=\frac{u+v}{2},\qquad y=\frac{u-v}{2},\qquad \left|\frac{\partial(x,y)}{\partial(u,v)}\right|=\left|\det\begin{pmatrix}1/2&1/2\\[2pt]1/2&-1/2\end{pmatrix}\right|=\frac12.$$</div>
+    <div class="step-block"><div class="step-num">步驟 3（換被積函數）</div>$$(x+y)^2\sin^2(x-y)=u^2\sin^2 v.$$</div>
+    <div class="step-block"><div class="step-num">步驟 4（積分）</div>$$\iint_R (x+y)^2\sin^2(x-y)\,dA=\frac12\int_1^3u^2\,du\int_{-1}^{1}\sin^2v\,dv.$$</div>
+    <div class="step-block"><div class="step-num">步驟 5（化簡）</div>$$\frac12\cdot\frac{26}{3}\left(1-\frac{\sin2}{2}\right)=\frac{13}{3}-\frac{13\sin2}{6}.$$</div>
+    <div class="ex-answer">$\displaystyle\iint_R (x+y)^2\sin^2(x-y)\,dA=\frac{13}{3}-\frac{13\sin2}{6}$。</div>
   </div>
 
   <div class="concept-warning">
@@ -966,7 +976,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
   <div class="quiz-card" id="q-148b">
     <span class="quiz-tag">概念題</span>
-    <div class="quiz-q">在二維變數變換 $T(u,v)=(x,y)=(g(u,v),h(u,v))$ 中，Jacobian 的絕對值 $|J|=\left|\dfrac{\partial(x,y)}{\partial(u,v)}\right|$ 的幾何意義是？</div>
+    <div class="quiz-q">在二維變數變換 $T(u,v)=(x,y)=(g(u,v),h(u,v))$ 中，雅可比的絕對值 $|J|=\left|\dfrac{\partial(x,y)}{\partial(u,v)}\right|$ 的幾何意義是？</div>
     <div class="quiz-options">
       <button class="quiz-opt">變換的旋轉角度</button>
       <button class="quiz-opt">兩個區域的長度比</button>
@@ -987,7 +997,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <div class="section-summary">
-    <div class="section-summary-title">14.7 重點整理</div>
+    <div class="section-summary-title">14.8 雅可比重點整理（補充）</div>
     <ul>
       <li>變換公式：$\iint_R f(x,y)\,dx\,dy=\iint_S f(g(u,v),h(u,v))\,|\partial(x,y)/\partial(u,v)|\,du\,dv$。</li>
       <li>$|J|$ 的幾何意義：$(u,v)$ 處 $du\,dv$ 經 $T$ 後在 $(x,y)$ 的對應面積為 $|J|\,du\,dv$（局部面積放大率）。</li>
@@ -1003,49 +1013,49 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 <!-- 本頁速查                                                      -->
 <!-- ============================================================ -->
 <section id="sec-ref">
-  <div class="section-number">QUICK REFERENCE · 14.4–14.7</div>
+  <div class="section-number">速查 · 14.5–14.8</div>
   <h2>本頁速查</h2>
   <p>把所有公式、定理、決策表收在一起，方便回顧或考前複習。</p>
 
   <div class="ref-card">
-    <div class="ref-card-header"><span class="ref-card-name">曲面面積</span><span class="ref-card-name-en">DEF 14.3</span></div>
+    <div class="ref-card-header"><span class="ref-card-name">曲面面積</span><span class="ref-card-name-en">定義 14.3</span></div>
     <div class="ref-card-eq">$\displaystyle S=\iint_R\sqrt{1+f_x^2+f_y^2}\,dA$</div>
     <div class="ref-card-note">$\sqrt{1+f_x^2+f_y^2}=\sec\gamma$（切平面對 xy 的傾斜倍率），故 $dS\ge dA$。</div>
   </div>
 
   <div class="ref-card">
-    <div class="ref-card-header"><span class="ref-card-name">三重積分定義</span><span class="ref-card-name-en">DEF 14.4</span></div>
+    <div class="ref-card-header"><span class="ref-card-name">三重積分定義</span><span class="ref-card-name-en">定義 14.4</span></div>
     <div class="ref-card-eq">$\displaystyle\iiint_Q f\,dV=\lim_{\|\Delta\|\to 0}\sum_i f(x_i,y_i,z_i)\,\Delta V_i$</div>
     <div class="ref-card-note">特別地 $V(Q)=\iiint_Q dV$；本頁聚焦三重積分設定與體積計算。</div>
   </div>
 
   <div class="ref-card">
-    <div class="ref-card-header"><span class="ref-card-name">Fubini（3D） / Type I 區域</span><span class="ref-card-name-en">THM 14.4</span></div>
+    <div class="ref-card-header"><span class="ref-card-name">Fubini（三維） / 第一型區域</span><span class="ref-card-name-en">定理 14.4</span></div>
     <div class="ref-card-eq">$\displaystyle\iiint_Q f\,dV=\int_a^b\!\!\int_{h_1(x)}^{h_2(x)}\!\!\int_{g_1(x,y)}^{g_2(x,y)} f\,dz\,dy\,dx$</div>
     <div class="ref-card-note">換序時要重新表達 $Q$ 的不等式；策略：讓最內層的上下限最簡。</div>
   </div>
 
   <div class="ref-card">
-    <div class="ref-card-header"><span class="ref-card-name">圓柱座標</span><span class="ref-card-name-en">14.6.1 FORMULA</span></div>
+    <div class="ref-card-header"><span class="ref-card-name">圓柱座標</span><span class="ref-card-name-en">14.7.1 公式</span></div>
     <div class="ref-card-eq">$x=r\cos\theta,\ y=r\sin\theta,\ z=z;\quad dV=r\,dr\,d\theta\,dz$</div>
-    <div class="ref-card-note">$|J|=r$；$r$ 是 xy 平面投影距離，不是 3D 距離。</div>
+    <div class="ref-card-note">$|J|=r$；$r$ 是 xy 平面投影距離，不是 三維 距離。</div>
   </div>
 
   <div class="ref-card">
-    <div class="ref-card-header"><span class="ref-card-name">球面座標</span><span class="ref-card-name-en">14.6.2 FORMULA</span></div>
+    <div class="ref-card-header"><span class="ref-card-name">球面座標</span><span class="ref-card-name-en">14.7.2 公式</span></div>
     <div class="ref-card-eq">$x=\rho\sin\phi\cos\theta,\ y=\rho\sin\phi\sin\theta,\ z=\rho\cos\phi$</div>
     <div class="ref-card-eq">$dV=\rho^2\sin\phi\,d\rho\,d\phi\,d\theta$</div>
     <div class="ref-card-note">$\phi\in[0,\pi]$ 從 +z 軸量；赤道 $\phi=\pi/2$。$|J|=\rho^2\sin\phi\ge 0$，無需取絕對值。</div>
   </div>
 
   <div class="ref-card">
-    <div class="ref-card-header"><span class="ref-card-name">雅可比矩陣 / 行列式</span><span class="ref-card-name-en">DEF 14.5</span></div>
+    <div class="ref-card-header"><span class="ref-card-name">雅可比矩陣 / 行列式</span><span class="ref-card-name-en">定義 14.5</span></div>
     <div class="ref-card-eq">$\displaystyle\dfrac{\partial(x,y)}{\partial(u,v)}=\det\!\begin{pmatrix}\partial x/\partial u & \partial x/\partial v\\ \partial y/\partial u & \partial y/\partial v\end{pmatrix}$</div>
     <div class="ref-card-note">幾何意義：在 $(u,v)$ 處 $du\,dv$ 經 $T$ 映到 $(x,y)$ 後的面積放大率。</div>
   </div>
 
   <div class="ref-card">
-    <div class="ref-card-header"><span class="ref-card-name">二重積分變數變換</span><span class="ref-card-name-en">THM 14.5</span></div>
+    <div class="ref-card-header"><span class="ref-card-name">二重積分變數變換</span><span class="ref-card-name-en">定理 14.5</span></div>
     <div class="ref-card-eq">$\displaystyle\iint_R f(x,y)\,dx\,dy=\iint_S f(g(u,v),h(u,v))\left|\dfrac{\partial(x,y)}{\partial(u,v)}\right|du\,dv$</div>
     <div class="ref-card-note">三件事同步換：上下限、被積函數、$dx\,dy\to|J|\,du\,dv$。要絕對值！</div>
   </div>
@@ -1063,7 +1073,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <div class="ref-card">
-    <div class="ref-card-header"><span class="ref-card-name">何時用何座標 — 決策表</span><span class="ref-card-name-en">DECISION</span></div>
+    <div class="ref-card-header"><span class="ref-card-name">何時用何座標 — 決策表</span><span class="ref-card-name-en">判斷</span></div>
     <table class="conv-table">
       <thead><tr><th>看到這個</th><th>建議</th><th>備註</th></tr></thead>
       <tbody>
@@ -1080,13 +1090,13 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <div class="ref-card">
-    <div class="ref-card-header"><span class="ref-card-name">常用體積公式</span><span class="ref-card-name-en">USEFUL</span></div>
+    <div class="ref-card-header"><span class="ref-card-name">常用體積公式</span><span class="ref-card-name-en">常用</span></div>
     <div class="ref-card-eq">球 $V=\dfrac{4\pi a^3}{3}$；半球 $\dfrac{2\pi a^3}{3}$；圓柱 $\pi r^2 h$；圓錐 $\dfrac{1}{3}\pi r^2 h$</div>
   </div>
 </section>
 
 <footer>
-  Calculus · Chapter 14.4–14.7 · Multiple Integrals (互動講義) · 風格與 multiple_integration.html (14.1–14.3) 一致
+  微積分 · 第 14.5–14.8 節 · 多重積分互動講義 · 風格與 multiple_integration.html (14.1–14.3) 一致
 </footer>
 
 </div>
@@ -1189,14 +1199,14 @@ function makeScene(canvasId, opts={}){
   const canvas=document.getElementById(canvasId);
   if(!canvas){ console.warn('canvas missing', canvasId); return null; }
   if(!window.THREE){
-    showCanvasNotice(canvas,'Three.js 載入失敗','3D 曲面與立體視覺需要 three.min.js；請確認網路或 CDN 可正常載入後重新整理。');
+    showCanvasNotice(canvas,'Three.js 載入失敗','三維 曲面與立體視覺需要 three.min.js；請確認網路或 CDN 可正常載入後重新整理。');
     return null;
   }
   let renderer;
   try{
     renderer=new THREE.WebGLRenderer({canvas, antialias:true, alpha:false});
   }catch(err){
-    showCanvasNotice(canvas,'WebGL 建立失敗','此瀏覽器或環境無法建立 3D renderer；請開啟硬體加速或改用支援 WebGL 的瀏覽器。');
+    showCanvasNotice(canvas,'WebGL 建立失敗','此瀏覽器或環境無法建立 三維 renderer；請開啟硬體加速或改用支援 WebGL 的瀏覽器。');
     return null;
   }
   clearCanvasNotice(canvas);
@@ -1384,7 +1394,7 @@ function makeNumberQuiz(cardId, correct, opts={}){
 }
 
 /* ============================================================
-   §14.4 曲面面積 — Tangent parallelograms approximating dS
+   §14.5 曲面面積 — Tangent parallelograms approximating dS
    ============================================================ */
 (function(){
   const S = makeScene('canvas-surfarea', {radius:12, phi:1.0, theta:0.9, axisLen:4, gridSize:5});
@@ -1550,7 +1560,7 @@ function makeNumberQuiz(cardId, correct, opts={}){
 })();
 
 /* ============================================================
-   §14.5 三重積分 — Riemann box approximation
+   §14.6 三重積分 — Riemann box approximation
    ============================================================ */
 (function(){
   const S = makeScene('canvas-triple', {radius:14, phi:1.0, theta:0.95, axisLen:4, gridSize:5});
@@ -1715,7 +1725,7 @@ function makeNumberQuiz(cardId, correct, opts={}){
 })();
 
 /* ============================================================
-   §14.6 圓柱 + 球面座標 dV elements
+   §14.7 圓柱 + 球面座標 dV elements
    ============================================================ */
 (function(){
   const S = makeScene('canvas-cyl', {radius:11, phi:1.0, theta:0.9, axisLen:3.5, gridSize:4});
@@ -1884,7 +1894,7 @@ function makeNumberQuiz(cardId, correct, opts={}){
 })();
 
 /* ============================================================
-   §14.7 雅可比 — uv→xy mapping
+   §14.8 雅可比 — uv→xy mapping
    ============================================================ */
 (function(){
   const UV = make2DScene('canvas-uv', {xRange:[-3.4,3.4], yRange:[-3.4,3.4], padding:24});
@@ -2085,7 +2095,7 @@ function makeNumberQuiz(cardId, correct, opts={}){
 })();
 
 /* ============================================================
-   §14.4 新增診斷圖：dS = sec γ · dA
+   §14.5 診斷圖：dS = sec γ · dA
    ============================================================ */
 (function(){
   const canvas = document.getElementById('canvas-14-5-ds');
@@ -2204,7 +2214,7 @@ function makeNumberQuiz(cardId, correct, opts={}){
 })();
 
 /* ============================================================
-   §14.5 新增診斷圖：Type I 區域 → xy 投影（側視 2D）
+   §14.6 診斷圖：第一型區域 → xy 投影（側視 2D）
    ============================================================ */
 (function(){
   const canvas = document.getElementById('canvas-14-6-projection');
@@ -2289,7 +2299,7 @@ function makeNumberQuiz(cardId, correct, opts={}){
 })();
 
 /* ============================================================
-   §14.6 新增診斷圖：圓柱 vs 球面 dV 元素對比
+   §14.7 診斷圖：圓柱 vs 球面 dV 元素對比
    ============================================================ */
 (function(){
   const cylC = document.getElementById('canvas-14-7-cyl-elem');
@@ -2425,7 +2435,7 @@ function makeNumberQuiz(cardId, correct, opts={}){
 })();
 
 /* ============================================================
-   §14.7 新增診斷圖：|J(u,v)| 熱力圖
+   §14.8 診斷圖：|J(u,v)| 熱力圖
    ============================================================ */
 (function(){
   const canvas = document.getElementById('canvas-14-8-jacobian');
@@ -2532,7 +2542,7 @@ function makeNumberQuiz(cardId, correct, opts={}){
   setTimeout(draw, 100);
 })();
 
-/* ─── 14.4–14.7 quizzes（既有 4 個） ─── */
+/* ─── 14.5–14.8 quizzes（既有 4 個） ─── */
 makeChoiceQuiz('q-145', 1, {
   ok:'✓ 正解：$dS=\\sqrt{1+f_x^2+f_y^2}\\,dA$，當 $f_x=f_y=0$ (水平片) 時 $dS=dA$。',
   wrong:[

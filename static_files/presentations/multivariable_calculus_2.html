@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>多變數函數 II — 第 13.5-13.9 節互動講義</title>
+<title>多變數函數 II — 第 13.5-13.10 節互動講義</title>
 <script>
   MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }, svg: { fontCache: 'global' } };
 </script>
@@ -129,7 +129,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </head>
 <body>
 <nav class="side-nav" id="sideNav">
-  <div class="sn-title">CHAPTER 13 · II</div>
+  <div class="sn-title">第 13 章 · II</div>
   <a class="sn-item" href="#sec-13-5">13.5 連鎖率</a>
   <a class="sn-item sn-sub" href="#sec-13-5-1">  · 單獨立變數</a>
   <a class="sn-item sn-sub" href="#sec-13-5-2">  · 兩獨立變數</a>
@@ -149,14 +149,19 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   <a class="sn-item" href="#sec-13-9">13.9 應用（補充）</a>
   <a class="sn-item sn-sub" href="#sec-13-9-1">  · 最大盒子</a>
   <a class="sn-item sn-sub" href="#sec-13-9-2">  · 最大利潤</a>
+  <a class="sn-item" href="#sec-13-10">13.10 Lagrange（補充）</a>
+  <a class="sn-item sn-sub" href="#sec-13-10-geometry">  · 相切幾何</a>
+  <a class="sn-item sn-sub" href="#sec-13-10-method">  · 定理與方法</a>
+  <a class="sn-item sn-sub" href="#sec-13-10-examples">  · 講義例題</a>
+  <a class="sn-item sn-sub" href="#sec-13-10-two-constraints">  · 雙限制</a>
   <a class="sn-item" href="#sec-ref">速查</a>
 </nav>
 
 <div class="hero">
   <div class="hero-content">
     <h1><span class="green">多變數函數 II</span>：在三維空間中理解<span class="yellow">導數與極值</span></h1>
-    <div class="subtitle">第 13.5-13.9 節｜互動教學式講義｜曲面、切向、法向與最佳化</div>
-    <div class="big-formula">$\dfrac{dw}{dt}=w_xx'+w_yy',\quad D_{\mathbf u}f=\nabla f\cdot\mathbf u,\quad \nabla F(P)\perp T_PS,\quad d=f_{xx}f_{yy}-f_{xy}^2$</div>
+    <div class="subtitle">第 13.5-13.10 節｜互動教學式講義｜曲面、切向、法向與最佳化</div>
+    <div class="big-formula">$\dfrac{dw}{dt}=w_xx'+w_yy',\quad D_{\mathbf u}f=\nabla f\cdot\mathbf u,\quad \nabla F(P)\perp T_PS,\quad \nabla f=\lambda\nabla g$</div>
   </div>
 </div>
 
@@ -168,7 +173,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   <p>本節先處理一個獨立變數，再處理兩個獨立變數。依賴圖可以幫助記公式，但真正的幾何意思是：$t$ 改變時，$(x(t),y(t))$ 在 $xy$ 平面移動，曲面上的點 $(x(t),y(t),w(t))$ 也跟著移動；高度變化由 $x$ 方向與 $y$ 方向的貢獻相加。</p>
 
   <div class="info-box green">
-    <span class="info-label">THM 13.6 / 13.7</span>
+    <span class="info-label">定理 13.6 / 13.7</span>
     <p>若 $w=f(x,y)$ 且 $x=g(t),\ y=h(t)$，則</p>
     $$\frac{dw}{dt}=w_x\frac{dx}{dt}+w_y\frac{dy}{dt}.$$
     <p>若 $x=g(s,t),\ y=h(s,t)$，則</p>
@@ -232,7 +237,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       <div class="ex-title">$w=x^2y-y^2,\ x=\sin t,\ y=e^t$，求 $\dfrac{dw}{dt}\bigg|_{t=0}$</div>
       <div class="step-block"><div class="step-num">步驟 1</div>偏導與對 $t$ 的導數：$w_x=2xy,\ w_y=x^2-2y,\ x'=\cos t,\ y'=e^t$。</div>
       <div class="step-block"><div class="step-num">步驟 2</div>在 $t=0$ 時 $x=\sin 0=0,\ y=e^0=1$，故 $w_x(0,1)=0,\ w_y(0,1)=-2$；$x'(0)=1,\ y'(0)=1$。</div>
-      <div class="step-block"><div class="step-num">步驟 3</div>套用 THM 13.6：$\dfrac{dw}{dt}\bigg|_{t=0}=0\cdot 1+(-2)\cdot 1$。</div>
+      <div class="step-block"><div class="step-num">步驟 3</div>套用定理 13.6：$\dfrac{dw}{dt}\bigg|_{t=0}=0\cdot 1+(-2)\cdot 1$。</div>
       <div class="ex-answer">$\dfrac{dw}{dt}\bigg|_{t=0}=-2$</div>
     </div>
   </div>
@@ -278,7 +283,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
   <h3 id="sec-13-5-3">13.5.2 隱（偏）微分</h3>
   <div class="info-box warm">
-    <span class="info-label">THM 13.8 隱微分</span>
+    <span class="info-label">定理 13.8 隱微分</span>
     <p>若 $F(x,y)=0$ 隱含定義 $y=y(x)$，鏈鎖律給 $F_x+F_y\,dy/dx=0$，故</p>
     $$\frac{dy}{dx}=-\frac{F_x}{F_y}\quad(F_y\ne 0).$$
     <p>若 $F(x,y,z)=0$ 隱含定義 $z=z(x,y)$，則 $\displaystyle z_x=-F_x/F_z,\ z_y=-F_y/F_z\ (F_z\ne 0)$。</p>
@@ -337,7 +342,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   <p>偏導數只看座標軸方向；方向導數看任意單位向量 $\mathbf u=(\cos\theta,\sin\theta)$。在三維圖形中，固定方向 $\mathbf u$ 等於拿一個垂直平面切曲面，截痕曲線在點上的切線斜率就是 $D_{\mathbf u}f$。</p>
 
   <div class="info-box green">
-    <span class="info-label">DEF 13.8 / THM 13.10</span>
+    <span class="info-label">定義 13.8 / 定理 13.10</span>
     $$D_{\mathbf u}f(x,y)=\lim_{t\to0}\frac{f(x+t\cos\theta,y+t\sin\theta)-f(x,y)}{t}
     =\nabla f(x,y)\cdot\mathbf u.$$
   </div>
@@ -482,7 +487,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
   <h3>三變數梯度</h3>
   <div class="info-box green">
-    <span class="info-label">DEF 13.10</span>
+    <span class="info-label">定義 13.10</span>
     $$\nabla f(x,y,z)=f_x\mathbf i+f_y\mathbf j+f_z\mathbf k,\qquad D_{\mathbf u}f=\nabla f\cdot\mathbf u.$$
     <p>在三維中：梯度垂直於 <strong>等位面</strong> $f(x,y,z)=c$（不再是曲線而是曲面），長度仍為最大方向導數。</p>
   </div>
@@ -545,8 +550,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   <p>曲面若寫成 $F(x,y,z)=0$，切平面和法線可以統一由 $\nabla F(P)$ 決定。這裡不只看平面投影，而是在三維中同時看曲面、貼住曲面的切平面，以及穿過切點的法線。</p>
 
   <div class="info-box green">
-    <span class="info-label">DEF 13.11 / THM 13.13</span>
-    <p>若 $P=(x_0,y_0,z_0)$ 在曲面 $F(x,y,z)=0$ 上且 $\nabla F(P)\ne0$，則切平面為</p>
+    <span class="info-label">定義 13.11 / 定理 13.13</span>
+    <p>若 $F$ 在 $P=(x_0,y_0,z_0)$ 可微，且 $P$ 在曲面 $F(x,y,z)=0$ 上、$\nabla F(P)\ne0$，則切平面為</p>
     $$F_x(P)(x-x_0)+F_y(P)(y-y_0)+F_z(P)(z-z_0)=0.$$
     <p>法線通過 $P$，方向向量也是 $\nabla F(P)$。</p>
   </div>
@@ -699,7 +704,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   <p>臨界點的意思是 $f_x=f_y=0$ 或偏導不存在；若 $f_x=f_y=0$，幾何上代表切平面水平。但水平切平面可能是碗底、帽頂，也可能是鞍點，因此還需要二階偏導數檢定。</p>
 
   <div class="info-box green">
-    <span class="info-label">THM 13.15-13.17</span>
+    <span class="info-label">定理 13.15-13.17</span>
     <p>若 $f_x(a,b)=0,\ f_y(a,b)=0$ 且二階偏導連續，令</p>
     $$d=f_{xx}(a,b)f_{yy}(a,b)-[f_{xy}(a,b)]^2.$$
     <p>$d>0,f_{xx}>0$ 為相對極小；$d>0,f_{xx}<0$ 為相對極大；$d<0$ 為鞍點；$d=0$ 則本檢定無結論。</p>
@@ -736,7 +741,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <p>定義 13.13：$(a,b)$ 是 $f$ 的臨界點，若<br>
     （1）$f_x(a,b)=f_y(a,b)=0$，或<br>
     （2）$f_x$ 或 $f_y$ 在 $(a,b)$ 不存在。<br>
-    兩類都可能是極值；二階檢定法 (THM 13.17) 只能用在情況 (1)。</p>
+    兩類都可能是極值；二階檢定法 （定理 13.17） 只能用在情況 (1)。</p>
   </div>
 
   <h3 id="sec-13-8-1">3D 地形 + 2D 等高線：5 種典型情況</h3>
@@ -867,9 +872,9 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <div class="section-summary-title">13.8 重點整理（4 步驟流程）</div>
     <ul>
       <li><strong>步驟 1（找臨界點）</strong>：解 $f_x=f_y=0$，並另列偏導不存在的點。</li>
-      <li><strong>步驟 2（二階檢定 THM 13.17）</strong>：$d=f_{xx}f_{yy}-f_{xy}^2$。$d>0,f_{xx}>0$ 為極小；$d>0,f_{xx}<0$ 為極大；$d<0$ 為鞍點；$d=0$ 失效。</li>
+      <li><strong>步驟 2（二階檢定定理 13.17）</strong>：$d=f_{xx}f_{yy}-f_{xy}^2$。$d>0,f_{xx}>0$ 為極小；$d>0,f_{xx}<0$ 為極大；$d<0$ 為鞍點；$d=0$ 失效。</li>
       <li><strong>步驟 3（$d=0$ 時）</strong>：回到函數的代數結構（如 $f=x^2y^2\ge 0$）或圖形判斷。</li>
-      <li><strong>步驟 4（閉區域）</strong>：再加上邊界檢查（含角點）；極值定理 (THM 13.15) 保證最大最小存在。</li>
+      <li><strong>步驟 4（閉區域）</strong>：再加上邊界檢查（含角點）；極值定理 （定理 13.15） 保證最大最小存在。</li>
     </ul>
   </div>
 </section>
@@ -989,32 +994,236 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 </section>
 
+<section id="sec-13-10">
+  <div class="section-number">13.10 Lagrange 乘數法（補充）</div>
+  <h2>受限制最佳化：讓等高線剛好貼住限制曲線</h2>
+  <p>許多最佳化問題會限制可使用的點，例如點必須落在某條曲線、某個曲面，或兩個曲面的交線上。這些限制會使問題變複雜，因為最佳解可能出現在可行區域的邊界。Lagrange 乘數法的想法是：在限制曲線上取得極值時，目標函數的等高線會和限制曲線相切，所以兩者的梯度方向平行。</p>
+
+  <div id="sec-13-10-geometry" class="subsection">
+    <div class="viz-layout">
+      <div class="canvas-panel">
+        <h3>矩形內接橢圓：等高線相切的幾何</h3>
+        <div class="canvas-wrap light">
+          <canvas id="canvas-lagrange-ellipse"></canvas>
+          <div class="hint-overlay" style="color:#fff;background:rgba(26,26,46,.62)">橢圓 + 雙曲線</div>
+        </div>
+      </div>
+      <div class="side-panel">
+        <div class="eq-card">
+          <div class="eq-label">講義 Fig. 53-54</div>
+          <div class="eq-formula">$f(x,y)=4xy,\quad \dfrac{x^2}{3^2}+\dfrac{y^2}{4^2}=1$</div>
+          <div class="eq-sub">$(x,y)$ 是第一象限頂點，矩形邊長為 $2x$ 與 $2y$。</div>
+        </div>
+        <div class="info-card">
+          <div class="ic-title">相切點</div>
+          <div class="ic-row"><span class="ic-label">點</span><span class="ic-value ok">$(3/\sqrt2,2\sqrt2)$</span></div>
+          <div class="ic-row"><span class="ic-label">等高線值</span><span class="ic-value highlight">$4xy=24$</span></div>
+          <div class="ic-row"><span class="ic-label">條件</span><span class="ic-value ok">$\nabla f=\lambda\nabla g$</span></div>
+        </div>
+      </div>
+    </div>
+    <p>限制式可看成 $g(x,y)=x^2/3^2+y^2/4^2$ 的固定等高線 $g(x,y)=1$。目標函數 $f(x,y)=4xy$ 的等高線是一族雙曲線 $4xy=k$。若 $k$ 太小，雙曲線和橢圓交在許多可行點；把 $k$ 逐漸放大，最後仍能碰到橢圓的那一條雙曲線會剛好與橢圓相切。相切時，兩條曲線的法向量平行，也就是</p>
+    $$\nabla f(x,y)=\lambda\nabla g(x,y).$$
+    <p>若 $\nabla f(x,y)=\lambda\nabla g(x,y)$，講義稱這個純量 $\lambda$ 為拉格朗日乘數。</p>
+  </div>
+
+  <div id="sec-13-10-method" class="subsection">
+    <div class="info-box green">
+      <span class="info-label">定理 13.19</span>
+      <p>令 $f$ 與 $g$ 具有連續一階偏導數，且 $f$ 在光滑限制曲線 $g(x,y)=c$ 上的 $(x_0,y_0)$ 取得極值。若 $\nabla g(x_0,y_0)\ne 0$，則存在實數 $\lambda$ 使得</p>
+      $$\nabla f(x_0,y_0)=\lambda\nabla g(x_0,y_0).$$
+    </div>
+    <div class="step-block">
+      <div class="step-num">講義證明想法</div>
+      <p>把限制曲線寫成 $\mathbf r(t)=x(t)\mathbf i+y(t)\mathbf j$，且 $\mathbf r'(t)\ne 0$。令 $h(t)=f(x(t),y(t))$。因為 $f$ 在限制曲線上於 $(x_0,y_0)$ 取得極值，所以對應的 $h(t)$ 在 $t_0$ 有極值，故 $h'(t_0)=0$。</p>
+      $$h'(t_0)=f_x(x_0,y_0)x'(t_0)+f_y(x_0,y_0)y'(t_0)=\nabla f(x_0,y_0)\cdot\mathbf r'(t_0)=0.$$
+      <p>因此 $\nabla f(x_0,y_0)$ 垂直於曲線切向量 $\mathbf r'(t_0)$。另一方面，依定理 13.12，$\nabla g(x_0,y_0)$ 也垂直於同一條限制曲線的切向量。兩個向量都垂直於同一個切向方向，所以它們平行，因此存在 $\lambda$ 使 $\nabla f=\lambda\nabla g$。</p>
+    </div>
+
+    <div class="method-grid">
+      <div class="info-card">
+        <div class="ic-title">Lagrange 乘數法</div>
+        <p>同時解下列三個方程：</p>
+        $$f_x(x,y)=\lambda g_x(x,y),\qquad f_y(x,y)=\lambda g_y(x,y),\qquad g(x,y)=c.$$
+      </div>
+      <div class="info-card">
+        <div class="ic-title">比較候選值</div>
+        <p>把第一步得到的每個解代回 $f$。最大的值給出受限制最大值，最小的值給出受限制最小值。</p>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">講義的另一種寫法</div>
+        <p>令</p>
+        $$F(x,y,\lambda)=f(x,y)-\lambda\bigl(g(x,y)-c\bigr),$$
+        <p>再把 $F$ 視為無限制問題求解。</p>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">操作順序</div>
+        <p>先寫目標函數，再寫限制函數；接著列梯度方程，最後比較所有候選點。</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="sec-13-10-examples" class="subsection">
+    <h3>例題 1：單一限制式的 Lagrange 乘數法</h3>
+    <div class="lecture-example">
+      <div class="ex-tag">講義例題 1</div>
+      <div class="ex-title">在 $x>0,\ y>0$ 且滿足限制式 $(x^2/3^2)+(y^2/4^2)=1$ 的條件下，求 $f(x,y)=4xy$ 的最大值。</div>
+      <div class="step-block"><div class="step-num">步驟 1（寫出限制函數）</div>令 $g(x,y)=\dfrac{x^2}{3^2}+\dfrac{y^2}{4^2}=1$。</div>
+      <div class="step-block"><div class="step-num">步驟 2（列出梯度方程）</div>$\nabla f(x,y)=4y\mathbf i+4x\mathbf j$，且 $\lambda\nabla g(x,y)=\dfrac{2\lambda x}{9}\mathbf i+\dfrac{\lambda y}{8}\mathbf j$。所以
+        $$4y=\frac{2}{9}\lambda x,\qquad 4x=\frac{1}{8}\lambda y,\qquad \frac{x^2}{3^2}+\frac{y^2}{4^2}=1.$$</div>
+      <div class="step-block"><div class="step-num">步驟 3（消去 $\lambda$）</div>由第一式得 $\lambda=\dfrac{18y}{x}$。代入第二式：
+        $$4x=\frac18\left(\frac{18y}{x}\right)y\quad\Rightarrow\quad x^2=\frac{9}{16}y^2.$$</div>
+      <div class="step-block"><div class="step-num">步驟 4（代回限制式）</div>
+        $$\frac19\left(\frac{9}{16}y^2\right)+\frac1{16}y^2=1\quad\Rightarrow\quad y^2=8.$$
+        因為 $y>0$，取 $y=2\sqrt2$。接著 $x^2=\dfrac{9}{16}(8)=\dfrac92$，所以 $x=\dfrac3{\sqrt2}$。</div>
+      <div class="step-block"><div class="step-num">步驟 5（求最大值）</div>
+        $$f\left(\frac3{\sqrt2},2\sqrt2\right)=4\left(\frac3{\sqrt2}\right)(2\sqrt2)=24.$$</div>
+      <div class="ex-answer">最大值為 $24$，發生在 $\left(\dfrac3{\sqrt2},2\sqrt2\right)$。</div>
+    </div>
+
+    <h3>例題 3：三變數的 Lagrange 乘數法</h3>
+    <div class="lecture-example">
+      <div class="ex-tag">講義例題 3</div>
+      <div class="ex-title">在限制式 $2x-3y-4z=49$ 下，求 $f(x,y,z)=2x^2+y^2+3z^2$ 的最小值。</div>
+      <div class="step-block"><div class="step-num">步驟 1（寫出限制）</div>令 $g(x,y,z)=2x-3y-4z=49$。</div>
+      <div class="step-block"><div class="step-num">步驟 2（列出系統）</div>$\nabla f=4x\mathbf i+2y\mathbf j+6z\mathbf k$，$\lambda\nabla g=2\lambda\mathbf i-3\lambda\mathbf j-4\lambda\mathbf k$，所以
+        $$4x=2\lambda,\qquad 2y=-3\lambda,\qquad 6z=-4\lambda,\qquad 2x-3y-4z=49.$$</div>
+      <div class="step-block"><div class="step-num">步驟 3（解 $\lambda$）</div>由前三式得 $x=\lambda/2,\ y=-3\lambda/2,\ z=-2\lambda/3$。代入限制式：
+        $$2\left(\frac\lambda2\right)-3\left(-\frac{3\lambda}{2}\right)-4\left(-\frac{2\lambda}{3}\right)=49,$$
+        $$\frac{49}{6}\lambda=49\quad\Rightarrow\quad \lambda=6.$$</div>
+      <div class="step-block"><div class="step-num">步驟 4（代回）</div>$x=3,\ y=-9,\ z=-4$，因此
+        $$f(3,-9,-4)=2(3)^2+(-9)^2+3(-4)^2=147.$$</div>
+      <div class="ex-answer">最小值為 $147$，發生在 $(3,-9,-4)$。由原函數與限制式可看出沒有最大值。</div>
+    </div>
+
+    <h3>例題 4：區域內的最佳化</h3>
+    <div class="viz-layout">
+      <div class="canvas-panel">
+        <div class="canvas-wrap light">
+          <canvas id="canvas-lagrange-disk"></canvas>
+          <div class="hint-overlay" style="color:#fff;background:rgba(26,26,46,.62)">邊界 + 內部</div>
+        </div>
+      </div>
+      <div class="side-panel">
+        <div class="eq-card">
+          <div class="eq-label">例題 4</div>
+          <div class="eq-formula">$f=x^2+2y^2-2x+3,\quad x^2+y^2\le 10$</div>
+          <div class="eq-sub">先做邊界，再做內部。</div>
+        </div>
+        <div class="info-card">
+          <div class="ic-title">結論</div>
+          <div class="ic-row"><span class="ic-label">最大值</span><span class="ic-value ok">$24$，於 $(-1,\pm3)$</span></div>
+          <div class="ic-row"><span class="ic-label">最小值</span><span class="ic-value ok">$2$，於 $(1,0)$</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="lecture-example">
+      <div class="ex-tag">講義例題 4</div>
+      <div class="ex-title">在限制區域 $x^2+y^2\le 10$ 上，求 $f(x,y)=x^2+2y^2-2x+3$ 的極值。</div>
+      <div class="step-block"><div class="step-num">步驟 1（拆成兩種情況）</div>因為限制是 $x^2+y^2\le 10$，要分成邊界圓周 $x^2+y^2=10$ 與圓盤內部兩部分。</div>
+      <div class="step-block"><div class="step-num">步驟 2（邊界上用 Lagrange 乘數法）</div>在 $x^2+y^2=10$ 上，令 $g=x^2+y^2$。由
+        $$\nabla f=(2x-2,4y),\qquad \lambda\nabla g=(2\lambda x,2\lambda y)$$
+        得
+        $$2x-2=2\lambda x,\qquad 4y=2\lambda y,\qquad x^2+y^2=10.$$</div>
+      <div class="step-block"><div class="step-num">步驟 3（邊界候選點）</div>若 $y\ne0$，第二式給 $\lambda=2$，所以 $2x-2=4x$，得 $x=-1$；代回圓得 $y=\pm3$，此時 $f(-1,\pm3)=24$。若 $y=0$，則 $x=\pm\sqrt{10}$；其中 $f(\sqrt{10},0)=13-2\sqrt{10}\approx6.675$。</div>
+      <div class="step-block"><div class="step-num">步驟 4（內部用 13.8 方法）</div>在圓盤內部，解 $\nabla f=0$：
+        $$2x-2=0,\qquad 4y=0\quad\Rightarrow\quad (x,y)=(1,0),$$
+        且 $(1,0)$ 在 $x^2+y^2<10$ 內，$f(1,0)=2$。</div>
+      <div class="ex-answer">合併兩部分：最大值為 $24$，發生在 $(-1,\pm3)$；最小值為 $2$，發生在 $(1,0)$。</div>
+    </div>
+  </div>
+
+  <div id="sec-13-10-two-constraints" class="subsection">
+    <div class="info-box warm">
+      <span class="info-label">兩個限制條件</span>
+      <p>若有兩個限制函數 $g$ 與 $h$，講義引入第二個拉格朗日乘數 $\mu$，並解</p>
+      $$\nabla f=\lambda\nabla g+\mu\nabla h,$$
+      <p>其中兩個限制函數的梯度向量不平行。</p>
+    </div>
+
+    <h3>例題 5：兩個限制式的最佳化</h3>
+    <div class="viz-layout">
+      <div class="canvas-panel">
+        <div class="canvas-wrap">
+          <canvas id="canvas-lagrange-two"></canvas>
+          <div class="hint-overlay">球面與平面的交線</div>
+        </div>
+      </div>
+      <div class="side-panel">
+        <div class="eq-card">
+          <div class="eq-label">例題 5</div>
+          <div class="eq-formula">$T=20+2x+2y+z^2$</div>
+          <div class="eq-sub">$x^2+y^2+z^2=11,\quad x+y+z=3$。</div>
+        </div>
+        <div class="info-card">
+        <div class="ic-title">極端溫度</div>
+          <div class="ic-row"><span class="ic-label">最低溫</span><span class="ic-value ok">$25$</span></div>
+          <div class="ic-row"><span class="ic-label">最高溫</span><span class="ic-value highlight">$91/3$</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lecture-example">
+      <div class="ex-tag">講義例題 5</div>
+      <div class="ex-title">設 $T(x,y,z)=20+2x+2y+z^2$ 表示球面 $x^2+y^2+z^2=11$ 上各點的溫度。求平面 $x+y+z=3$ 與該球面交線上的最高與最低溫度。</div>
+      <div class="step-block"><div class="step-num">步驟 1（兩個限制）</div>
+        $$g(x,y,z)=x^2+y^2+z^2=11,\qquad h(x,y,z)=x+y+z=3.$$</div>
+      <div class="step-block"><div class="step-num">步驟 2（列出梯度方程）</div>
+        $$\nabla T=2\mathbf i+2\mathbf j+2z\mathbf k,$$
+        $$\lambda\nabla g=2\lambda x\mathbf i+2\lambda y\mathbf j+2\lambda z\mathbf k,\qquad \mu\nabla h=\mu\mathbf i+\mu\mathbf j+\mu\mathbf k.$$
+        因此
+        $$2=2\lambda x+\mu,\qquad 2=2\lambda y+\mu,\qquad 2z=2\lambda z+\mu,$$
+        $$x^2+y^2+z^2=11,\qquad x+y+z=3.$$</div>
+      <div class="step-block"><div class="step-num">步驟 3（先化簡）</div>第一式減第二式得 $\lambda(x-y)=0$。再與第三式整理，可得到講義列出的系統：
+        $$\lambda(x-y)=0,\qquad 2z(1-\lambda)-\mu=0,\qquad x^2+y^2+z^2=11,\qquad x+y+z=3.$$</div>
+      <div class="step-block"><div class="step-num">步驟 4（分情況）</div>若 $\lambda=0$，可得 臨界點 $(3,-1,1)$ 與 $(-1,3,1)$。若 $\lambda\ne0$，則 $x=y$，並可得
+        $$x=y=\frac{3\pm2\sqrt3}{3},\qquad z=\frac{3\mp4\sqrt3}{3}.$$</div>
+      <div class="step-block"><div class="step-num">步驟 5（比較溫度）</div>
+        $$T(3,-1,1)=T(-1,3,1)=25,$$
+        $$T\left(\frac{3-2\sqrt3}{3},\frac{3-2\sqrt3}{3},\frac{3+4\sqrt3}{3}\right)=\frac{91}{3}\approx30.33,$$
+        $$T\left(\frac{3+2\sqrt3}{3},\frac{3+2\sqrt3}{3},\frac{3-4\sqrt3}{3}\right)=\frac{91}{3}\approx30.33.$$</div>
+      <div class="ex-answer">交線上的最低溫為 $T=25$，最高溫為 $T=91/3$。</div>
+    </div>
+  </div>
+
+  <div class="section-summary">
+    <div class="section-summary-title">13.10 重點整理</div>
+    <ul>
+      <li>單一限制：在光滑限制曲線 $g(x,y)=c$ 上，若 $\nabla g\ne0$，受限制極值點滿足 $\nabla f=\lambda\nabla g$。</li>
+      <li>幾何圖像：目標函數等高線與限制曲線相切，兩者法向量平行。</li>
+      <li>操作流程：列方程 → 解候選點 → 代回目標函數比較。</li>
+      <li>區域限制如 $x^2+y^2\le10$：要同時檢查邊界與內部。</li>
+      <li>兩個限制：使用 $\nabla f=\lambda\nabla g+\mu\nabla h$，再和兩個限制式一起解。</li>
+    </ul>
+  </div>
+</section>
+
 <section id="sec-ref">
-  <div class="section-number">REFERENCE · 13.5-13.9</div>
+  <div class="section-number">速查 · 13.5-13.10</div>
   <h2>本頁速查</h2>
   <div class="method-grid">
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">鏈鎖律（單變數）</span><span class="ref-card-name-en">THM 13.6</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">鏈鎖律（單變數）</span><span class="ref-card-name-en">定理 13.6</span></div>
       <div class="ref-card-eq">$\dfrac{dw}{dt}=w_x\,x'+w_y\,y'$</div>
     </div>
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">鏈鎖律（雙變數）</span><span class="ref-card-name-en">THM 13.7</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">鏈鎖律（雙變數）</span><span class="ref-card-name-en">定理 13.7</span></div>
       <div class="ref-card-eq">$w_s=w_x x_s+w_y y_s$；$w_t=w_x x_t+w_y y_t$</div>
     </div>
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">隱微分</span><span class="ref-card-name-en">THM 13.8</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">隱微分</span><span class="ref-card-name-en">定理 13.8</span></div>
       <div class="ref-card-eq">$\dfrac{dy}{dx}=-\dfrac{F_x}{F_y}$；$z_x=-\dfrac{F_x}{F_z}$；$z_y=-\dfrac{F_y}{F_z}$</div>
     </div>
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">方向導數</span><span class="ref-card-name-en">DEF 13.8 / THM 13.10</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">方向導數</span><span class="ref-card-name-en">定義 13.8 / 定理 13.10</span></div>
       <div class="ref-card-eq">$D_{\mathbf u}f=\nabla f\cdot\mathbf u$（$\mathbf u$ 須為單位向量）</div>
     </div>
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">梯度性質</span><span class="ref-card-name-en">THM 13.11 / 13.12</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">梯度性質</span><span class="ref-card-name-en">定理 13.11 / 13.12</span></div>
       <div class="ref-card-eq">最大上升 = $\nabla f$；最大率 = $\|\nabla f\|$；垂直於等高線 / 等位面</div>
     </div>
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">切平面 + 法線</span><span class="ref-card-name-en">DEF 13.11 / THM 13.13</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">切平面 + 法線</span><span class="ref-card-name-en">定義 13.11 / 定理 13.13</span></div>
       <div class="ref-card-eq">$F_x(P)(x-x_0)+F_y(P)(y-y_0)+F_z(P)(z-z_0)=0$</div>
     </div>
     <div class="ref-card">
@@ -1026,16 +1235,24 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       <div class="ref-card-eq">交線方向 = $\nabla F\times\nabla G$</div>
     </div>
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">臨界點定義</span><span class="ref-card-name-en">DEF 13.13</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">臨界點定義</span><span class="ref-card-name-en">定義 13.13</span></div>
       <div class="ref-card-eq">$\nabla f(P)=0$ 或 $f_x,f_y$ 在 $P$ 不存在</div>
     </div>
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">二階檢定</span><span class="ref-card-name-en">THM 13.17</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">二階檢定</span><span class="ref-card-name-en">定理 13.17</span></div>
       <div class="ref-card-eq">$d=f_{xx}f_{yy}-f_{xy}^2$：$d>0,f_{xx}>0$ 極小；$d>0,f_{xx}<0$ 極大；$d<0$ 鞍；$d=0$ 失效</div>
     </div>
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">極值定理</span><span class="ref-card-name-en">THM 13.15</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">極值定理</span><span class="ref-card-name-en">定理 13.15</span></div>
       <div class="ref-card-eq">閉、有界 $R$ 上連續函數必有絕對最大與最小值</div>
+    </div>
+    <div class="ref-card">
+      <div class="ref-card-header"><span class="ref-card-name">拉格朗日乘數法</span><span class="ref-card-name-en">定理 13.18</span></div>
+      <div class="ref-card-eq">單一限制：$\nabla f=\lambda\nabla g$，再加上 $g(x,y)=c$</div>
+    </div>
+    <div class="ref-card">
+      <div class="ref-card-header"><span class="ref-card-name">兩個限制</span><span class="ref-card-name-en">13.10</span></div>
+      <div class="ref-card-eq">$\nabla f=\lambda\nabla g+\mu\nabla h$，再加上兩個限制式</div>
     </div>
   </div>
 </section>
@@ -1043,53 +1260,65 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </div>
 
 <footer>
-  第 13.5-13.9 節 · 多變數函數 II 互動講義 ｜ Three.js + MathJax ｜ 依據 Calculus_Chapter13.pdf 與 Chap13_Summary.pdf 製作
+  第 13.5-13.10 節 · 多變數函數 II 互動講義 ｜ Three.js + MathJax ｜ 依據 Calculus_Chapter13.pdf、Calculus_Chapter13_extend.pdf 與 Chap13_Summary.pdf 製作
 </footer>
 
 <script type="application/json" id="source-checks">{
-  "chainExample1DwDtAt0": -2,
-  "chainExample3Ws": "6s^2/t + 2t",
-  "chainExample3Wt": "-2s^3/t^2 + 2s",
-  "chainExample4Ws": "6s^2/t + 2t",
-  "chainExample4Wt": "-2s^3/t^2 + 2s",
-  "chainExample5WsAt_1_2pi": "2*pi",
-  "chainExample5WtAt_1_2pi": "2 + 2*pi",
-  "implicitExample6_dydx": "2x/(3y^2+2y-5)",
-  "implicitExample7_dzdx": "(2xy^2-6xz)/(3x^2+6z^2+3y)",
-  "implicitExample7_dzdy": "(2x^2*y-3z)/(3x^2+6z^2+3y)",
-  "directionalExample1Exact": "-1 - sqrt(3)/2",
-  "directionalExample2_Du": "8/5",
-  "directionalExample3_grad_at_1_2": [6, 4],
-  "directionalExample4_Du": "-27/10",
+  "chain例題1DwDtAt0": -2,
+  "chain例題3Ws": "6s^2/t + 2t",
+  "chain例題3Wt": "-2s^3/t^2 + 2s",
+  "chain例題4Ws": "6s^2/t + 2t",
+  "chain例題4Wt": "-2s^3/t^2 + 2s",
+  "chain例題5WsAt_1_2pi": "2*pi",
+  "chain例題5WtAt_1_2pi": "2 + 2*pi",
+  "implicit例題6_dydx": "2x/(3y^2+2y-5)",
+  "implicit例題7_dzdx": "(2xy^2-6xz)/(3x^2+6z^2+3y)",
+  "implicit例題7_dzdy": "(2x^2*y-3z)/(3x^2+6z^2+3y)",
+  "directional例題1Exact": "-1 - sqrt(3)/2",
+  "directional例題2_Du": "8/5",
+  "directional例題3_grad_at_1_2": [6, 4],
+  "directional例題4_Du": "-27/10",
   "temperatureGradientAt_2_-3": [-16, 6],
   "temperatureGradient": [-16, 6],
   "temperatureRateSquared": 292,
-  "directionalExample8_grad_at_2_-1_1": [4, -2, -4],
-  "tangentExample1_sphere_radius": 2,
-  "tangentExample2_eq": "-x + y + 2z - 6 = 0",
-  "tangentPlaneExample2": "-x + y + 2z - 6 = 0",
-  "tangentExample3_eq": "2x + 8y + 10z = 15",
-  "normalLineDirectionExample4": [6, -6, -4],
-  "intersectionExample5_cross": [-20, 0, 0],
-  "extremaExample1Point": [-2, 3],
-  "extremaExample1Value": 3,
-  "extremaExample2Point": [0, 0],
-  "extremaExample2Type": "relative max (partials don't exist)",
-  "extremaExample2Value": 1,
-  "extremaExample3Saddle": [0, 0],
-  "extremaExample3Max": [1.3333333333333333, 1.3333333333333333],
-  "extremaExample3MaxValue_exact": "59/27",
-  "extremaExample3MaxValue_decimal": 2.185185185185185,
-  "extremaExample3MaxValue": 2.185185185185185,
-  "extremaExample4_d": 0,
-  "extremaExample5_AbsMax": 1,
-  "extremaExample5_AbsMin": 0,
+  "directional例題8_grad_at_2_-1_1": [4, -2, -4],
+  "tangent例題1_sphere_radius": 2,
+  "tangent例題2_eq": "-x + y + 2z - 6 = 0",
+  "tangentPlane例題2": "-x + y + 2z - 6 = 0",
+  "tangent例題3_eq": "2x + 8y + 10z = 15",
+  "normalLineDirection例題4": [6, -6, -4],
+  "intersection例題5_cross": [-20, 0, 0],
+  "extrema例題1Point": [-2, 3],
+  "extrema例題1Value": 3,
+  "extrema例題2Point": [0, 0],
+  "extrema例題2Type": "relative max (partials don't exist)",
+  "extrema例題2Value": 1,
+  "extrema例題3Saddle": [0, 0],
+  "extrema例題3Max": [1.3333333333333333, 1.3333333333333333],
+  "extrema例題3MaxValue_exact": "59/27",
+  "extrema例題3MaxValue_decimal": 2.185185185185185,
+  "extrema例題3MaxValue": 2.185185185185185,
+  "extrema例題4_d": 0,
+  "extrema例題5_AbsMax": 1,
+  "extrema例題5_AbsMin": 0,
   "boxMaxPoint": [1.3333333333333333, 2, 2.6666666666666665],
   "boxMaxVolume_exact": "64/9",
   "boxMaxVolume_decimal": 7.111111111111111,
   "boxMaxVolume": 7.111111111111111,
   "profitMaxPoint": [2000, 4000],
   "profitMaxValue": 18000,
+  "lagrange例題1Point": ["3/sqrt(2)", "2*sqrt(2)"],
+  "lagrange例題1Max": 24,
+  "lagrange例題3Point": [3, -9, -4],
+  "lagrange例題3Min": 147,
+  "lagrange例題4BoundaryMaxPoints": [[-1, 3], [-1, -3]],
+  "lagrange例題4BoundaryMin": "13 - 2*sqrt(10)",
+  "lagrange例題4GlobalMax": 24,
+  "lagrange例題4GlobalMinPoint": [1, 0],
+  "lagrange例題4GlobalMin": 2,
+  "lagrange例題5MinPoints": [[3, -1, 1], [-1, 3, 1]],
+  "lagrange例題5Min": 25,
+  "lagrange例題5Max": "91/3",
   "quiz_13_5_1_answer": 5,
   "quiz_13_6_1_answer_decimal": -2.121,
   "quiz_13_6_2_answer": 5,
@@ -1733,6 +1962,148 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     $('profitX').addEventListener('input',draw); $('profitY').addEventListener('input',draw); draw();
   }
 
+  function initLagrangeEllipse(){
+    const canvas=$('canvas-lagrange-ellipse'); if(!canvas) return;
+    const ctx=canvas.getContext('2d');
+    function fit(){const r=canvas.getBoundingClientRect(),dpr=Math.min(2,window.devicePixelRatio||1);canvas.width=Math.max(320,Math.round(r.width*dpr));canvas.height=Math.max(230,Math.round(r.height*dpr));}
+    function drawArrow(sx,sy,x0,y0,x1,y1,color,label){
+      ctx.strokeStyle=color; ctx.lineWidth=3;
+      ctx.beginPath(); ctx.moveTo(sx(x0),sy(y0)); ctx.lineTo(sx(x1),sy(y1)); ctx.stroke();
+      const ang=Math.atan2(sy(y1)-sy(y0),sx(x1)-sx(x0));
+      ctx.fillStyle=color; ctx.beginPath();
+      ctx.moveTo(sx(x1),sy(y1));
+      ctx.lineTo(sx(x1)-10*Math.cos(ang-.42),sy(y1)-10*Math.sin(ang-.42));
+      ctx.lineTo(sx(x1)-10*Math.cos(ang+.42),sy(y1)-10*Math.sin(ang+.42));
+      ctx.closePath(); ctx.fill();
+      ctx.font='bold 12px JetBrains Mono'; ctx.fillText(label,sx(x1)+6,sy(y1)-4);
+    }
+    function draw(){
+      fit(); const w=canvas.width,h=canvas.height;
+      ctx.fillStyle='#fbf7ed'; ctx.fillRect(0,0,w,h);
+      const xMin=0,xMax=3.45,yMin=0,yMax=4.45;
+      const sx=x=>w*(.09+(x-xMin)/(xMax-xMin)*.84);
+      const sy=y=>h*(.91-(y-yMin)/(yMax-yMin)*.82);
+      ctx.strokeStyle='#d9d0c0'; ctx.lineWidth=1;
+      ctx.beginPath(); ctx.moveTo(sx(xMin),sy(0)); ctx.lineTo(sx(xMax),sy(0)); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(sx(0),sy(yMin)); ctx.lineTo(sx(0),sy(yMax)); ctx.stroke();
+      ctx.fillStyle='#7d776b'; ctx.font='11px JetBrains Mono';
+      ctx.fillText('x',sx(xMax)-12,sy(0)-6); ctx.fillText('y',sx(0)+6,sy(yMax)+12);
+
+      ctx.strokeStyle='#1a6b4a'; ctx.lineWidth=3;
+      ctx.beginPath();
+      for(let t=0;t<=Math.PI/2+.01;t+=.015){
+        const x=3*Math.cos(t), y=4*Math.sin(t);
+        if(t===0) ctx.moveTo(sx(x),sy(y)); else ctx.lineTo(sx(x),sy(y));
+      }
+      ctx.stroke();
+      ctx.fillStyle='#1a6b4a'; ctx.font='bold 12px JetBrains Mono'; ctx.fillText('g=1',sx(.25),sy(4)-6);
+
+      [8,16,24].forEach(k=>{
+        ctx.strokeStyle=k===24?'#c0392b':'rgba(44,62,122,.52)';
+        ctx.lineWidth=k===24?2.8:1.5;
+        ctx.beginPath();
+        let started=false;
+        for(let x=.16;x<=3.25;x+=.02){
+          const y=k/(4*x);
+          if(y<0 || y>4.4) continue;
+          if(!started){ctx.moveTo(sx(x),sy(y)); started=true;} else ctx.lineTo(sx(x),sy(y));
+        }
+        ctx.stroke();
+        const labelX=k===24?2.35:2.75, labelY=k/(4*labelX);
+        ctx.fillStyle=k===24?'#c0392b':'#7d776b'; ctx.font='11px JetBrains Mono';
+        if(labelY<=4.35) ctx.fillText('4xy='+k,sx(labelX)+3,sy(labelY)-3);
+      });
+
+      const px=3/Math.sqrt(2), py=2*Math.sqrt(2);
+      ctx.fillStyle='rgba(241,196,15,.26)';
+      ctx.fillRect(sx(0),sy(py),sx(px)-sx(0),sy(0)-sy(py));
+      ctx.strokeStyle='#f1c40f'; ctx.lineWidth=2;
+      ctx.strokeRect(sx(0),sy(py),sx(px)-sx(0),sy(0)-sy(py));
+      ctx.fillStyle='#c0392b'; ctx.beginPath(); ctx.arc(sx(px),sy(py),6,0,TAU); ctx.fill();
+      ctx.fillStyle='#1a1a2e'; ctx.font='bold 12px JetBrains Mono'; ctx.fillText('(3/√2, 2√2)',sx(px)-86,sy(py)-12);
+
+      const gx=2*px/9, gy=py/8, gn=Math.hypot(gx,gy);
+      drawArrow(sx,sy,px,py,px+gx/gn*.72,py+gy/gn*.72,'#1a6b4a','∇g');
+      drawArrow(sx,sy,px,py,px+gx/gn*1.18,py+gy/gn*1.18,'#c0392b','∇f');
+      ctx.fillStyle='#1a1a2e'; ctx.font='12px JetBrains Mono'; ctx.fillText('∇f = 24∇g',sx(1.55),sy(1.0));
+    }
+    new ResizeObserver(draw).observe(canvas); draw();
+  }
+
+  function initLagrangeDisk(){
+    const canvas=$('canvas-lagrange-disk'); if(!canvas) return;
+    const ctx=canvas.getContext('2d');
+    const f=(x,y)=>x*x+2*y*y-2*x+3;
+    function fit(){const r=canvas.getBoundingClientRect(),dpr=Math.min(2,window.devicePixelRatio||1);canvas.width=Math.max(320,Math.round(r.width*dpr));canvas.height=Math.max(230,Math.round(r.height*dpr));}
+    function drawPoint(sx,sy,x,y,color,label){
+      ctx.fillStyle=color; ctx.beginPath(); ctx.arc(sx(x),sy(y),6,0,TAU); ctx.fill();
+      ctx.fillStyle='#1a1a2e'; ctx.font='bold 11px JetBrains Mono'; ctx.fillText(label,sx(x)+8,sy(y)-6);
+    }
+    function draw(){
+      fit(); const w=canvas.width,h=canvas.height;
+      ctx.fillStyle='#fbf7ed'; ctx.fillRect(0,0,w,h);
+      const r=3.65,xMin=-3.8,xMax=3.8,yMin=-3.8,yMax=3.8;
+      const sx=x=>w*(.08+(x-xMin)/(xMax-xMin)*.84);
+      const sy=y=>h*(.92-(y-yMin)/(yMax-yMin)*.84);
+      const img=ctx.createImageData(w,h);
+      for(let py=0;py<h;py++)for(let px=0;px<w;px++){
+        const x=xMin+(xMax-xMin)*(px/w), y=yMax-(yMax-yMin)*(py/h);
+        const inside=x*x+y*y<=10;
+        const val=f(x,y), t=Math.max(0,Math.min(1,(val-2)/24));
+        const idx=(py*w+px)*4;
+        img.data[idx]=inside?Math.round(245-55*t):247;
+        img.data[idx+1]=inside?Math.round(252-70*t):243;
+        img.data[idx+2]=inside?Math.round(238-120*t):235;
+        img.data[idx+3]=inside?210:255;
+      }
+      ctx.putImageData(img,0,0);
+      ctx.strokeStyle='#d9d0c0'; ctx.lineWidth=1;
+      ctx.beginPath(); ctx.moveTo(sx(xMin),sy(0)); ctx.lineTo(sx(xMax),sy(0)); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(sx(0),sy(yMin)); ctx.lineTo(sx(0),sy(yMax)); ctx.stroke();
+      ctx.strokeStyle='#1a6b4a'; ctx.lineWidth=3;
+      ctx.beginPath();
+      for(let t=0;t<=TAU+.02;t+=.02){
+        const x=Math.sqrt(10)*Math.cos(t), y=Math.sqrt(10)*Math.sin(t);
+        if(t===0) ctx.moveTo(sx(x),sy(y)); else ctx.lineTo(sx(x),sy(y));
+      }
+      ctx.stroke();
+      drawPoint(sx,sy,-1,3,'#c0392b','最大 (-1,3)');
+      drawPoint(sx,sy,-1,-3,'#c0392b','最大 (-1,-3)');
+      drawPoint(sx,sy,Math.sqrt(10),0,'#2980b9','邊界最小');
+      drawPoint(sx,sy,1,0,'#f1c40f','全域最小 (1,0)');
+      ctx.fillStyle='#1a1a2e'; ctx.font='12px JetBrains Mono';
+      ctx.fillText('x²+y²≤10',sx(-3.25),sy(3.45));
+    }
+    new ResizeObserver(draw).observe(canvas); draw();
+  }
+
+  function initLagrangeTwoConstraints(){
+    const S=makeScene('canvas-lagrange-two',{radius:10,axisLen:4,gridSize:4,gridStep:1,theta:.65,phi:1.05}); if(!S)return;
+    const R=Math.sqrt(11);
+    const sphere=(u,v)=>({x:R*Math.sin(v)*Math.cos(u),y:R*Math.sin(v)*Math.sin(u),z:R*Math.cos(v)});
+    S.scene.add(mesh(paramSurface(sphere,0,TAU,0.04,Math.PI-.04,48,28),0x2c3e7a,.22));
+    S.scene.add(mesh(scalarSurface((x,y)=>3-x-y,-2.6,4.2,-2.6,4.2,2,2),0x1a6b4a,.28));
+    const center=new THREE.Vector3(1,1,1);
+    const n=new THREE.Vector3(1,1,1).normalize();
+    const u=new THREE.Vector3(1,-1,0).normalize();
+    const v=new THREE.Vector3(1,1,-2).normalize();
+    const rad=Math.sqrt(8);
+    const pts=[];
+    for(let t=0;t<=TAU+.03;t+=.04){
+      pts.push(center.clone().add(u.clone().multiplyScalar(rad*Math.cos(t))).add(v.clone().multiplyScalar(rad*Math.sin(t))));
+    }
+    S.scene.add(curve(pts,0xf1c40f));
+    const candidates=[
+      {p:new THREE.Vector3(3,-1,1), color:0x2ecc71},
+      {p:new THREE.Vector3(-1,3,1), color:0x2ecc71},
+      {p:new THREE.Vector3((3-2*Math.sqrt(3))/3,(3-2*Math.sqrt(3))/3,(3+4*Math.sqrt(3))/3), color:0xe74c3c},
+      {p:new THREE.Vector3((3+2*Math.sqrt(3))/3,(3+2*Math.sqrt(3))/3,(3-4*Math.sqrt(3))/3), color:0xe74c3c}
+    ];
+    candidates.forEach(c=>{const m=marker(.14,c.color); m.position.copy(c.p); S.scene.add(m);});
+    S.scene.add(lineObj(center.clone().add(n.clone().multiplyScalar(-2.4)),center.clone().add(n.clone().multiplyScalar(2.4)),0xffffff));
+    S.requestRender();
+  }
+
   initDirection();
   initDir2DContour();
   initTemperature2D();
@@ -1744,6 +2115,9 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   initBoundary();
   initBox();
   initProfit();
+  initLagrangeEllipse();
+  initLagrangeDisk();
+  initLagrangeTwoConstraints();
 
   // ─── Quizzes ───
   // 13.5

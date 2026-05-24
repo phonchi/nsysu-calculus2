@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>多變數函數 — Functions of Several Variables (Chapter 13)</title>
+<title>多變數函數 — 第 13 章</title>
 <script>
   MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }, svg: { fontCache: 'global' } };
 </script>
@@ -230,7 +230,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
 <!-- Side navigation -->
 <nav class="side-nav" id="sideNav">
-  <div class="sn-title">CHAPTER 13</div>
+  <div class="sn-title">第 13 章</div>
   <a class="sn-item" href="#sec-13-1">13.1 函數導論</a>
   <a class="sn-item sn-sub" href="#sec-13-1-1">  · 多變數函數</a>
   <a class="sn-item sn-sub" href="#sec-13-1-2">  · 兩變數的圖形</a>
@@ -247,14 +247,14 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   <a class="sn-item" href="#sec-13-4">13.4 微分</a>
   <a class="sn-item sn-sub" href="#sec-13-4-1">  · 增量與微分</a>
   <a class="sn-item sn-sub" href="#sec-13-4-2">  · 可微分性</a>
-  <a class="sn-item" href="#sec-ref">REFERENCE</a>
+  <a class="sn-item" href="#sec-ref">速查</a>
 </nav>
 
 <div class="hero">
   <div class="hero-grid"></div>
   <div class="hero-content">
     <h1><span class="green">多變數函數</span>：從 $\mathbb{R}$ 走進 <span class="blue">$\mathbb{R}^2$、$\mathbb{R}^3$</span></h1>
-    <div class="subtitle">Chapter 13 — Functions of Several Variables｜圖形・極限・偏導・微分（互動版）</div>
+    <div class="subtitle">第 13 章 — 多變數函數｜圖形・極限・偏導・微分（互動版）</div>
     <div class="big-formula">$z = f(x,y),\quad \displaystyle\lim_{(x,y)\to(x_0,y_0)} f(x,y),\quad \frac{\partial z}{\partial x},\ \frac{\partial z}{\partial y},\quad dz = f_x\,dx + f_y\,dy$</div>
     <div class="scroll-hint">向下捲動開始互動<span>↓</span></div>
   </div>
@@ -266,7 +266,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 <!-- §13.1 多變數函數導論                                          -->
 <!-- ============================================================ -->
 <section id="sec-13-1">
-  <div class="section-number">SECTION 13.1 · 多變數函數導論</div>
+  <div class="section-number">第 13.1 節 · 多變數函數導論</div>
   <h2>從一變數跨到多變數：定義域、圖形、等高線、等位面</h2>
   <p>過去的 $y = f(x)$ 把<strong>一個</strong>實數映成另一個實數。本節要把輸入端推廣到「<em>有序實數對 $(x,y)$</em>」甚至「<em>有序三元組 $(x,y,z)$</em>」。輸入維度提高之後，<strong>圖形不再是平面曲線</strong>，而變成<span class="pill pill-z">三維空間中的曲面</span>；表達「水平」資訊的工具則是<span class="pill pill-blue">等高線</span>與<span class="pill pill-green">等位面</span>。</p>
 
@@ -275,26 +275,26 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <h3>13.1.1 多變數函數</h3>
 
     <div class="info-box warm">
-      <span class="info-label">DEF 13.1</span>
+      <span class="info-label">定義 13.1</span>
       <strong>兩變數函數</strong>
-      <p style="margin:.55rem 0 .3rem;">設 $D$ 是一個有序實數對的集合。如果對 $D$ 中任一個序對 $(x,y)$ 恆有唯一的實數 $f(x,y)$ 與之對應，則 $f$ 就稱為一個 $x$ 和 $y$ 的函數。集合 $D$ 是 $f$ 的<strong>定義域 (domain)</strong>，所對應的 $f(x,y)$ 的全體稱為 $f$ 的<strong>值域 (range)</strong>。</p>
+      <p style="margin:.55rem 0 .3rem;">設 $D$ 是一個有序實數對的集合。如果對 $D$ 中任一個序對 $(x,y)$ 恆有唯一的實數 $f(x,y)$ 與之對應，則 $f$ 就稱為一個 $x$ 和 $y$ 的函數。集合 $D$ 是 $f$ 的<strong>定義域</strong>，所對應的 $f(x,y)$ 的全體稱為 $f$ 的<strong>值域</strong>。</p>
     </div>
 
     <p>同樣的概念可以推到三變數 $f(x,y,z)$、$n$ 變數 $f(x_1,\dots,x_n)$。不過畫得出來的「函數圖形」只有兩變數函數能直接視覺化（在三維空間中），這也是本章主要聚焦兩變數的理由。</p>
 
     <div class="lecture-example">
-      <div class="ex-tag">LECTURE EXAMPLE 1 · Domains of functions of several variables</div>
+      <div class="ex-tag">講義例題 1 · 多變數函數的定義域</div>
       <div class="ex-title">求 $f(x,y)=\dfrac{\sqrt{x^2+y^2-9}}{x}$ 與 $g(x,y,z)=\dfrac{x}{\sqrt{9-x^2-y^2-z^2}}$ 的定義域。</div>
       <p>講義例題要求找下列函數的定義域：</p>
       <div style="text-align:center;margin:.4rem 0;">$$f(x,y)=\dfrac{\sqrt{x^2+y^2-9}}{x},\qquad g(x,y,z)=\dfrac{x}{\sqrt{9-x^2-y^2-z^2}}$$</div>
       <div class="dual-card">
         <div class="dc dc-real">
           <div class="dc-title">平方根在分子</div>
-          <p style="margin:0;font-size:.9rem;">$x^2+y^2-9\ge 0$ 且分母 $x\ne 0$。<br><strong>Domain:</strong> $\sqrt{x^2+y^2-9}$ 要求 $x^2+y^2\ge 9$，且 $x\ne 0$，所以 $\{(x,y):x^2+y^2\ge 9,\ x\ne 0\}$。</p>
+          <p style="margin:0;font-size:.9rem;">$x^2+y^2-9\ge 0$ 且分母 $x\ne 0$。<br><strong>定義域：</strong> $\sqrt{x^2+y^2-9}$ 要求 $x^2+y^2\ge 9$，且 $x\ne 0$，所以 $\{(x,y):x^2+y^2\ge 9,\ x\ne 0\}$。</p>
         </div>
         <div class="dc dc-vec">
           <div class="dc-title">平方根在分母</div>
-          <p style="margin:0;font-size:.9rem;">分母不可為 0，根號內要<strong>嚴格正</strong>。<br><strong>Domain:</strong> $\{(x,y,z):x^2+y^2+z^2<9\}$。</p>
+          <p style="margin:0;font-size:.9rem;">分母不可為 0，根號內要<strong>嚴格正</strong>。<br><strong>定義域：</strong> $\{(x,y,z):x^2+y^2+z^2<9\}$。</p>
         </div>
       </div>
     </div>
@@ -341,7 +341,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   <!-- §13.1.2 -->
   <div id="sec-13-1-2" class="subsection">
     <h3>13.1.2 兩變數函數的圖形</h3>
-    <p>給定函數 $z = f(x,y)$，集合 $\{(x,y,z) : z = f(x,y),\ (x,y) \in D\}$ 是 $\mathbb{R}^3$ 的一個子集，稱為 $f$ 的<strong>圖形 (graph)</strong>，通常是一個<span class="pill pill-z">曲面 (surface)</span>。此互動只保留講義 Example 2：$f(x,y)=\sqrt{16-4x^2-y^2}$，避免引入講義此處尚未定義的符號或額外圖形；用滑鼠拖曳旋轉，滾輪縮放。</p>
+    <p>給定函數 $z = f(x,y)$，集合 $\{(x,y,z) : z = f(x,y),\ (x,y) \in D\}$ 是 $\mathbb{R}^3$ 的一個子集，稱為 $f$ 的<strong>圖形</strong>，通常是一個<span class="pill pill-z">曲面</span>。此互動只保留講義 例題 2：$f(x,y)=\sqrt{16-4x^2-y^2}$，避免引入講義此處尚未定義的符號或額外圖形；用滑鼠拖曳旋轉，滾輪縮放。</p>
 
     <div class="viz-layout">
       <div>
@@ -363,7 +363,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       </div>
       <div class="side-panel">
         <div class="eq-card">
-          <div class="eq-label" id="surfLabel">EXAMPLE 2</div>
+          <div class="eq-label" id="surfLabel">例題 2</div>
           <div class="eq-formula" id="surfEq">$z = \sqrt{16 - 4x^2 - y^2}$</div>
           <div class="eq-sub" id="surfRange">$4x^2+y^2 \le 16$</div>
         </div>
@@ -376,23 +376,23 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         <div class="info-card">
           <div class="ic-title">教學重點</div>
         <div style="font-size:.86rem;line-height:1.7;" id="surfNote">
-          講義 Example 2：$z=\sqrt{16-4x^2-y^2}$。Domain 是 $4x^2+y^2\le16$，圖形是 $4x^2+y^2+z^2=16$ 的<strong>上半橢球面</strong>，range 為 $[0,4]$。
+          講義 例題 2：$z=\sqrt{16-4x^2-y^2}$。定義域是 $4x^2+y^2\le16$，圖形是 $4x^2+y^2+z^2=16$ 的<strong>上半橢球面</strong>，值域為 $[0,4]$。
         </div>
       </div>
     </div>
     </div>
 
     <div class="lecture-example">
-      <div class="ex-tag">LECTURE EXAMPLE 2 · Describing the graph</div>
+      <div class="ex-tag">講義例題 2 · 描述圖形</div>
       <div class="ex-title">考慮函數 $f(x,y)=\sqrt{16-4x^2-y^2}$：(a) 求定義域與值域；(b) 描述 $f$ 的圖形。</div>
       <p>講義例題：$f(x,y)=\sqrt{16-4x^2-y^2}$。</p>
       <div class="ex-answer">
         <span class="ex-method">使用定義域條件</span> 實數根號要求被開方數非負：
         $$16-4x^2-y^2\ge0 \quad\Longleftrightarrow\quad 4x^2+y^2\le16.$$
-        因此 domain 是橢圓區域，$x$ 半軸為 $2$、$y$ 半軸為 $4$。
+        因此 定義域是橢圓區域，$x$ 半軸為 $2$、$y$ 半軸為 $4$。
         <br><span class="ex-method">使用圖形定義</span> 令 $z=f(x,y)$，則 $z=\sqrt{16-4x^2-y^2}$，所以 $z\ge0$；兩邊平方得
         $$4x^2+y^2+z^2=16,\qquad z\ge0.$$
-        這是橢球面的上半部。最大值在 $(0,0)$，$z=4$；最小值在邊界 $4x^2+y^2=16$，$z=0$，所以 range 為 $0\le z\le4$。
+        這是橢球面的上半部。最大值在 $(0,0)$，$z=4$；最小值在邊界 $4x^2+y^2=16$，$z=0$，所以值域為 $0\le z\le4$。
       </div>
     </div>
   </div>
@@ -400,7 +400,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   <!-- §13.1.3 -->
   <div id="sec-13-1-3" class="subsection">
     <h3>13.1.3 等高線</h3>
-    <p>把曲面 $z = f(x,y)$ 用水平面 $z = c$（常數）切開，交線投影到 <span class="pill pill-z">$xy$ 平面</span>就是<strong>等高線 (level curve)</strong>，方程式為 $f(x,y) = c$。主預設採講義 Example 3 的半球，並以 Example 4 的雙曲拋物面對照。</p>
+    <p>把曲面 $z = f(x,y)$ 用水平面 $z = c$（常數）切開，交線投影到 <span class="pill pill-z">$xy$ 平面</span>就是<strong>等高線</strong>，方程式為 $f(x,y) = c$。主預設採講義 例題 3 的半球，並以 例題 4 的雙曲拋物面對照。</p>
 
     <div class="viz-layout">
       <div>
@@ -436,14 +436,14 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       </div>
       <div class="side-panel">
         <div class="preset-row" id="contPresets" style="margin-top:0;">
-          <button class="preset-btn active" data-id="hemisphere64">Example 3 · $\sqrt{64-x^2-y^2}$</button>
-          <button class="preset-btn" data-id="hyperparab_ex4">Example 4 · $y^2-x^2$</button>
+          <button class="preset-btn active" data-id="hemisphere64">例題 3 · $\sqrt{64-x^2-y^2}$</button>
+          <button class="preset-btn" data-id="hyperparab_ex4">例題 4 · $y^2-x^2$</button>
           <button class="preset-btn" data-id="paraboloid">$x^2+y^2$</button>
           <button class="preset-btn" data-id="hill">$3-x^2-y^2$</button>
           <button class="preset-btn" data-id="ridge">$xy$</button>
         </div>
         <div class="eq-card">
-          <div class="eq-label" id="contLabel">PARABOLOID</div>
+          <div class="eq-label" id="contLabel">拋物面</div>
           <div class="eq-formula" id="contEq">$z = x^2 + y^2$</div>
           <div class="eq-sub" id="contNote">等高線：$x^2+y^2 = c$ 是同心圓 ($c\ge 0$)</div>
         </div>
@@ -460,7 +460,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
 
     <div class="lecture-example">
-      <div class="ex-tag">LECTURE EXAMPLES 3-4 · Sketching contour maps</div>
+      <div class="ex-tag">講義例題 3-4 · 畫等高線圖</div>
       <div class="ex-title">畫出下列等高線圖：(a) $f(x,y)=\sqrt{64-x^2-y^2}$，取 $c=0,1,2,\ldots,8$；(b) $z=y^2-x^2$。</div>
       <p><span class="ex-method">使用等高線定義</span> 等高線就是 $f(x,y)=c$。半球 $f(x,y)=\sqrt{64-x^2-y^2}$ 滿足
       $$\sqrt{64-x^2-y^2}=c.$$
@@ -476,10 +476,10 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   <!-- §13.1.4 -->
   <div id="sec-13-1-4" class="subsection">
     <h3>13.1.4 等位面</h3>
-    <p>三變數函數 $w = F(x,y,z)$ 沒辦法直接畫出（要 4 維），但可以畫出<strong>等位面 (level surface)</strong>：方程式 $F(x,y,z) = c$ 在 $\mathbb{R}^3$ 中的圖形。主預設採講義 Example 6：$F(x,y,z)=4x^2+y^2+z^2$ 的橢球族。</p>
+    <p>三變數函數 $w = F(x,y,z)$ 沒辦法直接畫出（要 4 維），但可以畫出<strong>等位面</strong>：方程式 $F(x,y,z) = c$ 在 $\mathbb{R}^3$ 中的圖形。主預設採講義 例題 6：$F(x,y,z)=4x^2+y^2+z^2$ 的橢球族。</p>
 
     <div class="preset-row" id="isoPresets">
-      <button class="preset-btn active" data-id="lecture_ellipsoid">Example 6 · $4x^2+y^2+z^2$</button>
+      <button class="preset-btn active" data-id="lecture_ellipsoid">例題 6 · $4x^2+y^2+z^2$</button>
       <button class="preset-btn" data-id="sphere">球面 $x^2+y^2+z^2$</button>
       <button class="preset-btn" data-id="ellip">橢球 $x^2/4 + y^2/2.25 + z^2$</button>
       <button class="preset-btn" data-id="hyper1">單葉雙曲面 $x^2+y^2-z^2$</button>
@@ -507,7 +507,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       </div>
       <div class="side-panel">
         <div class="eq-card">
-          <div class="eq-label" id="isoLabel">SPHERE</div>
+          <div class="eq-label" id="isoLabel">球面</div>
           <div class="eq-formula" id="isoEq">$F(x,y,z) = x^2 + y^2 + z^2$</div>
           <div class="eq-sub" id="isoNote">$c \ge 0$ 時為半徑 $\sqrt{c}$ 的球面</div>
         </div>
@@ -526,7 +526,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
 
     <div class="lecture-example">
-      <div class="ex-tag">LECTURE EXAMPLE 6 · Level surfaces</div>
+      <div class="ex-tag">講義例題 6 · 等位面</div>
       <div class="ex-title">描述 $f(x,y,z)=4x^2+y^2+z^2$ 的等位面</div>
       <div class="ex-answer">
         <span class="ex-method">使用等位面定義</span> 等位面是 $F(x,y,z)=c$，因此
@@ -538,16 +538,16 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
   <!-- §13.1.5 -->
   <div id="sec-13-1-5" class="subsection">
-    <h3>13.1.5 電腦繪圖</h3>
+    <h3>13.1.5 補充：電腦繪圖工具</h3>
     <p>本節示範的所有曲面、等高線、等位面，在實務上多由<em>數學軟體</em>產生。常用工具：</p>
     <div class="info-box green">
-      <span class="info-label">TOOLS</span>
+      <span class="info-label">補充工具</span>
       <ul style="margin:.4rem 0 .2rem 1.2rem;">
         <li><strong>GeoGebra 3D Calculator</strong> — 免費、瀏覽器即用，適合快速做兩變數曲面與等高線</li>
         <li><strong>Desmos 3D（測試版）</strong> — 線上可拖曳，介面友善</li>
         <li><strong>Mathematica / Wolfram Alpha</strong> — 函數庫最完整，支援 ContourPlot3D（等位面）</li>
-        <li><strong>Python：matplotlib / Plotly / mayavi</strong> — 程式化批次繪圖；Plotly 內建 isosurface trace</li>
-        <li><strong>MATLAB：surf / contour / isosurface</strong> — 工程界常用</li>
+        <li><strong>Python：matplotlib / Plotly / mayavi</strong> — 程式化批次繪圖；Plotly 內建等位面繪圖</li>
+        <li><strong>MATLAB：surf / contour / isosurface</strong> — 工程界常用繪圖指令</li>
       </ul>
     </div>
   </div>
@@ -557,9 +557,9 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <div class="quiz-q">考慮 $F(x,y,z)=4x^2+y^2+z^2$（三變數）與 $g(x,y)=\sqrt{64-x^2-y^2}$（二變數）。下列敘述何者正確？</div>
     <div class="quiz-options">
       <button class="quiz-opt">兩者的等值集合都是三維空間中的曲面</button>
-      <button class="quiz-opt">$F(x,y,z)=c$ 給出 <strong>level surface</strong>（3D 中的曲面）；$g$ 對應 <strong>level curve</strong>（2D 平面中的曲線）</button>
+      <button class="quiz-opt">$F(x,y,z)=c$ 給出 <strong>等位面</strong>（3D 中的曲面）；$g$ 對應 <strong>等高線</strong>（2D 平面中的曲線）</button>
       <button class="quiz-opt">Level curve 無法用等高線圖視覺化</button>
-      <button class="quiz-opt">Level surface 是三維空間中的曲線</button>
+      <button class="quiz-opt">等位面是三維空間中的曲線</button>
     </div>
     <div class="quiz-feedback"></div>
   </div>
@@ -569,7 +569,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 <!-- §13.2 極限與連續                                              -->
 <!-- ============================================================ -->
 <section id="sec-13-2">
-  <div class="section-number">SECTION 13.2 · 極限與連續</div>
+  <div class="section-number">第 13.2 節 · 極限與連續</div>
   <h2>多維度的「靠近」：ε-δ 定義、路徑測試與連續性</h2>
   <p>一變數的極限只需考慮從<em>左、右</em>兩個方向逼近。兩變數則完全不同：點 $(x,y)$ 可以從<strong>無數條路徑</strong>逼近 $(x_0, y_0)$，而<strong>極限存在</strong>意味著沿<em>任何</em>路徑得到的值都相同。這也讓「證明極限不存在」變得相對容易：找到兩條路徑得到不同值即可。</p>
 
@@ -607,7 +607,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
           <div class="ic-row"><span class="ic-label">分類</span><span class="ic-value ok" id="nbhdClass">內部</span></div>
         </div>
         <div class="info-box green" style="margin:0;padding:.8rem 1rem;">
-          <span class="info-label">DEFINITIONS</span>
+          <span class="info-label">定義</span>
           <div style="font-size:.85rem;line-height:1.65;">
             <strong>內部點：</strong>存在 $\delta>0$ 使 $B_\delta(P) \subset R$<br>
             <strong>邊界點：</strong>任何 $\delta>0$，$B_\delta(P)$ 都同時含 $R$ 內、外的點<br>
@@ -624,7 +624,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <h3>13.2.2 兩變數函數的極限</h3>
 
     <div class="info-box warm">
-      <span class="info-label">DEF 13.2</span>
+      <span class="info-label">定義 13.2</span>
       <strong>兩變數函數的極限</strong>
       <p style="margin:.55rem 0 .3rem;">設 $f$ 是一個在以 $(x_0,y_0)$ 為中心的開圓盤上、其中除了 $(x_0,y_0)$ 可能無定義外到處都有定義的函數，$L$ 是一個實數。記號</p>
       <div style="text-align:center;margin:.4rem 0;">$$\lim_{(x,y)\to(x_0,y_0)} f(x,y) = L$$</div>
@@ -649,7 +649,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
     <div class="method-grid">
       <div class="lecture-example">
-        <div class="ex-tag">LECTURE EXAMPLES 2-3 · Direct / Squeeze</div>
+        <div class="ex-tag">講義例題 2-3 · 直接代入 / 夾擠定理</div>
         <div class="ex-title">求 $\displaystyle\lim_{(x,y)\to(1,2)}\frac{5x^2y}{x^2+y^2}$，並判斷 $\displaystyle\lim_{(x,y)\to(0,0)}\frac{5x^2y}{x^2+y^2}$ 是否存在。</div>
         <p><span class="ex-method">使用連續函數商法則</span> 在 $(1,2)$ 時分母 $1^2+2^2\ne0$，所以有理函數在該點連續，可以直接代入：
         $$\lim_{(x,y)\to(1,2)}\dfrac{5x^2y}{x^2+y^2}
@@ -671,7 +671,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         =\lim_{r\to0^+}5r\cos^2\theta\sin\theta=0.$$</p>
       </div>
       <div class="lecture-example">
-        <div class="ex-tag">LECTURE EXAMPLE 4 · Paths / Polar</div>
+        <div class="ex-tag">講義例題 4 · 路徑反例 / 極座標</div>
         <div class="ex-title">證明 $\displaystyle\lim_{(x,y)\to(0,0)}\left(\frac{x^2-y^2}{x^2+y^2}\right)^2$ 不存在。</div>
         <p><span class="ex-method">使用路徑判別法</span> 若二變數極限存在，沿任何路徑靠近原點都必須得到同一個極限。沿 $y=0$：
         $$\lim_{x\to0}\left(\dfrac{x^2-0}{x^2+0}\right)^2=1.$$
@@ -688,8 +688,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
 
     <div class="preset-row" id="limitPresets" style="margin-bottom:.4rem;">
-      <button class="preset-btn active" data-id="lecture_squeeze">Example 3 · $(0,0)$ 夾擠</button>
-      <button class="preset-btn" data-id="lecture_path">Example 4 · $(0,0)$ 不同路徑</button>
+      <button class="preset-btn active" data-id="lecture_squeeze">例題 3 · $(0,0)$ 夾擠</button>
+      <button class="preset-btn" data-id="lecture_path">例題 4 · $(0,0)$ 不同路徑</button>
       <button class="preset-btn" data-id="xy">補充 · $(0,0)$ 直線反例</button>
       <button class="preset-btn" data-id="xxy">補充 · $(0,0)$ 拋物線反例</button>
     </div>
@@ -746,9 +746,9 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       </div>
       <div class="side-panel">
         <div class="eq-card">
-          <div class="eq-label" id="limitFLabel">LECTURE EXAMPLE 3</div>
+          <div class="eq-label" id="limitFLabel">講義例題 3</div>
           <div class="eq-formula" id="limitFEq">$f = \dfrac{5x^2y}{x^2+y^2}$</div>
-          <div class="eq-sub" id="limitFNote">講義 Example 3：用夾擠定理證明在 $(0,0)$ 的極限為 0。</div>
+          <div class="eq-sub" id="limitFNote">講義 例題 3：用夾擠定理證明在 $(0,0)$ 的極限為 0。</div>
           <div class="eq-sub" id="limitRenderNote">3D 曲面使用原函數高度；右側數值為原函數值</div>
         </div>
         <div class="info-card">
@@ -769,7 +769,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         </div>
         <div class="info-box red" style="margin:0;padding:.85rem 1rem;">
           <span class="info-label">CHECK</span>
-          <div style="font-size:.85rem;" id="limitVerdict">目前路徑只是一個測試；講義 Example 3 的存在證明要靠夾擠定理或完整極座標估計。</div>
+          <div style="font-size:.85rem;" id="limitVerdict">目前路徑只是一個測試；講義 例題 3 的存在證明要靠夾擠定理或完整極座標估計。</div>
         </div>
       </div>
     </div>
@@ -797,7 +797,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <h3>13.2.3 兩變數函數的連續性</h3>
 
     <div class="info-box warm">
-      <span class="info-label">DEF 13.3</span>
+      <span class="info-label">定義 13.3</span>
       <strong>兩變數函數的連續性</strong>
       <p style="margin:.55rem 0 .3rem;">如果在一個含 $(x_0,y_0)$ 的開區域 $R$ 中，當 $(x,y)$ 趨近 $(x_0,y_0)$ 時恆有
       $$\lim_{(x,y)\to(x_0,y_0)} f(x,y) = f(x_0,y_0)$$
@@ -805,7 +805,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
 
     <div class="info-box">
-      <span class="info-label">THM 13.1</span>
+      <span class="info-label">定理 13.1</span>
       <strong>連續函數的四則運算</strong>
       <p style="margin:.5rem 0 .3rem;">若 $k$ 是實數，$f$ 和 $g$ 在 $(x_0,y_0)$ 連續，則下列函數在 $(x_0,y_0)$ 連續：</p>
       <ol class="prop-list">
@@ -817,27 +817,27 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
 
     <div class="info-box">
-      <span class="info-label">THM 13.2</span>
+      <span class="info-label">定理 13.2</span>
       <strong>合成函數的連續性</strong>
       <p style="margin:.5rem 0;">若 $h$ 在 $(x_0,y_0)$ 連續、$g$ 在 $h(x_0,y_0)$ 連續，則合成函數 $(g \circ h)(x,y) = g(h(x,y))$ 也在 $(x_0,y_0)$ 連續。亦即
       $\displaystyle\lim_{(x,y)\to(x_0,y_0)} g(h(x,y)) = g(h(x_0,y_0))$。</p>
     </div>
 
     <div class="lecture-example">
-      <div class="ex-tag">LECTURE EXAMPLE 5 · Testing for continuity</div>
+      <div class="ex-tag">講義例題 5 · 檢查連續性</div>
       <div class="ex-title">討論下列函數的連續性：(a) $f(x,y)=\dfrac{x-2y}{x^2+y^2}$；(b) $g(x,y)=\sqrt{y-x^2}$。</div>
-      <p><span class="ex-method">使用 THM 13.1（連續函數商法則）</span> $\displaystyle f(x,y)=\dfrac{x-2y}{x^2+y^2}$ 是多項式的商。只要分母 $x^2+y^2\ne0$，分子與分母皆連續，且商仍連續；但在 $(0,0)$ 分母為 0，函數無定義，因此不可能在 $(0,0)$ 連續。</p>
-      <p><span class="ex-method">使用連續性定義</span> $g(x,y)=\sqrt{y-x^2}$ 的 domain 是 $y-x^2\ge0$。在邊界 $y=x^2$ 上，任意開圓盤都含有 domain 外的點，因此它不能在「包含該邊界點的開區域」上被視為連續函數；只能說它在自己的 domain 內以相對意義連續。</p>
+      <p><span class="ex-method">使用定理 13.1（連續函數商法則）</span> $\displaystyle f(x,y)=\dfrac{x-2y}{x^2+y^2}$ 是多項式的商。只要分母 $x^2+y^2\ne0$，分子與分母皆連續，且商仍連續；但在 $(0,0)$ 分母為 0，函數無定義，因此不可能在 $(0,0)$ 連續。</p>
+      <p><span class="ex-method">使用連續性定義</span> $g(x,y)=\sqrt{y-x^2}$ 的 定義域是 $y-x^2\ge0$。在邊界 $y=x^2$ 上，任意開圓盤都含有 domain 外的點，因此它不能在「包含該邊界點的開區域」上被視為連續函數；只能說它在自己的定義域 內以相對意義連續。</p>
     </div>
 
     <div class="dual-card">
       <div class="dc dc-real">
-        <div class="dc-title">Lemma 13.1（絕對值與極限）</div>
+        <div class="dc-title">引理 13.1（絕對值與極限）</div>
         <div style="text-align:center;font-size:.95rem;margin:.3rem 0;">$\lim f(x) = L \;\Rightarrow\; \lim |f(x)| = |L|$</div>
         <div style="font-size:.82rem;color:#7a5500;">$|\cdot|$ 連續，極限可與之互換</div>
       </div>
       <div class="dc dc-vec">
-        <div class="dc-title">Lemma 13.2（夾擠變形）</div>
+        <div class="dc-title">引理 13.2（夾擠變形）</div>
         <div style="text-align:center;font-size:.95rem;margin:.3rem 0;">$\lim |f(x)| = 0 \;\Rightarrow\; \lim f(x) = 0$</div>
         <div style="font-size:.82rem;color:#1f3a7a;">由 $-|f| \le f \le |f|$ 套夾擠定理</div>
       </div>
@@ -882,7 +882,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <h3>13.2.4 三變數函數的連續性</h3>
 
     <div class="info-box warm">
-      <span class="info-label">DEF 13.4</span>
+      <span class="info-label">定義 13.4</span>
       <strong>三變數函數連續</strong>
       <p style="margin:.55rem 0 .3rem;">若 $f$ 在含 $(x_0,y_0,z_0)$ 的開區域上有定義，並且
       $$\lim_{(x,y,z)\to(x_0,y_0,z_0)} f(x,y,z) = f(x_0,y_0,z_0)$$
@@ -892,10 +892,10 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <p>結構上與兩變數版本完全一致，只是把<em>圓盤</em>換成<em>球</em>：$\sqrt{(x-x_0)^2 + (y-y_0)^2 + (z-z_0)^2} < \delta$。檢驗極限是否存在時，路徑可以是<strong>三維中的任意連續曲線</strong>，常用代換見上表後三列。</p>
 
     <div class="lecture-example">
-      <div class="ex-tag">LECTURE EXAMPLE 6 · Three-variable continuity</div>
+      <div class="ex-tag">講義例題 6 · Three-variable continuity</div>
       <div class="ex-title">討論三變數函數 $\displaystyle f(x,y,z)=\dfrac{1}{x^2+y^2-z}$ 的連續性，並找出不連續的點集。</div>
       <div class="ex-answer">
-        <span class="ex-method">使用 THM 13.1（連續函數商法則）</span> 分母 $x^2+y^2-z$ 是多項式，故連續；分子 $1$ 也連續。只要分母不為 0，商函數連續。因此不連續集合由
+        <span class="ex-method">使用定理 13.1（連續函數商法則）</span> 分母 $x^2+y^2-z$ 是多項式，故連續；分子 $1$ 也連續。只要分母不為 0，商函數連續。因此不連續集合由
         $$x^2+y^2-z=0$$
         給出，也就是拋物面 $z=x^2+y^2$。
       </div>
@@ -929,7 +929,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 <!-- §13.3 偏導函數                                                -->
 <!-- ============================================================ -->
 <section id="sec-13-3">
-  <div class="section-number">SECTION 13.3 · 偏導函數</div>
+  <div class="section-number">第 13.3 節 · 偏導函數</div>
   <h2>切片觀察：偏導函數的幾何意義與運算</h2>
   <p>單變數導數 $f'(x)$ 一個值就描述了「斜率」。兩變數函數有<strong>兩個獨立的方向</strong>（$x$、$y$），所以需要<em>兩個</em>導數：分別固定一個變數、對另一個變數求導。這就是<strong>偏導函數 (partial derivative)</strong>。幾何上，它們是曲面與軸平面的<em>截痕</em>在切點的斜率。</p>
 
@@ -938,7 +938,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <h3>13.3.1 兩變數函數的偏導函數</h3>
 
     <div class="info-box warm">
-      <span class="info-label">DEF 13.5</span>
+      <span class="info-label">定義 13.5</span>
       <strong>兩變數函數的偏導函數</strong>
       <p style="margin:.55rem 0 .3rem;">如果 $z = f(x,y)$ 是兩變數函數，則 $f$ 對 $x$ 和 $y$ 的<strong>第一階偏導數 (first partial derivatives)</strong> $f_x$ 和 $f_y$ 的定義分別是</p>
       <div style="text-align:center;margin:.5rem 0;font-size:1.0rem;">
@@ -963,11 +963,13 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
 
     <div class="lecture-example">
-      <div class="ex-tag">LECTURE EXAMPLES 1-2 · Finding partial derivatives</div>
+      <div class="ex-tag">講義例題 1-2 · 求偏導數</div>
       <div class="ex-title">求偏導數：(a) $f(x,y)=3x-x^2y^2+2x^3y$；(b) $f(x,y)=(\ln x)(\sin x^2y)$。另外，對 $f(x,y)=xe^{x^2y}$，求 $f_x,f_y$ 並在 $(1,\ln2)$ 代值。</div>
-      <p><span class="ex-method">使用偏導定義的計算規則</span> 對 $f(x,y)=3x-x^2y^2+2x^3y$，求 $f_x$ 時把 $y$ 當常數；求 $f_y$ 時把 $x$ 當常數：
+      <p><span class="ex-method">例題 1(a)</span> 對 $f(x,y)=3x-x^2y^2+2x^3y$，求 $f_x$ 時把 $y$ 當常數；求 $f_y$ 時把 $x$ 當常數：
       $$f_x=3-2xy^2+6x^2y,\qquad f_y=-2x^2y+2x^3.$$</p>
-      <p><span class="ex-method">使用乘法法則與鏈鎖律</span> 對 $f(x,y)=xe^{x^2y}$：
+      <p><span class="ex-method">例題 1(b)</span> 對 $f(x,y)=(\ln x)(\sin x^2y)$：
+      $$f_x=\frac{1}{x}\sin(x^2y)+2xy\ln x\cos(x^2y),\qquad f_y=x^2\ln x\cos(x^2y).$$</p>
+      <p><span class="ex-method">例題 2</span> 對 $f(x,y)=xe^{x^2y}$：
       $$f_x=e^{x^2y}(1+2x^2y),\qquad f_y=x^3e^{x^2y}.$$
       在 $(1,\ln2)$，$e^{x^2y}=2$，所以 $f_x(1,\ln2)=2+4\ln2,\ f_y(1,\ln2)=2$。</p>
     </div>
@@ -980,7 +982,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </ul>
 
     <div class="preset-row" id="partPresets">
-      <button class="preset-btn active" data-id="lecture_slope">Example 3 · $-\dfrac{x^2}{2}-y^2+\dfrac{25}{8}$</button>
+      <button class="preset-btn active" data-id="lecture_slope">例題 3 · $-\dfrac{x^2}{2}-y^2+\dfrac{25}{8}$</button>
       <button class="preset-btn" data-id="paraboloid">$f = x^2 + y^2$</button>
       <button class="preset-btn" data-id="saddle">$f = x^2 - y^2$</button>
       <button class="preset-btn" data-id="sinc">$f = \sin x \cos y$</button>
@@ -1013,7 +1015,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       </div>
       <div class="side-panel">
         <div class="eq-card">
-          <div class="eq-label" id="partLabel">PARABOLOID</div>
+          <div class="eq-label" id="partLabel">拋物面</div>
           <div class="eq-formula" id="partEq">$z = x^2 + y^2$</div>
           <div class="eq-sub" id="partFx">$f_x = 2x,\ f_y = 2y$</div>
         </div>
@@ -1047,7 +1049,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <p style="margin-top:.6rem;font-size:.92rem;">在點 $(a,b)$ 取值：$\left.\dfrac{\partial z}{\partial x}\right|_{(a,b)} = f_x(a,b)$。</p>
 
     <div class="lecture-example">
-      <div class="ex-tag">LECTURE EXAMPLE 3 · Slopes of a surface</div>
+      <div class="ex-tag">講義例題 3 · 曲面的斜率</div>
       <div class="ex-title">對曲面 $z=f(x,y)=-\dfrac{x^2}{2}-y^2+\dfrac{25}{8}$，求點 $\left(\dfrac12,1,2\right)$ 的 $x$ 方向與 $y$ 方向斜率。</div>
       <p><span class="ex-method">使用偏導的幾何意義</span> $f_x(x_0,y_0)$ 是固定 $y=y_0$ 時的 $x$ 方向截痕斜率，$f_y(x_0,y_0)$ 是固定 $x=x_0$ 時的 $y$ 方向截痕斜率。講義例題函數為
       $$f(x,y)=-\dfrac{x^2}{2}-y^2+\dfrac{25}{8},$$
@@ -1088,7 +1090,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
 
     <div class="lecture-example">
-      <div class="ex-tag">LECTURE EXAMPLE 6 · Three or more variables</div>
+      <div class="ex-tag">講義例題 6 · Three or more variables</div>
       <div class="ex-title">求指定偏導數：(a) 對 $f(x,y,z)=xy+yz^2+xz$ 求 $\partial f/\partial z$；(b) 對 $f(x,y,z)=z\sin(xy^2+2z)$ 求 $\partial f/\partial z$；(c) 對 $f(x,y,z,w)=\dfrac{x+y+z}{w}$ 求 $\partial f/\partial w$。</div>
       <p><span class="ex-method">使用偏導計算規則</span> 對哪一個變數偏導，就把其他變數全部視為常數。講義例題包含三種形式：</p>
       <div class="ex-answer">
@@ -1111,10 +1113,10 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <div style="text-align:center;margin:.6rem 0;font-size:.98rem;">
       $$f_{xx} = \frac{\partial}{\partial x}\!\left(\frac{\partial f}{\partial x}\right),\ \ f_{yy} = \frac{\partial}{\partial y}\!\left(\frac{\partial f}{\partial y}\right),\ \ f_{xy} = \frac{\partial}{\partial y}\!\left(\frac{\partial f}{\partial x}\right),\ \ f_{yx} = \frac{\partial}{\partial x}\!\left(\frac{\partial f}{\partial y}\right)$$
     </div>
-    <p>$f_{xy}$ 與 $f_{yx}$ 稱為<strong>混合偏導 (mixed partials)</strong>。下標讀作「先對左、再對右」（例如 $f_{xy}$ = 先對 $x$、再對 $y$）。注意萊布尼茲記號的順序是<em>反過來</em>的：$\dfrac{\partial^2 f}{\partial y \partial x} = f_{xy}$。</p>
+    <p>$f_{xy}$ 與 $f_{yx}$ 稱為<strong>混合偏導</strong>。下標讀作「先對左、再對右」（例如 $f_{xy}$ = 先對 $x$、再對 $y$）。注意萊布尼茲記號的順序是<em>反過來</em>的：$\dfrac{\partial^2 f}{\partial y \partial x} = f_{xy}$。</p>
 
     <div class="info-box warm">
-      <span class="info-label">THM 13.3</span>
+      <span class="info-label">定理 13.3</span>
       <strong>混合偏導恆等式</strong>
       <p style="margin:.55rem 0 .3rem;">如果 $f$ 是 $x, y$ 的函數，且 $f_{xy}$ 和 $f_{yx}$ 在某個開圓盤 $R$ 上各自連續，則在 $R$ 上每一點 $(x,y)$ 都有
       $$f_{xy}(x,y) = f_{yx}(x,y)$$</p>
@@ -1167,7 +1169,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
           <div class="ic-row"><span class="ic-label">$f_{yx}$</span><span class="ic-value ty" id="hoFyx">0.30</span></div>
         </div>
         <div class="info-box" style="margin:0;padding:.8rem 1rem;" id="hoVerdictBox">
-          <span class="info-label" id="hoVerdictLabel">MIXED PARTIALS</span>
+          <span class="info-label" id="hoVerdictLabel">混合偏導</span>
           <div style="font-size:.86rem;" id="hoVerdict">$|f_{xy} - f_{yx}| = 0.000$ → 滿足。</div>
         </div>
       </div>
@@ -1186,7 +1188,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
 
     <div class="lecture-example">
-      <div class="ex-tag">LECTURE EXAMPLES 7-8 · Higher-order partials</div>
+      <div class="ex-tag">講義例題 7-8 · 高階偏導</div>
       <div class="ex-title">求 $f(x,y)=3xy^2-2y+5x^2y^2$ 的二階偏導數並計算 $f_{xy}(-1,2)$；再對 $f(x,y,z)=ye^x+x\ln z$ 驗證 $f_{xz}=f_{zx}$ 與 $f_{xzz}=f_{zxz}=f_{zzx}$。</div>
       <p><span class="ex-method">使用二階偏導定義</span> $f_{xy}$ 表示先對 $x$ 偏導，再對 $y$ 偏導。對
       $f(x,y)=3xy^2-2y+5x^2y^2$，先得
@@ -1216,7 +1218,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 <!-- §13.4 微分                                                    -->
 <!-- ============================================================ -->
 <section id="sec-13-4">
-  <div class="section-number">SECTION 13.4 · 微分</div>
+  <div class="section-number">第 13.4 節 · 微分</div>
   <h2>線性近似：全微分與可微分性</h2>
   <p>單變數的微分 $dy = f'(x)\,dx$ 給出曲線的「線性近似」（切線）。兩變數版本是<strong>切平面</strong>：給定一點 $(x_0, y_0)$，曲面在該點附近最像「斜的平面」，斜率向量是 $(f_x, f_y)$。本節討論這個「最佳線性近似」的數學表達 — <strong>全微分</strong>以及何時能用（<strong>可微分性</strong>）。</p>
 
@@ -1225,18 +1227,18 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <h3>13.4.1 增量與微分</h3>
 
     <div class="info-box warm">
-      <span class="info-label">DEF 13.6</span>
+      <span class="info-label">定義 13.6</span>
       <strong>全微分</strong>
-      <p style="margin:.55rem 0 .3rem;">如果 $z = f(x,y)$ 並且 $\Delta x, \Delta y$ 是 $x, y$ 的增量，則自變數 $x, y$ 的<strong>微分 (differentials)</strong>是
+      <p style="margin:.55rem 0 .3rem;">如果 $z = f(x,y)$ 並且 $\Delta x, \Delta y$ 是 $x, y$ 的增量，則自變數 $x, y$ 的<strong>微分</strong>是
       $$dx = \Delta x,\quad dy = \Delta y$$
-      函數 $z$ 的<strong>全微分 (total differential)</strong> $dz$ 定義如下：
+      函數 $z$ 的<strong>全微分</strong> $dz$ 定義如下：
       $$dz = \frac{\partial z}{\partial x}dx + \frac{\partial z}{\partial y}dy = f_x(x,y)\,dx + f_y(x,y)\,dy$$</p>
     </div>
 
     <div class="lecture-example">
-      <div class="ex-tag">LECTURE EXAMPLE 1 · Total differential</div>
+      <div class="ex-tag">講義例題 1 · Total differential</div>
       <div class="ex-title">求下列函數的全微分：(a) $z=2x\sin y-3x^2y^2$；(b) $w=x^2+y^2+z^2$。</div>
-      <p><span class="ex-method">使用 DEF 13.6（全微分公式）</span> 先求偏導，再套
+      <p><span class="ex-method">使用 定義 13.6（全微分公式）</span> 先求偏導，再套
       $$dz=f_x\,dx+f_y\,dy.$$
       對 $z=2x\sin y-3x^2y^2$，
       $$z_x=2\sin y-6xy^2,\qquad z_y=2x\cos y-6x^2y,$$
@@ -1304,7 +1306,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       </div>
       <div class="side-panel">
         <div class="eq-card">
-          <div class="eq-label" id="diffLabel">PARABOLOID</div>
+          <div class="eq-label" id="diffLabel">拋物面</div>
           <div class="eq-formula" id="diffEq">$z = x^2 + y^2$</div>
           <div class="eq-sub" id="diffPart">$dz = 2x\,dx + 2y\,dy$</div>
           <div class="eq-sub" id="diffRenderNote">3D 曲面使用原函數高度；右側數值為原函數值</div>
@@ -1337,11 +1339,11 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <h3>13.4.2 可微分性</h3>
 
     <div class="info-box warm">
-      <span class="info-label">DEF 13.7</span>
+      <span class="info-label">定義 13.7</span>
       <strong>可微</strong>
       <p style="margin:.55rem 0 .3rem;">如果函數 $z = f(x,y)$ 在點 $(x_0, y_0)$ 相應於 $\Delta x, \Delta y$ 兩個增量所得的增量可以表成
       $$\Delta z = f_x(x_0,y_0)\Delta x + f_y(x_0,y_0)\Delta y + \varepsilon_1 \Delta x + \varepsilon_2 \Delta y$$
-      其中 $\varepsilon_1, \varepsilon_2$ 當 $(\Delta x, \Delta y) \to (0, 0)$ 時同時趨於 0，函數 $f(x,y)$ 就稱為在 $(x_0, y_0)$ <strong>可微 (differentiable)</strong>。如果 $f$ 在區域 $R$ 上每點都可微，則稱 $f$ 在 $R$ 上可微。</p>
+      其中 $\varepsilon_1, \varepsilon_2$ 當 $(\Delta x, \Delta y) \to (0, 0)$ 時同時趨於 0，函數 $f(x,y)$ 就稱為在 $(x_0, y_0)$ <strong>可微</strong>。如果 $f$ 在區域 $R$ 上每點都可微，則稱 $f$ 在 $R$ 上可微。</p>
     </div>
 
     <div class="concept-warning">
@@ -1369,21 +1371,21 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
 
     <div class="info-box">
-      <span class="info-label">THM 13.4</span>
+      <span class="info-label">定理 13.4</span>
       <strong>可微的充分條件</strong>
       <p style="margin:.5rem 0;">假設 $f$ 是 $x, y$ 的函數。若 $f_x$ 和 $f_y$ 在開區域 $R$ 上連續，則 $f$ 在 $R$ 上可微。</p>
     </div>
 
     <div class="info-box">
-      <span class="info-label">THM 13.5</span>
+      <span class="info-label">定理 13.5</span>
       <strong>可微性隱含連續性</strong>
       <p style="margin:.5rem 0;">如果一個 $x, y$ 函數 $f$ 在 $(x_0, y_0)$ 可微，則 $f$ 必在 $(x_0, y_0)$ 連續。</p>
     </div>
 
     <div class="lecture-example">
-      <div class="ex-tag">LECTURE EXAMPLE 2 · Showing differentiability</div>
+      <div class="ex-tag">講義例題 2 · Showing differentiability</div>
       <div class="ex-title">$f(x,y)=x^2+3y$ 在平面上處處可微</div>
-      <p><span class="ex-method">使用 DEF 13.7（可微定義）</span> 要把 $\Delta z$ 寫成
+      <p><span class="ex-method">使用 定義 13.7（可微定義）</span> 要把 $\Delta z$ 寫成
       $$\Delta z=f_x\Delta x+f_y\Delta y+\varepsilon_1\Delta x+\varepsilon_2\Delta y,$$
       且 $\varepsilon_1,\varepsilon_2\to0$。令 $z=f(x,y)=x^2+3y$，則
       $$\Delta z=2x\Delta x+(\Delta x)^2+3\Delta y
@@ -1409,63 +1411,63 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   <div id="sec-ref" class="subsection">
     <h3>本章速查</h3>
     <div class="ref-group">
-      <div class="ref-group-title"><span class="rg-badge">DEF</span>核心定義一覽</div>
+      <div class="ref-group-title"><span class="rg-badge">定義</span>核心定義一覽</div>
       <div class="ref-card">
-        <div class="ref-card-header"><span class="ref-card-name">DEF 13.1</span><span class="ref-card-name-en">Function of two variables</span></div>
+        <div class="ref-card-header"><span class="ref-card-name">定義 13.1</span><span class="ref-card-name-en">二變數函數</span></div>
         <div class="ref-card-eq">$f: D \subseteq \mathbb{R}^2 \to \mathbb{R},\ (x,y) \mapsto f(x,y)$</div>
-        <div class="ref-note">$D$ = 定義域 (domain)、$\{f(x,y)\}$ = 值域 (range)。</div>
+        <div class="ref-note">$D$ = 定義域，$\{f(x,y)\}$ = 值域。</div>
       </div>
       <div class="ref-card">
-        <div class="ref-card-header"><span class="ref-card-name">DEF 13.2</span><span class="ref-card-name-en">Limit (ε-δ)</span></div>
+        <div class="ref-card-header"><span class="ref-card-name">定義 13.2</span><span class="ref-card-name-en">極限（ε-δ）</span></div>
         <div class="ref-card-eq">$\forall \varepsilon > 0,\ \exists \delta > 0:\ 0 < \|(x,y)-(x_0,y_0)\| < \delta \Rightarrow |f-L| < \varepsilon$</div>
       </div>
       <div class="ref-card">
-        <div class="ref-card-header"><span class="ref-card-name">DEF 13.3 / 13.4</span><span class="ref-card-name-en">Continuity (2-/3-var)</span></div>
+        <div class="ref-card-header"><span class="ref-card-name">定義 13.3 / 13.4</span><span class="ref-card-name-en">連續性（二/三變數）</span></div>
         <div class="ref-card-eq">$\displaystyle\lim_{(x,y)\to(x_0,y_0)} f(x,y) = f(x_0,y_0)$</div>
       </div>
       <div class="ref-card">
-        <div class="ref-card-header"><span class="ref-card-name">DEF 13.5</span><span class="ref-card-name-en">First partial derivatives</span></div>
+        <div class="ref-card-header"><span class="ref-card-name">定義 13.5</span><span class="ref-card-name-en">一階偏導數</span></div>
         <div class="ref-card-eq">$f_x = \lim_{\Delta x \to 0}\dfrac{f(x+\Delta x,y) - f}{\Delta x},\quad f_y = \lim_{\Delta y \to 0}\dfrac{f(x,y+\Delta y) - f}{\Delta y}$</div>
       </div>
       <div class="ref-card">
-        <div class="ref-card-header"><span class="ref-card-name">DEF 13.6</span><span class="ref-card-name-en">Total differential</span></div>
+        <div class="ref-card-header"><span class="ref-card-name">定義 13.6</span><span class="ref-card-name-en">全微分</span></div>
         <div class="ref-card-eq">$dz = f_x\,dx + f_y\,dy$</div>
       </div>
       <div class="ref-card">
-        <div class="ref-card-header"><span class="ref-card-name">DEF 13.7</span><span class="ref-card-name-en">Differentiability</span></div>
+        <div class="ref-card-header"><span class="ref-card-name">定義 13.7</span><span class="ref-card-name-en">可微性</span></div>
         <div class="ref-card-eq">$\Delta z = f_x \Delta x + f_y \Delta y + \varepsilon_1 \Delta x + \varepsilon_2 \Delta y,\ (\varepsilon_1, \varepsilon_2 \to 0)$</div>
       </div>
     </div>
 
     <div class="ref-group">
-      <div class="ref-group-title"><span class="rg-badge">THM</span>核心定理一覽</div>
+      <div class="ref-group-title"><span class="rg-badge">定理</span>核心定理一覽</div>
       <div class="ref-card">
-        <div class="ref-card-header"><span class="ref-card-name">THM 13.1 / 13.2</span><span class="ref-card-name-en">Continuity rules</span></div>
+        <div class="ref-card-header"><span class="ref-card-name">定理 13.1 / 13.2</span><span class="ref-card-name-en">連續性法則</span></div>
         <div class="ref-card-eq">連續函數的<strong>四則運算與合成</strong>仍然連續（除商需 $g \ne 0$）</div>
       </div>
       <div class="ref-card">
-        <div class="ref-card-header"><span class="ref-card-name">THM 13.3</span><span class="ref-card-name-en">Equality of mixed partials</span></div>
+        <div class="ref-card-header"><span class="ref-card-name">定理 13.3</span><span class="ref-card-name-en">混合偏導相等</span></div>
         <div class="ref-card-eq">$f_{xy}, f_{yx}$ 連續 $\Rightarrow f_{xy} = f_{yx}$</div>
         <div class="ref-note">條件失效會出現反例，例如 $f = xy(x^2-y^2)/(x^2+y^2)$ 在原點。</div>
       </div>
       <div class="ref-card">
-        <div class="ref-card-header"><span class="ref-card-name">THM 13.4</span><span class="ref-card-name-en">Sufficient condition for differentiability</span></div>
+        <div class="ref-card-header"><span class="ref-card-name">定理 13.4</span><span class="ref-card-name-en">可微的充分條件</span></div>
         <div class="ref-card-eq">$f_x, f_y$ 在開區域 $R$ 上連續 $\Rightarrow f$ 在 $R$ 上可微</div>
       </div>
       <div class="ref-card">
-        <div class="ref-card-header"><span class="ref-card-name">THM 13.5</span><span class="ref-card-name-en">Differentiability ⇒ Continuity</span></div>
+        <div class="ref-card-header"><span class="ref-card-name">定理 13.5</span><span class="ref-card-name-en">可微 ⇒ 連續</span></div>
         <div class="ref-card-eq">$f$ 在 $(x_0,y_0)$ 可微 $\Rightarrow f$ 在 $(x_0,y_0)$ 連續</div>
         <div class="ref-note">逆命題不成立。連續但不可微的反例：$f = \sqrt{x^2+y^2}$ 在原點。</div>
       </div>
     </div>
 
     <div class="ref-group">
-      <div class="ref-group-title"><span class="rg-badge">FLOW</span>判別流程</div>
+      <div class="ref-group-title"><span class="rg-badge">流程</span>判別流程</div>
       <ol class="prop-list">
         <li><strong>極限是否存在？</strong>先分清證明責任：不同路徑得到不同值 → 不存在；要證明存在則用連續性、夾擠、epsilon-delta，或能控制所有方向的座標變換。</li>
         <li><strong>函數是否連續？</strong>檢查 $\lim_{(x,y)\to(x_0,y_0)} f = f(x_0,y_0)$。</li>
         <li><strong>偏導是否存在？</strong>分別固定一個變數對另一個求 $\lim$。</li>
-        <li><strong>函數是否可微？</strong>用 THM 13.4 充分條件最快：檢查 $f_x, f_y$ 是否連續。否則回到 DEF 13.7。</li>
+        <li><strong>函數是否可微？</strong>用定理 13.4 充分條件最快：檢查 $f_x, f_y$ 是否連續。否則回到 定義 13.7。</li>
         <li><strong>混合偏導是否相等？</strong>確認 $f_{xy}, f_{yx}$ 是否在附近連續。</li>
       </ol>
     </div>
@@ -1474,7 +1476,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </div>
 
 <footer>
-  © Chapter 13 · 多變數函數 互動講義 ｜ Three.js + MathJax ｜ 配合教科書「微積分」第 13 章使用
+  第 13 章 · 多變數函數互動講義 ｜ Three.js + MathJax ｜ 配合教科書「微積分」第 13 章使用
 </footer>
 
 <script>
@@ -2314,7 +2316,7 @@ function marchingCubes(F, c, xMin, xMax, yMin, yMax, zMin, zMax, res=28) {
   const PRESETS = {
     ellipsoid_ex2: { f:(x,y) => { const q = 16 - 4*x*x - y*y; return q >= 0 ? Math.sqrt(q) : NaN; },
       range:[-2.2,2.2], domain:'ellipse', domainScale:[2,4], stats:[0,4],
-      note:'講義 Example 2：$z=\\sqrt{16-4x^2-y^2}$。Domain 是 $4x^2+y^2\\le16$，圖形是 $4x^2+y^2+z^2=16$ 的<strong>上半橢球面</strong>，range 為 $[0,4]$。', label:'EXAMPLE 2', type:'上半橢球' }
+      note:'講義 例題 2：$z=\\sqrt{16-4x^2-y^2}$。Domain 是 $4x^2+y^2\\le16$，圖形是 $4x^2+y^2+z^2=16$ 的<strong>上半橢球面</strong>，range 為 $[0,4]$。', label:'例題 2', type:'上半橢球' }
   };
   const EQ_TEX = {
     ellipsoid_ex2:'$z = \\sqrt{16 - 4x^2 - y^2}$'
@@ -2402,10 +2404,10 @@ function marchingCubes(F, c, xMin, xMax, yMin, yMax, zMin, zMax, res=28) {
   const CONT_PRESETS = {
     hemisphere64: { f:(x,y) => { const q = 64 - x*x - y*y; return q >= 0 ? Math.sqrt(q) : NaN; }, range:[-8,8], krange:[0, 8], kInit:4,
                    shape:c => Math.abs(c-8) < 1e-6 ? '原點（單點）' : (c >= 0 && c < 8 ? `半徑 $\\sqrt{64-${c.toFixed(2)}^2} = ${Math.sqrt(Math.max(0,64-c*c)).toFixed(2)}$ 的圓` : '空集'),
-                   eqTex:'$z = \\sqrt{64 - x^2 - y^2}$', note:'講義 Example 3：$f=c$ 給 $x^2+y^2=64-c^2$，$c=0,1,\\ldots,8$ 是同心圓族' },
+                   eqTex:'$z = \\sqrt{64 - x^2 - y^2}$', note:'講義 例題 3：$f=c$ 給 $x^2+y^2=64-c^2$，$c=0,1,\\ldots,8$ 是同心圓族' },
     hyperparab_ex4: { f:(x,y) => y*y - x*x, range:[-3,3], krange:[-9, 9], kInit:2,
                    shape:c => Math.abs(c) < 1e-3 ? '兩條相交直線 $y=\\pm x$' : `雙曲線 $y^2-x^2 = ${c.toFixed(2)}$`,
-                   eqTex:'$z = y^2 - x^2$', note:'講義 Example 4：$y^2-x^2=c$，$c>0$ 開口沿 y 方向，$c<0$ 開口沿 x 方向' },
+                   eqTex:'$z = y^2 - x^2$', note:'講義 例題 4：$y^2-x^2=c$，$c>0$ 開口沿 y 方向，$c<0$ 開口沿 x 方向' },
     paraboloid: { f:(x,y) => x*x + y*y, range:[-3,3], krange:[0, 9], kInit:4,
                    shape:c => c > 1e-3 ? `半徑 $\\sqrt{${c.toFixed(2)}} = ${Math.sqrt(Math.max(0,c)).toFixed(2)}$ 的圓` : (Math.abs(c) < 1e-3 ? '原點（單點）' : '空集'),
                    eqTex:'$z = x^2 + y^2$', note:'等高線：$x^2+y^2 = c$ 是同心圓 ($c\\ge 0$)' },
@@ -2731,23 +2733,23 @@ function marchingCubes(F, c, xMin, xMax, yMin, yMax, zMin, zMax, res=28) {
   scenes.iso = S;
 
   const ISO_PRESETS = {
-    lecture_ellipsoid: { F:(x,y,z) => 4*x*x + y*y + z*z, crange:[0.2, 18], cInit:8, label:'LECTURE EXAMPLE 6',
+    lecture_ellipsoid: { F:(x,y,z) => 4*x*x + y*y + z*z, crange:[0.2, 18], cInit:8, label:'講義例題 6',
                eqTex:'$F(x,y,z) = 4x^2 + y^2 + z^2$', note:'$c>0$ 為橢球，半軸長 $\\sqrt{c}/2$、$\\sqrt{c}$、$\\sqrt{c}$；$c=0$ 為原點，$c<0$ 為空集',
                status:c => c > 1e-6 ? '橢球' : (Math.abs(c) <= 1e-6 ? '原點' : '空集'),
                read:c => c > 1e-6 ? '此時 $4x^2+y^2+z^2=c$ 是橢球。$c$ 越大，橢球越大；三個半軸分別是 $\\sqrt{c}/2$、$\\sqrt{c}$、$\\sqrt{c}$。' : '平方和不能為負；若 $c=0$ 只剩原點，若 $c<0$ 沒有實數點。' },
-    sphere:  { F:(x,y,z) => x*x + y*y + z*z, crange:[0.5, 9], cInit:4, label:'SPHERE',
+    sphere:  { F:(x,y,z) => x*x + y*y + z*z, crange:[0.5, 9], cInit:4, label:'球面',
                eqTex:'$F(x,y,z) = x^2 + y^2 + z^2$', note:'$c \\ge 0$ 時為半徑 $\\sqrt{c}$ 的球面',
                status:c => c >= 0 ? '球面' : '空集',
                read:c => c >= 0 ? '這是所有到原點距離為 $\\sqrt{c}$ 的點，所以是球面。拖大 $c$，半徑變大。' : '平方和不可能等於負數，因此沒有實數點。' },
-    ellip:   { F:(x,y,z) => x*x/4 + y*y/2.25 + z*z, crange:[0.2, 5], cInit:1, label:'ELLIPSOID',
+    ellip:   { F:(x,y,z) => x*x/4 + y*y/2.25 + z*z, crange:[0.2, 5], cInit:1, label:'橢球面',
                eqTex:'$F = \\dfrac{x^2}{4} + \\dfrac{y^2}{2.25} + z^2$', note:'$c > 0$ 為橢球，半軸長 $2\\sqrt{c}$、$1.5\\sqrt{c}$、$\\sqrt{c}$',
                status:c => c > 0 ? '橢球' : '空集',
                read:c => c > 0 ? '這是三個方向伸縮不同的橢球。$c$ 越大，三個半軸一起按 $\\sqrt{c}$ 放大。' : '左邊為平方和形式，非正的 $c$ 不會形成可見橢球。' },
-    hyper1:  { F:(x,y,z) => x*x + y*y - z*z, crange:[-6, 6], cInit:1, label:'1-SHEET HYPERBOLOID',
+    hyper1:  { F:(x,y,z) => x*x + y*y - z*z, crange:[-6, 6], cInit:1, label:'單葉雙曲面',
                eqTex:'$F = x^2 + y^2 - z^2$', note:'$c > 0$：單葉雙曲面（連通）；$c < 0$：雙葉雙曲面',
                status:c => c > 0 ? '單葉雙曲面' : (c < 0 ? '雙葉雙曲面' : '錐面'),
                read:c => c > 0 ? '$x^2+y^2-z^2=c$ 在中間連成一片，是單葉雙曲面。' : (c < 0 ? '移項得 $z^2-x^2-y^2=-c$，上下分成兩片，是雙葉雙曲面。' : '$c=0$ 時得到錐面 $x^2+y^2=z^2$。') },
-    hyper2:  { F:(x,y,z) => z*z - x*x - y*y, crange:[-6, 6], cInit:1, label:'2-SHEET HYPERBOLOID',
+    hyper2:  { F:(x,y,z) => z*z - x*x - y*y, crange:[-6, 6], cInit:1, label:'雙葉雙曲面',
                eqTex:'$F = z^2 - x^2 - y^2$', note:'$c > 0$：兩葉分離；$c < 0$：單葉',
                status:c => c > 0 ? '雙葉雙曲面' : (c < 0 ? '單葉雙曲面' : '錐面'),
                read:c => c > 0 ? '$z^2-x^2-y^2=c$ 上下分離，是雙葉雙曲面。' : (c < 0 ? '移項得 $x^2+y^2-z^2=-c$，中間連成一片，是單葉雙曲面。' : '$c=0$ 時得到錐面 $z^2=x^2+y^2$。') }
@@ -2896,13 +2898,13 @@ function marchingCubes(F, c, xMin, xMax, yMin, yMax, zMin, zMax, res=28) {
 
   const FUNCS = {
     lecture_squeeze: { f:(x,y) => { const r2 = x*x + y*y; return r2 < 1e-12 ? 0 : (5*x*x*y) / r2; },
-            label:'LECTURE EXAMPLE 3',
+            label:'講義例題 3',
             zScale:1,
             tex:'$f = \\dfrac{5x^2y}{x^2+y^2}$',
             note:'存在證明使用夾擠定理：$0\\le |f|\\le5|y|\\to0$，所以 $-5|y|\\le f\\le5|y|$ 且極限為 0；極座標也可證明，因為角度因子有共同上界',
-            verdict:'講義 Example 3：先證 $0\\le\\left|\\dfrac{5x^2y}{x^2+y^2}\\right|\\le5|y|$，因此 $-5|y|\\le f\\le5|y|$；左右兩端皆趨近 0，由夾擠定理得 <strong>極限為 0</strong>。注意：互動中的單一路徑代換只是測試，不是存在證明。極座標寫法可證明存在，是因為它涵蓋所有方向，且 $\\cos^2\\theta\\sin\\theta$ 有共同上界，乘上 $r$ 後趨近 0。' },
+            verdict:'講義 例題 3：先證 $0\\le\\left|\\dfrac{5x^2y}{x^2+y^2}\\right|\\le5|y|$，因此 $-5|y|\\le f\\le5|y|$；左右兩端皆趨近 0，由夾擠定理得 <strong>極限為 0</strong>。注意：互動中的單一路徑代換只是測試，不是存在證明。極座標寫法可證明存在，是因為它涵蓋所有方向，且 $\\cos^2\\theta\\sin\\theta$ 有共同上界，乘上 $r$ 後趨近 0。' },
     lecture_path: { f:(x,y) => { const r2 = x*x + y*y; return r2 < 1e-12 ? 0 : Math.pow((x*x - y*y) / r2, 2); },
-            label:'LECTURE EXAMPLE 4',
+            label:'講義例題 4',
             zScale:1,
             tex:'$f = \\left(\\dfrac{x^2-y^2}{x^2+y^2}\\right)^2$',
             note:'使用路徑判別法：沿 $y=0$ 的極限為 1，沿 $y=x$ 的極限為 0，因此可證明不存在。極座標則得到 $\\cos^2(2\\theta)$，依角度而變',
@@ -3164,14 +3166,14 @@ function marchingCubes(F, c, xMin, xMax, yMin, yMax, zMin, zMax, res=28) {
     lecture_slope: {
       f:(x,y) => -x*x/2 - y*y + 25/8,
       fx:(x,y) => -x, fy:(x,y) => -2*y,
-      eq:'$z = -\\dfrac{x^2}{2} - y^2 + \\dfrac{25}{8}$', label:'LECTURE EXAMPLE 3',
+      eq:'$z = -\\dfrac{x^2}{2} - y^2 + \\dfrac{25}{8}$', label:'講義例題 3',
       partial:'$f_x=-x,\\ f_y=-2y$；在 $(1/2,1)$：$f_x=-1/2,\\ f_y=-2$', range:[-2,2],
       defaults:{x:0.5,y:1}
     },
     paraboloid: {
       f:(x,y) => x*x + y*y,
       fx:(x,y) => 2*x, fy:(x,y) => 2*y,
-      eq:'$z = x^2 + y^2$', label:'PARABOLOID',
+      eq:'$z = x^2 + y^2$', label:'拋物面',
       partial:'$f_x = 2x,\\ f_y = 2y$', range:[-2,2]
     },
     saddle: {
@@ -3326,30 +3328,30 @@ function marchingCubes(F, c, xMin, xMax, yMin, yMax, zMin, zMax, res=28) {
       f:(x,y) => 3*x*y*y - 2*y + 5*x*x*y*y,
       fxx:(x,y) => 10*y*y, fyy:(x,y) => 6*x + 10*x*x,
       fxy:(x,y) => 6*y + 20*x*y, fyx:(x,y) => 6*y + 20*x*y,
-      eq:'$f = 3xy^2 - 2y + 5x^2y^2$', label:'LECTURE EXAMPLE 7',
+      eq:'$f = 3xy^2 - 2y + 5x^2y^2$', label:'講義例題 7',
       range:[-2,2], zScale:0.035, mixedContinuity:true, defaults:{x:-1,y:2}
     },
     poly: {
       f:(x,y) => x*x*x*y*y + 2*x*y,
       fxx:(x,y) => 6*x*y*y, fyy:(x,y) => 2*x*x*x,
       fxy:(x,y) => 6*x*x*y + 2, fyx:(x,y) => 6*x*x*y + 2,
-      eq:'$f = x^3 y^2 + 2xy$', label:'POLYNOMIAL', range:[-1.5,1.5], zScale:0.18, mixedContinuity:true
+      eq:'$f = x^3 y^2 + 2xy$', label:'多項式', range:[-1.5,1.5], zScale:0.18, mixedContinuity:true
     },
     exp: {
       f:(x,y) => Math.exp(x) * Math.sin(y),
       fxx:(x,y) => Math.exp(x) * Math.sin(y), fyy:(x,y) => -Math.exp(x) * Math.sin(y),
       fxy:(x,y) => Math.exp(x) * Math.cos(y), fyx:(x,y) => Math.exp(x) * Math.cos(y),
-      eq:'$f = e^x \\sin y$', label:'EXPONENTIAL', range:[-1.5,1.5], zScale:0.55, mixedContinuity:true
+      eq:'$f = e^x \\sin y$', label:'指數函數', range:[-1.5,1.5], zScale:0.55, mixedContinuity:true
     },
     trig: {
       f:(x,y) => x*x * Math.cos(x*y),
       fxx:null, fyy:null, fxy:null, fyx:null,  // use numerical
-      eq:'$f = x^2 \\cos(xy)$', label:'NESTED TRIG', range:[-1.5,1.5], mixedContinuity:true
+      eq:'$f = x^2 \\cos(xy)$', label:'巢狀三角函數', range:[-1.5,1.5], mixedContinuity:true
     },
     counter: {
       f:(x,y) => { const r2 = x*x + y*y; return r2 < 1e-12 ? 0 : (x*y*(x*x - y*y)) / r2; },
       fxx:null, fyy:null, fxy:null, fyx:null,
-      eq:'$f = \\dfrac{xy(x^2-y^2)}{x^2+y^2}$', label:'COUNTEREXAMPLE',
+      eq:'$f = \\dfrac{xy(x^2-y^2)}{x^2+y^2}$', label:'反例',
       range:[-1.2,1.2], mixedContinuity:false,
       note:'在原點 f_xy(0,0) = -1，f_yx(0,0) = 1；混合偏導不連續，定理前提失效。'
     }
@@ -3408,7 +3410,7 @@ function marchingCubes(F, c, xMin, xMax, yMin, yMax, zMin, zMax, res=28) {
     } else if (diff < 0.01) {
       verdict.innerHTML = `|f_xy - f_yx| = ${diff.toFixed(4)} → <strong>滿足</strong>。`;
       verdictBox.className = 'info-box green'; verdictBox.style.padding = '.8rem 1rem'; verdictBox.style.margin = '0';
-      verdictLabel.textContent = 'MIXED PARTIALS';
+      verdictLabel.textContent = '混合偏導';
     } else {
       verdict.innerHTML = `|f_xy - f_yx| = ${diff.toFixed(4)} → 條件不滿足！${p.note ? '<br>' + p.note : ''}`;
       verdictBox.className = 'info-box red'; verdictBox.style.padding = '.8rem 1rem'; verdictBox.style.margin = '0';
@@ -3462,12 +3464,12 @@ function marchingCubes(F, c, xMin, xMax, yMin, yMax, zMin, zMax, res=28) {
       fy:(x,y) => { const q = 4 - x*x - y*y; return q > 0 ? -y / Math.sqrt(q) : NaN; },
       eq:'$z = \\sqrt{4 - x^2 - y^2}$',
       part:'$dz = -\\dfrac{x}{\\sqrt{4-x^2-y^2}}\\,dx - \\dfrac{y}{\\sqrt{4-x^2-y^2}}\\,dy$',
-      label:'LECTURE EXAMPLE 3',
+      label:'講義例題 3',
       defaults:{x:1,y:1,dx:0.01,dy:-0.03}, xyRange:[-1.3,1.3], zScale:1
     },
-    parab: { f:(x,y) => x*x + y*y,             fx:(x,y) => 2*x,                   fy:(x,y) => 2*y,                   eq:'$z = x^2 + y^2$',  part:'$dz = 2x\\,dx + 2y\\,dy$',                 label:'PARABOLOID', zScale:0.35 },
-    sin:   { f:(x,y) => Math.sin(x*y),         fx:(x,y) => y*Math.cos(x*y),       fy:(x,y) => x*Math.cos(x*y),       eq:'$z = \\sin(xy)$',  part:'$dz = y\\cos(xy)\\,dx + x\\cos(xy)\\,dy$', label:'SIN(XY)', zScale:1 },
-    exp:   { f:(x,y) => Math.exp(x*y/2),       fx:(x,y) => (y/2)*Math.exp(x*y/2), fy:(x,y) => (x/2)*Math.exp(x*y/2), eq:'$z = e^{xy/2}$',   part:'$dz = (y/2)e^{xy/2}\\,dx + (x/2)e^{xy/2}\\,dy$', label:'EXP(XY/2)', zScale:0.35 }
+    parab: { f:(x,y) => x*x + y*y,             fx:(x,y) => 2*x,                   fy:(x,y) => 2*y,                   eq:'$z = x^2 + y^2$',  part:'$dz = 2x\\,dx + 2y\\,dy$',                 label:'拋物面', zScale:0.35 },
+    sin:   { f:(x,y) => Math.sin(x*y),         fx:(x,y) => y*Math.cos(x*y),       fy:(x,y) => x*Math.cos(x*y),       eq:'$z = \\sin(xy)$',  part:'$dz = y\\cos(xy)\\,dx + x\\cos(xy)\\,dy$', label:'正弦函數', zScale:1 },
+    exp:   { f:(x,y) => Math.exp(x*y/2),       fx:(x,y) => (y/2)*Math.exp(x*y/2), fy:(x,y) => (x/2)*Math.exp(x*y/2), eq:'$z = e^{xy/2}$',   part:'$dz = (y/2)e^{xy/2}\\,dx + (x/2)e^{xy/2}\\,dy$', label:'指數函數', zScale:0.35 }
   };
   let curId = 'lecture_approx';
   let surf = null;
@@ -3658,14 +3660,14 @@ function marchingCubes(F, c, xMin, xMax, yMin, yMax, zMin, zMax, res=28) {
       });
     });
   }
-  // Q13-1：F(x,y,z)=c → level surface（3D 中的曲面）；g(x,y) 對應 level curve（2D 中的曲線）
+  // Q13-1：F(x,y,z)=c → 等位面（3D 中的曲面）；g(x,y) 對應 等高線（2D 中的曲線）
   makeChoiceQuiz('quiz-ch13-1', 1, {
     ok:'✓ 正確！等值集合的維度通常比輸入維度少一。三變數函數 $F(x,y,z)=c$ 給出 3D 中的等位曲面；二變數函數 $g(x,y)=c$ 給出平面中的等高線。',
     wrong:[
       '$g(x,y)$ 的等高線是 2D 平面內的曲線（不是 3D 曲面）。',
       '',
       '等高線圖（topographic map）正是 level curve 的標準視覺化（如地圖、氣象圖）。',
-      'Level surface 是 3D 中的曲面（2 維對象）；Level curve 才是 2D 中的曲線。'
+      '等位面是 3D 中的曲面（2 維對象）；等高線才是 2D 中的曲線。'
     ]
   });
   // Q13-2：(x²-y²)/(x²+y²) at (0,0) — 沿 y=0 給 1，沿 x=0 給 -1，極限不存在

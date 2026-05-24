@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>向量值函數 — Vector-Valued Functions (Chapter 12)</title>
+<title>向量值函數 — 第 12 章</title>
 <script>
   MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }, svg: { fontCache: 'global' } };
 </script>
@@ -63,10 +63,11 @@ p{margin-bottom:1rem;}
 .hint-overlay{position:absolute;top:8px;right:10px;font-family:'JetBrains Mono',monospace;font-size:.7rem;color:rgba(255,255,255,.55);background:rgba(0,0,0,.25);padding:3px 8px;border-radius:4px;pointer-events:none;}
 .t-display{position:absolute;top:8px;left:10px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#f1c40f;background:rgba(0,0,0,.45);padding:4px 10px;border-radius:4px;pointer-events:none;font-weight:600;}
 
-/* Side navigation (jump-to-section) */
+/* 側邊導覽 (jump-to-section) */
 .side-nav{position:fixed;top:50%;right:1rem;transform:translateY(-50%);background:var(--card);border:1px solid var(--card-border);border-radius:10px;padding:.45rem .5rem;font-size:.74rem;font-family:'JetBrains Mono',monospace;box-shadow:0 4px 18px rgba(0,0,0,.08);z-index:50;display:flex;flex-direction:column;gap:.1rem;max-width:170px;}
 .side-nav .sn-title{font-size:.66rem;color:var(--muted);letter-spacing:.1em;padding:.2rem .55rem .35rem;border-bottom:1px solid var(--card-border);margin-bottom:.25rem;}
 .side-nav .sn-item{display:block;padding:.32rem .55rem;color:var(--muted);text-decoration:none;border-left:2px solid transparent;border-radius:4px;transition:all .15s;line-height:1.3;}
+.side-nav .sn-item.sn-sub{padding-left:1.1rem;font-size:.7rem;color:#a8a496;}
 .side-nav .sn-item:hover{color:var(--ink);background:var(--highlight);}
 .side-nav .sn-item.active{color:var(--accent3);border-left-color:var(--accent3);background:rgba(26,107,74,.06);font-weight:600;}
 @media(max-width:1280px){.side-nav{display:none;}}
@@ -177,7 +178,7 @@ p.exercise-question::before{content:"題目";display:inline-block;font-family:'J
 .step-block.solution-start{margin-top:1.8rem;position:relative;}
 .step-block.solution-start::before{content:"解題";position:absolute;top:-1.35rem;left:0;font-family:'JetBrains Mono',monospace;font-size:.68rem;color:#fff;background:var(--accent3);border-radius:4px;padding:1px 7px;letter-spacing:.06em;font-weight:700;}
 
-/* Property list (for Theorem 12.2) */
+/* 性質列表（定理 12.2） */
 .prop-list{counter-reset:prop;list-style:none;padding:0;margin:1rem 0;}
 .prop-list li{counter-increment:prop;background:var(--card);border:1px solid var(--card-border);border-radius:8px;padding:.7rem 1rem .7rem 3rem;margin-bottom:.55rem;position:relative;font-size:.95rem;box-shadow:0 1px 3px rgba(0,0,0,.03);}
 .prop-list li::before{content:counter(prop);position:absolute;left:.85rem;top:50%;transform:translateY(-50%);width:1.7rem;height:1.7rem;background:var(--accent3);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:.85rem;}
@@ -220,26 +221,26 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </head>
 <body>
 
-<!-- Side navigation -->
+<!-- 側邊導覽 -->
 <nav class="side-nav" id="sideNav">
-  <div class="sn-title">CHAPTER 12</div>
-  <a class="sn-item" href="#sec-prologue">PROLOGUE</a>
-  <a class="sn-item" href="#sec-plane">01 · 平面曲線</a>
-  <a class="sn-item" href="#sec-space">02 · 空間曲線</a>
-  <a class="sn-item" href="#sec-intersect">03 · Ex 4 交線</a>
-  <a class="sn-item" href="#sec-limit">04 · 極限 &amp; 連續</a>
-  <a class="sn-item" href="#sec-deriv">05 · 微分</a>
-  <a class="sn-item" href="#sec-higher">06 · 高階導數</a>
-  <a class="sn-item" href="#sec-props">07 · 導數性質</a>
-  <a class="sn-item" href="#sec-integral">08 · 積分</a>
-  <a class="sn-item" href="#sec-ref">REFERENCE</a>
+  <div class="sn-title">第 12 章</div>
+  <a class="sn-item" href="#sec-prologue">12.1 向量值函數</a>
+  <a class="sn-item sn-sub" href="#sec-plane">  · 平面曲線</a>
+  <a class="sn-item sn-sub" href="#sec-space">  · 空間曲線</a>
+  <a class="sn-item sn-sub" href="#sec-intersect">  · 例題 4 交線</a>
+  <a class="sn-item sn-sub" href="#sec-limit">  · 極限與連續</a>
+  <a class="sn-item" href="#sec-deriv">12.2 微分與積分</a>
+  <a class="sn-item sn-sub" href="#sec-higher">  · 高階導數</a>
+  <a class="sn-item sn-sub" href="#sec-props">  · 導數性質</a>
+  <a class="sn-item sn-sub" href="#sec-integral">  · 積分</a>
+  <a class="sn-item" href="#sec-ref">速查</a>
 </nav>
 
 <div class="hero">
   <div class="hero-grid"></div>
   <div class="hero-content">
     <h1><span class="yellow">向量值函數</span>：把<span class="green">參數</span>送進<span class="pink">向量</span></h1>
-    <div class="subtitle">Chapter 12 — Vector-Valued Functions, Differentiation &amp; Integration (Interactive)</div>
+    <div class="subtitle">第 12 章 — 12.1 向量值函數、12.2 微分與積分（互動版）</div>
     <div class="big-formula">$\mathbf{r}(t) = f(t)\,\mathbf{i} + g(t)\,\mathbf{j} + h(t)\,\mathbf{k}$</div>
     <div class="scroll-hint">向下捲動開始互動<span>↓</span></div>
   </div>
@@ -251,9 +252,9 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 <!-- PROLOGUE -->
 <!-- ============================================================ -->
 <section id="sec-prologue">
-  <div class="section-number">PROLOGUE · 從實值函數到向量值函數</div>
+  <div class="section-number">12.1 向量值函數</div>
   <h2>把實數送進「向量輸出」的函數</h2>
-  <p>過去你看過的函數 $y=f(x)$ 把一個實數送到另一個實數。<strong>向量值函數 (vector-valued function)</strong> 改變輸出端：<em>給定一個實數 $t$，吐出一個向量</em>。這個小小的概念轉變讓我們可以用「位置向量隨時間變化」的觀點，自然地描述<span class="text-r">空間中的曲線</span>。</p>
+  <p>過去你看過的函數 $y=f(x)$ 把一個實數送到另一個實數。<strong>向量值函數</strong>改變輸出端：<em>給定一個實數 $t$，吐出一個向量</em>。這個小小的概念轉變讓我們可以用「位置向量隨時間變化」的觀點，自然地描述<span class="text-r">空間中的曲線</span>。</p>
 
   <div class="dual-card">
     <div class="dc dc-real">
@@ -271,13 +272,13 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <div class="info-box">
-    <span class="info-label">DEF 12.1</span>
+    <span class="info-label">定義 12.1</span>
     <strong>向量值函數的標準形式</strong>
     <div style="margin:.6rem 0;text-align:center;font-size:1.05rem;">
       $\mathbf{r}(t) = f(t)\,\mathbf{i} + g(t)\,\mathbf{j}$ &nbsp;&nbsp;<span style="color:var(--muted);">(平面)</span><br>
       $\mathbf{r}(t) = f(t)\,\mathbf{i} + g(t)\,\mathbf{j} + h(t)\,\mathbf{k}$ &nbsp;&nbsp;<span style="color:var(--muted);">(空間)</span>
     </div>
-    其中 $f$、$g$、$h$ 稱為<strong>分量函數 (component functions)</strong>，都是參數 $t$ 的實值函數。也常寫成 $\mathbf{r}(t)=\langle f(t),g(t)\rangle$ 或 $\langle f(t),g(t),h(t)\rangle$。
+    其中 $f$、$g$、$h$ 稱為<strong>分量函數</strong>，都是參數 $t$ 的實值函數。也常寫成 $\mathbf{r}(t)=\langle f(t),g(t)\rangle$ 或 $\langle f(t),g(t),h(t)\rangle$。
   </div>
 
   <h3>位置向量的觀點：曲線是「終點的軌跡」</h3>
@@ -343,18 +344,18 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </section>
 
 <!-- ============================================================ -->
-<!-- PART 01: 平面曲線 -->
+<!-- 12.1 內小段：平面曲線 -->
 <!-- ============================================================ -->
 <section id="sec-plane">
-  <div class="section-number">PART 01 · 平面曲線</div>
+  <div class="section-number">12.1 內小段 · 平面曲線</div>
   <h2>平面曲線：兩個分量、一個 $t$</h2>
-  <p>下方畫布專門顯示 <span class="pill pill-z">xy 平面</span>。選擇預設、拖動 $t$ 滑桿，觀察點如何沿曲線移動，以及位置向量 $\mathbf{r}(t)$ 如何旋轉。<strong>注意箭頭方向</strong>：它指向 $t$ 增加的方向，這就是曲線的<em>方向 (orientation)</em>。</p>
+  <p>下方畫布專門顯示 <span class="pill pill-z">xy 平面</span>。選擇預設、拖動 $t$ 滑桿，觀察點如何沿曲線移動，以及位置向量 $\mathbf{r}(t)$ 如何旋轉。<strong>注意箭頭方向</strong>：它指向 $t$ 增加的方向，這就是曲線的<em>方向</em>。</p>
   <p class="exercise-question">講義例題 1：畫出向量值函數 $\mathbf r(t)=2\cos t\,\mathbf i-3\sin t\,\mathbf j,\ 0\le t\le 2\pi$ 所表示的平面曲線。講義例題 3：用向量值函數表示拋物線 $y=x^2+1$。</p>
 
   <div class="preset-row" id="planePresets">
-    <button class="preset-btn active" data-id="ex1">Ex 1 · $2\cos t\,\mathbf{i} - 3\sin t\,\mathbf{j}$</button>
+    <button class="preset-btn active" data-id="ex1">例題 1 · $2\cos t\,\mathbf{i} - 3\sin t\,\mathbf{j}$</button>
     <button class="preset-btn" data-id="ex1ccw">變體 · $2\cos t\,\mathbf{i} + 3\sin t\,\mathbf{j}$</button>
-    <button class="preset-btn" data-id="ex3">Ex 3 · $t\,\mathbf{i} + (t^2{+}1)\,\mathbf{j}$</button>
+    <button class="preset-btn" data-id="ex3">例題 3 · $t\,\mathbf{i} + (t^2{+}1)\,\mathbf{j}$</button>
     <button class="preset-btn" data-id="circ1">$\sin t\,\mathbf{i}+\cos t\,\mathbf{j}$</button>
     <button class="preset-btn" data-id="circ2">$\sin t^2\,\mathbf{i}+\cos t^2\,\mathbf{j}$</button>
   </div>
@@ -401,7 +402,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <div class="info-box warm">
-    <span class="info-label">CRITICAL · 講義 p.6</span>
+    <span class="info-label">重點 · 講義 p.6</span>
     <strong>兩個不同的曲線可以有相同的圖形</strong>
     <p style="margin:.5rem 0;">最後兩個預設值得仔細比較。它們的<em>圖形（畫出來的點集合）</em>都是單位圓 $x^2+y^2=1$，但它們是<em>兩條不同的曲線</em>：</p>
     <table style="width:100%;border-collapse:collapse;font-size:.92rem;margin:.5rem 0;">
@@ -434,18 +435,18 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </section>
 
 <!-- ============================================================ -->
-<!-- PART 02: 空間曲線 -->
+<!-- 12.1 內小段：空間曲線 -->
 <!-- ============================================================ -->
 <section id="sec-space">
-  <div class="section-number">PART 02 · 空間曲線</div>
+  <div class="section-number">12.1 內小段 · 空間曲線</div>
   <h2>空間曲線：再加一個 $z$ 分量</h2>
-  <p>把第三個分量 $h(t)$ 補上，曲線就「離開平面」了。最經典的例子是<strong>螺旋線 (helix)</strong>：xy-平面上做圓周運動的同時 $z$ 等速上升。它的投影在 <span class="pill pill-z">z</span> 軸方向上的圓柱面 $x^2+y^2=16$ 上。</p>
+  <p>把第三個分量 $h(t)$ 補上，曲線就「離開平面」了。最經典的例子是<strong>螺旋線</strong>：xy-平面上做圓周運動的同時 $z$ 等速上升。它的投影在 <span class="pill pill-z">z</span> 軸方向上的圓柱面 $x^2+y^2=16$ 上。</p>
   <p class="exercise-question">講義例題 2：畫出 $\mathbf r(t)=4\cos t\,\mathbf i+4\sin t\,\mathbf j+t\,\mathbf k,\ 0\le t\le 4\pi$ 所表示的空間曲線。</p>
 
   <div class="preset-row" id="spacePresets">
-    <button class="preset-btn active" data-id="helix">Ex 2 · $4\cos t\,\mathbf{i} + 4\sin t\,\mathbf{j} + t\,\mathbf{k}$</button>
-    <button class="preset-btn" data-id="helix_fast">變化頻率 · $4\cos 2t\,\mathbf{i} + 4\sin 2t\,\mathbf{j} + t\,\mathbf{k}$</button>
-    <button class="preset-btn" data-id="conic">圓錐螺線 · $t\cos t\,\mathbf{i} + t\sin t\,\mathbf{j} + t\,\mathbf{k}$</button>
+    <button class="preset-btn active" data-id="helix">例題 2 · $4\cos t\,\mathbf{i} + 4\sin t\,\mathbf{j} + t\,\mathbf{k}$</button>
+    <button class="preset-btn" data-id="helix_fast">補充：變化頻率 · $4\cos 2t\,\mathbf{i} + 4\sin 2t\,\mathbf{j} + t\,\mathbf{k}$</button>
+    <button class="preset-btn" data-id="conic">補充：圓錐螺線 · $t\cos t\,\mathbf{i} + t\sin t\,\mathbf{j} + t\,\mathbf{k}$</button>
   </div>
 
   <div class="viz-layout">
@@ -496,30 +497,30 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </section>
 
 <!-- ============================================================ -->
-<!-- PART 03: Example 4 兩曲面交線 -->
+<!-- 12.1 內小段：例題 4 兩曲面交線 -->
 <!-- ============================================================ -->
 <section id="sec-intersect">
-  <div class="section-number">PART 03 · 例題 4 · 兩曲面交線</div>
+  <div class="section-number">12.1 內小段 · 例題 4 · 兩曲面交線</div>
   <h2>把曲線寫成「兩個面交出來的軌跡」</h2>
   <p class="exercise-question">講義例題 4：畫出半橢球面 $\dfrac{x^2}{12}+\dfrac{y^2}{24}+\dfrac{z^2}{4}=1,\ z\ge0$ 與拋物柱面 $y=x^2$ 的交線 $C$，並求表示此交線的向量值函數。</p>
   <div style="text-align:center;margin:.5rem 0;">$$\frac{x^2}{12} + \frac{y^2}{24} + \frac{z^2}{4} = 1,\ \ z\geq 0 \quad \text{與} \quad y = x^2$$</div>
 
   <h3>解題思路（逐步）</h3>
   <div class="step-block solution-start">
-    <div class="step-num">STEP 1 · 取自然參數</div>
+    <div class="step-num">步驟 1 · 取自然參數</div>
     令 $x = t$。代入拋物柱面：$y = t^2$。
   </div>
   <div class="step-block">
-    <div class="step-num">STEP 2 · 代入半橢球面解 $z$</div>
+    <div class="step-num">步驟 2 · 代入半橢球面解 $z$</div>
     $\dfrac{t^2}{12} + \dfrac{t^4}{24} + \dfrac{z^2}{4} = 1 \;\Longrightarrow\; z^2 = 4 - \dfrac{t^2}{3} - \dfrac{t^4}{6} = \dfrac{24 - 2t^2 - t^4}{6}$。<br>
     $24 - 2t^2 - t^4 = -(t^4 + 2t^2 - 24) = -(t^2+6)(t^2-4) = (t^2+6)(4-t^2)$。
   </div>
   <div class="step-block">
-    <div class="step-num">STEP 3 · 取 $z\ge 0$ 的支</div>
+    <div class="step-num">步驟 3 · 取 $z\ge 0$ 的支</div>
     $z = \sqrt{\dfrac{(6+t^2)(4-t^2)}{6}}$。要 $z$ 為實數，必須 $4 - t^2 \ge 0$，即 <strong>$-2 \le t \le 2$</strong>。
   </div>
   <div class="step-block">
-    <div class="step-num">STEP 4 · 寫成向量值函數</div>
+    <div class="step-num">步驟 4 · 寫成向量值函數</div>
     $\mathbf{r}(t) = t\,\mathbf{i} + t^2\,\mathbf{j} + \sqrt{\dfrac{(6+t^2)(4-t^2)}{6}}\,\mathbf{k}, \quad -2 \le t \le 2$。
   </div>
 
@@ -548,7 +549,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
     <div class="side-panel">
       <div class="eq-card">
-        <div class="eq-label">CURVE C</div>
+        <div class="eq-label">曲線 C</div>
         <div class="eq-formula" style="font-size:.93rem;">$\mathbf{r}(t) = t\,\mathbf{i} + t^2\mathbf{j} + \sqrt{\tfrac{(6+t^2)(4-t^2)}{6}}\,\mathbf{k}$</div>
         <div class="eq-sub">$-2 \le t \le 2$</div>
       </div>
@@ -571,14 +572,14 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </section>
 
 <!-- ============================================================ -->
-<!-- PART 04: 極限與連續 -->
+<!-- 12.1 內小段：極限與連續 -->
 <!-- ============================================================ -->
 <section id="sec-limit">
-  <div class="section-number">PART 04 · 極限與連續</div>
+  <div class="section-number">12.1 內小段 · 極限與連續</div>
   <h2>極限與連續：分量做就行</h2>
 
   <div class="info-box">
-    <span class="info-label">DEF 12.2</span>
+    <span class="info-label">定義 12.2</span>
     <strong>向量值函數的極限</strong><br>
     對 $\mathbf{r}(t) = f(t)\mathbf{i} + g(t)\mathbf{j} + h(t)\mathbf{k}$（空間情形），
     $$\lim_{t\to a}\mathbf{r}(t) = \Big[\lim_{t\to a}f(t)\Big]\mathbf{i} + \Big[\lim_{t\to a}g(t)\Big]\mathbf{j} + \Big[\lim_{t\to a}h(t)\Big]\mathbf{k}$$
@@ -586,7 +587,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <div class="info-box green">
-    <span class="info-label">DEF 12.3</span>
+    <span class="info-label">定義 12.3</span>
     <strong>連續性</strong><br>
     $\mathbf{r}$ 在 $t = a$ 連續，定義為 $\displaystyle\lim_{t\to a}\mathbf{r}(t) = \mathbf{r}(a)$。<br>
     <strong>等價條件</strong>：每個分量函數在 $t = a$ 都連續。
@@ -623,22 +624,22 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </section>
 
 <!-- ============================================================ -->
-<!-- PART 05: 微分 -->
+<!-- 12.2 內小段：微分 -->
 <!-- ============================================================ -->
 <section id="sec-deriv">
-  <div class="section-number">PART 05 · 微分</div>
+  <div class="section-number">12.2 向量值函數的微分與積分</div>
   <h2>導數：分量逐一微分</h2>
 
   <div class="info-box">
-    <span class="info-label">DEF 12.4</span>
+    <span class="info-label">定義 12.4</span>
     <strong>向量值函數的導數</strong>
     $$\mathbf{r}'(t) = \lim_{\Delta t\to 0}\frac{\mathbf{r}(t+\Delta t) - \mathbf{r}(t)}{\Delta t}$$
     只要這個極限存在，$\mathbf{r}$ 就在 $t$ 處<strong>可微</strong>。注意分子是<em>向量差</em>，分母是<em>純量</em>，結果是<em>向量</em>。
   </div>
 
   <div class="info-box green">
-    <span class="info-label">THM 12.1</span>
-    <strong>分量逐一微分（component-wise）</strong>
+    <span class="info-label">定理 12.1</span>
+    <strong>分量逐一微分</strong>
     <div style="margin:.5rem 0;text-align:center;">
       $\mathbf{r}(t) = f(t)\mathbf{i} + g(t)\mathbf{j} + h(t)\mathbf{k} \;\Longrightarrow\; \mathbf{r}'(t) = f'(t)\mathbf{i} + g'(t)\mathbf{j} + h'(t)\mathbf{k}$
     </div>
@@ -709,7 +710,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
   </div>
 
-  <h3>從定義導出 component-wise 微分（兩維情形）</h3>
+  <h3>從定義導出分量逐一微分（兩維情形）</h3>
   <div class="step-block">
     <div class="step-num">推導</div>
     $$\begin{aligned}
@@ -718,7 +719,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     &= \Big[\lim_{\Delta t\to 0}\tfrac{f(t+\Delta t)-f(t)}{\Delta t}\Big]\mathbf{i} + \Big[\lim_{\Delta t\to 0}\tfrac{g(t+\Delta t)-g(t)}{\Delta t}\Big]\mathbf{j}\\
     &= f'(t)\,\mathbf{i} + g'(t)\,\mathbf{j}
     \end{aligned}$$
-    最後一步用到「向量極限可拆給每個分量」（DEF 12.2）。
+    最後一步用到「向量極限可拆給每個分量」（定義 12.2）。
   </div>
 
   <div class="quiz-card" id="quiz-ch12-3">
@@ -735,10 +736,10 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </section>
 
 <!-- ============================================================ -->
-<!-- PART 06: 高階導數 -->
+<!-- 12.2 內小段：高階導數 -->
 <!-- ============================================================ -->
 <section id="sec-higher">
-  <div class="section-number">PART 06 · 高階導數</div>
+  <div class="section-number">12.2 內小段 · 高階導數</div>
   <h2>$\mathbf{r}'$、$\mathbf{r}''$ 與向量運算</h2>
   <p>講義例題 2：對 $\mathbf{r}(t) = \cos t\,\mathbf{i} + \sin t\,\mathbf{j} + 2t\,\mathbf{k}$，求各階導數及 $\mathbf{r}'\cdot\mathbf{r}''$、$\mathbf{r}'\times\mathbf{r}''$。</p>
 
@@ -807,19 +808,19 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <div class="info-box warm">
-    <span class="info-label">DEF · Smooth</span>
-    <strong>光滑曲線 (smooth curve)</strong>：在開區間 $I$ 上，$f', g', h'$ 連續，且 $\mathbf{r}'(t)\ne\mathbf{0}$ 對所有 $t\in I$ 成立。<br>
+    <span class="info-label">定義 · 平滑</span>
+    <strong>平滑曲線</strong>：在開區間 $I$ 上，$f', g', h'$ 連續，且 $\mathbf{r}'(t)\ne\mathbf{0}$ 對所有 $t\in I$ 成立。<br>
     要求 $\mathbf{r}'\ne\mathbf{0}$ 是為了讓<em>切向量始終有方向</em>——若 $\mathbf{r}'=\mathbf{0}$，曲線可能在該點出現尖點。
   </div>
 </section>
 
 <!-- ============================================================ -->
-<!-- PART 07: 導數性質 -->
+<!-- 12.2 內小段：導數性質 -->
 <!-- ============================================================ -->
 <section id="sec-props">
-  <div class="section-number">PART 07 · 導數的七條性質</div>
-  <h2>Theorem 12.2：和、積、點積、叉積、合成</h2>
-  <p>令 $\mathbf{r}, \mathbf{u}$ 為 $t$ 的可微向量值函數，$w$ 為可微的純量函數，$c$ 為常數。下列性質都可由 component-wise 導數驗證。</p>
+  <div class="section-number">12.2 內小段 · 導數的七條性質</div>
+  <h2>定理 12.2：和、積、點積、叉積、合成</h2>
+  <p>令 $\mathbf{r}, \mathbf{u}$ 為 $t$ 的可微向量值函數，$w$ 為可微的純量函數，$c$ 為常數。下列性質都可由分量逐一微分驗證。</p>
 
   <ol class="prop-list">
     <li>$D_t[c\,\mathbf{r}(t)] = c\,\mathbf{r}'(t)$</li>
@@ -833,7 +834,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
   <div class="info-box">
     <span class="info-label">為何性質 7 重要？</span>
-    若一個運動的<em>速率</em>（位置向量長度）固定，例如沿著球面或圓周運動，則速度向量 $\mathbf{r}'(t)$ <strong>恆與位置向量 $\mathbf{r}(t)$ 垂直</strong>。圓周運動的「向心結構」就是這條性質的直接結果。<br>
+    若一個運動的<em>位置向量長度</em>固定，例如沿著以原點為中心的球面或圓周運動，則速度向量 $\mathbf{r}'(t)$ <strong>恆與位置向量 $\mathbf{r}(t)$ 垂直</strong>。圓周運動的「向心結構」就是這條性質的直接結果。<br>
     <strong>證明草圖</strong>：對 $\mathbf{r}\cdot\mathbf{r}=c$ 兩邊微分（用性質 4），$\mathbf{r}\cdot\mathbf{r}' + \mathbf{r}'\cdot\mathbf{r} = 0$，即 $2\,\mathbf{r}\cdot\mathbf{r}' = 0$。
   </div>
 
@@ -868,14 +869,14 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </section>
 
 <!-- ============================================================ -->
-<!-- PART 08: 積分 -->
+<!-- 12.2 內小段：積分 -->
 <!-- ============================================================ -->
 <section id="sec-integral">
-  <div class="section-number">PART 08 · 積分</div>
+  <div class="section-number">12.2 內小段 · 積分</div>
   <h2>積分：再次「分量逐一處理」</h2>
 
   <div class="info-box">
-    <span class="info-label">DEF 12.5</span>
+    <span class="info-label">定義 12.5</span>
     <strong>向量值函數的不定 / 定積分</strong><br>
     對 $\mathbf{r}(t) = f(t)\mathbf{i} + g(t)\mathbf{j} + h(t)\mathbf{k}$（$f, g, h$ 在 $[a,b]$ 連續）：
     $$\int \mathbf{r}(t)\,\mathrm{d}t = \Big[\int f(t)\,\mathrm{d}t\Big]\mathbf{i} + \Big[\int g(t)\,\mathrm{d}t\Big]\mathbf{j} + \Big[\int h(t)\,\mathrm{d}t\Big]\mathbf{k}$$
@@ -962,26 +963,26 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 <!-- REFERENCE -->
 <!-- ============================================================ -->
 <section id="sec-ref">
-  <div class="section-number">REFERENCE · 速查表</div>
+  <div class="section-number">速查 · 速查表</div>
   <h2>章節重點與公式總覽</h2>
 
   <div class="ref-group">
     <div class="ref-group-title"><span class="rg-badge">01</span> 三大基本定義</div>
 
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">向量值函數</span><span class="ref-card-name-en">DEF 12.1</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">向量值函數</span><span class="ref-card-name-en">定義 12.1</span></div>
       <div class="ref-card-eq">$\mathbf{r}(t) = f(t)\,\mathbf{i} + g(t)\,\mathbf{j} \;[+\;h(t)\,\mathbf{k}]$</div>
       <div class="ref-note">定義域 = 各分量定義域的交集。</div>
     </div>
 
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">極限</span><span class="ref-card-name-en">DEF 12.2</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">極限</span><span class="ref-card-name-en">定義 12.2</span></div>
       <div class="ref-card-eq">$\displaystyle\lim_{t\to a}\mathbf{r}(t) = \big[\lim f\big]\mathbf{i} + \big[\lim g\big]\mathbf{j} + \big[\lim h\big]\mathbf{k}$</div>
       <div class="ref-note">每個分量的極限存在 ⇒ 向量值極限存在。</div>
     </div>
 
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">連續性</span><span class="ref-card-name-en">DEF 12.3</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">連續性</span><span class="ref-card-name-en">定義 12.3</span></div>
       <div class="ref-card-eq">$\displaystyle\lim_{t\to a}\mathbf{r}(t) = \mathbf{r}(a)$</div>
       <div class="ref-note">⇔ 每個分量在 $t = a$ 連續。</div>
     </div>
@@ -991,32 +992,32 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <div class="ref-group-title"><span class="rg-badge">02</span> 微分與積分</div>
 
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">導數定義</span><span class="ref-card-name-en">DEF 12.4</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">導數定義</span><span class="ref-card-name-en">定義 12.4</span></div>
       <div class="ref-card-eq">$\displaystyle\mathbf{r}'(t) = \lim_{\Delta t\to 0}\frac{\mathbf{r}(t+\Delta t) - \mathbf{r}(t)}{\Delta t}$</div>
       <div class="ref-note">分子是向量差、分母是純量。</div>
     </div>
 
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">分量微分</span><span class="ref-card-name-en">THM 12.1</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">分量微分</span><span class="ref-card-name-en">定理 12.1</span></div>
       <div class="ref-card-eq">$\mathbf{r}'(t) = f'(t)\mathbf{i} + g'(t)\mathbf{j} + h'(t)\mathbf{k}$</div>
       <div class="ref-note">向量值微分 ↦ 三個一元微分問題。</div>
     </div>
 
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">不定積分</span><span class="ref-card-name-en">DEF 12.5</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">不定積分</span><span class="ref-card-name-en">定義 12.5</span></div>
       <div class="ref-card-eq">$\displaystyle\int\mathbf{r}\,\mathrm{d}t = \big[\int f\big]\mathbf{i} + \big[\int g\big]\mathbf{j} + \big[\int h\big]\mathbf{k}$</div>
       <div class="ref-note">三個積分常數合成一個向量常數 $\mathbf{C}$。</div>
     </div>
 
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">光滑曲線</span><span class="ref-card-name-en">SMOOTH</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">光滑曲線</span><span class="ref-card-name-en">光滑</span></div>
       <div class="ref-card-eq">$f', g', h'$ 連續 且 $\mathbf{r}'(t)\ne\mathbf{0}$</div>
       <div class="ref-note">$\mathbf{r}'\ne\mathbf{0}$ 保證切向量始終有方向，避免尖點。</div>
     </div>
   </div>
 
   <div class="ref-group">
-    <div class="ref-group-title"><span class="rg-badge">03</span> 導數的七條性質（THM 12.2）</div>
+    <div class="ref-group-title"><span class="rg-badge">03</span> 導數的七條性質（定理 12.2）</div>
     <table class="conv-table">
       <thead><tr><th>規則</th><th>公式</th></tr></thead>
       <tbody>
@@ -1036,8 +1037,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </div>
 
 <footer>
-  <p>Prepared for the Department of Applied Mathematics, NSYSU.<br>
-  Chapter 12: Vector-Valued Functions — Sketching, Limits, Differentiation &amp; Integration.</p>
+  <p>國立中山大學應用數學系課程講義。<br>
+  第 12 章：向量值函數 — 作圖、極限、微分與積分。</p>
 </footer>
 
 <script>
@@ -1431,7 +1432,7 @@ function make2DScene(canvasId, opts={}) {
   }
 
   // Draw a line through point p in direction d, clipped to the visible viewport.
-  // Liang–Barsky clipping. Optionally draw as dashed.
+  // 線段裁切；可選擇畫成虛線。
   function drawExtendedLine(p, d, color='#888', width=1.2, dash=null) {
     const xmin = cfg.xRange[0], xmax = cfg.xRange[1];
     const ymin = cfg.yRange[0], ymax = cfg.yRange[1];
@@ -1616,7 +1617,7 @@ function make2DScene(canvasId, opts={}) {
 })();
 
 /* ============================================================
-   PART 01 — Plane curves (2D Canvas)
+   12.1 內小段：平面曲線（2D 畫布）
    ============================================================ */
 (function(){
   const PLANE_PRESETS = {
@@ -1633,7 +1634,7 @@ function make2DScene(canvasId, opts={}) {
       label: '比較 · 逆時針版本',
       eq: '$\\mathbf{r}(t) = 2\\cos t\\,\\mathbf{i} + 3\\sin t\\,\\mathbf{j}$',
       range: '$0 \\leq t \\leq 2\\pi$',
-      note: '把 $y$-分量改回 $+3\\sin t$，$t$ 略增 $y$ 變正 → 逆時針。<em>圖形和 Ex 1 完全一樣</em>，但是<em>方向相反</em>，因此<em>不是同一條曲線</em>。',
+      note: '把 $y$-分量改回 $+3\\sin t$，$t$ 略增 $y$ 變正 → 逆時針。<em>圖形和 例題 1 完全一樣</em>，但是<em>方向相反</em>，因此<em>不是同一條曲線</em>。',
       fn: t => [2*Math.cos(t), 3*Math.sin(t)],
       tMin: 0, tMax: 2*PI,
       view: {x:[-3.5, 3.5], y:[-3.8, 3.8], grid:1},
@@ -1785,7 +1786,7 @@ function make2DScene(canvasId, opts={}) {
 })();
 
 /* ============================================================
-   PART 02 — Space curves (helix etc)
+   12.1 內小段：空間曲線
    ============================================================ */
 (function(){
   const S = makeScene('canvas-space', {radius:18, phi:1.05, theta:0.9, axisLen:6, gridSize:6, gridStep:1});
@@ -1968,7 +1969,7 @@ function make2DScene(canvasId, opts={}) {
 })();
 
 /* ============================================================
-   PART 03 — Example 4: intersection of semiellipsoid & y=x^2
+   12.1 內小段：例題 4 半橢球面與拋物柱面交線
    r(t) = (t, t^2, sqrt((6+t^2)(4-t^2)/6)),  -2 <= t <= 2
    ============================================================ */
 (function(){
@@ -2135,7 +2136,7 @@ function make2DScene(canvasId, opts={}) {
 })();
 
 /* ============================================================
-   PART 05 — Differentiation (2D Canvas): r(t) = t i + (t^2+2) j
+   12.2 內小段：微分（2D 畫布）
    Pedagogical goal: SHOW the secant line rotating to overlap the
    tangent line as Δt → 0.  Secant visualization is ON by default.
    ============================================================ */
@@ -2200,7 +2201,7 @@ function make2DScene(canvasId, opts={}) {
     // The parabola
     S.drawCurve(fullPts, COL_CURVE, 2.5, 0.85);
 
-    // (Optional) position vector r(t)
+    // 可選：位置向量 r(t)
     if (showR) {
       S.drawArrow([0,0], p, COL_R, 2.5, 11);
     }
@@ -2269,7 +2270,7 @@ function make2DScene(canvasId, opts={}) {
 })();
 
 /* ============================================================
-   PART 06 — Higher-order derivatives:
+   12.2 內小段：高階導數：
    r(t) = cos t i + sin t j + 2t k  (helix-like)
    ============================================================ */
 (function(){
@@ -2380,7 +2381,7 @@ function make2DScene(canvasId, opts={}) {
 })();
 
 /* ============================================================
-   PART 08 — Integration (2D Canvas): family R(t) = (t^2/2 + C1) i + (3t + C2) j
+   12.2 內小段：積分（2D 畫布）
    ============================================================ */
 (function(){
   const Rfn = (t, c1, c2) => [t*t/2 + c1, 3*t + c2];
@@ -2541,7 +2542,7 @@ function make2DScene(canvasId, opts={}) {
   });
   // Q12-3：r'(1) 是切向量
   makeChoiceQuiz('quiz-ch12-3', 1, {
-    ok:'✓ 正確！$\\mathbf{r}\'(t)$ 是曲線在 $\\mathbf{r}(t)$ 處的<strong>切向量</strong>，方向指向 $t$ 增加方向（DEF 12.4）。',
+    ok:'✓ 正確！$\\mathbf{r}\'(t)$ 是曲線在 $\\mathbf{r}(t)$ 處的<strong>切向量</strong>，方向指向 $t$ 增加方向（定義 12.4）。',
     wrong:[
       '加速度向量是 $\\mathbf{r}\'\'(t)$（二階導數），不是 $\\mathbf{r}\'(t)$。',
       '',

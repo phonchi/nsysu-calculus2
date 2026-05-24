@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>空間中的曲面與柱座標、球座標 — Surfaces, Cylindrical &amp; Spherical Coordinates</title>
+<title>空間中的曲面與柱座標、球座標</title>
 <script>
   MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }, svg: { fontCache: 'global' } };
 </script>
@@ -82,6 +82,14 @@ p{margin-bottom:1rem;}
 
 /* Side panel */
 .side-panel{display:flex;flex-direction:column;gap:.85rem;}
+
+/* 側邊導覽 */
+.side-nav{position:fixed;top:50%;right:1rem;transform:translateY(-50%);background:var(--card);border:1px solid var(--card-border);border-radius:10px;padding:.45rem .5rem;font-size:.74rem;font-family:'JetBrains Mono',monospace;box-shadow:0 4px 18px rgba(0,0,0,.08);z-index:50;display:flex;flex-direction:column;gap:.1rem;max-width:220px;max-height:calc(100vh - 2rem);overflow-y:auto;}
+.side-nav .sn-title{font-size:.66rem;color:var(--muted);letter-spacing:.1em;padding:.2rem .55rem .35rem;border-bottom:1px solid var(--card-border);margin-bottom:.25rem;}
+.side-nav .sn-item{display:block;padding:.28rem .55rem;color:var(--muted);text-decoration:none;border-left:2px solid transparent;border-radius:4px;transition:all .15s;line-height:1.3;}
+.side-nav .sn-item.sn-sub{padding-left:1.1rem;font-size:.7rem;color:#a8a496;}
+.side-nav .sn-item:hover{color:var(--ink);background:var(--highlight);}
+@media(max-width:1280px){.side-nav{display:none;}}
 
 .info-card{background:var(--card);border:1px solid var(--card-border);border-radius:10px;padding:.85rem 1rem;box-shadow:0 2px 8px rgba(0,0,0,.04);}
 .info-card .ic-title{font-size:.72rem;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.5rem;border-bottom:1px solid var(--card-border);padding-bottom:.3rem;}
@@ -170,11 +178,24 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </head>
 <body>
 
+<nav class="side-nav">
+  <div class="sn-title">第 11 章</div>
+  <a class="sn-item" href="#sec-prologue">導入</a>
+  <a class="sn-item" href="#sec-surfaces">11.6 空間中的曲面（補充）</a>
+  <a class="sn-item sn-sub" href="#sec-cylinder-surface">  · 柱面</a>
+  <a class="sn-item sn-sub" href="#sec-quadric">  · 二次曲面</a>
+  <a class="sn-item sn-sub" href="#sec-revolution">  · 旋轉面</a>
+  <a class="sn-item" href="#sec-coordinates">11.7 柱座標與球座標</a>
+  <a class="sn-item sn-sub" href="#sec-cylcoord">  · 柱座標</a>
+  <a class="sn-item sn-sub" href="#sec-sphcoord">  · 球座標</a>
+  <a class="sn-item" href="#sec-ref">速查</a>
+</nav>
+
 <div class="hero">
   <div class="hero-grid"></div>
   <div class="hero-content">
     <h1>空間中的<span class="green">曲面</span>、<span class="blue">柱座標</span>與球座標</h1>
-    <div class="subtitle">Chapter 11 — Surfaces in Space, Cylindrical &amp; Spherical Coordinates (Interactive 3D)</div>
+    <div class="subtitle">第 11 章 — 11.6 空間中的曲面（補充）、11.7 柱座標與球座標（互動版）</div>
     <div class="big-formula">柱面｜旋轉面｜二次曲面｜$(r,\theta,z)$ ｜ $(\rho,\theta,\phi)$</div>
     <div class="scroll-hint">向下捲動開始互動<span>↓</span></div>
   </div>
@@ -183,10 +204,10 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 <div class="container">
 
 <!-- ============================================================ -->
-<!-- SECTION 0: 3D 座標系基礎 -->
+<!-- 第 0 段：三維座標系基礎 -->
 <!-- ============================================================ -->
-<section>
-  <div class="section-number">PROLOGUE · 空間直角座標系</div>
+<section id="sec-prologue">
+  <div class="section-number">導入 · 空間直角座標系</div>
   <h2>先熱身：在三維空間中辨識點與平面</h2>
   <p>進入曲面之前，先用 3D 畫布找回空間感。下面的座標系用 <span class="pill pill-x">x 軸 紅</span> <span class="pill pill-y">y 軸 綠</span> <span class="pill pill-z">z 軸 藍</span> 三色標示，整個頁面將沿用這個配色。</p>
 
@@ -210,9 +231,9 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       </div>
       <div class="info-card">
         <div class="ic-title">三個座標平面</div>
-        <div class="ic-row"><span class="ic-label">xy-plane</span><span class="ic-value">z = 0</span></div>
-        <div class="ic-row"><span class="ic-label">xz-plane</span><span class="ic-value">y = 0</span></div>
-        <div class="ic-row"><span class="ic-label">yz-plane</span><span class="ic-value">x = 0</span></div>
+        <div class="ic-row"><span class="ic-label">xy 平面</span><span class="ic-value">z = 0</span></div>
+        <div class="ic-row"><span class="ic-label">xz 平面</span><span class="ic-value">y = 0</span></div>
+        <div class="ic-row"><span class="ic-label">yz 平面</span><span class="ic-value">x = 0</span></div>
       </div>
       <div class="info-card">
         <div class="ic-title">二點距離公式</div>
@@ -225,12 +246,14 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </section>
 
 <!-- ============================================================ -->
-<!-- SECTION 1: 柱面 Cylindrical Surfaces -->
+<!-- 11.6 內小段：柱面 -->
 <!-- ============================================================ -->
-<section>
-  <div class="section-number">PART 01 · 柱面</div>
-  <h2>柱面：把一條曲線沿著一個軸平移</h2>
-  <p><strong>柱面 (cylinder)</strong> = 一條 <em>母曲線 / 準線 (generating curve, directrix)</em> 在某一個座標平面上，連同所有平行於某座標軸、通過該曲線的直線 <em>直紋線 (rulings)</em> 組成的曲面。關鍵觀察：<strong>方程式裡「缺少」的變數就是直紋線方向</strong>。</p>
+<section id="sec-surfaces">
+  <div class="section-number">11.6 空間中的曲面（補充）</div>
+  <h2>11.6 空間中的曲面（補充）：柱面、二次曲面、旋轉面</h2>
+  <p>講義目錄將本節標為「空間中的曲面（補充）」，因此本頁把它註明為補充章節。下面依講義順序整理柱面、二次曲面與旋轉面，作為辨認三維曲面的視覺輔助。</p>
+  <h3 id="sec-cylinder-surface">柱面：把一條曲線沿著一個軸平移</h3>
+  <p><strong>柱面</strong> = 一條 <em>母曲線 / 準線</em> 在某一個座標平面上，連同所有平行於某座標軸、通過該曲線的直線 <em>直紋線</em> 組成的曲面。關鍵觀察：<strong>方程式裡「缺少」的變數就是直紋線方向</strong>。</p>
   <p class="exercise-question">講義例題：畫出下列柱面：(a) $z=y^2$；(b) $z=\sin x,\ 0\le x\le 2\pi$。下方互動也保留其他柱面作為對照，重點仍是判斷缺少哪個變數、直紋線平行哪個座標軸。</p>
 
   <div class="preset-row" id="cylPresets">
@@ -270,7 +293,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
   <div class="quiz-card" id="quiz-ch11-1">
     <span class="quiz-tag">概念檢查</span>
-    <div class="quiz-q">方程式 $z = y^2$ 表示的曲面，其直紋線 (rulings) 平行於哪個座標軸？</div>
+    <div class="quiz-q">方程式 $z = y^2$ 表示的曲面，其直紋線 平行於哪個座標軸？</div>
     <div class="quiz-options">
       <button class="quiz-opt">$x$ 軸</button>
       <button class="quiz-opt">$y$ 軸</button>
@@ -282,12 +305,12 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </section>
 
 <!-- ============================================================ -->
-<!-- SECTION 2: 二次曲面 Quadric Surfaces -->
+<!-- 11.6 內小段：二次曲面 -->
 <!-- ============================================================ -->
-<section>
-  <div class="section-number">PART 02 · 二次曲面</div>
+<section id="sec-quadric">
+  <div class="section-number">11.6 內小段 · 二次曲面</div>
   <h2>二次曲面：六種標準形式的完整探索</h2>
-  <p><strong>二次曲面 (quadric surface)</strong> 是三變數二次方程式 $Ax^2+By^2+Cz^2+\cdots+J=0$ 在空間中的圖形——<em>圓錐曲線的三維對應</em>。六種標準形式全部列在下方，點選任何一張卡片即可在主畫布中觀察它的形狀、調整參數 $a,b,c$，並開關 <strong>trace（截痕）</strong>。</p>
+  <p><strong>二次曲面</strong> 是三變數二次方程式 $Ax^2+By^2+Cz^2+\cdots+J=0$ 在空間中的圖形——<em>圓錐曲線的三維對應</em>。六種標準形式全部列在下方，點選任何一張卡片即可在主畫布中觀察它的形狀、調整參數 $a,b,c$，並開關 <strong>截痕</strong>。</p>
 
   <div class="type-grid" id="quadGrid">
     <!-- 用 JS 動態生成 -->
@@ -310,7 +333,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
     <div class="side-panel">
       <div class="eq-card">
-        <div class="eq-label" id="quadLabel">ELLIPSOID · 橢球面</div>
+        <div class="eq-label" id="quadLabel">橢球面</div>
         <div class="eq-formula" id="quadEq">$\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}+\dfrac{z^2}{c^2}=1$</div>
       </div>
       <div class="info-card">
@@ -320,7 +343,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         <div class="slider-row"><span class="slider-label">c</span><input type="range" id="quadC" min="0.5" max="3" step="0.1" value="1"><span class="slider-val" id="quadCval">1.0</span></div>
       </div>
       <div class="info-card">
-        <div class="ic-title">截痕分析 (Traces)</div>
+        <div class="ic-title">截痕分析</div>
         <div id="quadTraceInfo" style="font-size:.83rem;line-height:1.7;">
           <div><span class="pill pill-z">平行 xy</span> 橢圓</div>
           <div><span class="pill pill-y">平行 xz</span> 橢圓</div>
@@ -344,16 +367,16 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </section>
 
 <!-- ============================================================ -->
-<!-- SECTION 3: 旋轉面 Surfaces of Revolution -->
+<!-- 11.6 內小段：旋轉面 -->
 <!-- ============================================================ -->
-<section>
-  <div class="section-number">PART 03 · 旋轉面</div>
+<section id="sec-revolution">
+  <div class="section-number">11.6 內小段 · 旋轉面</div>
   <h2>旋轉面：讓一條曲線繞一個軸轉一圈</h2>
-  <p><strong>旋轉面 (surface of revolution)</strong>（定義 11.4）由一條 <em>半徑函數</em> $r$ 的圖形繞一條座標軸旋轉而成；因為 $r$ 代表「到軸的距離」，所以必須 <strong>$r(z)\geq 0$</strong>。若繞 <span class="pill pill-z">z 軸</span> 旋轉 $y = r(z)$，其方程式是</p>
+  <p><strong>旋轉面</strong>（定義 11.4）由一條 <em>半徑函數</em> $r$ 的圖形繞一條座標軸旋轉而成；因為 $r$ 代表「到軸的距離」，所以必須 <strong>$r(z)\geq 0$</strong>。若繞 <span class="pill pill-z">z 軸</span> 旋轉 $y = r(z)$，其方程式是</p>
   <div style="text-align:center;margin:.4rem 0 1rem;">
   $$x^2 + y^2 = [r(z)]^2$$
   </div>
-  <p style="font-size:.88rem;color:var(--muted);">下面五個預設對應 Larson 講義 Figure 7 的四個標準例子（圓柱、拋物面、錐面、雙曲面），加上經典的球面。<strong>全部嚴格滿足 $r(z)\geq 0$</strong>；若 $r$ 本身只在有限範圍有定義（例如 $\sqrt{z}$ 需 $z\geq 0$、$\sqrt{4-z^2}$ 需 $\lvert z\rvert\leq 2$），我們也把畫面上 $z$ 的範圍同步縮到該定義域。</p>
+  <p style="font-size:.88rem;color:var(--muted);">下面五個預設是常見旋轉面例子（圓柱、拋物面、錐面、雙曲面、球面）。<strong>全部嚴格滿足 $r(z)\geq 0$</strong>；若 $r$ 本身只在有限範圍有定義（例如 $\sqrt{z}$ 需 $z\geq 0$、$\sqrt{4-z^2}$ 需 $\lvert z\rvert\leq 2$），我們也把畫面上 $z$ 的範圍同步縮到該定義域。</p>
 
   <div class="preset-row" id="revPresets">
     <button class="preset-btn active" data-id="rev_cyl">$r(z) = 3$（圓柱）</button>
@@ -398,14 +421,15 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </section>
 
 <!-- ============================================================ -->
-<!-- SECTION 4: 柱座標 Cylindrical Coordinates -->
+<!-- 11.7 內小段：柱座標 -->
 <!-- ============================================================ -->
-<section>
-  <div class="section-number">PART 04 · 柱座標系</div>
-  <h2>柱座標 $(r, \theta, z)$：極座標 + 一個高度</h2>
+<section id="sec-coordinates">
+  <div class="section-number">11.7 柱座標與球座標</div>
+  <h2>柱座標與球座標：用對稱性描述空間中的點</h2>
+  <h3 id="sec-cylcoord">柱座標 $(r, \theta, z)$：極座標 + 一個高度</h3>
   <p>拖動滑桿觀察一個點在柱座標下的位置。<strong>想法</strong>：先在 <span class="pill pill-z">xy 平面</span>用極座標 $(r,\theta)$ 定位投影，再沿 <span class="pill pill-z">z 軸</span>拉到高度 $z$。你會同時看到 $(r,\theta,z)$ 與等價的 $(x,y,z)$。</p>
   <div class="info-box" style="margin:.5rem 0 1rem;background:rgba(52,152,219,.08);border-left:3px solid var(--z-axis);">
-    <strong>定義 11.5 · 值域規定</strong>：$(r,\theta)$ 是投影點的 <em>平面極座標</em>——與二維極座標規定完全一致，$r,\theta$ 皆可為任意實數（$r$ 本身沒有強制非負的限制）；$z$ 為有向距離。因此同一個點會有<em>多組表示</em>（如講義 Example 2：$(2,\pi/3,2)$ 與 $(-2, 4\pi/3, 2)$ 指同一點）。底下滑桿為了可視化方便只取 $r\ge 0$ 這一支。
+    <strong>定義 11.5 · 值域規定</strong>：$(r,\theta)$ 是投影點的 <em>平面極座標</em>——與二維極座標規定完全一致，$r,\theta$ 皆可為任意實數（$r$ 本身沒有強制非負的限制）；$z$ 為有向距離。因此同一個點會有<em>多組表示</em>（如講義 例題 2：$(2,\pi/3,2)$ 與 $(-2, 4\pi/3, 2)$ 指同一點）。底下滑桿為了可視化方便只取 $r\ge 0$ 這一支。
   </div>
 
   <div class="viz-layout">
@@ -417,7 +441,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
           <button class="btn btn-reset" onclick="scenes.cylcoord.resetCam()">↺ 視角重置</button>
           <div class="toggle-group">
             <button class="tg-btn active" data-cyl="r">$r=c$ 圓柱面</button>
-            <button class="tg-btn" data-cyl="t">$\theta=c$ 半平面</button>
+            <button class="tg-btn" data-cyl="t">$\theta=c$ 垂直平面</button>
             <button class="tg-btn" data-cyl="z">$z=c$ 水平面</button>
           </div>
         </div>
@@ -441,16 +465,16 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <div class="info-box warm">
-    <span class="info-label">TIP</span>
+    <span class="info-label">提示</span>
     <strong>何時用柱座標？</strong>當題目有以 <span class="pill pill-z">z 軸</span> 為對稱軸的 <em>圓柱面、錐面、拋物面、雙曲面</em>——簡單說只要方程式出現 $x^2+y^2$ 就很適合換成 $r^2$。
   </div>
 </section>
 
 <!-- ============================================================ -->
-<!-- SECTION 5: 球座標 Spherical Coordinates -->
+<!-- 11.7 內小段：球座標 -->
 <!-- ============================================================ -->
-<section>
-  <div class="section-number">PART 05 · 球座標系</div>
+<section id="sec-sphcoord">
+  <div class="section-number">11.7 內小段 · 球座標系</div>
   <h2>球座標 $(\rho, \theta, \phi)$：像地球的經緯度</h2>
   <p>球座標用 <em>三個數字</em> 定位：距原點距離 $\rho$、方位角 $\theta$、與 <span class="pill pill-z">+z 軸</span> 的夾角 $\phi$。拖動滑桿觀察 $\phi$ 從北極 $(\phi=0)$ 轉到赤道 $(\phi=\pi/2)$ 再到南極 $(\phi=\pi)$ 的變化。</p>
   <div class="info-box" style="margin:.5rem 0 1rem;background:rgba(241,196,15,.1);border-left:3px solid #f1c40f;">
@@ -466,7 +490,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
           <button class="btn btn-reset" onclick="scenes.sphcoord.resetCam()">↺ 視角重置</button>
           <div class="toggle-group">
             <button class="tg-btn active" data-sph="rho">$\rho=c$ 球面</button>
-            <button class="tg-btn" data-sph="theta">$\theta=c$ 半平面</button>
+            <button class="tg-btn" data-sph="theta">$\theta=c$ 垂直平面</button>
             <button class="tg-btn" data-sph="phi">$\phi=c$ 圓錐</button>
           </div>
         </div>
@@ -496,7 +520,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <div class="info-box warm">
-    <span class="info-label">TIP</span>
+    <span class="info-label">提示</span>
     <strong>何時用球座標？</strong>對稱中心在原點的物體——<em>球面、有錐體的積分、任何以原點為中心的對稱</em>。出現 $x^2+y^2+z^2$ 時換成 $\rho^2$ 幾乎一定會變乾淨。
   </div>
 
@@ -524,10 +548,10 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </section>
 
 <!-- ============================================================ -->
-<!-- SECTION 6: Reference -->
+<!-- 速查 -->
 <!-- ============================================================ -->
-<section>
-  <div class="section-number">REFERENCE · 總覽與換算表</div>
+<section id="sec-ref">
+  <div class="section-number">速查 · 總覽與換算表</div>
   <h2>三系統對照、常見曲面方程式</h2>
 
   <div class="ref-group">
@@ -566,37 +590,37 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <div class="ref-group-title"><span class="rg-badge">02</span> 常見曲面的三種表示</div>
 
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">以 z 軸為對稱軸的圓柱面</span><span class="ref-card-name-en">Circular cylinder</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">以 z 軸為對稱軸的圓柱面</span><span class="ref-card-name-en">圓柱面</span></div>
       <div class="ref-card-eq">直角：$x^2+y^2=a^2$ ｜ 柱：$r = a$ ｜ 球：$\rho\sin\phi = a$</div>
       <div class="ref-note">柱座標最簡單——單一方程式 $r=a$。</div>
     </div>
 
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">以原點為心的球面</span><span class="ref-card-name-en">Sphere centered at origin</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">以原點為心的球面</span><span class="ref-card-name-en">原點為心的球面</span></div>
       <div class="ref-card-eq">直角：$x^2+y^2+z^2=a^2$ ｜ 柱：$r^2+z^2=a^2$ ｜ 球：$\rho = a$</div>
       <div class="ref-note">球座標最簡單——單一方程式 $\rho=a$。</div>
     </div>
 
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">以 z 軸為對稱軸的圓錐面</span><span class="ref-card-name-en">Circular cone</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">以 z 軸為對稱軸的圓錐面</span><span class="ref-card-name-en">圓錐面</span></div>
       <div class="ref-card-eq">直角：$x^2+y^2=z^2$ ｜ 柱：$r = \pm z$ ｜ 球：$\phi = \pi/4$ 或 $3\pi/4$</div>
       <div class="ref-note">球座標最簡單——單一方程式 $\phi = c$。</div>
     </div>
 
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">以 z 軸為對稱軸的拋物面</span><span class="ref-card-name-en">Paraboloid of revolution</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">以 z 軸為對稱軸的拋物面</span><span class="ref-card-name-en">旋轉拋物面</span></div>
       <div class="ref-card-eq">直角：$x^2+y^2=4z$ ｜ 柱：$r^2 = 4z$（$r=2\sqrt{z}$）</div>
       <div class="ref-note">柱座標把「圓盤形截痕」壓縮成單變數 $r$。</div>
     </div>
 
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">過 z 軸的半平面</span><span class="ref-card-name-en">Half-plane through z-axis</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">過 z 軸的垂直平面</span><span class="ref-card-name-en">$\theta=c$</span></div>
       <div class="ref-card-eq">柱：$\theta = c$ ｜ 球：$\theta = c$</div>
-      <div class="ref-note">此時不規定 $r$ 或 $\rho$ 可正任意，但 $\theta$ 固定——就是一面扇形。</div>
+      <div class="ref-note">此時 $\theta$ 固定，所有符合該方向的點形成一個通過 $z$ 軸的垂直平面。</div>
     </div>
 
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">水平面</span><span class="ref-card-name-en">Horizontal plane</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">水平面</span><span class="ref-card-name-en">水平平面</span></div>
       <div class="ref-card-eq">直角：$z = c$ ｜ 柱：$z = c$</div>
     </div>
   </div>
@@ -619,8 +643,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </div>
 
 <footer>
-  <p>Prepared for the Department of Applied Mathematics, NSYSU.<br>
-  Chapter 11: Vectors and the Geometry of Space — Surfaces, Cylindrical &amp; Spherical Coordinates.</p>
+  <p>國立中山大學應用數學系課程講義。<br>
+  第 11 章：向量與空間幾何 — 曲面、柱座標與球座標。</p>
 </footer>
 
 <script>
@@ -856,7 +880,7 @@ function makeSphereMarker(radius=0.14, color=0xf1c40f) {
 }
 
 /* ============================================================
-   SECTION 0 — Prologue: 3D axes demo
+   第 0 段：三維座標軸示意
    ============================================================ */
 (function(){
   const S = makeScene('canvas-prologue', {radius:9, phi:1.1, theta:0.9, axisLen:4});
@@ -913,7 +937,7 @@ function makeSphereMarker(radius=0.14, color=0xf1c40f) {
 })();
 
 /* ============================================================
-   SECTION 1 — Cylindrical surfaces
+   11.6 內小段：柱面
    ============================================================ */
 (function(){
   const S = makeScene('canvas-cylinder', {radius:11, phi:1.1, theta:0.9, axisLen:4.5, gridSize:5, gridStep:1});
@@ -1131,7 +1155,7 @@ function makeSphereMarker(radius=0.14, color=0xf1c40f) {
 })();
 
 /* ============================================================
-   SECTION 3 (PART 03) — Surface of revolution around z-axis
+   11.6 內小段：繞 z 軸旋轉面
    ============================================================ */
 (function(){
   const S = makeScene('canvas-revolution', {radius:11, phi:1.0, theta:0.9, axisLen:4.5, gridSize:5, gridStep:1});
@@ -1235,7 +1259,7 @@ function makeSphereMarker(radius=0.14, color=0xf1c40f) {
     render(revAngle);
   });
 
-  // Play animation
+  // 播放 animation
   let lastT = performance.now();
   (function animLoop(){
     const now = performance.now();
@@ -1270,7 +1294,7 @@ function makeSphereMarker(radius=0.14, color=0xf1c40f) {
 })();
 
 /* ============================================================
-   SECTION 2 (PART 02) — Quadric surfaces explorer
+   11.6 內小段：二次曲面探索
    ============================================================ */
 (function(){
   const S = makeScene('canvas-quadric', {radius:12, phi:1.0, theta:0.8, axisLen:4.5, gridSize:5, gridStep:1});
@@ -1600,7 +1624,7 @@ function makeSphereMarker(radius=0.14, color=0xf1c40f) {
 })();
 
 /* ============================================================
-   SECTION 4 — Cylindrical coordinates interactive point
+   11.7 內小段：柱座標互動點
    ============================================================ */
 (function(){
   const S = makeScene('canvas-cylcoord', {radius:10, phi:1.0, theta:0.9, axisLen:4.5, gridSize:5, gridStep:1});
@@ -1720,7 +1744,7 @@ function makeSphereMarker(radius=0.14, color=0xf1c40f) {
 })();
 
 /* ============================================================
-   SECTION 5 — Spherical coordinates interactive point
+   11.7 內小段：球座標互動點
    ============================================================ */
 (function(){
   const S = makeScene('canvas-sphcoord', {radius:10, phi:1.0, theta:0.9, axisLen:4.5, gridSize:5, gridStep:1});
