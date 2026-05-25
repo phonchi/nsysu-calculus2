@@ -160,7 +160,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 <div class="container">
 
 <!-- ============================================================ -->
-<!-- SECTION 14.1 -->
+<!-- 14.1 章節 -->
 <!-- ============================================================ -->
 <section id="sec-14-1">
   <div class="section-number">14.1 逐次積分與平面區域面積</div>
@@ -194,8 +194,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <p>許多區域兩種都可寫，計算複雜度可能差很多（例題 5 可看出）。</p>
   </div>
 
-  <h3 id="sec-14-1-1">視覺：Type I / Type II 區域與 strip 掃描</h3>
-  <p>同一個區域，<span class="pill pill-blue">Type I</span> 用<strong>垂直 strip</strong>（先固定 $x$ 對 $y$ 積分），<span class="pill pill-red">Type II</span> 用<strong>水平 strip</strong>（先固定 $y$ 對 $x$ 積分）。下面拖 slider 看 strip 掃過區域的過程。</p>
+  <h3 id="sec-14-1-1">視覺：Type I / Type II 區域與切片掃描</h3>
+  <p>同一個區域，<span class="pill pill-blue">Type I</span> 用<strong>垂直切片</strong>（先固定 $x$ 對 $y$ 積分），<span class="pill pill-red">Type II</span> 用<strong>水平切片</strong>（先固定 $y$ 對 $x$ 積分）。下面拖動滑桿看切片掃過區域的過程。</p>
   <div class="canvas-panel">
     <div class="preset-row" id="ts1Presets">
       <button class="preset-btn active" data-rg="triangle">三角形 $0\le x\le 1,\ 0\le y\le x$</button>
@@ -203,23 +203,23 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       <button class="preset-btn" data-rg="parabola">$0\le x\le 2,\ x^2\le y\le 2x$</button>
     </div>
     <div class="preset-row" id="ts1Modes">
-      <button class="preset-btn active" data-mode="typeI">Type I（垂直 strip）</button>
-      <button class="preset-btn" data-mode="typeII">Type II（水平 strip）</button>
+      <button class="preset-btn active" data-mode="typeI">Type I（垂直切片）</button>
+      <button class="preset-btn" data-mode="typeII">Type II（水平切片）</button>
     </div>
     <div class="slider-row">
-      <span class="slider-label">strip 位置</span>
+      <span class="slider-label">切片位置</span>
       <input type="range" id="ts1Pos" min="0" max="1" step="0.01" value="0.5">
       <span class="slider-val" id="ts1PosVal">0.50</span>
     </div>
     <div class="canvas-wrap light">
       <canvas id="canvas-14-1-region"></canvas>
-      <div class="hint-overlay" id="ts1Hint" style="color:rgba(0,0,0,.62);background:rgba(255,255,255,.8)">strip 掃過區域</div>
+      <div class="hint-overlay" id="ts1Hint" style="color:rgba(0,0,0,.62);background:rgba(255,255,255,.8)">切片掃過區域</div>
     </div>
   </div>
 
   <div class="concept-warning">
     <div class="cw-title">概念辨析 · 虛變數 & 上下限規則</div>
-    <p>(1) <strong>積分變數是 dummy</strong>：$\int_0^1 x\,dx=\int_0^1 t\,dt$；變數名稱不影響值。<br>
+    <p>(1) <strong>積分變數是虛變數</strong>：$\int_0^1 x\,dx=\int_0^1 t\,dt$；變數名稱不影響值。<br>
     (2) <strong>積分變數不能出現在自己的上下限</strong>：例如 $\int_0^x y\,dx$ 沒有清楚意義，因為 $x$ 同時是「要被積掉的變數」又是「上限」。若上限本來是固定數，應寫 $\int_0^a y\,dx$；若上限本來是外部參數 $x$，積分變數應改名，例如 $\int_0^x y\,dt$。<br>
     (3) <strong>外層上下限必須是常數</strong>：外層積完後要得到一個數值；若外層上下限還含積分變數，就不是一個定好的定積分。<br>
     (4) <strong>內層可以是外層的函數</strong>：$\int_a^b\int_{g_1(x)}^{g_2(x)} f\,dy\,dx$ 中，內層 $y$ 的範圍由當下固定的 $x$ 決定。</p>
@@ -227,11 +227,11 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
   <div class="info-box warm">
     <span class="info-label">為什麼逐次積分可以表示面積？</span>
-    <p>若 $R$ 是 Type I 區域：$a\le x\le b,\ g_1(x)\le y\le g_2(x)$，固定一個 $x$ 後，垂直 strip 的高度就是 $g_2(x)-g_1(x)$。這個高度也可以寫成</p>
+    <p>若 $R$ 是 Type I 區域：$a\le x\le b,\ g_1(x)\le y\le g_2(x)$，固定一個 $x$ 後，垂直切片的高度就是 $g_2(x)-g_1(x)$。這個高度也可以寫成</p>
     $$\int_{g_1(x)}^{g_2(x)}1\,dy=\int_{g_1(x)}^{g_2(x)}dy=g_2(x)-g_1(x).$$
-    <p>接著讓 $x$ 從 $a$ 掃到 $b$，把每一條極薄 strip 的「高度 $\times$ 寬度 $dx$」累加，就得到面積：</p>
+    <p>接著讓 $x$ 從 $a$ 掃到 $b$，把每一條極薄切片的「高度 $\times$ 寬度 $dx$」累加，就得到面積：</p>
     $$A=\int_a^b\left[\int_{g_1(x)}^{g_2(x)}dy\right]dx=\int_a^b\int_{g_1(x)}^{g_2(x)}dy\,dx.$$
-    <p>Type II 區域完全類似，只是改用水平 strip：先固定 $y$，內層 $\int_{h_1(y)}^{h_2(y)}dx$ 給出水平長度，再對 $y$ 累加。</p>
+    <p>Type II 區域完全類似，只是改用水平切片：先固定 $y$，內層 $\int_{h_1(y)}^{h_2(y)}dx$ 給出水平長度，再對 $y$ 累加。</p>
   </div>
 
   <h3 id="sec-14-1-2">例題</h3>
@@ -253,7 +253,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <div class="canvas-panel">
-    <h4>例題 4 視覺：sin x、cos x 圍成的區域（拖 slider 看垂直 strip 掃過）</h4>
+    <h4>例題 4 視覺：sin x、cos x 圍成的區域（拖動滑桿看垂直切片掃過）</h4>
     <div class="viz-layout">
       <div>
         <div class="slider-row">
@@ -264,7 +264,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         <div class="toggle-row" id="ex4Toggles">
           <span class="toggle-label">顯示</span>
           <button class="toggle-btn on" data-toggle="cumArea">累積區域 [π/4, x]</button>
-          <button class="toggle-btn on" data-toggle="strip">strip + 高度</button>
+          <button class="toggle-btn on" data-toggle="strip">切片 + 高度</button>
           <button class="toggle-btn" data-toggle="play">自動播放</button>
         </div>
         <div class="canvas-wrap light">
@@ -274,14 +274,14 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       </div>
       <div class="side-panel">
         <div class="eq-card">
-          <div class="eq-label">strip 高度</div>
+          <div class="eq-label">切片高度</div>
           <div class="eq-formula">$\sin x - \cos x$</div>
         </div>
         <div class="info-card">
           <div class="ic-title">當前值</div>
           <div class="ic-row"><span class="ic-label">x</span><span class="ic-value" id="ex4XInfo">π/2</span></div>
           <div class="ic-row"><span class="ic-label">sin x − cos x</span><span class="ic-value highlight" id="ex4Hgt">1.000</span></div>
-          <div class="ic-row"><span class="ic-label">累積 ∫ from π/4</span><span class="ic-value" id="ex4Cum">0.293</span></div>
+          <div class="ic-row"><span class="ic-label">從 π/4 累積 ∫</span><span class="ic-value" id="ex4Cum">0.293</span></div>
           <div class="ic-row"><span class="ic-label">總面積</span><span class="ic-value ok">$2\sqrt 2 \approx 2.828$</span></div>
         </div>
       </div>
@@ -295,7 +295,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <div class="ex-title">用兩種積分順序計算 $\displaystyle\int_0^2\int_{y^2}^4\,dx\,dy$（即 Type II 區域 $0\le y\le 2,\ y^2\le x\le 4$ 的面積）</div>
     <div class="step-block"><div class="step-num">方法 A：Type II（dx dy，原式）</div>$\displaystyle\int_0^2(4-y^2)\,dy=\bigl[4y-\tfrac{y^3}{3}\bigr]_0^2=8-\tfrac{8}{3}=\tfrac{16}{3}$。</div>
     <div class="step-block"><div class="step-num">方法 B：Type I（dy dx，先畫圖再描邊界）</div>從圖：當 $0\le x\le 4$，$y$ 介於 $0$ 與 $\sqrt x$。改寫為 $\displaystyle\int_0^4\int_0^{\sqrt x}\,dy\,dx=\int_0^4\sqrt x\,dx=\bigl[\tfrac{2x^{3/2}}{3}\bigr]_0^4=\tfrac{16}{3}$。</div>
-    <div class="ex-answer">兩法皆得 $A=\dfrac{16}{3}$；同一區域只是 strip 方向不同。</div>
+    <div class="ex-answer">兩法皆得 $A=\dfrac{16}{3}$；同一區域只是切片方向不同。</div>
   </div>
 
   <div class="canvas-panel">
@@ -318,17 +318,17 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <div class="dual-canvas">
       <div class="canvas-wrap light">
         <canvas id="canvas-14-1-reverse-typeII"></canvas>
-        <div class="hint-overlay" style="color:rgba(0,0,0,.62);background:rgba(255,255,255,.8)">Type II：水平 strip</div>
+        <div class="hint-overlay" style="color:rgba(0,0,0,.62);background:rgba(255,255,255,.8)">Type II：水平切片</div>
       </div>
       <div class="canvas-wrap light">
         <canvas id="canvas-14-1-reverse-typeI"></canvas>
-        <div class="hint-overlay" style="color:rgba(0,0,0,.62);background:rgba(255,255,255,.8)">Type I：垂直 strip</div>
+        <div class="hint-overlay" style="color:rgba(0,0,0,.62);background:rgba(255,255,255,.8)">Type I：垂直切片</div>
       </div>
     </div>
     <div class="info-card" style="margin-top:.7rem">
       <div class="ic-title">指針 (xₚ, yₚ) 對應</div>
-      <div class="ic-row"><span class="ic-label">Type II 水平 strip</span><span class="ic-value" id="rev5IIstrip">x∈[2.00, 4.00], 長度 2.00</span></div>
-      <div class="ic-row"><span class="ic-label">Type I 垂直 strip</span><span class="ic-value" id="rev5Istrip">y∈[0, 1.41], 高 1.41</span></div>
+      <div class="ic-row"><span class="ic-label">Type II 水平切片</span><span class="ic-value" id="rev5IIstrip">x∈[2.00, 4.00], 長度 2.00</span></div>
+      <div class="ic-row"><span class="ic-label">Type I 垂直切片</span><span class="ic-value" id="rev5Istrip">y∈[0, 1.41], 高 1.41</span></div>
       <div class="ic-row"><span class="ic-label">Type II 累積 ∫₀^{yₚ}(4−t²)dt</span><span class="ic-value highlight" id="rev5IIcum">5.05</span></div>
       <div class="ic-row"><span class="ic-label">Type I 累積 ∫₀^{xₚ}√t dt</span><span class="ic-value highlight" id="rev5Icum">1.89</span></div>
       <div class="ic-row"><span class="ic-label">完整面積</span><span class="ic-value ok">$16/3 \approx 5.333$</span></div>
@@ -369,7 +369,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </section>
 
 <!-- ============================================================ -->
-<!-- SECTION 14.2 -->
+<!-- 14.2 章節 -->
 <!-- ============================================================ -->
 <section id="sec-14-2">
   <div class="section-number">14.2 雙重積分與體積</div>
@@ -384,7 +384,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <h3 id="sec-14-2-1">互動 1：Riemann 和漸進雙重積分</h3>
-  <p>對 $f(x,y)=1-\dfrac{x^2}{2}-\dfrac{y^2}{2}$ 在 $R=[0,1]\times[0,1]$，用中點規則的 $n\times n$ 分割。把 slider 拉大看小柱體變密、總和逼近確切體積 $V=\dfrac{2}{3}\approx 0.6667$。</p>
+  <p>對 $f(x,y)=1-\dfrac{x^2}{2}-\dfrac{y^2}{2}$ 在 $R=[0,1]\times[0,1]$，用中點規則的 $n\times n$ 分割。把滑桿拉大看小柱體變密、總和逼近確切體積 $V=\dfrac{2}{3}\approx 0.6667$。</p>
   <div class="viz-layout">
     <div class="canvas-panel">
       <div class="slider-row">
@@ -602,7 +602,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </section>
 
 <!-- ============================================================ -->
-<!-- SECTION 14.3 -->
+<!-- 14.3 章節 -->
 <!-- ============================================================ -->
 <section id="sec-14-3">
   <div class="section-number">14.3 變數替換：極座標</div>
@@ -656,7 +656,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <div class="canvas-panel">
-    <h4 id="sec-14-3-3">例題 2 視覺：環形區域（拖 slider 改變內外半徑）</h4>
+    <h4 id="sec-14-3-3">例題 2 視覺：環形區域（拖動滑桿改變內外半徑）</h4>
     <div class="viz-layout">
       <div>
         <div class="slider-row">
@@ -779,7 +779,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </section>
 
 <!-- ============================================================ -->
-<!-- REFERENCE -->
+<!-- 速查 -->
 <!-- ============================================================ -->
 <section id="sec-ref">
   <div class="section-number">速查 · 14.1-14.3</div>

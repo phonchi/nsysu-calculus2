@@ -216,12 +216,12 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 <section id="sec-14-5">
   <div class="section-number">第 14.5 節 · 曲面面積</div>
   <h2>從投影面積 $dA$ 到傾斜面積 $dS$</h2>
-  <p>給定一個定義在閉區域 $R$ 上的可微函數 $z=f(x,y)$，由其圖形 $S$ 在 $R$ 之上覆出的部分稱為一個<strong>曲面 (surface)</strong>。把 $S$ 分割成許多<span class="pill pill-yellow">小傾斜片</span>並把每片貼到該點切平面上的<em>平行四邊形</em>，便能用兩條切向量 $(1,0,f_x)$ 與 $(0,1,f_y)$ 算出面積：</p>
+  <p>給定一個定義在閉區域 $R$ 上的可微函數 $z=f(x,y)$，由其圖形 $S$ 在 $R$ 之上覆出的部分稱為一個<strong>曲面</strong>。把 $S$ 分割成許多<span class="pill pill-yellow">小傾斜片</span>並把每片貼到該點切平面上的<em>平行四邊形</em>，便能用兩條切向量 $(1,0,f_x)$ 與 $(0,1,f_y)$ 算出面積：</p>
   <div style="text-align:center;">$$\|(1,0,f_x)\times(0,1,f_y)\|=\sqrt{1+f_x^2+f_y^2}$$</div>
 
   <div class="info-box warm">
     <span class="info-label">定義 14.3</span>
-    <strong>曲面面積 (Surface area)</strong>
+    <strong>曲面面積</strong>
     <p style="margin:.55rem 0 .3rem;">假設 $f$ 與其偏導數都在 $xy$ 平面中的閉區域 $R$ 上連續。由 $z=f(x,y)$ 的圖形在 $R$ 之上所定出的曲面 $S$ 之面積為</p>
     <div style="text-align:center;margin:.4rem 0;">$$S=\iint_R dS=\iint_R\sqrt{1+\left[f_x(x,y)\right]^2+\left[f_y(x,y)\right]^2}\,dA$$</div>
     <p style="margin:.3rem 0;">特別地：若 $f_x=f_y=0$ (水平片)，則 $dS=dA$；若 $f$ 越「陡」($f_x,f_y$ 越大)，$dS$ 越大於投影面積 $dA$。</p>
@@ -300,7 +300,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
     <div class="side-panel">
       <div class="eq-card">
-        <div class="eq-label">RELATION</div>
+        <div class="eq-label">關係</div>
         <div class="eq-formula">$dS = \sec\gamma\cdot dA$</div>
         <div class="eq-sub">$\sqrt{1+f_x^2+f_y^2}=\sec\gamma$</div>
       </div>
@@ -315,11 +315,11 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
   </div>
 
-  <h4 id="sec-14-5-3">曲面面積延伸例題</h4>
+  <h4 id="sec-14-5-3">曲面面積延伸例題（補充）</h4>
   <p>以下例題用來練習講義的曲面面積公式；每題完整條件已列在題目標題中。</p>
 
   <div class="lecture-example">
-    <div class="ex-tag">延伸例題 · 半球面積</div>
+    <div class="ex-tag">補充延伸例題 · 半球面積</div>
     <div class="ex-title">$z=\sqrt{4-x^2-y^2}$ 在圓盤 $R: x^2+y^2\le 1.8^2$ 之上的曲面面積</div>
     <div class="step-block"><div class="step-num">步驟 1（求偏導與被積函數）</div>對 $z=\sqrt{4-x^2-y^2}$，$f_x=\dfrac{-x}{\sqrt{4-x^2-y^2}}$，$f_y=\dfrac{-y}{\sqrt{4-x^2-y^2}}$，故 $1+f_x^2+f_y^2=\dfrac{(4-x^2-y^2)+x^2+y^2}{4-x^2-y^2}=\dfrac{4}{4-x^2-y^2}.$</div>
     <div class="step-block"><div class="step-num">步驟 2（換為極座標）</div>圓盤適用極座標 $x=r\cos\theta,\ y=r\sin\theta$，$dA=r\,dr\,d\theta$：$$S=\iint_R \dfrac{2}{\sqrt{4-r^2}}\cdot r\,dr\,d\theta=\int_0^{2\pi}\!\int_0^{1.8}\dfrac{2r}{\sqrt{4-r^2}}\,dr\,d\theta.$$</div>
@@ -329,7 +329,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <div class="lecture-example">
-    <div class="ex-tag">延伸例題 · 平面在矩形之上</div>
+    <div class="ex-tag">補充延伸例題 · 平面在矩形之上</div>
     <div class="ex-title">$z=x+2y$ 在矩形 $R:[0,1]\times[0,2]$ 之上的曲面面積</div>
     <div class="step-block"><div class="step-num">步驟 1（偏導）</div>$f_x=1,\ f_y=2$，皆為常數。</div>
     <div class="step-block"><div class="step-num">步驟 2（被積函數為常數）</div>$\sqrt{1+1+4}=\sqrt{6}$。所以 $S=\iint_R \sqrt{6}\,dA=\sqrt{6}\cdot |R|$。</div>
@@ -338,7 +338,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <div class="lecture-example">
-    <div class="ex-tag">延伸例題 · 拋物面在第一象限圓盤</div>
+    <div class="ex-tag">補充延伸例題 · 拋物面在第一象限圓盤</div>
     <div class="ex-title">$z=x^2+y^2$ 在 $R:x^2+y^2\le 1,\ x\ge 0,\ y\ge 0$ 之上的曲面面積</div>
     <div class="step-block"><div class="step-num">步驟 1（偏導）</div>$f_x=2x,\ f_y=2y$，故 $1+f_x^2+f_y^2=1+4x^2+4y^2=1+4r^2$（極座標）。</div>
     <div class="step-block"><div class="step-num">步驟 2（極座標化）</div>第一象限 $\theta\in[0,\pi/2]$；$$S=\int_0^{\pi/2}\!\int_0^1 \sqrt{1+4r^2}\cdot r\,dr\,d\theta.$$</div>
@@ -400,7 +400,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <h3>14.6.1 定義與性質</h3>
     <div class="info-box warm">
       <span class="info-label">定義 14.4</span>
-      <strong>三重積分 (Triple integral)</strong>
+      <strong>三重積分</strong>
       <p style="margin:.55rem 0 .3rem;">設 $f$ 在區域 $Q\subset\mathbb{R}^3$ 連續，把 $Q$ 切成 $n$ 個內部互不相交的小立體 $\Delta V_i$，$\|\Delta\|$ 為最大直徑。若極限</p>
       <div style="text-align:center;margin:.4rem 0;">$$\iiint_Q f(x,y,z)\,dV=\lim_{\|\Delta\|\to 0}\sum_{i=1}^n f(x_i,y_i,z_i)\,\Delta V_i$$</div>
       <p style="margin:.3rem 0;">存在，便稱 $f$ 在 $Q$ 上可積分。特別地，<strong>$Q$ 的體積</strong> $\displaystyle V(Q)=\iiint_Q dV$。</p>
@@ -470,17 +470,17 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <h3>14.6.2 經典例題與技法</h3>
 
     <div class="lecture-example">
-      <div class="ex-tag">延伸例題 · 拋物面下方體積</div>
+      <div class="ex-tag">補充延伸例題 · 拋物面下方體積</div>
       <div class="ex-title">$Q$：$0\le z\le 4-x^2-y^2$，求 $V=\iiint_Q dV$</div>
       <div class="step-block"><div class="step-num">步驟 1（投影到 xy）</div>$z\ge 0$ 要求 $4-x^2-y^2\ge 0$，即 $D:x^2+y^2\le 4$（半徑 2 圓盤）。</div>
       <div class="step-block"><div class="step-num">步驟 2（先對 z 積）</div>$\displaystyle\int_0^{4-x^2-y^2}dz=4-x^2-y^2$。剩下對 $(x,y)$ 在圓盤上積分。</div>
       <div class="step-block"><div class="step-num">步驟 3（極座標化）</div>$\displaystyle V=\iint_D (4-r^2)\,r\,dr\,d\theta=\int_0^{2\pi}\!\int_0^2 (4-r^2)\,r\,dr\,d\theta.$</div>
       <div class="step-block"><div class="step-num">步驟 4（內層 + 外層）</div>$\displaystyle\int_0^2(4r-r^3)\,dr=[2r^2-\tfrac{r^4}{4}]_0^2=8-4=4$；$\displaystyle V=\int_0^{2\pi}4\,d\theta=8\pi.$</div>
-      <div class="ex-answer">$V=8\pi\approx 25.133$。上方互動切到 "z=x²+y² 與 z=4" 預設並把 $N$ 拉大可看 Riemann 和逼近 $8\pi$。</div>
+      <div class="ex-answer">$V=8\pi\approx 25.133$。上方互動切到「$z=x^2+y^2$ 與 $z=4$」預設並把 $N$ 拉大可看 Riemann 和逼近 $8\pi$。</div>
     </div>
 
     <div class="lecture-example">
-      <div class="ex-tag">延伸例題 · 拋物面下方加權體積</div>
+      <div class="ex-tag">補充延伸例題 · 拋物面下方加權體積</div>
       <div class="ex-title">求 $\displaystyle\iiint_E z\,dV$，$E:0\le z\le 1-x^2-y^2$</div>
       <div class="step-block"><div class="step-num">步驟 1（區域投影）</div>$z\ge 0\Rightarrow x^2+y^2\le 1$，$D$ 為單位圓盤。</div>
       <div class="step-block"><div class="step-num">步驟 2（先對 z 積）</div>$\displaystyle\int_0^{1-x^2-y^2}z\,dz=\tfrac{(1-x^2-y^2)^2}{2}.$</div>
@@ -510,7 +510,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <p>(1) <strong>第一型（投影到 xy）</strong>：$z$ 介於 $z_1(x,y)$ 與 $z_2(x,y)$，$(x,y)\in D\subset xy$。最常用。<br>
     (2) <strong>第一型I（投影到 yz）</strong>：$x$ 介於 $x_1(y,z)$ 與 $x_2(y,z)$，$(y,z)\in D\subset yz$。<br>
     (3) <strong>第一型II（投影到 xz）</strong>：$y$ 介於 $y_1(x,z)$ 與 $y_2(x,z)$，$(x,z)\in D\subset xz$。<br>
-    (4) <strong>策略</strong>：選那個讓「最內層上下限是<em>常數</em>或最簡單」的 type。上方拋物面例題的 $z\in[0,4-x^2-y^2]$ 就比反過來「$x\in[\dots]$ 上下含 $z$」簡單。<br>
+    (4) <strong>策略</strong>：選那個讓「最內層上下限是<em>常數</em>或最簡單」的型態。上方拋物面例題的 $z\in[0,4-x^2-y^2]$ 就比反過來「$x\in[\dots]$ 上下含 $z$」簡單。<br>
     (5) <strong>$dV\ne dA$</strong>：$dV=dz\,dA=dx\,dy\,dz$；別把 $dA$ 當成 $dV$。</p>
   </div>
 
@@ -594,7 +594,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       </div>
       <div class="side-panel">
         <div class="eq-card">
-          <div class="eq-label">VOLUME ELEMENT</div>
+        <div class="eq-label">體積元素</div>
           <div class="eq-formula">$dV \approx r\,dr\,d\theta\,dz$</div>
           <div class="eq-sub">$|J|=r$（雅可比）</div>
         </div>
@@ -619,7 +619,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <h4>圓柱座標例題</h4>
 
     <div class="lecture-example">
-      <div class="ex-tag">延伸例題 · 圓柱上的加權積分</div>
+      <div class="ex-tag">補充延伸例題 · 圓柱上的加權積分</div>
       <div class="ex-title">求 $\displaystyle\iiint_E z\,dV$，$E:x^2+y^2\le 4,\ 0\le z\le 3$（半徑 2、高 3 圓柱）</div>
       <div class="step-block"><div class="step-num">步驟 1（描述區域）</div>$E$ 在圓柱座標：$0\le r\le 2,\ 0\le\theta\le 2\pi,\ 0\le z\le 3$。$dV=r\,dr\,d\theta\,dz$。</div>
       <div class="step-block"><div class="step-num">步驟 2（變數分離）</div>被積函數 $z$ 與 $r,\theta$ 無關 — 三層積分可拆：$$\iiint_E z\,dV=\!\!\int_0^{2\pi}\!\!\int_0^2\!\!\int_0^3 z\cdot r\,dz\,dr\,d\theta=\!\!\int_0^{2\pi}\!d\theta\!\int_0^2 r\,dr\!\int_0^3 z\,dz.$$</div>
@@ -628,7 +628,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
 
     <div class="lecture-example">
-      <div class="ex-tag">延伸例題 · 圓錐與平面圍成的體積</div>
+      <div class="ex-tag">補充延伸例題 · 圓錐與平面圍成的體積</div>
       <div class="ex-title">求圓錐 $z=\sqrt{x^2+y^2}$ 與平面 $z=2$ 圍成立體 $E$ 的體積</div>
       <div class="step-block"><div class="step-num">步驟 1（圓柱座標化）</div>圓錐 $z=\sqrt{x^2+y^2}=r$；上界平面 $z=2$。底面為圓盤 $r\le 2$（由 $r=2$ 解出）。$E$：$0\le\theta\le 2\pi,\ 0\le r\le 2,\ r\le z\le 2$。</div>
       <div class="step-block"><div class="step-num">步驟 2（最內層 $z$）</div>$\displaystyle\int_r^2 dz=2-r$。</div>
@@ -638,7 +638,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
 
     <div class="lecture-example">
-      <div class="ex-tag">延伸例題 · 圓錐上的加權積分</div>
+      <div class="ex-tag">補充延伸例題 · 圓錐上的加權積分</div>
       <div class="ex-title">求 $\displaystyle\iiint_E (x^2+y^2)\,dV$，其中 $E$ 為圓錐 $z=\sqrt{x^2+y^2}$ 與平面 $z=2$ 圍成的立體區域。</div>
       <div class="step-block"><div class="step-num">步驟 1（圓柱座標）</div>$x^2+y^2=r^2$，被積函數 $r^2\cdot r=r^3$（含 $dV$ 中的 $r$）。$E$：$0\le\theta\le 2\pi,\ 0\le r\le 2,\ r\le z\le 2$。</div>
       <div class="step-block"><div class="step-num">步驟 2（最內層）</div>$\displaystyle\int_r^2 r^3\,dz=r^3(2-r).$</div>
@@ -684,7 +684,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       </div>
       <div class="side-panel">
         <div class="eq-card">
-          <div class="eq-label">VOLUME ELEMENT</div>
+        <div class="eq-label">體積元素</div>
           <div class="eq-formula">$dV \approx \rho^2\sin\phi\,d\rho\,d\phi\,d\theta$</div>
           <div class="eq-sub">$|J|=\rho^2\sin\phi$</div>
         </div>
@@ -709,7 +709,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <h4>球面座標例題</h4>
 
     <div class="lecture-example">
-      <div class="ex-tag">延伸例題 · 球體積（從定義）</div>
+      <div class="ex-tag">補充延伸例題 · 球體積（從定義）</div>
       <div class="ex-title">用球面座標證明半徑 $a$ 的球體積為 $V=\dfrac{4\pi a^3}{3}$</div>
       <div class="step-block"><div class="step-num">步驟 1（描述球）</div>$E:0\le\rho\le a,\ 0\le\phi\le\pi,\ 0\le\theta\le 2\pi$；$dV=\rho^2\sin\phi\,d\rho\,d\phi\,d\theta$。</div>
       <div class="step-block"><div class="step-num">步驟 2（三層分離）</div>$f=1$，三層完全分離：$$V=\!\int_0^{2\pi}\!d\theta\!\int_0^\pi\!\sin\phi\,d\phi\!\int_0^a\rho^2\,d\rho.$$</div>
@@ -718,7 +718,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
 
     <div class="lecture-example">
-      <div class="ex-tag">延伸例題 · 含 $e^{(x^2+y^2+z^2)^{3/2}}$ 的單位球積分</div>
+      <div class="ex-tag">補充延伸例題 · 含 $e^{(x^2+y^2+z^2)^{3/2}}$ 的單位球積分</div>
       <div class="ex-title">求 $\displaystyle\iiint_E e^{(x^2+y^2+z^2)^{3/2}}\,dV$，$E$ 為單位球 $\rho\le 1$</div>
       <div class="step-block"><div class="step-num">步驟 1（球座標化）</div>$x^2+y^2+z^2=\rho^2\Rightarrow (x^2+y^2+z^2)^{3/2}=\rho^3$。被積函數變成 $e^{\rho^3}\cdot\rho^2\sin\phi$。</div>
       <div class="step-block"><div class="step-num">步驟 2（三層拆開）</div>$\displaystyle\!\int_0^{2\pi}\!d\theta\!\int_0^\pi\sin\phi\,d\phi\!\int_0^1 e^{\rho^3}\rho^2\,d\rho.$</div>
@@ -728,7 +728,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
 
     <div class="lecture-example">
-      <div class="ex-tag">延伸例題 · 球與圓錐的交集</div>
+      <div class="ex-tag">補充延伸例題 · 球與圓錐的交集</div>
       <div class="ex-title">求單位球 $\rho\le 1$ 與圓錐 $z\ge\sqrt{x^2+y^2}$ 上方所夾區域 $E$ 的體積</div>
       <div class="step-block"><div class="step-num">步驟 1（圓錐 $\to$ 球座標）</div>$z=\sqrt{x^2+y^2}\Leftrightarrow\rho\cos\phi=\rho\sin\phi\Leftrightarrow\tan\phi=1\Leftrightarrow\phi=\tfrac{\pi}{4}$。「圓錐上方」對應 $\phi\le\pi/4$。</div>
       <div class="step-block"><div class="step-num">步驟 2（描述 $E$）</div>$E:0\le\rho\le 1,\ 0\le\phi\le\pi/4,\ 0\le\theta\le 2\pi$。</div>

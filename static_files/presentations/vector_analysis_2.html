@@ -469,18 +469,18 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       <span class="info-label">定義 15.10</span>
       <strong>參數曲面的面積</strong>
       <p style="margin:.55rem 0 .3rem;">若每個 $D$ 中的 $(u,v)$ 對應 $S$ 上恰好一個點，則 $S$ 的表面面積為
-      $$\mathrm{Area}(S) = \iint_S dS = \iint_D \|\mathbf{r}_u\times\mathbf{r}_v\|\,dA,$$
+      $$\text{面積}(S) = \iint_S dS = \iint_D \|\mathbf{r}_u\times\mathbf{r}_v\|\,dA,$$
       其中 $\mathbf{r}_u, \mathbf{r}_v$ 同 定義 15.9。</p>
     </div>
 
     <div class="dual-card">
       <div class="dc dc-violet">
         <div class="dc-title">特例：z = f(x,y) 自然參數化</div>
-        <p style="margin:0;font-size:.93rem;">$\mathbf{r}_x = (1,0,f_x),\,\mathbf{r}_y=(0,1,f_y)$。<br>$\mathbf{r}_x\times\mathbf{r}_y = (-f_x,-f_y,1)$，$\|\cdot\| = \sqrt{1 + f_x^2 + f_y^2}$。<br>$\mathrm{Area}(S) = \iint_R \sqrt{1 + f_x^2 + f_y^2}\,dA$，即 §14.5 公式。</p>
+        <p style="margin:0;font-size:.93rem;">$\mathbf{r}_x = (1,0,f_x),\,\mathbf{r}_y=(0,1,f_y)$。<br>$\mathbf{r}_x\times\mathbf{r}_y = (-f_x,-f_y,1)$，$\|\cdot\| = \sqrt{1 + f_x^2 + f_y^2}$。<br>$\text{面積}(S) = \iint_R \sqrt{1 + f_x^2 + f_y^2}\,dA$，即 §14.5 公式。</p>
       </div>
       <div class="dc dc-real">
         <div class="dc-title">特例：旋轉面</div>
-        <p style="margin:0;font-size:.93rem;">$f\ge 0$ 沿 $x$ 軸繞旋轉，可參數化 $\mathbf{r}(u,v)=(u, f(u)\cos v, f(u)\sin v)$。<br>$\|\mathbf{r}_u\times\mathbf{r}_v\| = f(u)\sqrt{1 + [f'(u)]^2}$。<br>$\mathrm{Area} = 2\pi\!\int_a^b f(u)\sqrt{1+[f'(u)]^2}\,du$，即 §7.4 公式。</p>
+        <p style="margin:0;font-size:.93rem;">$f\ge 0$ 沿 $x$ 軸繞旋轉，可參數化 $\mathbf{r}(u,v)=(u, f(u)\cos v, f(u)\sin v)$。<br>$\|\mathbf{r}_u\times\mathbf{r}_v\| = f(u)\sqrt{1 + [f'(u)]^2}$。<br>$\text{面積} = 2\pi\!\int_a^b f(u)\sqrt{1+[f'(u)]^2}\,du$，即 §7.4 公式。</p>
       </div>
     </div>
 
@@ -501,9 +501,9 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       </div>
       <div class="step-block">
         <div class="step-num">步驟 3 · 對 D 積分</div>
-        <p>$\mathrm{Area} = \displaystyle\int_0^{2\pi}\!\int_0^\pi \sin u\,du\,dv = \int_0^{2\pi}[-\cos u]_0^\pi\,dv = \int_0^{2\pi} 2\,dv = 4\pi$。</p>
+        <p>$\text{面積} = \displaystyle\int_0^{2\pi}\!\int_0^\pi \sin u\,du\,dv = \int_0^{2\pi}[-\cos u]_0^\pi\,dv = \int_0^{2\pi} 2\,dv = 4\pi$。</p>
       </div>
-      <div class="ex-answer">$\mathrm{Area}(\text{unit sphere}) = 4\pi$。示範 F 切到 球面可看到累積條收斂至此值。</div>
+      <div class="ex-answer">$\text{單位球面面積} = 4\pi$。示範 F 切到球面可看到累積條收斂至此值。</div>
     </div>
 
     <h3>概念測驗 15.5</h3>
@@ -557,14 +557,14 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
     <div class="info-box">
       <span class="info-label">定義</span>
-      <strong>表面積分 (表面積分)</strong>
+      <strong>表面積分</strong>
       <p style="margin:.55rem 0 .3rem;">設 $S$ 是 $z=g(x,y)$（$R$ 為其在 $xy$ 平面的投影）上的光滑曲面，$f$ 在 $S$ 上連續。把 $S$ 分割為 $n$ 小塊 $\Delta S_i$，取樣點 $(x_i, y_i, z_i)$，則
       $$\iint_S f(x,y,z)\,dS = \lim_{\|\Delta\|\to 0}\sum_{i=1}^n f(x_i, y_i, z_i)\,\Delta S_i,$$
       若極限存在。$f\equiv 1$ 時退化為 $\iint_S dS = $ 表面面積。</p>
     </div>
 
     <div class="theorem-card" data-thm="定理 15.10">
-      <div class="thm-name">表面積分的計算公式 (z = g(x,y) 版)</div>
+      <div class="thm-name">表面積分的計算公式（$z = g(x,y)$ 版）</div>
       <p>若 $g, g_x, g_y$ 在 $R$ 上連續、$f$ 在 $S$ 上連續，則
       $$\iint_S f(x,y,z)\,dS = \iint_R f(x, y, g(x,y))\,\sqrt{1 + g_x^2 + g_y^2}\,dA.$$</p>
       <p style="font-size:.92rem;color:var(--muted);margin-top:.3rem;">若 $S$ 寫成 $y=g(x,z)$ 或 $x=g(y,z)$，把 $\sqrt{1+g_x^2+g_z^2}$ 或 $\sqrt{1+g_y^2+g_z^2}$ 替換，投影改到對應坐標平面即可。</p>
@@ -778,7 +778,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       <div class="thm-name">散度定理（Gauss 定理）</div>
       <p>設 $Q$ 為三維空間中一塊立體，邊界 $S$ 為閉曲面、外向定向。若 $\mathbf{F}$ 的分量函數在 $Q$ 上具連續一階偏導，則
       $$\iint_S \mathbf{F}\cdot\mathbf{N}\,dS = \iiint_Q \mathrm{div}\,\mathbf{F}\,dV.$$</p>
-      <p style="font-size:.92rem;color:#a07a08;margin-top:.3rem;">直觀：「淨流出 $Q$ 的量」（左邊）= 「$Q$ 內部所有 source/sink 的總和」（右邊）。內部相鄰小方塊之間的流量自我抵消，剩下的只是邊界上的淨流出。</p>
+      <p style="font-size:.92rem;color:#a07a08;margin-top:.3rem;">直觀：「淨流出 $Q$ 的量」（左邊）= 「$Q$ 內部所有源點 / 匯點的總和」（右邊）。內部相鄰小方塊之間的流量自我抵消，剩下的只是邊界上的淨流出。</p>
     </div>
 
     <p>定理對「多個簡單立體的有限聯集」也成立。若 $Q$ 由兩個閉曲面 $S_1, S_2$ 包圍（例如 $S_2$ 在 $S_1$ 內、$Q$ 是中間環狀區），則總通量 為 $\iint_{S_1}\mathbf{F}\cdot\mathbf{N}_1\,dS + \iint_{S_2}\mathbf{F}\cdot\mathbf{N}_2\,dS$，方向都<strong>向外</strong>（指出 $Q$）— 所以對 $S_2$ 而言是「指向中心」。</p>
@@ -1089,7 +1089,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         <p>$M=2z,\ N=x,\ P=y^2$。<br>
         旋度 F：$\mathbf{i}$ 分量 $P_y - N_z = 2y - 0 = 2y$；$\mathbf{j}$ 分量 $-(P_x - M_z) = -(0 - 2) = 2$；$\mathbf{k}$ 分量 $N_x - M_y = 1 - 0 = 1$。<br>
         $\mathrm{curl}\,\mathbf{F} = (2y,\,2,\,1)$。<br>
-        $\nabla G = (2x, 2y, 1)$ for $G = z + x^2 + y^2 - 4$（上向）。<br>
+        $\nabla G = (2x, 2y, 1)$，其中 $G = z + x^2 + y^2 - 4$（上向）。<br>
         $\mathrm{curl}\,\mathbf{F}\cdot\mathbf{N}\,dS = (2y)(2x) + (2)(2y) + (1)(1) = 4xy + 4y + 1$。<br>
         積分區 $R$ 是圓盤 $x^2 + y^2\le 4$。對稱性：$\iint 4xy\,dA = 0$、$\iint 4y\,dA = 0$、$\iint 1\,dA = $ 面積 $= 4\pi$。<br>
         ⇒ $\displaystyle\iint_S\mathrm{curl}\,\mathbf{F}\cdot\mathbf{N}\,dS = 4\pi$。</p>
@@ -1182,7 +1182,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <div class="ref-card">
       <div class="ref-card-header">
         <span class="ref-card-name">參數曲面（定義 15.8）</span>
-        <span class="ref-card-name-en">r(u,v) over D</span>
+        <span class="ref-card-name-en">$D$ 上的 $\mathbf{r}(u,v)$</span>
       </div>
       <div class="ref-card-eq">$\mathbf{r}(u,v) = x(u,v)\,\mathbf{i} + y(u,v)\,\mathbf{j} + z(u,v)\,\mathbf{k},\quad (u,v)\in D$</div>
       <p class="ref-note">$z = f(x,y)$ 的自然參數化為 $\mathbf{r}(x,y) = x\,\mathbf{i} + y\,\mathbf{j} + f(x,y)\,\mathbf{k}$。</p>
@@ -1202,7 +1202,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         <span class="ref-card-name">表面面積（定義 15.10）</span>
         <span class="ref-card-name-en">∫∫_D ‖r_u × r_v‖ dA</span>
       </div>
-      <div class="ref-card-eq">$\mathrm{Area}(S) = \displaystyle\iint_D \|\mathbf{r}_u\times\mathbf{r}_v\|\,dA$</div>
+      <div class="ref-card-eq">$\text{面積}(S) = \displaystyle\iint_D \|\mathbf{r}_u\times\mathbf{r}_v\|\,dA$</div>
       <p class="ref-note">特例：$z = f(x,y)$ ⇒ $\|\cdot\| = \sqrt{1 + f_x^2 + f_y^2}$；旋轉面 ⇒ $2\pi\int f\sqrt{1+(f')^2}\,du$。</p>
     </div>
   </div>
@@ -1256,7 +1256,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         <span class="ref-card-name-en">源點 / 匯點 / 不可壓縮</span>
       </div>
       <div class="ref-card-eq">$\displaystyle\mathrm{div}\,\mathbf{F}(P) = \lim_{\alpha\to 0}\dfrac{1}{V(S_\alpha)}\iint_{S_\alpha}\mathbf{F}\cdot\mathbf{N}\,dS$</div>
-      <p class="ref-note">$> 0$ source；$< 0$ sink；$= 0$ incompressible。</p>
+      <p class="ref-note">$> 0$ 表示源點；$< 0$ 表示匯點；$= 0$ 表示不可壓縮。</p>
     </div>
   </div>
 
@@ -1283,9 +1283,9 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <div class="ref-group">
-    <div class="ref-group-title"><span class="rg-badge">MAP</span>整章五大定理</div>
+    <div class="ref-group-title"><span class="rg-badge">地圖</span>整章五大定理</div>
     <table class="conv-table" style="font-size:.83rem;">
-      <thead><tr><th>定理</th><th>邊界 (low-dim)</th><th>內部 (high-dim)</th><th>所在節</th></tr></thead>
+      <thead><tr><th>定理</th><th>邊界（低維）</th><th>內部（高維）</th><th>所在節</th></tr></thead>
       <tbody>
         <tr><td>線積分基本定理</td><td>$f(B) - f(A)$</td><td>$\int_C \nabla f\cdot d\mathbf{r}$</td><td><a href="vector_analysis.html#sec-15-3" style="color:var(--accent2);">§15.3</a></td></tr>
         <tr><td>Green 定理</td><td>$\oint_C M\,dx + N\,dy$</td><td>$\iint_R (N_x - M_y)\,dA$</td><td><a href="vector_analysis.html#sec-15-4" style="color:var(--accent2);">§15.4</a></td></tr>
@@ -1293,7 +1293,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         <tr><td>散度定理</td><td>$\iint_S \mathbf{F}\cdot\mathbf{N}\,dS$</td><td>$\iiint_Q \mathrm{div}\,\mathbf{F}\,dV$</td><td>§15.7</td></tr>
       </tbody>
     </table>
-    <p style="font-size:.92rem;color:var(--muted);margin-top:.6rem;">同一個 idea，「邊界累積 = 內部導數的整體積分」，在 1D、2D、3D 都有對應版本。這正是 Stokes 定理的廣義內容。</p>
+    <p style="font-size:.92rem;color:var(--muted);margin-top:.6rem;">同一個想法：「邊界累積 = 內部導數的整體積分」，在 1D、2D、3D 都有對應版本。這正是 Stokes 定理的廣義內容。</p>
   </div>
 </section>
 

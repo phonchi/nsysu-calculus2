@@ -438,9 +438,9 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         <div class="preset-row" id="contPresets" style="margin-top:0;">
           <button class="preset-btn active" data-id="hemisphere64">例題 3 · $\sqrt{64-x^2-y^2}$</button>
           <button class="preset-btn" data-id="hyperparab_ex4">例題 4 · $y^2-x^2$</button>
-          <button class="preset-btn" data-id="paraboloid">$x^2+y^2$</button>
-          <button class="preset-btn" data-id="hill">$3-x^2-y^2$</button>
-          <button class="preset-btn" data-id="ridge">$xy$</button>
+          <button class="preset-btn" data-id="paraboloid">補充：$x^2+y^2$</button>
+          <button class="preset-btn" data-id="hill">補充：$3-x^2-y^2$</button>
+          <button class="preset-btn" data-id="ridge">補充：$xy$</button>
         </div>
         <div class="eq-card">
           <div class="eq-label" id="contLabel">拋物面</div>
@@ -480,10 +480,10 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
     <div class="preset-row" id="isoPresets">
       <button class="preset-btn active" data-id="lecture_ellipsoid">例題 6 · $4x^2+y^2+z^2$</button>
-      <button class="preset-btn" data-id="sphere">球面 $x^2+y^2+z^2$</button>
-      <button class="preset-btn" data-id="ellip">橢球 $x^2/4 + y^2/2.25 + z^2$</button>
-      <button class="preset-btn" data-id="hyper1">單葉雙曲面 $x^2+y^2-z^2$</button>
-      <button class="preset-btn" data-id="hyper2">雙葉雙曲面 $z^2-x^2-y^2$</button>
+      <button class="preset-btn" data-id="sphere">補充：球面 $x^2+y^2+z^2$</button>
+      <button class="preset-btn" data-id="ellip">補充：橢球 $x^2/4 + y^2/2.25 + z^2$</button>
+      <button class="preset-btn" data-id="hyper1">補充：單葉雙曲面 $x^2+y^2-z^2$</button>
+      <button class="preset-btn" data-id="hyper2">補充：雙葉雙曲面 $z^2-x^2-y^2$</button>
     </div>
 
     <div class="viz-layout">
@@ -558,7 +558,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <div class="quiz-options">
       <button class="quiz-opt">兩者的等值集合都是三維空間中的曲面</button>
       <button class="quiz-opt">$F(x,y,z)=c$ 給出 <strong>等位面</strong>（3D 中的曲面）；$g$ 對應 <strong>等高線</strong>（2D 平面中的曲線）</button>
-      <button class="quiz-opt">Level curve 無法用等高線圖視覺化</button>
+      <button class="quiz-opt">等高線無法用等高線圖視覺化</button>
       <button class="quiz-opt">等位面是三維空間中的曲線</button>
     </div>
     <div class="quiz-feedback"></div>
@@ -892,7 +892,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <p>結構上與兩變數版本完全一致，只是把<em>圓盤</em>換成<em>球</em>：$\sqrt{(x-x_0)^2 + (y-y_0)^2 + (z-z_0)^2} < \delta$。檢驗極限是否存在時，路徑可以是<strong>三維中的任意連續曲線</strong>，常用代換見上表後三列。</p>
 
     <div class="lecture-example">
-      <div class="ex-tag">講義例題 6 · Three-variable continuity</div>
+      <div class="ex-tag">講義例題 6 · 三變數函數的連續性</div>
       <div class="ex-title">討論三變數函數 $\displaystyle f(x,y,z)=\dfrac{1}{x^2+y^2-z}$ 的連續性，並找出不連續的點集。</div>
       <div class="ex-answer">
         <span class="ex-method">使用定理 13.1（連續函數商法則）</span> 分母 $x^2+y^2-z$ 是多項式，故連續；分子 $1$ 也連續。只要分母不為 0，商函數連續。因此不連續集合由
@@ -940,7 +940,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <div class="info-box warm">
       <span class="info-label">定義 13.5</span>
       <strong>兩變數函數的偏導函數</strong>
-      <p style="margin:.55rem 0 .3rem;">如果 $z = f(x,y)$ 是兩變數函數，則 $f$ 對 $x$ 和 $y$ 的<strong>第一階偏導數 (first partial derivatives)</strong> $f_x$ 和 $f_y$ 的定義分別是</p>
+      <p style="margin:.55rem 0 .3rem;">如果 $z = f(x,y)$ 是兩變數函數，則 $f$ 對 $x$ 和 $y$ 的<strong>第一階偏導數</strong> $f_x$ 和 $f_y$ 的定義分別是</p>
       <div style="text-align:center;margin:.5rem 0;font-size:1.0rem;">
         $$f_x(x,y) = \lim_{\Delta x \to 0} \frac{f(x+\Delta x, y) - f(x,y)}{\Delta x}, \quad f_y(x,y) = \lim_{\Delta y \to 0} \frac{f(x, y+\Delta y) - f(x,y)}{\Delta y}$$
       </div>
@@ -983,10 +983,10 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
     <div class="preset-row" id="partPresets">
       <button class="preset-btn active" data-id="lecture_slope">例題 3 · $-\dfrac{x^2}{2}-y^2+\dfrac{25}{8}$</button>
-      <button class="preset-btn" data-id="paraboloid">$f = x^2 + y^2$</button>
-      <button class="preset-btn" data-id="saddle">$f = x^2 - y^2$</button>
-      <button class="preset-btn" data-id="sinc">$f = \sin x \cos y$</button>
-      <button class="preset-btn" data-id="exp">$f = e^{-(x^2+y^2)/4}$</button>
+      <button class="preset-btn" data-id="paraboloid">補充：$f = x^2 + y^2$</button>
+      <button class="preset-btn" data-id="saddle">補充：$f = x^2 - y^2$</button>
+      <button class="preset-btn" data-id="sinc">補充：$f = \sin x \cos y$</button>
+      <button class="preset-btn" data-id="exp">補充：$f = e^{-(x^2+y^2)/4}$</button>
     </div>
 
     <div class="viz-layout">
@@ -1090,7 +1090,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
 
     <div class="lecture-example">
-      <div class="ex-tag">講義例題 6 · Three or more variables</div>
+      <div class="ex-tag">講義例題 6 · 三個或更多變數</div>
       <div class="ex-title">求指定偏導數：(a) 對 $f(x,y,z)=xy+yz^2+xz$ 求 $\partial f/\partial z$；(b) 對 $f(x,y,z)=z\sin(xy^2+2z)$ 求 $\partial f/\partial z$；(c) 對 $f(x,y,z,w)=\dfrac{x+y+z}{w}$ 求 $\partial f/\partial w$。</div>
       <p><span class="ex-method">使用偏導計算規則</span> 對哪一個變數偏導，就把其他變數全部視為常數。講義例題包含三種形式：</p>
       <div class="ex-answer">
@@ -1127,10 +1127,10 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
     <div class="preset-row" id="hoPresets">
       <button class="preset-btn active" data-id="lecture_second">$f = 3xy^2 - 2y + 5x^2y^2$</button>
-      <button class="preset-btn" data-id="poly">$f = x^3 y^2 + 2xy$</button>
-      <button class="preset-btn" data-id="exp">$f = e^x \sin y$</button>
-      <button class="preset-btn" data-id="trig">$f = x^2 \cos(xy)$</button>
-      <button class="preset-btn" data-id="counter">反例 $f = \dfrac{xy(x^2-y^2)}{x^2+y^2}$ (在原點)</button>
+      <button class="preset-btn" data-id="poly">補充：$f = x^3 y^2 + 2xy$</button>
+      <button class="preset-btn" data-id="exp">補充：$f = e^x \sin y$</button>
+      <button class="preset-btn" data-id="trig">補充：$f = x^2 \cos(xy)$</button>
+      <button class="preset-btn" data-id="counter">補充反例：$f = \dfrac{xy(x^2-y^2)}{x^2+y^2}$（在原點）</button>
     </div>
 
     <div class="viz-layout">
@@ -1157,7 +1157,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       </div>
       <div class="side-panel">
         <div class="eq-card">
-          <div class="eq-label" id="hoLabel">POLYNOMIAL</div>
+          <div class="eq-label" id="hoLabel">多項式</div>
           <div class="eq-formula" id="hoEq">$f = x^3 y^2 + 2xy$</div>
           <div class="eq-sub" id="hoRenderNote">3D 曲面只作視覺輔助；右側偏導數為原函數真實值</div>
         </div>
@@ -1236,7 +1236,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
 
     <div class="lecture-example">
-      <div class="ex-tag">講義例題 1 · Total differential</div>
+      <div class="ex-tag">講義例題 1 · 全微分</div>
       <div class="ex-title">求下列函數的全微分：(a) $z=2x\sin y-3x^2y^2$；(b) $w=x^2+y^2+z^2$。</div>
       <p><span class="ex-method">使用 定義 13.6（全微分公式）</span> 先求偏導，再套
       $$dz=f_x\,dx+f_y\,dy.$$
@@ -1383,7 +1383,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
 
     <div class="lecture-example">
-      <div class="ex-tag">講義例題 2 · Showing differentiability</div>
+      <div class="ex-tag">講義例題 2 · 證明可微</div>
       <div class="ex-title">$f(x,y)=x^2+3y$ 在平面上處處可微</div>
       <p><span class="ex-method">使用 定義 13.7（可微定義）</span> 要把 $\Delta z$ 寫成
       $$\Delta z=f_x\Delta x+f_y\Delta y+\varepsilon_1\Delta x+\varepsilon_2\Delta y,$$
@@ -2316,7 +2316,7 @@ function marchingCubes(F, c, xMin, xMax, yMin, yMax, zMin, zMax, res=28) {
   const PRESETS = {
     ellipsoid_ex2: { f:(x,y) => { const q = 16 - 4*x*x - y*y; return q >= 0 ? Math.sqrt(q) : NaN; },
       range:[-2.2,2.2], domain:'ellipse', domainScale:[2,4], stats:[0,4],
-      note:'講義 例題 2：$z=\\sqrt{16-4x^2-y^2}$。Domain 是 $4x^2+y^2\\le16$，圖形是 $4x^2+y^2+z^2=16$ 的<strong>上半橢球面</strong>，range 為 $[0,4]$。', label:'例題 2', type:'上半橢球' }
+      note:'講義 例題 2：$z=\\sqrt{16-4x^2-y^2}$。定義域是 $4x^2+y^2\\le16$，圖形是 $4x^2+y^2+z^2=16$ 的<strong>上半橢球面</strong>，值域為 $[0,4]$。', label:'例題 2', type:'上半橢球' }
   };
   const EQ_TEX = {
     ellipsoid_ex2:'$z = \\sqrt{16 - 4x^2 - y^2}$'
@@ -3179,19 +3179,19 @@ function marchingCubes(F, c, xMin, xMax, yMin, yMax, zMin, zMax, res=28) {
     saddle: {
       f:(x,y) => x*x - y*y,
       fx:(x,y) => 2*x, fy:(x,y) => -2*y,
-      eq:'$z = x^2 - y^2$', label:'SADDLE',
+      eq:'$z = x^2 - y^2$', label:'鞍面',
       partial:'$f_x = 2x,\\ f_y = -2y$', range:[-2,2]
     },
     sinc: {
       f:(x,y) => Math.sin(x) * Math.cos(y),
       fx:(x,y) => Math.cos(x) * Math.cos(y), fy:(x,y) => -Math.sin(x) * Math.sin(y),
-      eq:'$z = \\sin x \\cos y$', label:'TRIG',
+      eq:'$z = \\sin x \\cos y$', label:'三角函數',
       partial:'$f_x = \\cos x \\cos y,\\ f_y = -\\sin x \\sin y$', range:[-3,3]
     },
     exp: {
       f:(x,y) => Math.exp(-(x*x+y*y)/4),
       fx:(x,y) => -x/2 * Math.exp(-(x*x+y*y)/4), fy:(x,y) => -y/2 * Math.exp(-(x*x+y*y)/4),
-      eq:'$z = e^{-(x^2+y^2)/4}$', label:'GAUSSIAN',
+      eq:'$z = e^{-(x^2+y^2)/4}$', label:'高斯函數',
       partial:'$f_x = -\\dfrac{x}{2}\\,e^{\\cdots},\\ f_y = -\\dfrac{y}{2}\\,e^{\\cdots}$', range:[-2.5,2.5]
     }
   };

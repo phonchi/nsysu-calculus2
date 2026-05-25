@@ -482,7 +482,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       <strong>向量場的旋度</strong>
       <p style="margin:.55rem 0 .3rem;">設 $\mathbf{F}(x,y,z)=M\,\mathbf{i}+N\,\mathbf{j}+P\,\mathbf{k}$，則
       $$\mathrm{curl}\,\mathbf{F}=\nabla\times\mathbf{F}=\left(\dfrac{\partial P}{\partial y}-\dfrac{\partial N}{\partial z}\right)\mathbf{i}-\left(\dfrac{\partial P}{\partial x}-\dfrac{\partial M}{\partial z}\right)\mathbf{j}+\left(\dfrac{\partial N}{\partial x}-\dfrac{\partial M}{\partial y}\right)\mathbf{k}.$$</p>
-      <p style="margin:.4rem 0 0;font-size:.9rem;color:var(--muted);">記憶要點：i, j, k 三個分量裡，j 那一項要記得「先 P 後 M」並乘上負號，等價於下方行列式展開。若 $\mathrm{curl}\,\mathbf{F}=\mathbf{0}$，稱 $\mathbf{F}$ 為<strong>無旋的 (irrotational)</strong>。</p>
+      <p style="margin:.4rem 0 0;font-size:.9rem;color:var(--muted);">記憶要點：i, j, k 三個分量裡，j 那一項要記得「先 P 後 M」並乘上負號，等價於下方行列式展開。若 $\mathrm{curl}\,\mathbf{F}=\mathbf{0}$，稱 $\mathbf{F}$ 為<strong>無旋的</strong>。</p>
     </div>
 
     <div class="eq-card" style="margin:.8rem 0;">
@@ -621,12 +621,12 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <div class="info-box">
       <span class="info-label">回顧</span>
       <strong>光滑曲線與分段光滑</strong>
-      <p style="margin:.55rem 0 .3rem;">平面曲線 $C:\mathbf{r}(t)=x(t)\,\mathbf{i}+y(t)\,\mathbf{j}$，$a\le t\le b$，<strong>光滑</strong>表示 $dx/dt,\,dy/dt$ 連續且<em>不同時為零</em>。空間曲線多一條 $dz/dt$。<br>若 $[a,b]$ 可被分割成有限段，每段都光滑，則 $C$ 為<strong>分段光滑 (piecewise smooth)</strong>。</p>
+      <p style="margin:.55rem 0 .3rem;">平面曲線 $C:\mathbf{r}(t)=x(t)\,\mathbf{i}+y(t)\,\mathbf{j}$，$a\le t\le b$，<strong>光滑</strong>表示 $dx/dt,\,dy/dt$ 連續且<em>不同時為零</em>。空間曲線多一條 $dz/dt$。<br>若 $[a,b]$ 可被分割成有限段，每段都光滑，則 $C$ 為<strong>分段光滑</strong>。</p>
     </div>
 
     <div class="lecture-example">
       <div class="ex-tag">例題 1 · 分段光滑參數化</div>
-      <div class="ex-title">講義 Figure 4 以圖形給出一條從 $(0,0,0)$ 出發、最終抵達 $(1,2,1)$ 的分段路徑。本頁用同端點的三段折線示範參數化方法：沿 $x$ 軸到 $(1,0,0)$、再沿 $y$ 軸到 $(1,2,0)$、最後沿 $z$ 軸到 $(1,2,1)$。</div>
+      <div class="ex-title">講義圖 4 以圖形給出一條從 $(0,0,0)$ 出發、最終抵達 $(1,2,1)$ 的分段路徑。本頁用同端點的三段折線示範參數化方法：沿 $x$ 軸到 $(1,0,0)$、再沿 $y$ 軸到 $(1,2,0)$、最後沿 $z$ 軸到 $(1,2,1)$。</div>
       <span class="ex-method">逐段線性插值</span>
       <div class="step-block">
         <div class="step-num">步驟 · 三段分別寫出</div>
@@ -1133,7 +1133,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 <!-- §15.4 Green's Theorem                                          -->
 <!-- ============================================================ -->
 <section id="sec-15-4">
-  <div class="section-number">第 15.4 節 · GREEN'S 定理</div>
+  <div class="section-number">第 15.4 節 · Green 定理</div>
   <h2>Green 定理：邊界線積分 ↔ 區域雙重積分</h2>
   <p>Green 定理把<strong>邊界線積分</strong>和<strong>區域雙重積分</strong>畫上等號 —— 它說：在一個簡單連通的平面區域 $R$ 上，沿其邊界 $C$ 的線積分（逆時針）等於某個雙重積分。這是把<strong>1D 微積分基本定理</strong>推廣到平面的版本，也是後面 Stokes 定理（§15.8）與散度定理（§15.7）的二維特例。</p>
 
@@ -1142,10 +1142,10 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <h3>15.4.1 定理陳述</h3>
 
     <div class="info-box">
-      <span class="info-label">TERMS</span>
+      <span class="info-label">術語</span>
       <strong>簡單曲線、簡單連通</strong>
       <p style="margin:.55rem 0 .3rem;"><strong>簡單曲線</strong>：$\mathbf{r}(c)\ne\mathbf{r}(d)$，其中 $c,d\in(a,b)$ — 不自交。<br>
-      <strong>簡單連通區域 (simply connected region)</strong>：任意簡單閉曲線所圍區域都仍在 $R$ 內 — 直觀說「沒有洞」。圓盤是；圓環不是。</p>
+      <strong>簡單連通區域</strong>：任意簡單閉曲線所圍區域都仍在 $R$ 內 — 直觀說「沒有洞」。圓盤是；圓環不是。</p>
     </div>
 
     <div class="theorem-card" data-thm="定理 15.8">
@@ -1286,7 +1286,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <div class="theorem-card" data-thm="定理 15.9">
       <div class="thm-name">線積分求面積</div>
       <p>若 $R$ 是由分段光滑簡單閉曲線 $C$（逆時針）圍成的區域，則
-      $$\mathrm{Area}(R) = \dfrac{1}{2}\oint_C (x\,dy - y\,dx).$$</p>
+      $$\text{面積}(R) = \dfrac{1}{2}\oint_C (x\,dy - y\,dx).$$</p>
     </div>
 
     <div class="lecture-example">
@@ -1304,7 +1304,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       </div>
       <div class="step-block">
         <div class="step-num">步驟 3 · 整合</div>
-        <p>$\mathrm{Area} = \dfrac{1}{2}\int_0^{2\pi} ab\,dt = \dfrac{1}{2}\cdot 2\pi ab = \pi ab$。</p>
+        <p>$\text{面積} = \dfrac{1}{2}\int_0^{2\pi} ab\,dt = \dfrac{1}{2}\cdot 2\pi ab = \pi ab$。</p>
       </div>
       <div class="ex-answer">橢圓面積為 $\pi a b$（圓 $a=b=r$ 時退化為 $\pi r^2$）。</div>
     </div>
@@ -1345,8 +1345,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       <div class="quiz-q">若 $M = 0$、$N = x$，沿任意逆時針簡單閉曲線 $C$，$\oint_C N\,dy = \oint_C x\,dy$ 等於？</div>
       <div class="quiz-options">
         <button class="quiz-opt">$0$（因為 $\partial N/\partial x = 1$ 是常數）</button>
-        <button class="quiz-opt">$\iint_R 1\,dA = \mathrm{Area}(R)$</button>
-        <button class="quiz-opt">$2\,\mathrm{Area}(R)$</button>
+        <button class="quiz-opt">$\iint_R 1\,dA = \text{面積}(R)$</button>
+        <button class="quiz-opt">$2\,\text{面積}(R)$</button>
         <button class="quiz-opt">需要更多資訊</button>
       </div>
       <div class="quiz-feedback"></div>
@@ -1476,7 +1476,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         <span class="ref-card-name">線積分求面積 (定理 15.9)</span>
         <span class="ref-card-name-en">面積公式</span>
       </div>
-      <div class="ref-card-eq">$\displaystyle\mathrm{Area}(R) = \dfrac{1}{2}\oint_C (x\,dy - y\,dx)$</div>
+      <div class="ref-card-eq">$\displaystyle\text{面積}(R) = \dfrac{1}{2}\oint_C (x\,dy - y\,dx)$</div>
       <p class="ref-note">取 M = −y/2、N = x/2，∂N/∂x − ∂M/∂y = 1。橢圓 (a,b)：$\pi ab$。</p>
     </div>
 
@@ -1494,7 +1494,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <div class="ref-group">
-    <div class="ref-group-title"><span class="rg-badge">CHEAT</span>四節觀念地圖</div>
+    <div class="ref-group-title"><span class="rg-badge">速查</span>四節觀念地圖</div>
     <table class="conv-table" style="font-size:.83rem;">
       <thead><tr><th>主題</th><th>關鍵物件</th><th>核心關係</th></tr></thead>
       <tbody>
@@ -2556,7 +2556,7 @@ function makeChoiceQuiz(cardId, correctIndex, hints){
     ]
   });
   makeChoiceQuiz('quiz-15-4-2', 1, {
-    ok:'✓ 正確！$M=0, N=x$：$\\partial N/\\partial x - \\partial M/\\partial y = 1 - 0 = 1$。Green 給 $\\oint_C x\\,dy = \\iint_R 1\\,dA = \\mathrm{Area}(R)$。',
+    ok:'✓ 正確！$M=0, N=x$：$\\partial N/\\partial x - \\partial M/\\partial y = 1 - 0 = 1$。Green 給 $\\oint_C x\\,dy = \\iint_R 1\\,dA = \\text{面積}(R)$。',
     wrong:[
       '$\\partial N/\\partial x = 1$ 是常數，但「常數」不代表積分為 0，常數 1 積出來是面積。',
       '',
