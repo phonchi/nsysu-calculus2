@@ -753,12 +753,12 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <em>注意</em>：$\mathbf{r}''$ 沒有 $\mathbf{k}$ 分量，因為 $2t$ 二次微分後消失。
   </div>
   <div class="step-block">
-    <div class="step-num">c · 點積 $\mathbf{r}'\cdot\mathbf{r}''$</div>
+    <div class="step-num">c · 內積 $\mathbf{r}'\cdot\mathbf{r}''$</div>
     $(-\sin t)(-\cos t) + (\cos t)(-\sin t) + (2)(0) = \sin t\cos t - \sin t\cos t = \boldsymbol{0}$<br>
     <em>結論</em>：$\mathbf{r}'\perp\mathbf{r}''$ 對<em>所有</em> $t$ 都成立——這在這個曲線上是個美麗的特性。
   </div>
   <div class="step-block">
-    <div class="step-num">d · 叉積 $\mathbf{r}'\times\mathbf{r}''$</div>
+    <div class="step-num">d · 外積 $\mathbf{r}'\times\mathbf{r}''$</div>
     $\begin{vmatrix}\mathbf{i}&\mathbf{j}&\mathbf{k}\\-\sin t&\cos t&2\\-\cos t&-\sin t&0\end{vmatrix} = 2\sin t\,\mathbf{i} - 2\cos t\,\mathbf{j} + (\sin^2 t + \cos^2 t)\,\mathbf{k}$
     $\;=\; 2\sin t\,\mathbf{i} - 2\cos t\,\mathbf{j} + \mathbf{k}$
   </div>
@@ -799,10 +799,10 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         <div class="ic-row"><span class="ic-label">$\mathbf{r}''(t)$</span><span class="ic-value snd" id="hgRpp">(-1.00, 0.00, 0.00)</span></div>
       </div>
       <div class="info-card">
-        <div class="ic-title">點積 vs 叉積（即時）</div>
+        <div class="ic-title">內積 vs 外積（即時）</div>
         <div class="ic-row"><span class="ic-label">$\mathbf{r}'\cdot\mathbf{r}''$</span><span class="ic-value" id="hgDot">0.000</span></div>
         <div class="ic-row"><span class="ic-label">$\mathbf{r}'\times\mathbf{r}''$</span><span class="ic-value" id="hgCross" style="font-size:.74rem;">(0,-2,1)</span></div>
-        <div style="font-size:.78rem;color:var(--muted);margin-top:.3rem;">點積恆為 0：$\mathbf{r}'\perp\mathbf{r}''$。</div>
+        <div style="font-size:.78rem;color:var(--muted);margin-top:.3rem;">內積恆為 0：$\mathbf{r}'\perp\mathbf{r}''$。</div>
       </div>
     </div>
   </div>
@@ -819,16 +819,16 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 <!-- ============================================================ -->
 <section id="sec-props">
   <div class="section-number">12.2 內小段 · 導數的七條性質</div>
-  <h2>定理 12.2：和、積、點積、叉積、合成</h2>
+  <h2>定理 12.2：和、積、內積、外積、合成</h2>
   <p>令 $\mathbf{r}, \mathbf{u}$ 為 $t$ 的可微向量值函數，$w$ 為可微的純量函數，$c$ 為常數。下列性質都可由分量逐一微分驗證。</p>
 
   <ol class="prop-list">
     <li>$D_t[c\,\mathbf{r}(t)] = c\,\mathbf{r}'(t)$</li>
     <li>$D_t[\mathbf{r}(t) \pm \mathbf{u}(t)] = \mathbf{r}'(t) \pm \mathbf{u}'(t)$</li>
     <li>$D_t[w(t)\,\mathbf{r}(t)] = w(t)\,\mathbf{r}'(t) + w'(t)\,\mathbf{r}(t)$ &nbsp;<span class="deg-note">（純量乘向量的乘積律）</span></li>
-    <li>$D_t[\mathbf{r}(t)\cdot\mathbf{u}(t)] = \mathbf{r}(t)\cdot\mathbf{u}'(t) + \mathbf{r}'(t)\cdot\mathbf{u}(t)$ &nbsp;<span class="deg-note">（點積乘積律）</span></li>
-    <li>$D_t[\mathbf{r}(t)\times\mathbf{u}(t)] = \mathbf{r}(t)\times\mathbf{u}'(t) + \mathbf{r}'(t)\times\mathbf{u}(t)$ &nbsp;<span class="deg-note">（叉積乘積律，<strong>順序不可交換</strong>）</span></li>
-    <li>$D_t\big[\mathbf{r}(w(t))\big] = \mathbf{r}'(w(t))\,w'(t)$ &nbsp;<span class="deg-note">（鏈鎖律）</span></li>
+    <li>$D_t[\mathbf{r}(t)\cdot\mathbf{u}(t)] = \mathbf{r}(t)\cdot\mathbf{u}'(t) + \mathbf{r}'(t)\cdot\mathbf{u}(t)$ &nbsp;<span class="deg-note">（內積乘積律）</span></li>
+    <li>$D_t[\mathbf{r}(t)\times\mathbf{u}(t)] = \mathbf{r}(t)\times\mathbf{u}'(t) + \mathbf{r}'(t)\times\mathbf{u}(t)$ &nbsp;<span class="deg-note">（外積乘積律，<strong>順序不可交換</strong>）</span></li>
+    <li>$D_t\big[\mathbf{r}(w(t))\big] = \mathbf{r}'(w(t))\,w'(t)$ &nbsp;<span class="deg-note">（連鎖律）</span></li>
     <li>若 $\mathbf{r}(t)\cdot\mathbf{r}(t) = c$（即 $\|\mathbf{r}(t)\|^2$ 為常數），則 $\mathbf{r}(t)\cdot\mathbf{r}'(t) = 0$。</li>
   </ol>
 
@@ -850,7 +850,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   <div class="step-block">
     <div class="step-num">(b) 用性質 5</div>
     $D_t[\mathbf{u}\times\mathbf{u}'] = \mathbf{u}\times\mathbf{u}'' + \mathbf{u}'\times\mathbf{u}'$。<br>
-    任何向量與自己的叉積為零：$\mathbf{u}'\times\mathbf{u}' = \mathbf{0}$。剩 $\mathbf{u}\times\mathbf{u}''$。<br>
+    任何向量與自己的外積為零：$\mathbf{u}'\times\mathbf{u}' = \mathbf{0}$。剩 $\mathbf{u}\times\mathbf{u}''$。<br>
     $\mathbf{u}''(t) = 2\mathbf{i} - 0\mathbf{j} + 0\mathbf{k} = 2\mathbf{i}$。<br>
     $\mathbf{u}\times\mathbf{u}'' = \begin{vmatrix}\mathbf{i}&\mathbf{j}&\mathbf{k}\\t^2&-2t&1\\2&0&0\end{vmatrix} = (0-0)\mathbf{i} - (0-2)\mathbf{j} + (0+4t)\mathbf{k} = 2\mathbf{j} + 4t\,\mathbf{k}$。
   </div>
@@ -1024,13 +1024,13 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         <tr><td>純量倍</td><td>$D_t[c\,\mathbf{r}] = c\,\mathbf{r}'$</td></tr>
         <tr><td>和差</td><td>$D_t[\mathbf{r} \pm \mathbf{u}] = \mathbf{r}' \pm \mathbf{u}'$</td></tr>
         <tr><td>純量×向量</td><td>$D_t[w\mathbf{r}] = w\mathbf{r}' + w'\mathbf{r}$</td></tr>
-        <tr><td>點積</td><td>$D_t[\mathbf{r}\cdot\mathbf{u}] = \mathbf{r}\cdot\mathbf{u}' + \mathbf{r}'\cdot\mathbf{u}$</td></tr>
-        <tr><td>叉積</td><td>$D_t[\mathbf{r}\times\mathbf{u}] = \mathbf{r}\times\mathbf{u}' + \mathbf{r}'\times\mathbf{u}$</td></tr>
-        <tr><td>鏈鎖律</td><td>$D_t[\mathbf{r}(w(t))] = \mathbf{r}'(w(t))\,w'(t)$</td></tr>
+        <tr><td>內積</td><td>$D_t[\mathbf{r}\cdot\mathbf{u}] = \mathbf{r}\cdot\mathbf{u}' + \mathbf{r}'\cdot\mathbf{u}$</td></tr>
+        <tr><td>外積</td><td>$D_t[\mathbf{r}\times\mathbf{u}] = \mathbf{r}\times\mathbf{u}' + \mathbf{r}'\times\mathbf{u}$</td></tr>
+        <tr><td>連鎖律</td><td>$D_t[\mathbf{r}(w(t))] = \mathbf{r}'(w(t))\,w'(t)$</td></tr>
         <tr><td>定長條件</td><td>$\mathbf{r}\cdot\mathbf{r}=c \Longrightarrow \mathbf{r}\cdot\mathbf{r}'=0$</td></tr>
       </tbody>
     </table>
-    <p style="font-size:.83rem;color:var(--muted);margin-top:.5rem;">叉積規則裡<em>順序</em>不可交換——必須是 $\mathbf{r}\times\mathbf{u}' + \mathbf{r}'\times\mathbf{u}$（不是 $+\mathbf{u}\times\mathbf{r}'$）。</p>
+    <p style="font-size:.83rem;color:var(--muted);margin-top:.5rem;">外積規則裡<em>順序</em>不可交換——必須是 $\mathbf{r}\times\mathbf{u}' + \mathbf{r}'\times\mathbf{u}$（不是 $+\mathbf{u}\times\mathbf{r}'$）。</p>
   </div>
 </section>
 

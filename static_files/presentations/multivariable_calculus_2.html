@@ -130,7 +130,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 <body>
 <nav class="side-nav" id="sideNav">
   <div class="sn-title">第 13 章 · II</div>
-  <a class="sn-item" href="#sec-13-5">13.5 連鎖率</a>
+  <a class="sn-item" href="#sec-13-5">13.5 連鎖律</a>
   <a class="sn-item sn-sub" href="#sec-13-5-1">  · 單獨立變數</a>
   <a class="sn-item sn-sub" href="#sec-13-5-2">  · 兩獨立變數</a>
   <a class="sn-item sn-sub" href="#sec-13-5-3">  · 隱微分</a>
@@ -168,8 +168,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 <div class="container">
 
 <section id="sec-13-5">
-  <div class="section-number">13.5 多變數函數的連鎖率</div>
-  <h2>鏈鎖律：沿著曲面上的路徑累積變化</h2>
+  <div class="section-number">13.5 多變數函數的連鎖律</div>
+  <h2>連鎖律：沿著曲面上的路徑累積變化</h2>
   <p>本節先處理一個獨立變數，再處理兩個獨立變數。依賴圖可以幫助記公式，但真正的幾何意思是：$t$ 改變時，$(x(t),y(t))$ 在 $xy$ 平面移動，曲面上的點 $(x(t),y(t),w(t))$ 也跟著移動；高度變化由 $x$ 方向與 $y$ 方向的貢獻相加。</p>
 
   <div class="info-box green">
@@ -181,7 +181,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <div class="dep-tree-wrap">
-    <svg viewBox="0 0 720 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="鏈鎖律依賴樹">
+    <svg viewBox="0 0 720 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="連鎖律依賴樹">
       <g class="tree-path">
         <path class="tree-edge" d="M120,40 L80,110"/>
         <path class="tree-edge" d="M120,40 L160,110"/>
@@ -226,11 +226,11 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <div class="concept-warning">
-    <div class="cw-title">概念辨析 · 先代入 vs. 鏈鎖律</div>
-    <p>當 <span class="pill pill-blue">$x,y$ 對 $t$ 顯式可代</span>：兩種作法等價，先代入後微分常常更省事；<br>當 <span class="pill pill-red">$f$ 抽象</span>（例如熱力學 $U(p,V)$ 中的 $p,V$ 又依賴 $T,S$）：只有鏈鎖律可用。記住：所有「鏈鎖律例題」的核心都是<strong>把單變數鏈鎖律對每條樹枝加總</strong>。</p>
+    <div class="cw-title">概念辨析 · 先代入 vs. 連鎖律</div>
+    <p>當 <span class="pill pill-blue">$x,y$ 對 $t$ 顯式可代</span>：兩種作法等價，先代入後微分常常更省事；<br>當 <span class="pill pill-red">$f$ 抽象</span>（例如熱力學 $U(p,V)$ 中的 $p,V$ 又依賴 $T,S$）：只有連鎖律可用。記住：所有「連鎖律例題」的核心都是<strong>把單變數連鎖律對每條樹枝加總</strong>。</p>
   </div>
 
-  <h3 id="sec-13-5-1">單獨立變數的鏈鎖律</h3>
+  <h3 id="sec-13-5-1">單獨立變數的連鎖律</h3>
   <div class="method-grid">
     <div class="lecture-example">
       <div class="ex-tag">講義例題 1</div>
@@ -242,7 +242,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
   </div>
 
-  <h3 id="sec-13-5-2">兩個獨立變數：先代入 vs. 鏈鎖律</h3>
+  <h3 id="sec-13-5-2">兩個獨立變數：先代入 vs. 連鎖律</h3>
   <div class="method-grid">
     <div class="lecture-example">
       <div class="ex-tag">講義例題 3</div>
@@ -253,7 +253,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
     <div class="lecture-example">
       <div class="ex-tag">講義例題 4</div>
-      <div class="ex-title"><span class="pill pill-green">鏈鎖律法</span> 已知 $w=2xy,\ x=s^2+t^2,\ y=s/t$，用鏈鎖律求 $\dfrac{\partial w}{\partial s}$ 與 $\dfrac{\partial w}{\partial t}$。</div>
+      <div class="ex-title"><span class="pill pill-green">連鎖律法</span> 已知 $w=2xy,\ x=s^2+t^2,\ y=s/t$，用連鎖律求 $\dfrac{\partial w}{\partial s}$ 與 $\dfrac{\partial w}{\partial t}$。</div>
       <div class="step-block"><div class="step-num">步驟 1</div>$w_x=2y,\ w_y=2x$；$x_s=2s,\ x_t=2t,\ y_s=1/t,\ y_t=-s/t^2$。</div>
       <div class="step-block"><div class="step-num">步驟 2</div>$\dfrac{\partial w}{\partial s}=w_x x_s+w_y y_s=2y(2s)+2x(1/t)=4ys+\dfrac{2x}{t}$。</div>
       <div class="step-block"><div class="step-num">步驟 3</div>代回 $x=s^2+t^2,\ y=s/t$：$\dfrac{\partial w}{\partial s}=\dfrac{4s^2}{t}+\dfrac{2(s^2+t^2)}{t}=\dfrac{6s^2}{t}+2t$。同理 $\dfrac{\partial w}{\partial t}=-\dfrac{2s^3}{t^2}+2s$。</div>
@@ -267,7 +267,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <div class="step-block"><div class="step-num">步驟 1（偏導）</div>$w_x=y+z,\ w_y=x+z,\ w_z=y+x$。</div>
     <div class="step-block"><div class="step-num">步驟 2（中間變數）</div>$x_s=\cos t,\ y_s=\sin t,\ z_s=0$；$x_t=-s\sin t,\ y_t=s\cos t,\ z_t=1$。</div>
     <div class="step-block"><div class="step-num">步驟 3（代入 $s=1,t=2\pi$）</div>$x=1,\ y=0,\ z=2\pi$；$w_x=2\pi,\ w_y=1+2\pi,\ w_z=1$；$x_s=1,\ y_s=0,\ z_s=0$；$x_t=0,\ y_t=1,\ z_t=1$。</div>
-    <div class="step-block"><div class="step-num">步驟 4（套鏈鎖律）</div>$\dfrac{\partial w}{\partial s}=(2\pi)(1)+(1+2\pi)(0)+(1)(0)=2\pi$；$\dfrac{\partial w}{\partial t}=(2\pi)(0)+(1+2\pi)(1)+(1)(1)=2+2\pi$。</div>
+    <div class="step-block"><div class="step-num">步驟 4（套連鎖律）</div>$\dfrac{\partial w}{\partial s}=(2\pi)(1)+(1+2\pi)(0)+(1)(0)=2\pi$；$\dfrac{\partial w}{\partial t}=(2\pi)(0)+(1+2\pi)(1)+(1)(1)=2+2\pi$。</div>
     <div class="ex-answer">$\dfrac{\partial w}{\partial s}\bigg|_{(1,2\pi)}=2\pi,\quad \dfrac{\partial w}{\partial t}\bigg|_{(1,2\pi)}=2+2\pi$</div>
   </div>
 
@@ -284,7 +284,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   <h3 id="sec-13-5-3">13.5.2 隱（偏）微分</h3>
   <div class="info-box warm">
     <span class="info-label">定理 13.8 隱微分</span>
-    <p>若 $F(x,y)=0$ 隱含定義 $y=y(x)$，鏈鎖律給 $F_x+F_y\,dy/dx=0$，故</p>
+    <p>若 $F(x,y)=0$ 隱含定義 $y=y(x)$，連鎖律給 $F_x+F_y\,dy/dx=0$，故</p>
     $$\frac{dy}{dx}=-\frac{F_x}{F_y}\quad(F_y\ne 0).$$
     <p>若 $F(x,y,z)=0$ 隱含定義 $z=z(x,y)$，則 $\displaystyle z_x=-F_x/F_z,\ z_y=-F_y/F_z\ (F_z\ne 0)$。</p>
   </div>
@@ -309,8 +309,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <div class="concept-warning">
-    <div class="cw-title">概念辨析 · 鏈鎖律 ↔ 全微分</div>
-    <p>13.4 的全微分 $dw=w_x\,dx+w_y\,dy$ 與鏈鎖律相容：若 $x,y$ 都依賴 $t$，兩邊除以 $dt$ 就得到 $\frac{dw}{dt}=w_x\frac{dx}{dt}+w_y\frac{dy}{dt}$。同樣地，當 $F(x,y)=0$ 把 $y$ 視為 $x$ 的函數，全微分對 $F$ 取 $0$ 即得 $F_x+F_y\,y'=0$，這就是隱微分公式的來源。</p>
+    <div class="cw-title">概念辨析 · 連鎖律 ↔ 全微分</div>
+    <p>13.4 的全微分 $dw=w_x\,dx+w_y\,dy$ 與連鎖律相容：若 $x,y$ 都依賴 $t$，兩邊除以 $dt$ 就得到 $\frac{dw}{dt}=w_x\frac{dx}{dt}+w_y\frac{dy}{dt}$。同樣地，當 $F(x,y)=0$ 把 $y$ 視為 $x$ 的函數，全微分對 $F$ 取 $0$ 即得 $F_x+F_y\,y'=0$，這就是隱微分公式的來源。</p>
   </div>
 
   <div class="quiz-card" id="quiz-13-5-2">
@@ -1001,9 +1001,9 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 </section>
 
 <section id="sec-13-10">
-  <div class="section-number">13.10 Lagrange 乘數法（補充）</div>
+  <div class="section-number">13.10 Lagrange 乘子法（補充）</div>
   <h2>受限制最佳化：讓等高線剛好貼住限制曲線</h2>
-  <p>許多最佳化問題會限制可使用的點，例如點必須落在某條曲線、某個曲面，或兩個曲面的交線上。這些限制會使問題變複雜，因為最佳解可能出現在可行區域的邊界。Lagrange 乘數法的想法是：在限制曲線上取得極值時，目標函數的等高線會和限制曲線相切，所以兩者的梯度方向平行。</p>
+  <p>許多最佳化問題會限制可使用的點，例如點必須落在某條曲線、某個曲面，或兩個曲面的交線上。這些限制會使問題變複雜，因為最佳解可能出現在可行區域的邊界。Lagrange 乘子法的想法是：在限制曲線上取得極值時，目標函數的等高線會和限制曲線相切，所以兩者的梯度方向平行。</p>
 
   <div id="sec-13-10-geometry" class="subsection">
     <div class="viz-layout">
@@ -1030,7 +1030,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
     <p>限制式可看成 $g(x,y)=x^2/3^2+y^2/4^2$ 的固定等高線 $g(x,y)=1$。目標函數 $f(x,y)=4xy$ 的等高線是一族雙曲線 $4xy=k$。若 $k$ 太小，雙曲線和橢圓交在許多可行點；把 $k$ 逐漸放大，最後仍能碰到橢圓的那一條雙曲線會剛好與橢圓相切。相切時，兩條曲線的法向量平行，也就是</p>
     $$\nabla f(x,y)=\lambda\nabla g(x,y).$$
-    <p>若 $\nabla f(x,y)=\lambda\nabla g(x,y)$，講義稱這個純量 $\lambda$ 為拉格朗日乘數。</p>
+    <p>若 $\nabla f(x,y)=\lambda\nabla g(x,y)$，講義稱這個純量 $\lambda$ 為拉格朗日乘子。</p>
   </div>
 
   <div id="sec-13-10-method" class="subsection">
@@ -1048,7 +1048,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
 
     <div class="method-grid">
       <div class="info-card">
-        <div class="ic-title">Lagrange 乘數法</div>
+        <div class="ic-title">Lagrange 乘子法</div>
         <p>同時解下列三個方程：</p>
         $$f_x(x,y)=\lambda g_x(x,y),\qquad f_y(x,y)=\lambda g_y(x,y),\qquad g(x,y)=c.$$
       </div>
@@ -1070,7 +1070,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   </div>
 
   <div id="sec-13-10-examples" class="subsection">
-    <h3>例題 1：單一限制式的 Lagrange 乘數法</h3>
+    <h3>例題 1：單一限制式的 Lagrange 乘子法</h3>
     <div class="lecture-example">
       <div class="ex-tag">講義例題 1</div>
       <div class="ex-title">在 $x>0,\ y>0$ 且滿足限制式 $(x^2/3^2)+(y^2/4^2)=1$ 的條件下，求 $f(x,y)=4xy$ 的最大值。</div>
@@ -1087,7 +1087,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       <div class="ex-answer">最大值為 $24$，發生在 $\left(\dfrac3{\sqrt2},2\sqrt2\right)$。</div>
     </div>
 
-    <h3>例題 3：三變數的 Lagrange 乘數法</h3>
+    <h3>例題 3：三變數的 Lagrange 乘子法</h3>
     <div class="lecture-example">
       <div class="ex-tag">講義例題 3</div>
       <div class="ex-title">在限制式 $2x-3y-4z=49$ 下，求 $f(x,y,z)=2x^2+y^2+3z^2$ 的最小值。</div>
@@ -1127,7 +1127,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       <div class="ex-tag">講義例題 4</div>
       <div class="ex-title">在限制區域 $x^2+y^2\le 10$ 上，求 $f(x,y)=x^2+2y^2-2x+3$ 的極值。</div>
       <div class="step-block"><div class="step-num">步驟 1（拆成兩種情況）</div>因為限制是 $x^2+y^2\le 10$，要分成邊界圓周 $x^2+y^2=10$ 與圓盤內部兩部分。</div>
-      <div class="step-block"><div class="step-num">步驟 2（邊界上用 Lagrange 乘數法）</div>在 $x^2+y^2=10$ 上，令 $g=x^2+y^2$。由
+      <div class="step-block"><div class="step-num">步驟 2（邊界上用 Lagrange 乘子法）</div>在 $x^2+y^2=10$ 上，令 $g=x^2+y^2$。由
         $$\nabla f=(2x-2,4y),\qquad \lambda\nabla g=(2\lambda x,2\lambda y)$$
         得
         $$2x-2=2\lambda x,\qquad 4y=2\lambda y,\qquad x^2+y^2=10.$$</div>
@@ -1142,7 +1142,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   <div id="sec-13-10-two-constraints" class="subsection">
     <div class="info-box warm">
       <span class="info-label">兩個限制條件</span>
-      <p>若有兩個限制函數 $g$ 與 $h$，講義引入第二個拉格朗日乘數 $\mu$，並解</p>
+      <p>若有兩個限制函數 $g$ 與 $h$，講義引入第二個拉格朗日乘子 $\mu$，並解</p>
       $$\nabla f=\lambda\nabla g+\mu\nabla h,$$
       <p>其中兩個限制函數的梯度向量不平行。</p>
     </div>
@@ -1209,11 +1209,11 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   <h2>本頁速查</h2>
   <div class="method-grid">
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">鏈鎖律（單變數）</span><span class="ref-card-name-en">定理 13.6</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">連鎖律（單變數）</span><span class="ref-card-name-en">定理 13.6</span></div>
       <div class="ref-card-eq">$\dfrac{dw}{dt}=w_x\,x'+w_y\,y'$</div>
     </div>
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">鏈鎖律（雙變數）</span><span class="ref-card-name-en">定理 13.7</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">連鎖律（雙變數）</span><span class="ref-card-name-en">定理 13.7</span></div>
       <div class="ref-card-eq">$w_s=w_x x_s+w_y y_s$；$w_t=w_x x_t+w_y y_t$</div>
     </div>
     <div class="ref-card">
@@ -1253,7 +1253,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       <div class="ref-card-eq">閉、有界 $R$ 上連續函數必有絕對最大與最小值</div>
     </div>
     <div class="ref-card">
-      <div class="ref-card-header"><span class="ref-card-name">拉格朗日乘數法</span><span class="ref-card-name-en">定理 13.18</span></div>
+      <div class="ref-card-header"><span class="ref-card-name">拉格朗日乘子法</span><span class="ref-card-name-en">定理 13.18</span></div>
       <div class="ref-card-eq">單一限制：$\nabla f=\lambda\nabla g$，再加上 $g(x,y)=c$</div>
     </div>
     <div class="ref-card">
