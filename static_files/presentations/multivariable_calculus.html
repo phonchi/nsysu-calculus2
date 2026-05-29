@@ -578,6 +578,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <h3>13.2.1 平面上的鄰域</h3>
     <p>在 $\mathbb{R}$ 上，$x_0$ 的「半徑 $\delta$ 鄰域」是開區間 $(x_0-\delta, x_0+\delta)$。在 $\mathbb{R}^2$ 上，類似的概念叫<strong>開圓盤 (open disk)</strong>：</p>
     <div style="text-align:center;margin:.5rem 0;">$$B_\delta(x_0,y_0) = \{(x,y) : \sqrt{(x-x_0)^2 + (y-y_0)^2} < \delta\}$$</div>
+    <p style="font-size:.88rem;color:var(--muted);">注意是<strong>嚴格不等式 $< \delta$</strong>，不含邊界圓周——這是「開」圓盤的由來。若把不等式換成 $\le \delta$（連邊界一起包含），得到的是<strong>閉圓盤 (closed disk)</strong> $\bar B_\delta(x_0,y_0)$。開／閉圓盤正是下面「開區域／閉區域」的局部原型。</p>
     <p>把點 $P$ 拖到平面上不同位置，下方互動會即時告訴你它與藍色測試區域的關係：<strong>內部點</strong>（被開圓盤完全包住）、<strong>邊界點</strong>（任何鄰域都同時含區域內外的點）、<strong>外部點</strong>（被開圓盤排除）。</p>
 
     <div class="viz-layout">
