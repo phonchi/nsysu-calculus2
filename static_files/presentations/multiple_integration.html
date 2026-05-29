@@ -638,21 +638,22 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   <h3 id="sec-14-3-2">例題</h3>
   <div class="lecture-example">
     <div class="ex-tag">講義例題 1（區域描述）</div>
-    <div class="ex-title">用極座標描述下列區域：(a) 半徑 $2$ 的第一象限四分之一圓盤；(b) 半徑 $1$ 與 $3$ 的同心圓之間的環形區域；(c) 心臟線 $r=a(1-\cos\theta)$ 圍成的區域。</div>
-    <div class="step-block"><div class="step-num">(a) 第一象限四分之一圓盤 $r\le 2$</div>$0\le r\le 2,\ 0\le\theta\le\pi/2$。</div>
+    <div class="ex-title">用極座標描述下列區域：(a) 半徑 $2$ 的四分之一圓盤；(b) 半徑 $1$ 與 $3$ 的同心圓之間的環形區域；(c) 心臟線 $r=a(1+\sin\theta)$ 圍成的區域（尖點朝下、開口朝上）。</div>
+    <div class="step-block"><div class="step-num">(a) 四分之一圓盤 $r\le 2$</div>$0\le r\le 2,\ 0\le\theta\le\pi/2$。</div>
     <div class="step-block"><div class="step-num">(b) 同心圓 $r=1$ 與 $r=3$ 之間的環形</div>$1\le r\le 3,\ 0\le\theta\le 2\pi$。</div>
-    <div class="step-block"><div class="step-num">(c) 心臟線 $r=a(1-\cos\theta)$ 圍成</div>$0\le r\le a(1-\cos\theta),\ 0\le\theta\le 2\pi$。</div>
+    <div class="step-block"><div class="step-num">(c) 心臟線 $r=a(1+\sin\theta)$ 圍成</div>$0\le r\le a(1+\sin\theta),\ 0\le\theta\le 2\pi$。</div>
     <div class="ex-answer">所有「以原點為對稱中心」的圓 / 環 / 花瓣形，極座標都<strong>遠比直角座標簡潔</strong>。</div>
   </div>
 
   <div class="lecture-example">
     <div class="ex-tag">講義例題 2（環形區域積分）</div>
-    <div class="ex-title">求 $\displaystyle\iint_R(x^2+y^2)\,dA$，$R$ 為環形 $1\le x^2+y^2\le 5$</div>
+    <div class="ex-title">求 $\displaystyle\iint_R(x^2+y)\,dA$，$R$ 為環形 $1\le x^2+y^2\le 5$</div>
     <div class="step-block"><div class="step-num">步驟 1（描述區域）</div>$x^2+y^2=r^2$，環形即 $1\le r\le\sqrt 5$，$0\le\theta\le 2\pi$。</div>
-    <div class="step-block"><div class="step-num">步驟 2（換被積函數 + dA）</div>$x=r\cos\theta,\ y=r\sin\theta$，所以 $$x^2+y^2=r^2.$$ 再乘上 $dA=r\,dr\,d\theta$ 的雅可比因子，得到被積項 $$r^2\cdot r=r^3.$$</div>
-    <div class="step-block"><div class="step-num">步驟 3（寫成極座標積分）</div>$$\iint_R(x^2+y^2)\,dA=\int_0^{2\pi}\int_1^{\sqrt5}r^3\,dr\,d\theta.$$</div>
-    <div class="step-block"><div class="step-num">步驟 4（計算）</div>$$\int_1^{\sqrt5}r^3\,dr=\left[\frac{r^4}{4}\right]_1^{\sqrt5}=\frac{25-1}{4}=6,$$ 所以 $$\int_0^{2\pi}6\,d\theta=12\pi.$$</div>
-    <div class="ex-answer">$\displaystyle\iint_R(x^2+y^2)\,dA=12\pi$</div>
+    <div class="step-block"><div class="step-num">步驟 2（換被積函數 + dA）</div>$x=r\cos\theta,\ y=r\sin\theta$，所以 $$x^2+y=r^2\cos^2\theta+r\sin\theta.$$ 再乘上 $dA=r\,dr\,d\theta$ 的雅可比因子，得到被積項 $$r^3\cos^2\theta+r^2\sin\theta.$$</div>
+    <div class="step-block"><div class="step-num">步驟 3（寫成極座標積分）</div>$$\iint_R(x^2+y)\,dA=\int_0^{2\pi}\!\!\int_1^{\sqrt5}\bigl(r^3\cos^2\theta+r^2\sin\theta\bigr)\,dr\,d\theta.$$</div>
+    <div class="step-block"><div class="step-num">步驟 4（內層對 $r$）</div>$\displaystyle\int_1^{\sqrt5}r^3\,dr=\left[\tfrac{r^4}{4}\right]_1^{\sqrt5}=\tfrac{25-1}{4}=6$；$\displaystyle\int_1^{\sqrt5}r^2\,dr=\left[\tfrac{r^3}{3}\right]_1^{\sqrt5}=\tfrac{5\sqrt5-1}{3}$。內層結果為 $$6\cos^2\theta+\tfrac{5\sqrt5-1}{3}\sin\theta.$$</div>
+    <div class="step-block"><div class="step-num">步驟 5（外層對 $\theta$）</div>$\displaystyle\int_0^{2\pi}6\cos^2\theta\,d\theta=6\pi$；$\displaystyle\int_0^{2\pi}\sin\theta\,d\theta=0$。所以總和為 $6\pi$。</div>
+    <div class="ex-answer">$\displaystyle\iint_R(x^2+y)\,dA=6\pi\approx 18.85$</div>
   </div>
 
   <div class="canvas-panel">
@@ -671,7 +672,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         </div>
         <div class="toggle-row" id="annToggles">
           <span class="toggle-label">顯示</span>
-          <button class="toggle-btn" data-toggle="grad">被積函數熱圖 ($x^2+y^2$)</button>
+          <button class="toggle-btn" data-toggle="grad">被積函數熱圖 ($x^2+y$)</button>
           <button class="toggle-btn on" data-toggle="polarGrid">極座標網格</button>
           <button class="toggle-btn" data-toggle="cartGrid">直角網格</button>
         </div>
@@ -688,13 +689,13 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
           <div class="ic-row"><span class="ic-label">環面積 π(r₂²−r₁²)</span><span class="ic-value highlight" id="annArea">12.566</span></div>
         </div>
         <div class="eq-card">
-          <div class="eq-label">∬_R (x² + y²) dA</div>
-          <div class="eq-formula">$=\dfrac{\pi(r_2^4 - r_1^4)}{2}$</div>
-          <div class="eq-sub" id="annInt">當前 = 37.699 (≈ 12π)</div>
+          <div class="eq-label">∬_R (x² + y) dA</div>
+          <div class="eq-formula">$=\dfrac{\pi(r_2^4 - r_1^4)}{4}$</div>
+          <div class="eq-sub" id="annInt">當前 = 18.850 (≈ 6π)</div>
         </div>
         <div class="info-card">
           <div class="ic-title">講義例題 2 預設</div>
-          <div class="ic-row"><span class="ic-label">r₁ = 1, r₂ = √5</span><span class="ic-value ok">12π ≈ 37.70</span></div>
+          <div class="ic-row"><span class="ic-label">r₁ = 1, r₂ = √5</span><span class="ic-value ok">6π ≈ 18.85</span></div>
         </div>
       </div>
     </div>
@@ -1909,8 +1910,8 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         const img = ctx.createImageData(phyW, phyH);
         const data = img.data;
         const r1s = r1*r1, r2s = r2*r2;
-        const minVal = r1*r1;
-        const maxVal = r2*r2;
+        const minVal = -r2;
+        const maxVal = r2*r2 + 0.25;
         const denom = Math.max(1e-9, maxVal - minVal);
         // 背景色 #fbf7ed
         const bgR = 251, bgG = 247, bgB = 237;
@@ -1921,7 +1922,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
             const rr = dx*dx + dy*dy;
             const off = (py*phyW + px) * 4;
             if (rr >= r1s && rr <= r2s){
-              const val = dx*dx + dy*dy;
+              const val = dx*dx + dy;
               const t = Math.max(0, Math.min(1, (val - minVal) / denom));
               const [R,G,B] = colorRamp(t);
               data[off] = R; data[off+1] = G; data[off+2] = B; data[off+3] = 255;
@@ -1976,11 +1977,11 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         ctx.fillStyle = 'rgba(0,0,0,.45)'; ctx.fillRect(8, 8, 152, 22);
         ctx.fillStyle = '#fff'; ctx.font = '500 11px "JetBrains Mono", monospace';
         ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
-        ctx.fillText('低 ← x²+y² → 高', 16, 19);
+        ctx.fillText('低 ← x²+y → 高', 16, 19);
       }
       // side panel
       const area = Math.PI * (r2*r2 - r1*r1);
-      const intVal = Math.PI * (Math.pow(r2, 4) - Math.pow(r1, 4)) / 2;
+      const intVal = Math.PI * (Math.pow(r2, 4) - Math.pow(r1, 4)) / 4;
       setText('annR1Val', r1.toFixed(2));
       setText('annR2Val', r2.toFixed(2));
       setText('annR1Info', r1.toFixed(2));
