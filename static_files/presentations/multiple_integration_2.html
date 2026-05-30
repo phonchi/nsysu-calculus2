@@ -315,36 +315,39 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     </div>
   </div>
 
-  <h4 id="sec-14-5-3">曲面面積延伸例題（補充）</h4>
-  <p>以下例題用來練習講義的曲面面積公式；每題完整條件已列在題目標題中。</p>
+  <h4 id="sec-14-5-3">講義例題</h4>
+  <p>以下三題與講義第 14.5 節（曲面面積）<strong>完全對應</strong>；統一使用曲面面積公式 $S=\iint_R\sqrt{1+f_x^2+f_y^2}\,dA$。</p>
 
   <div class="lecture-example">
-    <div class="ex-tag">補充延伸例題 · 半球面積</div>
-    <div class="ex-title">$z=\sqrt{4-x^2-y^2}$ 在圓盤 $R: x^2+y^2\le 1.8^2$ 之上的曲面面積</div>
-    <div class="step-block"><div class="step-num">步驟 1（求偏導與被積函數）</div>對 $z=\sqrt{4-x^2-y^2}$，$f_x=\dfrac{-x}{\sqrt{4-x^2-y^2}}$，$f_y=\dfrac{-y}{\sqrt{4-x^2-y^2}}$，故 $1+f_x^2+f_y^2=\dfrac{(4-x^2-y^2)+x^2+y^2}{4-x^2-y^2}=\dfrac{4}{4-x^2-y^2}.$</div>
-    <div class="step-block"><div class="step-num">步驟 2（換為極座標）</div>圓盤適用極座標 $x=r\cos\theta,\ y=r\sin\theta$，$dA=r\,dr\,d\theta$：$$S=\iint_R \dfrac{2}{\sqrt{4-r^2}}\cdot r\,dr\,d\theta=\int_0^{2\pi}\!\int_0^{1.8}\dfrac{2r}{\sqrt{4-r^2}}\,dr\,d\theta.$$</div>
-    <div class="step-block"><div class="step-num">步驟 3（內層代換 $u=4-r^2$）</div>$du=-2r\,dr$，$r=0\to u=4$、$r=1.8\to u=0.76$：$\displaystyle\int_0^{1.8}\dfrac{2r}{\sqrt{4-r^2}}dr=\bigl[-2\sqrt{4-r^2}\bigr]_0^{1.8}=2(2-\sqrt{0.76}).$</div>
-    <div class="step-block"><div class="step-num">步驟 4（外層）</div>$\displaystyle S=\int_0^{2\pi}2(2-\sqrt{0.76})\,d\theta=4\pi(2-\sqrt{0.76}).$</div>
-    <div class="ex-answer">$S=4\pi(2-\sqrt{0.76})\approx 14.18$。切換上方互動到 $z=\sqrt{4-x^2-y^2}$ 預設並提高切片數可驗證。</div>
+    <div class="ex-tag">講義例題 1 · 平面區域的曲面面積</div>
+    <div class="ex-title">求平面 $z=2-x-y$ 落在第一象限單位圓盤 $R:x^2+y^2\le 1,\ x\ge 0,\ y\ge 0$ 上方那塊的曲面面積。</div>
+    <div class="step-block"><div class="step-num">步驟 1（偏導與被積函數）</div>$f_x=-1,\ f_y=-1$，皆為常數，故 $\sqrt{1+f_x^2+f_y^2}=\sqrt{1+1+1}=\sqrt{3}$。</div>
+    <div class="step-block"><div class="step-num">步驟 2（常數被積函數 ⇒ 面積 = 常數 × 投影面積）</div>$$S=\iint_R\sqrt{3}\,dA=\sqrt{3}\,|R|.$$ $R$ 是單位圓盤的第一象限四分之一，$|R|=\dfrac{1}{4}\pi(1)^2=\dfrac{\pi}{4}$。</div>
+    <div class="ex-answer">$S=\sqrt{3}\cdot\dfrac{\pi}{4}=\dfrac{\sqrt{3}\,\pi}{4}\approx 1.360$。</div>
   </div>
 
   <div class="lecture-example">
-    <div class="ex-tag">補充延伸例題 · 平面在矩形之上</div>
-    <div class="ex-title">$z=x+2y$ 在矩形 $R:[0,1]\times[0,2]$ 之上的曲面面積</div>
-    <div class="step-block"><div class="step-num">步驟 1（偏導）</div>$f_x=1,\ f_y=2$，皆為常數。</div>
-    <div class="step-block"><div class="step-num">步驟 2（被積函數為常數）</div>$\sqrt{1+1+4}=\sqrt{6}$。所以 $S=\iint_R \sqrt{6}\,dA=\sqrt{6}\cdot |R|$。</div>
-    <div class="step-block"><div class="step-num">步驟 3（投影面積）</div>$|R|=1\times 2=2$，故 $S=2\sqrt{6}\approx 4.899$。</div>
-    <div class="ex-answer">$S=2\sqrt{6}\approx 4.899$。<strong>觀察</strong>：對線性函數 $f$，$\sqrt{1+f_x^2+f_y^2}$ 是<em>常數</em>，所以「Riemann 切片總和 = 精確值」<u>無關切片數</u>（上方互動切換到 $z=2x+y$ 任意 $N$ 都剛好命中）。</div>
+    <div class="ex-tag">講義例題 2 · 一般曲面（三角代換 + 分部積分）</div>
+    <div class="ex-title">求曲面 $f(x,y)=1-x^2+y$ 落在以 $(1,0,0),\ (0,-1,0),\ (0,1,0)$ 為頂點的三角形區域上方那塊的曲面面積。</div>
+    <div class="step-block"><div class="step-num">步驟 1（偏導與被積函數）</div>$f_x=-2x,\ f_y=1$，故 $\sqrt{1+f_x^2+f_y^2}=\sqrt{1+4x^2+1}=\sqrt{2+4x^2}$。</div>
+    <div class="step-block"><div class="step-num">步驟 2（描述投影區域 $R$ 並設定積分）</div>三角形投影到 $xy$ 平面，邊界為 $y=1-x$（上）與 $y=x-1$（下），故 $R:0\le x\le 1,\ x-1\le y\le 1-x$：$$S=\int_0^1\!\!\int_{x-1}^{1-x}\sqrt{2+4x^2}\,dy\,dx.$$</div>
+    <div class="step-block"><div class="step-num">步驟 3（先積 $y$ 並拆項）</div>被積函數與 $y$ 無關：$$S=\int_0^1\Big[y\sqrt{2+4x^2}\Big]_{y=x-1}^{y=1-x}dx=\int_0^1\big[(1-x)-(x-1)\big]\sqrt{2+4x^2}\,dx=\int_0^1(2-2x)\sqrt{2+4x^2}\,dx.$$ 拆成 $$S=\underbrace{\int_0^1 2\sqrt{2+4x^2}\,dx}_{I_1}\;-\;\underbrace{\int_0^1 2x\sqrt{2+4x^2}\,dx}_{I_2}.$$</div>
+    <div class="step-block"><div class="step-num">步驟 4a（$I_2$：簡單 $u$-代換）</div>令 $u=2+4x^2$，$du=8x\,dx$，即 $2x\,dx=\dfrac{du}{4}$：$$\int 2x\sqrt{2+4x^2}\,dx=\frac14\int\sqrt{u}\,du=\frac14\cdot\frac{2}{3}u^{3/2}=\frac{1}{6}(2+4x^2)^{3/2}.$$</div>
+    <div class="step-block"><div class="step-num">步驟 4b（$I_1$ 的核心：<strong>三角代換</strong>）</div>先抽出常數：$\displaystyle\int\sqrt{2+4x^2}\,dx=\sqrt{2}\int\sqrt{1+2x^2}\,dx$。令 $x=\dfrac{\tan\theta}{\sqrt2}$，則 $dx=\dfrac{\sec^2\theta}{\sqrt2}\,d\theta$ 且 $1+2x^2=1+\tan^2\theta=\sec^2\theta$、$\sqrt{1+2x^2}=\sec\theta$：$$\sqrt2\int\sqrt{1+2x^2}\,dx=\sqrt2\int\sec\theta\cdot\frac{\sec^2\theta}{\sqrt2}\,d\theta=\int\sec^3\theta\,d\theta.$$</div>
+    <div class="step-block"><div class="step-num">步驟 4c（$\int\sec^3\theta\,d\theta$：<strong>分部積分</strong>）</div>取 $u=\sec\theta,\ dv=\sec^2\theta\,d\theta$，則 $du=\sec\theta\tan\theta\,d\theta,\ v=\tan\theta$：$$\int\sec^3\theta\,d\theta=\sec\theta\tan\theta-\int\sec\theta\tan^2\theta\,d\theta=\sec\theta\tan\theta-\int\sec\theta(\sec^2\theta-1)\,d\theta.$$ 右邊出現 $\displaystyle\int\sec^3\theta\,d\theta$，移項合併（並用 $\int\sec\theta\,d\theta=\ln|\sec\theta+\tan\theta|$）：$$2\int\sec^3\theta\,d\theta=\sec\theta\tan\theta+\ln|\sec\theta+\tan\theta|\;\Longrightarrow\;\int\sec^3\theta\,d\theta=\frac12\sec\theta\tan\theta+\frac12\ln|\sec\theta+\tan\theta|+C.$$</div>
+    <div class="step-block"><div class="step-num">步驟 4d（換回 $x$）</div>由 $\tan\theta=\sqrt2\,x$、$\sec\theta=\sqrt{1+2x^2}$：$$\int\sqrt{2+4x^2}\,dx=\frac{\sqrt2\,x\sqrt{1+2x^2}}{2}+\frac12\ln\!\big(\sqrt{1+2x^2}+\sqrt2\,x\big)+C.$$ 又因 $\sqrt2\,\sqrt{1+2x^2}=\sqrt{2+4x^2}$，故 $I_1$ 的反導數可寫成 $x\sqrt{2+4x^2}+\ln\!\big(\sqrt2\,x+\sqrt{1+2x^2}\big)$。</div>
+    <div class="step-block"><div class="step-num">步驟 5（合併 $I_1-I_2$ 並代入 $0\to 1$）</div>$$S=\Big[x\sqrt{2+4x^2}+\ln\!\big(\sqrt2\,x+\sqrt{1+2x^2}\big)-\frac{(2+4x^2)^{3/2}}{6}\Big]_0^1.$$ 在 $x=1$：$\sqrt6+\ln(\sqrt2+\sqrt3)-\dfrac{6^{3/2}}{6}=\sqrt6+\ln(\sqrt2+\sqrt3)-\sqrt6=\ln(\sqrt2+\sqrt3)$。在 $x=0$：$0+\ln 1-\dfrac{2^{3/2}}{6}=-\dfrac{\sqrt2}{3}$。相減（上限 $-$ 下限）：$$S=\ln(\sqrt2+\sqrt3)-\Big(-\frac{\sqrt2}{3}\Big)=\ln(\sqrt2+\sqrt3)+\frac{\sqrt2}{3}.$$</div>
+    <div class="ex-answer">$S=\ln(\sqrt2+\sqrt3)+\dfrac{\sqrt2}{3}\approx 1.618$。<strong>關鍵</strong>：$\displaystyle\int\sqrt{2+4x^2}\,dx$ 需以<strong>三角代換 $x=\tfrac{\tan\theta}{\sqrt2}$</strong> 化為 $\int\sec^3\theta\,d\theta$，再用<strong>分部積分</strong>求出。</div>
   </div>
 
   <div class="lecture-example">
-    <div class="ex-tag">補充延伸例題 · 拋物面在第一象限圓盤</div>
-    <div class="ex-title">$z=x^2+y^2$ 在 $R:x^2+y^2\le 1,\ x\ge 0,\ y\ge 0$ 之上的曲面面積</div>
-    <div class="step-block"><div class="step-num">步驟 1（偏導）</div>$f_x=2x,\ f_y=2y$，故 $1+f_x^2+f_y^2=1+4x^2+4y^2=1+4r^2$（極座標）。</div>
-    <div class="step-block"><div class="step-num">步驟 2（極座標化）</div>第一象限 $\theta\in[0,\pi/2]$；$$S=\int_0^{\pi/2}\!\int_0^1 \sqrt{1+4r^2}\cdot r\,dr\,d\theta.$$</div>
-    <div class="step-block"><div class="step-num">步驟 3（內層代換 $u=1+4r^2$）</div>$du=8r\,dr$，$r=0\to u=1$、$r=1\to u=5$：$\displaystyle\int_0^1\sqrt{1+4r^2}\cdot r\,dr=\dfrac{1}{8}\!\int_1^5\sqrt{u}\,du=\dfrac{1}{8}\cdot\dfrac{2}{3}\bigl[u^{3/2}\bigr]_1^5=\dfrac{5\sqrt{5}-1}{12}.$</div>
-    <div class="step-block"><div class="step-num">步驟 4（外層）</div>$\displaystyle S=\int_0^{\pi/2}\dfrac{5\sqrt{5}-1}{12}\,d\theta=\dfrac{\pi(5\sqrt{5}-1)}{24}.$</div>
-    <div class="ex-answer">$S=\dfrac{\pi(5\sqrt 5-1)}{24}\approx 1.331$。整圓盤面積為此值的 4 倍 $\approx 5.33$。</div>
+    <div class="ex-tag">講義例題 3 · 變數變換為極座標</div>
+    <div class="ex-title">求拋物面 $z=1+x^2+y^2$ 落在單位圓 $R:x^2+y^2\le 1$ 上方那塊的曲面面積。</div>
+    <div class="step-block"><div class="step-num">步驟 1（偏導與被積函數）</div>$f_x=2x,\ f_y=2y$，故 $\sqrt{1+f_x^2+f_y^2}=\sqrt{1+4x^2+4y^2}=\sqrt{1+4r^2}$（極座標）。</div>
+    <div class="step-block"><div class="step-num">步驟 2（極座標化）</div>單位圓盤 $0\le r\le 1,\ 0\le\theta\le 2\pi$，$dA=r\,dr\,d\theta$：$$S=\int_0^{2\pi}\!\!\int_0^1\sqrt{1+4r^2}\,r\,dr\,d\theta.$$</div>
+    <div class="step-block"><div class="step-num">步驟 3（內層代換 $u=1+4r^2$）</div>$du=8r\,dr$，$r:0\to1$ 對應 $u:1\to5$：$$\int_0^1\sqrt{1+4r^2}\,r\,dr=\frac18\int_1^5\sqrt{u}\,du=\frac18\cdot\frac23\big[u^{3/2}\big]_1^5=\frac{5\sqrt5-1}{12}.$$</div>
+    <div class="step-block"><div class="step-num">步驟 4（外層）</div>$$S=\int_0^{2\pi}\frac{5\sqrt5-1}{12}\,d\theta=\frac{\pi(5\sqrt5-1)}{6}.$$</div>
+    <div class="ex-answer">$S=\dfrac{\pi(5\sqrt5-1)}{6}\approx 5.33$。</div>
   </div>
 
   <div class="concept-warning">
@@ -460,34 +463,64 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
         </div>
         <div class="info-box green" style="margin:0;padding:.8rem 1rem;">
           <span class="info-label">提醒</span>
-          <div style="font-size:.85rem;line-height:1.65;">$\iiint_Q dV$ 等於 $Q$ 的體積；本節先專注在把三維區域 $Q$ 正確寫成三層積分。</div>
+          <div style="font-size:.85rem;line-height:1.65;">$\iiint_Q dV$ 等於 $Q$ 的體積；本節重點是把三維區域 $Q$ 正確寫成三層積分的上下限。</div>
         </div>
       </div>
     </div>
   </div>
 
   <div id="sec-14-6-2" class="subsection">
-    <h3>14.6.2 經典例題與技法</h3>
+    <h3>14.6.2 講義例題</h3>
+    <p>以下例題與講義第 14.6 節（三重積分與應用）<strong>完全對應</strong>。</p>
 
     <div class="lecture-example">
-      <div class="ex-tag">補充延伸例題 · 拋物面下方體積</div>
-      <div class="ex-title">$Q$：$0\le z\le 4-x^2-y^2$，求 $V=\iiint_Q dV$</div>
-      <div class="step-block"><div class="step-num">步驟 1（投影到 xy）</div>$z\ge 0$ 要求 $4-x^2-y^2\ge 0$，即 $D:x^2+y^2\le 4$（半徑 2 圓盤）。</div>
-      <div class="step-block"><div class="step-num">步驟 2（先對 z 積）</div>$\displaystyle\int_0^{4-x^2-y^2}dz=4-x^2-y^2$。剩下對 $(x,y)$ 在圓盤上積分。</div>
-      <div class="step-block"><div class="step-num">步驟 3（極座標化）</div>$\displaystyle V=\iint_D (4-r^2)\,r\,dr\,d\theta=\int_0^{2\pi}\!\int_0^2 (4-r^2)\,r\,dr\,d\theta.$</div>
-      <div class="step-block"><div class="step-num">步驟 4（內層 + 外層）</div>$\displaystyle\int_0^2(4r-r^3)\,dr=[2r^2-\tfrac{r^4}{4}]_0^2=8-4=4$；$\displaystyle V=\int_0^{2\pi}4\,d\theta=8\pi.$</div>
-      <div class="ex-answer">$V=8\pi\approx 25.133$。上方互動切到「$z=x^2+y^2$ 與 $z=4$」預設並把 $N$ 拉大可看 Riemann 和逼近 $8\pi$。</div>
+      <div class="ex-tag">講義例題 1 · 三重迭代積分</div>
+      <div class="ex-title">計算 $\displaystyle\int_0^2\!\int_0^x\!\int_0^{x+y} e^x(y+2z)\,dz\,dy\,dx$。</div>
+      <div class="step-block"><div class="step-num">步驟 1（先對 $z$，固定 $x,y$）</div>$$\int_0^{x+y} e^x(y+2z)\,dz=e^x\big[yz+z^2\big]_0^{x+y}=e^x\big[y(x+y)+(x+y)^2\big]=e^x(x^2+3xy+2y^2).$$</div>
+      <div class="step-block"><div class="step-num">步驟 2（再對 $y$，固定 $x$）</div>$$\int_0^x e^x(x^2+3xy+2y^2)\,dy=e^x\Big[x^2y+\tfrac{3xy^2}{2}+\tfrac{2y^3}{3}\Big]_0^x=e^x\Big(x^3+\tfrac{3x^3}{2}+\tfrac{2x^3}{3}\Big)=\tfrac{19}{6}x^3e^x.$$</div>
+      <div class="step-block"><div class="step-num">步驟 3a（$\int x^3e^x\,dx$：反覆<strong>分部積分</strong>）</div>每次取多項式為 $u$、$dv=e^x\,dx$，連續降冪三次：$$\begin{aligned}\int x^3e^x\,dx&=x^3e^x-3\!\int x^2e^x\,dx\\&=x^3e^x-3\Big(x^2e^x-2\!\int xe^x\,dx\Big)\\&=x^3e^x-3x^2e^x+6\Big(xe^x-\!\int e^x\,dx\Big)\\&=e^x(x^3-3x^2+6x-6)+C.\end{aligned}$$</div>
+      <div class="step-block"><div class="step-num">步驟 3b（代入 $0\to 2$）</div>在 $x=2$：$e^2(8-12+12-6)=2e^2$；在 $x=0$：$e^0(0-0+0-6)=-6$。故 $$\frac{19}{6}\int_0^2 x^3e^x\,dx=\frac{19}{6}\big[2e^2-(-6)\big]=\frac{19}{6}(2e^2+6)=\frac{19}{3}(e^2+3).$$</div>
+      <div class="ex-answer">$\displaystyle\int_0^2\!\int_0^x\!\int_0^{x+y} e^x(y+2z)\,dz\,dy\,dx=19\Big(\frac{e^2}{3}+1\Big)\approx 65.797$。</div>
     </div>
 
     <div class="lecture-example">
-      <div class="ex-tag">補充延伸例題 · 拋物面下方加權體積</div>
-      <div class="ex-title">求 $\displaystyle\iiint_E z\,dV$，$E:0\le z\le 1-x^2-y^2$</div>
-      <div class="step-block"><div class="step-num">步驟 1（區域投影）</div>$z\ge 0\Rightarrow x^2+y^2\le 1$，$D$ 為單位圓盤。</div>
-      <div class="step-block"><div class="step-num">步驟 2（先對 z 積）</div>$\displaystyle\int_0^{1-x^2-y^2}z\,dz=\tfrac{(1-x^2-y^2)^2}{2}.$</div>
-      <div class="step-block"><div class="step-num">步驟 3（極座標化）</div>$\displaystyle\iint_D \tfrac{(1-r^2)^2}{2}\,r\,dr\,d\theta=\int_0^{2\pi}\!\int_0^1 \tfrac{(1-r^2)^2}{2}\,r\,dr\,d\theta.$</div>
-      <div class="step-block"><div class="step-num">步驟 4（內層代換 $u=1-r^2$）</div>$du=-2r\,dr$：$\displaystyle\int_0^1 (1-r^2)^2 r\,dr=\tfrac{1}{2}\!\int_0^1 u^2\,du=\tfrac{1}{6}.$</div>
-      <div class="step-block"><div class="step-num">步驟 5（外層）</div>$\displaystyle\iiint_E z\,dV=\int_0^{2\pi}\tfrac{1}{12}\,d\theta=\tfrac{\pi}{6}.$</div>
-      <div class="ex-answer">$\displaystyle\iiint_E z\,dV=\dfrac{\pi}{6}\approx 0.524$。教學重點：「先對最容易範圍的變數積」— 這裡 $z$ 範圍最簡單（$0$ 到 $1-x^2-y^2$）。</div>
+      <div class="ex-tag">講義例題 2 · 用三重積分求體積（橢球）</div>
+      <div class="ex-title">求橢球 $4x^2+4y^2+z^2=16$ 的體積。</div>
+      <div class="step-block"><div class="step-num">步驟 1（最內層 $z$ 與對稱性）</div>由 $z^2=16-4x^2-4y^2=4(4-x^2-y^2)$ 得 $0\le z\le 2\sqrt{4-x^2-y^2}$。利用八個卦限對稱，取第一卦限再 $\times 8$：$$V=8\!\int_0^2\!\!\int_0^{\sqrt{4-x^2}}\!\!\int_0^{2\sqrt{4-x^2-y^2}}\!\!dz\,dy\,dx=16\!\int_0^2\!\!\int_0^{\sqrt{4-x^2}}\!\!\sqrt{(4-x^2)-y^2}\,dy\,dx.$$</div>
+      <div class="step-block"><div class="step-num">步驟 2（中層 $y$：三角代換）</div>令 $A=4-x^2$，代入 $y=\sqrt{A}\sin\theta$、$dy=\sqrt{A}\cos\theta\,d\theta$，$\sqrt{A-y^2}=\sqrt{A}\cos\theta$：$$\int_0^{\sqrt{A}}\sqrt{A-y^2}\,dy=A\!\int_0^{\pi/2}\cos^2\theta\,d\theta=A\!\int_0^{\pi/2}\frac{1+\cos 2\theta}{2}\,d\theta=A\cdot\frac{\pi}{4}=\frac{\pi(4-x^2)}{4}.$$</div>
+      <div class="step-block"><div class="step-num">步驟 3（外層 $x$）</div>$$V=16\!\int_0^2\frac{\pi(4-x^2)}{4}\,dx=4\pi\!\int_0^2(4-x^2)\,dx=4\pi\Big[4x-\tfrac{x^3}{3}\Big]_0^2=4\pi\Big(8-\tfrac{8}{3}\Big).$$</div>
+      <div class="ex-answer">$V=\dfrac{64\pi}{3}\approx 67.02$。</div>
+
+      <div class="info-box green" style="margin-top:.8rem;">
+        <span class="info-label">替代解法 · 用極座標 / 球座標</span>
+        <p style="margin:.5rem 0 .2rem;">橢球寫成 $\dfrac{x^2}{4}+\dfrac{y^2}{4}+\dfrac{z^2}{16}=1$，半軸 $a=2,\ b=2,\ c=4$。下面兩種座標變換都比直角座標的三角代換乾淨。</p>
+        <p style="margin:.4rem 0 .2rem;"><strong>方法 A · 圓柱座標（極座標 $+\,z$）</strong>：因 $4x^2+4y^2=4r^2$，橢球面化為 $4r^2+z^2=16$，即 $-2\sqrt{4-r^2}\le z\le 2\sqrt{4-r^2}$，投影為 $r\le 2$。</p>
+        <div style="text-align:center;">$$V=\int_0^{2\pi}\!\!\int_0^2\!\!\int_{-2\sqrt{4-r^2}}^{2\sqrt{4-r^2}} r\,dz\,dr\,d\theta=\int_0^{2\pi}\!\!\int_0^2 4r\sqrt{4-r^2}\,dr\,d\theta.$$</div>
+        <p style="margin:.2rem 0;">內層代換 $u=4-r^2$：$\displaystyle\int_0^2 4r\sqrt{4-r^2}\,dr=\Big[-\tfrac43(4-r^2)^{3/2}\Big]_0^2=-\tfrac43(0-8)=\tfrac{32}{3}$，故 $V=\displaystyle\int_0^{2\pi}\tfrac{32}{3}\,d\theta=\dfrac{64\pi}{3}$。</p>
+        <p style="margin:.6rem 0 .2rem;"><strong>方法 B · 廣義球座標（把橢球縮放成單位球）</strong>：令</p>
+        <div style="text-align:center;">$$x=2\rho\sin\phi\cos\theta,\quad y=2\rho\sin\phi\sin\theta,\quad z=4\rho\cos\phi,$$</div>
+        <p style="margin:.2rem 0;">則橢球面恰好對應 $\rho=1$，且雅可比（見 14.8 節）為 $|J|=abc\,\rho^2\sin\phi=2\cdot2\cdot4\,\rho^2\sin\phi=16\rho^2\sin\phi$。於是區域變成單位球 $0\le\rho\le1,\ 0\le\phi\le\pi,\ 0\le\theta\le2\pi$：</p>
+        <div style="text-align:center;">$$V=\int_0^{2\pi}\!\!\int_0^{\pi}\!\!\int_0^1 16\rho^2\sin\phi\,d\rho\,d\phi\,d\theta=16\Big(\!\int_0^{2\pi}\!d\theta\Big)\Big(\!\int_0^{\pi}\!\sin\phi\,d\phi\Big)\Big(\!\int_0^1\!\rho^2\,d\rho\Big)=16\cdot2\pi\cdot2\cdot\tfrac13=\dfrac{64\pi}{3}.$$</div>
+        <p style="margin:.2rem 0 0;"><strong>一般結論</strong>：橢球 $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}+\dfrac{z^2}{c^2}=1$ 的體積為 $\dfrac{4}{3}\pi abc$（本題 $\tfrac43\pi\cdot2\cdot2\cdot4=\tfrac{64\pi}{3}$）。</p>
+      </div>
+    </div>
+
+    <div class="lecture-example">
+      <div class="ex-tag">講義例題 3 · 變更積分次序</div>
+      <div class="ex-title">計算 $\displaystyle\int_0^{\sqrt{\pi/2}}\!\int_x^{\sqrt{\pi/2}}\!\int_1^3 \sin(y^2)\,dz\,dy\,dx$。</div>
+      <div class="step-block"><div class="step-num">步驟 1（最內層 $z$）</div>被積函數與 $z$ 無關：$\displaystyle\int_1^3 \sin(y^2)\,dz=2\sin(y^2)$，故原式 $=2\displaystyle\int_0^{\sqrt{\pi/2}}\!\int_x^{\sqrt{\pi/2}}\sin(y^2)\,dy\,dx$。</div>
+      <div class="step-block"><div class="step-num">步驟 2（$\int\sin(y^2)\,dy$ 無基本反導數 ⇒ 換序）</div>區域為 $0\le x\le y\le\sqrt{\pi/2}$，改寫成「先 $x$ 後 $y$」：$0\le y\le\sqrt{\pi/2},\ 0\le x\le y$：$$2\int_0^{\sqrt{\pi/2}}\!\int_0^{y}\sin(y^2)\,dx\,dy=2\int_0^{\sqrt{\pi/2}} y\sin(y^2)\,dy.$$</div>
+      <div class="step-block"><div class="step-num">步驟 3（代換 $u=y^2$）</div>$du=2y\,dy$，$y:0\to\sqrt{\pi/2}$ 對應 $u:0\to\pi/2$：$$2\cdot\frac12\int_0^{\pi/2}\sin u\,du=\big[-\cos u\big]_0^{\pi/2}=-\cos\tfrac{\pi}{2}+\cos 0=0+1=1.$$</div>
+      <div class="ex-answer">原式 $=1$。<strong>關鍵</strong>：$z$ 方向先積得常數 $2$，再把 $xy$ 換序，讓 $y\sin(y^2)$ 可用 $u=y^2$ 解出。</div>
+    </div>
+
+    <div class="lecture-example">
+      <div class="ex-tag">講義例題 4 · 決定積分上下限（只設定，不計算）</div>
+      <div class="ex-title">為下列三個立體區域設定體積三重積分（決定上下限）。</div>
+      <div class="step-block"><div class="step-num">(a) 第一卦限，上界柱面 $z=1-y^2$，介於平面 $x+y=1$ 與 $x+y=3$ 之間</div><strong>最內層 $z$</strong>：底面是第一卦限的 $xy$ 平面 $z=0$，頂面是拋物柱面 $z=1-y^2$，故 $0\le z\le 1-y^2$。<br><strong>投影到 $xy$</strong>：頂面要 $1-y^2\ge 0\Rightarrow|y|\le 1$，再配合第一卦限 $y\ge 0$ 得 $0\le y\le 1$；兩個鉛直平面 $x+y=1,\ x+y=3$ 給出 $1-y\le x\le 3-y$。$$V=\int_0^1\!\int_{1-y}^{3-y}\!\int_0^{1-y^2}dz\,dx\,dy.$$</div>
+      <div class="step-block"><div class="step-num">(b) 上半球 $z=\sqrt{1-x^2-y^2}$</div><strong>最內層 $z$</strong>：底面是 $z=0$（赤道圓盤），頂面是球面 $z=\sqrt{1-x^2-y^2}$，故 $0\le z\le\sqrt{1-x^2-y^2}$。<br><strong>投影到 $xy$</strong>：頂面在 $z=0$ 處收斂到 $x^2+y^2\le 1$（單位圓盤），寫成 $-1\le x\le 1,\ -\sqrt{1-x^2}\le y\le\sqrt{1-x^2}$。$$V=\int_{-1}^{1}\!\int_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}}\!\int_0^{\sqrt{1-x^2-y^2}}dz\,dy\,dx.$$</div>
+      <div class="step-block"><div class="step-num">(c) 下界拋物面 $z=x^2+y^2$、上界球面 $x^2+y^2+z^2=6$</div><strong>最內層 $z$</strong>：下表面是拋物面 $z=x^2+y^2$，上表面是球面 $z=\sqrt{6-x^2-y^2}$，故 $x^2+y^2\le z\le\sqrt{6-x^2-y^2}$。<br><strong>投影邊界（兩面交線）</strong>：交線同時滿足兩式 — 把拋物面的 $x^2+y^2=z$ 代入球面 $x^2+y^2+z^2=6$ 得 $z+z^2=6\Rightarrow z^2+z-6=0\Rightarrow(z-2)(z+3)=0\Rightarrow z=2$（取正根）。於是 $x^2+y^2=2$，投影為圓盤 $r\le\sqrt2$，寫成 $-\sqrt2\le x\le\sqrt2,\ -\sqrt{2-x^2}\le y\le\sqrt{2-x^2}$。$$V=\int_{-\sqrt2}^{\sqrt2}\!\int_{-\sqrt{2-x^2}}^{\sqrt{2-x^2}}\!\int_{x^2+y^2}^{\sqrt{6-x^2-y^2}}dz\,dy\,dx.$$</div>
+      <div class="ex-answer">三小題都照同一流程：<strong>先定最內層 $z$（找出下表面與上表面）→ 再把立體投影到 $xy$ 平面定外兩層上下限</strong>（對應講義 Figure 34）。本題只要求設定積分、不需算出數值。</div>
     </div>
   </div>
 
@@ -510,8 +543,16 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <p>(1) <strong>第一型（投影到 xy）</strong>：$z$ 介於 $z_1(x,y)$ 與 $z_2(x,y)$，$(x,y)\in D\subset xy$。最常用。<br>
     (2) <strong>第一型I（投影到 yz）</strong>：$x$ 介於 $x_1(y,z)$ 與 $x_2(y,z)$，$(y,z)\in D\subset yz$。<br>
     (3) <strong>第一型II（投影到 xz）</strong>：$y$ 介於 $y_1(x,z)$ 與 $y_2(x,z)$，$(x,z)\in D\subset xz$。<br>
-    (4) <strong>策略</strong>：選那個讓「最內層上下限是<em>常數</em>或最簡單」的型態。上方拋物面例題的 $z\in[0,4-x^2-y^2]$ 就比反過來「$x\in[\dots]$ 上下含 $z$」簡單。<br>
+    (4) <strong>策略</strong>：選那個讓「最內層上下限是<em>常數</em>或最簡單」的型態（理由見下方方塊）。上方拋物面例題的 $z\in[0,4-x^2-y^2]$ 就比反過來「$x\in[\dots]$ 上下含 $z$」簡單。<br>
     (5) <strong>$dV\ne dA$</strong>：$dV=dz\,dA=dx\,dy\,dz$；別把 $dA$ 當成 $dV$。</p>
+  </div>
+
+  <div class="info-box green">
+    <span class="info-label">為什麼策略是「讓最內層上下限最簡」？</span>
+    <p style="margin:.5rem 0 .3rem;">三重積分是<strong>由內而外</strong>算的：最內層先把另外兩個變數當成常數，沿某一軸從「入口面」積到「出口面」；算完後只剩下對<em>投影區域 $D$</em> 的二重積分。「選哪個投影方向」等於「選哪個變數當最內層」，這個選擇直接決定難易，理由有兩個：</p>
+    <p style="margin:.3rem 0;">(1) <strong>避免把積分拆成好幾塊</strong>：最內層的上下限 $g_1\le\,\bullet\,\le g_2$ 代表沿該軸看立體的「下表面」與「上表面」。<em>只有當每一條平行該軸的直線穿過立體時恰好「進一次、出一次」</em>，才能用單一組 $g_1,g_2$ 描述；若某方向的直線會反覆穿進穿出（立體有凹陷、被切成兩段），就必須把立體切開、分段積分，非常麻煩。好的方向讓立體對該軸是「單純的」（z-simple／x-simple／y-simple）。</p>
+    <p style="margin:.3rem 0;">(2) <strong>讓每一層的算式最輕</strong>：$g_1,g_2$ 越簡單（最好是<em>常數</em>，其次是低次式），最內層積分與往外代入的代數就越乾淨。尤其當<strong>上下限是常數</strong>時，該變數可直接「<em>分離</em>」成獨立的一維積分（如球體積、圓柱例題那種三層相乘）。</p>
+    <p style="margin:.3rem 0 0;">合起來：「最內層上下限最簡」其實是同時在 <strong>「不必拆積分」</strong> 與 <strong>「每層算式最簡」</strong> 兩方面最佳化整體計算。算完最內層後，外兩層的難易再由投影 $D$ 是否單純（矩形、簡單的 Type I／II 區域）決定，所以挑方向時也要順帶看「投影 $D$ 好不好寫」。</p>
   </div>
 
   <div class="quiz-card" id="q-146">
@@ -544,7 +585,6 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
       <li>選 第一型/II/III 的關鍵：讓「最內層」的上下限最簡（最好是常數或<em>單一</em>外層變數的函數）。</li>
       <li>換序不只是換 $d$ — 必須重新描述 $Q$ 的不等式，把每個變數的上下限用「新外層變數」表示。</li>
       <li>圓盤投影 $D$ 用極座標：$\iiint_E f\,dV=\int\!\int_D\bigl(\int_{z_1}^{z_2}f\,dz\bigr)r\,dr\,d\theta$。</li>
-      <li>本頁聚焦 14.6 的三重積分設定與體積計算。</li>
     </ul>
   </div>
 </section>
@@ -619,32 +659,13 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <h4>圓柱座標例題</h4>
 
     <div class="lecture-example">
-      <div class="ex-tag">補充延伸例題 · 圓柱上的加權積分</div>
-      <div class="ex-title">求 $\displaystyle\iiint_E z\,dV$，$E:x^2+y^2\le 4,\ 0\le z\le 3$（半徑 2、高 3 圓柱）</div>
-      <div class="step-block"><div class="step-num">步驟 1（描述區域）</div>$E$ 在圓柱座標：$0\le r\le 2,\ 0\le\theta\le 2\pi,\ 0\le z\le 3$。$dV=r\,dr\,d\theta\,dz$。</div>
-      <div class="step-block"><div class="step-num">步驟 2（變數分離）</div>被積函數 $z$ 與 $r,\theta$ 無關 — 三層積分可拆：$$\iiint_E z\,dV=\!\!\int_0^{2\pi}\!\!\int_0^2\!\!\int_0^3 z\cdot r\,dz\,dr\,d\theta=\!\!\int_0^{2\pi}\!d\theta\!\int_0^2 r\,dr\!\int_0^3 z\,dz.$$</div>
-      <div class="step-block"><div class="step-num">步驟 3（三層獨立計算）</div>$\int_0^{2\pi}d\theta=2\pi$；$\int_0^2 r\,dr=2$；$\int_0^3 z\,dz=\tfrac{9}{2}$。乘起來：$2\pi\cdot 2\cdot\tfrac{9}{2}=18\pi.$</div>
-      <div class="ex-answer">$\displaystyle\iiint_E z\,dV=18\pi\approx 56.55$。<strong>觀察</strong>：被積函數可分離，三層積分等於三個一維積分相乘。</div>
-    </div>
-
-    <div class="lecture-example">
-      <div class="ex-tag">補充延伸例題 · 圓錐與平面圍成的體積</div>
-      <div class="ex-title">求圓錐 $z=\sqrt{x^2+y^2}$ 與平面 $z=2$ 圍成立體 $E$ 的體積</div>
-      <div class="step-block"><div class="step-num">步驟 1（圓柱座標化）</div>圓錐 $z=\sqrt{x^2+y^2}=r$；上界平面 $z=2$。底面為圓盤 $r\le 2$（由 $r=2$ 解出）。$E$：$0\le\theta\le 2\pi,\ 0\le r\le 2,\ r\le z\le 2$。</div>
-      <div class="step-block"><div class="step-num">步驟 2（最內層 $z$）</div>$\displaystyle\int_r^2 dz=2-r$。</div>
-      <div class="step-block"><div class="step-num">步驟 3（中層 $r$）</div>$\displaystyle\int_0^2 r(2-r)\,dr=\bigl[r^2-\tfrac{r^3}{3}\bigr]_0^2=4-\tfrac{8}{3}=\tfrac{4}{3}.$</div>
-      <div class="step-block"><div class="step-num">步驟 4（外層 $\theta$）</div>$\displaystyle V=\int_0^{2\pi}\tfrac{4}{3}\,d\theta=\tfrac{8\pi}{3}.$</div>
-      <div class="ex-answer">$V=\dfrac{8\pi}{3}\approx 8.378$。可比對直角座標 $\int\!\int_D (2-\sqrt{x^2+y^2})\,dA$，會麻煩許多。</div>
-    </div>
-
-    <div class="lecture-example">
-      <div class="ex-tag">補充延伸例題 · 圓錐上的加權積分</div>
-      <div class="ex-title">求 $\displaystyle\iiint_E (x^2+y^2)\,dV$，其中 $E$ 為圓錐 $z=\sqrt{x^2+y^2}$ 與平面 $z=2$ 圍成的立體區域。</div>
-      <div class="step-block"><div class="step-num">步驟 1（圓柱座標）</div>$x^2+y^2=r^2$，被積函數 $r^2\cdot r=r^3$（含 $dV$ 中的 $r$）。$E$：$0\le\theta\le 2\pi,\ 0\le r\le 2,\ r\le z\le 2$。</div>
-      <div class="step-block"><div class="step-num">步驟 2（最內層）</div>$\displaystyle\int_r^2 r^3\,dz=r^3(2-r).$</div>
-      <div class="step-block"><div class="step-num">步驟 3（中層）</div>$\displaystyle\int_0^2 r^3(2-r)\,dr=\bigl[\tfrac{r^4}{2}-\tfrac{r^5}{5}\bigr]_0^2=8-\tfrac{32}{5}=\tfrac{8}{5}.$</div>
-      <div class="step-block"><div class="step-num">步驟 4（外層）</div>$\displaystyle\iiint_E(x^2+y^2)\,dV=\int_0^{2\pi}\tfrac{8}{5}d\theta=\tfrac{16\pi}{5}.$</div>
-      <div class="ex-answer">$\displaystyle\iiint_E(x^2+y^2)\,dV=\dfrac{16\pi}{5}\approx 10.05$。教學重點：被積函數含 $x^2+y^2$ 時，圓柱座標會把它直接化為 $r^2$。</div>
+      <div class="ex-tag">講義例題 1 · 圓柱座標求體積</div>
+      <div class="ex-title">求球面 $x^2+y^2+z^2=4$ 被圓柱面 $r=2\sin\theta$ 切出的立體 $Q$ 的體積。</div>
+      <div class="step-block"><div class="step-num">步驟 1（圓柱座標描述 $Q$）</div>圓柱面 $r=2\sin\theta$ 即 $x^2+(y-1)^2=1$；球面化為 $z^2=4-r^2$，故 $-\sqrt{4-r^2}\le z\le\sqrt{4-r^2}$。投影為 $r=2\sin\theta$ 圍出的圓盤：$0\le\theta\le\pi,\ 0\le r\le 2\sin\theta$：$$V=\int_0^{\pi}\!\!\int_0^{2\sin\theta}\!\!\int_{-\sqrt{4-r^2}}^{\sqrt{4-r^2}} r\,dz\,dr\,d\theta.$$</div>
+      <div class="step-block"><div class="step-num">步驟 2（最內層 $z$）</div>$\displaystyle\int_{-\sqrt{4-r^2}}^{\sqrt{4-r^2}}dz=2\sqrt{4-r^2}$，故 $\displaystyle V=\int_0^{\pi}\!\!\int_0^{2\sin\theta} 2r\sqrt{4-r^2}\,dr\,d\theta$。</div>
+      <div class="step-block"><div class="step-num">步驟 3（中層 $r$，代換 $u=4-r^2$）</div>$\displaystyle\int 2r\sqrt{4-r^2}\,dr=-\frac23(4-r^2)^{3/2}$。代入 $0\to 2\sin\theta$（用 $4-4\sin^2\theta=4\cos^2\theta$）：$$\int_0^{2\sin\theta}2r\sqrt{4-r^2}\,dr=-\frac23\Big[(4\cos^2\theta)^{3/2}-8\Big]=\frac{16}{3}\big(1-|\cos\theta|^3\big).$$</div>
+      <div class="step-block"><div class="step-num">步驟 4（外層 $\theta$）</div>先算 $\displaystyle\int_0^{\pi/2}\cos^3\theta\,d\theta=\int_0^{\pi/2}(1-\sin^2\theta)\cos\theta\,d\theta=\Big[\sin\theta-\tfrac{\sin^3\theta}{3}\Big]_0^{\pi/2}=1-\tfrac13=\tfrac23$；由 $[0,\pi]$ 對稱得 $\displaystyle\int_0^{\pi}|\cos\theta|^3\,d\theta=2\cdot\tfrac23=\tfrac43$。故 $$V=\frac{16}{3}\int_0^{\pi}\big(1-|\cos\theta|^3\big)\,d\theta=\frac{16}{3}\Big(\pi-\frac43\Big).$$</div>
+      <div class="ex-answer">$V=\dfrac{16}{3}\Big(\pi-\dfrac43\Big)=\dfrac{16(3\pi-4)}{9}\approx 9.64$。區域同時受球面與柱面（含 $\sqrt{x^2+y^2}$）約束時，圓柱座標把兩者一起化簡。</div>
     </div>
   </div>
 
@@ -652,9 +673,15 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <h3>14.7.2 球面座標：$dV=\rho^2\sin\phi\,d\rho\,d\phi\,d\theta$</h3>
     <p>球面座標 $(\rho,\phi,\theta)$ 中，$\rho\ge0$ 為徑距、$\phi\in[0,\pi]$ 為從正 $z$ 軸量下的極角、$\theta\in[0,2\pi)$ 為 $xy$ 平面方位角：</p>
     <div style="text-align:center;">$$x=\rho\sin\phi\cos\theta,\ y=\rho\sin\phi\sin\theta,\ z=\rho\cos\phi.$$</div>
-    <p>把 $d\rho,d\phi,d\theta$ 各取一小段，產生的「<strong>球殼楔形</strong>」近似一個盒子，邊長分別為 $d\rho$、$\rho\,d\phi$、$\rho\sin\phi\,d\theta$，故</p>
-    <div style="text-align:center;">$$dV\approx \rho^2\sin\phi\,d\rho\,d\phi\,d\theta.$$</div>
-    <p>因子 $\sin\phi$ 是因為「同 $\rho$ 的緯線圈」周長為 $2\pi\rho\sin\phi$，赤道 ($\phi=\pi/2$) 最大、兩極 ($\phi=0,\pi$) 為零。</p>
+    <p>把 $\rho,\phi,\theta$ 各動一小段 $d\rho,d\phi,d\theta$，掃出的「<strong>球殼楔形</strong>」近似一個小盒子。它三條邊互相垂直，各自是「沿一個座標方向移動的弧長」（弧長 $=$ 半徑 $\times$ 角度）：</p>
+    <ul style="margin:.3rem 0 .6rem;line-height:1.85;">
+      <li><strong>徑向（只動 $\rho$）</strong>：固定 $\phi,\theta$，讓 $\rho$ 增加 $d\rho$，點沿著射線<em>直線</em>往外走，邊長就是 $d\rho$。</li>
+      <li><strong>極角向（只動 $\phi$）</strong>：固定 $\rho,\theta$，讓 $\phi$ 增加 $d\phi$，點沿著一個<em>半徑為 $\rho$ 的經線圓</em>（過南北極的鉛直圓，圓心在原點）移動，半徑 $=\rho$，弧長 $=\rho\,d\phi$。</li>
+      <li><strong>方位角向（只動 $\theta$）</strong>：固定 $\rho,\phi$，讓 $\theta$ 增加 $d\theta$，點沿著一個<em>水平的緯線圈</em>繞 $z$ 軸轉。這個圈的半徑<strong>不是 $\rho$</strong>，而是點到 $z$ 軸的水平距離 $=\rho\sin\phi$，所以弧長 $=\rho\sin\phi\,d\theta$。</li>
+    </ul>
+    <p>三邊互相垂直，小盒子體積 $\approx$ 三邊相乘：</p>
+    <div style="text-align:center;">$$dV\approx \underbrace{d\rho}_{\text{徑向}}\cdot\underbrace{\rho\,d\phi}_{\text{極角向}}\cdot\underbrace{\rho\sin\phi\,d\theta}_{\text{方位角向}}=\rho^2\sin\phi\,d\rho\,d\phi\,d\theta.$$</div>
+    <p>關鍵因子 <strong>$\sin\phi$</strong> 完全來自方位角方向那條邊：緯線圈半徑 $=\rho\sin\phi$，在赤道（$\phi=\tfrac{\pi}{2}$，$\sin\phi=1$）最大、在兩極（$\phi=0$ 或 $\pi$，$\sin\phi=0$）縮成一點。又因 $\phi\in[0,\pi]$ 時 $\sin\phi\ge 0$，故 $|J|=\rho^2\sin\phi$ 不需取絕對值。</p>
 
     <div class="info-box green">
       <span class="info-label">14.7.2 公式 · 球面座標三重積分</span>
@@ -709,32 +736,12 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
     <h4>球面座標例題</h4>
 
     <div class="lecture-example">
-      <div class="ex-tag">補充延伸例題 · 球體積（從定義）</div>
-      <div class="ex-title">用球面座標證明半徑 $a$ 的球體積為 $V=\dfrac{4\pi a^3}{3}$</div>
-      <div class="step-block"><div class="step-num">步驟 1（描述球）</div>$E:0\le\rho\le a,\ 0\le\phi\le\pi,\ 0\le\theta\le 2\pi$；$dV=\rho^2\sin\phi\,d\rho\,d\phi\,d\theta$。</div>
-      <div class="step-block"><div class="step-num">步驟 2（三層分離）</div>$f=1$，三層完全分離：$$V=\!\int_0^{2\pi}\!d\theta\!\int_0^\pi\!\sin\phi\,d\phi\!\int_0^a\rho^2\,d\rho.$$</div>
-      <div class="step-block"><div class="step-num">步驟 3（三層計算）</div>$\int_0^{2\pi}d\theta=2\pi$；$\int_0^\pi\sin\phi\,d\phi=2$；$\int_0^a\rho^2\,d\rho=\tfrac{a^3}{3}$。乘起來：$2\pi\cdot 2\cdot\tfrac{a^3}{3}=\dfrac{4\pi a^3}{3}.$</div>
-      <div class="ex-answer">$V=\dfrac{4\pi a^3}{3}$。<strong>注意</strong>：$\phi$ 範圍 $[0,\pi]$（不是 $[0,2\pi]$！），覆蓋從北極到南極一次。</div>
-    </div>
-
-    <div class="lecture-example">
-      <div class="ex-tag">補充延伸例題 · 含 $e^{(x^2+y^2+z^2)^{3/2}}$ 的單位球積分</div>
-      <div class="ex-title">求 $\displaystyle\iiint_E e^{(x^2+y^2+z^2)^{3/2}}\,dV$，$E$ 為單位球 $\rho\le 1$</div>
-      <div class="step-block"><div class="step-num">步驟 1（球座標化）</div>$x^2+y^2+z^2=\rho^2\Rightarrow (x^2+y^2+z^2)^{3/2}=\rho^3$。被積函數變成 $e^{\rho^3}\cdot\rho^2\sin\phi$。</div>
-      <div class="step-block"><div class="step-num">步驟 2（三層拆開）</div>$\displaystyle\!\int_0^{2\pi}\!d\theta\!\int_0^\pi\sin\phi\,d\phi\!\int_0^1 e^{\rho^3}\rho^2\,d\rho.$</div>
-      <div class="step-block"><div class="step-num">步驟 3（內層代換 $u=\rho^3$）</div>$du=3\rho^2 d\rho$，$\rho=0\to u=0$、$\rho=1\to u=1$：$\displaystyle\int_0^1 e^{\rho^3}\rho^2\,d\rho=\tfrac{1}{3}\!\int_0^1 e^u du=\tfrac{e-1}{3}.$</div>
-      <div class="step-block"><div class="step-num">步驟 4（合成）</div>$\displaystyle\iiint_E e^{\rho^3}\,dV=2\pi\cdot 2\cdot\tfrac{e-1}{3}=\dfrac{4\pi(e-1)}{3}.$</div>
-      <div class="ex-answer">$\displaystyle\iiint_E e^{(x^2+y^2+z^2)^{3/2}}\,dV=\dfrac{4\pi(e-1)}{3}\approx 7.198$。教學重點：用球座標把 $(x^2+y^2+z^2)^k$ 換成 $\rho^{2k}$，常常解開原本不可解的 $e^{\rho^2}$ 等指數。</div>
-    </div>
-
-    <div class="lecture-example">
-      <div class="ex-tag">補充延伸例題 · 球與圓錐的交集</div>
-      <div class="ex-title">求單位球 $\rho\le 1$ 與圓錐 $z\ge\sqrt{x^2+y^2}$ 上方所夾區域 $E$ 的體積</div>
-      <div class="step-block"><div class="step-num">步驟 1（圓錐 $\to$ 球座標）</div>$z=\sqrt{x^2+y^2}\Leftrightarrow\rho\cos\phi=\rho\sin\phi\Leftrightarrow\tan\phi=1\Leftrightarrow\phi=\tfrac{\pi}{4}$。「圓錐上方」對應 $\phi\le\pi/4$。</div>
-      <div class="step-block"><div class="step-num">步驟 2（描述 $E$）</div>$E:0\le\rho\le 1,\ 0\le\phi\le\pi/4,\ 0\le\theta\le 2\pi$。</div>
-      <div class="step-block"><div class="step-num">步驟 3（三層分離）</div>$\displaystyle V=\!\int_0^{2\pi}\!d\theta\!\int_0^{\pi/4}\!\sin\phi\,d\phi\!\int_0^1\rho^2\,d\rho=2\pi\cdot\bigl[1-\tfrac{\sqrt 2}{2}\bigr]\cdot\tfrac{1}{3}.$</div>
-      <div class="step-block"><div class="step-num">步驟 4（化簡）</div>$\displaystyle V=\dfrac{2\pi}{3}\Bigl(1-\tfrac{\sqrt 2}{2}\Bigr)=\dfrac{\pi(2-\sqrt 2)}{3}.$</div>
-      <div class="ex-answer">$V=\dfrac{\pi(2-\sqrt 2)}{3}\approx 0.613$。「冰淇淋」幾何：底為球面、上端是圓錐尖。換用其他座標都會非常複雜。</div>
+      <div class="ex-tag">講義例題 2 · 球面座標求體積</div>
+      <div class="ex-title">求下界為上半圓錐 $z^2=x^2+y^2$、上界為球面 $x^2+y^2+z^2=9$ 所圍立體 $Q$ 的體積。</div>
+      <div class="step-block"><div class="step-num">步驟 1（圓錐 $\to\phi$ 範圍）</div>$z^2=x^2+y^2$ 在球座標為 $\rho^2\cos^2\phi=\rho^2\sin^2\phi\Rightarrow\tan\phi=1\Rightarrow\phi=\tfrac{\pi}{4}$。圓錐<em>上方</em>（朝 $+z$ 軸）對應 $0\le\phi\le\tfrac{\pi}{4}$；球面為 $\rho=3$。故 $Q:0\le\rho\le3,\ 0\le\phi\le\tfrac{\pi}{4},\ 0\le\theta\le2\pi$。</div>
+      <div class="step-block"><div class="step-num">步驟 2（三層分離）</div>$f=1$，$dV=\rho^2\sin\phi\,d\rho\,d\phi\,d\theta$：$$V=\int_0^{2\pi}\!d\theta\int_0^{\pi/4}\!\sin\phi\,d\phi\int_0^{3}\rho^2\,d\rho.$$</div>
+      <div class="step-block"><div class="step-num">步驟 3（三層計算）</div>$\displaystyle\int_0^{2\pi}d\theta=2\pi$；$\displaystyle\int_0^{\pi/4}\sin\phi\,d\phi=\big[-\cos\phi\big]_0^{\pi/4}=1-\tfrac{\sqrt2}{2}$；$\displaystyle\int_0^3\rho^2\,d\rho=9$。</div>
+      <div class="ex-answer">$V=2\pi\Big(1-\dfrac{\sqrt2}{2}\Big)\cdot 9=18\pi\Big(1-\dfrac{\sqrt2}{2}\Big)=9\pi(2-\sqrt2)\approx 16.56$。「冰淇淋」立體：圓錐尖在下、球冠在上。</div>
     </div>
 
     <div class="concept-warning">
@@ -1026,7 +1033,7 @@ footer{text-align:center;padding:2rem;font-size:.85rem;color:var(--muted);border
   <div class="ref-card">
     <div class="ref-card-header"><span class="ref-card-name">三重積分定義</span><span class="ref-card-name-en">定義 14.4</span></div>
     <div class="ref-card-eq">$\displaystyle\iiint_Q f\,dV=\lim_{\|\Delta\|\to 0}\sum_i f(x_i,y_i,z_i)\,\Delta V_i$</div>
-    <div class="ref-card-note">特別地 $V(Q)=\iiint_Q dV$；本頁聚焦三重積分設定與體積計算。</div>
+    <div class="ref-card-note">特別地 $V(Q)=\iiint_Q dV$。</div>
   </div>
 
   <div class="ref-card">
